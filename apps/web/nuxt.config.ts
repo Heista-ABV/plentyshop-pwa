@@ -155,7 +155,7 @@ export default defineNuxtConfig({
         },
       ],
       cleanupOutdatedCaches: true,
-    },
+    }, 
     manifest: {
       name: 'plentyshop PWA',
       short_name: 'plentyshopPWA',

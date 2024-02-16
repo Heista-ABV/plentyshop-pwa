@@ -5,9 +5,10 @@ export default defineI18nConfig(() => ({
     de: {
       currency: {
         style: 'currency',
-        currency: 'EUR',
+        currency: 'EUR', 
         currencyDisplay: 'symbol',
       },
     },
   },
 }));
+ 

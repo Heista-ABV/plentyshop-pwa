@@ -60,7 +60,7 @@ export default {
         {
           name: 'Cloudflare Turnstile',
           Provider: 'Cloudflare',
-          Status: 'Necessary for Cloudflare’s Turnstile service.',
+          Status: 'Necessary for Cloudflare’s Turnstile service.', 
           PrivacyPolicy: '/PrivacyPolicy',
           Lifespan: '100 days',
           accepted: true,

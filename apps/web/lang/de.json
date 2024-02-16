@@ -688,7 +688,7 @@
     "selectQuantities": "Bitte wählen Sie die Rücksendemengen aus",
     "selectReason": "Bitte wählen Sie den Rückgabegrund aus",
     "returnItems": "Rückgabe-Artikel",
-    "areYouSure": "Sind Sie sicher, dass Sie diese Artikel zurückgeben möchten?",
+    "areYouSure": "Sind Sie sicher, dass Sie diese Artikel zurückgeben möchten?", 
     "commentOptional": "Kommentar (optional)",
     "tellUsMore": "Erzählen Sie uns mehr darüber, warum Sie diese Artikel zurückgeben möchten..",
     "initiateReturn": "Rückgabe einleiten",
@@ -701,5 +701,8 @@
     "selectAll": "Alles auswählen",
     "successConfirmationMessage": "Wir haben Ihre Retoure erfasst. Wir informieren Sie über den weiteren Ablauf.",
     "quantity": "Anzahl"
+  },
+  "header":{
+    "logoAltText": "Kosmetikspiegel.shop"
   }
 }

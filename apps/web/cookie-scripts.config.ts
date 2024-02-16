@@ -6,7 +6,7 @@ const cookieScripts: CookieScripts = {
   loadExampleScript: () => {
     // Implementation of loadExampleScript
   },
-  // Add other scripts if needed
+  // Add other scripts if needed 
 };
 
 export default cookieScripts;
