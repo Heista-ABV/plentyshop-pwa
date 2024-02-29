@@ -1,4 +1,8 @@
 <template>
+  <div class="">
+
+  </div>
+
   <div class="relative min-h-[600px]">
     <picture>
       <source srcset="/images/homepage-hero-bg.webp" media="(min-width: 768px)" />

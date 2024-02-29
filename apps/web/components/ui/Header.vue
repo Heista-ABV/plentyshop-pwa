@@ -90,17 +90,17 @@
           </ul>
         </SfDropdown>
         
-        <SfButton
+        <button
           v-else
           @click="openAuthentication"
-          class="group customClassLogin relative text-secondary hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 mr-1 -ml-0.5 rounded-md"
+          class="group p-2 customClassLogin relative text-secondary hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 mr-1 -ml-0.5 rounded-md"
           variant="tertiary"
           :tag="NuxtLink"
           square
         >
           <SfIconPerson />
         
-        </SfButton>
+        </button>
          
       </nav>
     </NuxtLazyHydrate>

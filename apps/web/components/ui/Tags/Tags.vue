@@ -1,25 +1,38 @@
 <template>
-  <div v-if="tags && tags.length > 0" data-testid="tags">
-    <ul class="flex flex-row flex-wrap gap-1">
-      <li v-for="(tag, index) in tags" :key="index">
-        <p
-          class="border rounded-xl inline-block text-center py-1 px-2 text-xs"
-          :class="tagGetters.getTagTextColorIsDark(tag) ? 'text-dark' : 'text-white'"
-          :style="{
-            backgroundColor: tagGetters.getTagBackgroundColor(tag) || 'bg-white',
-          }"
-        >
-          {{ tagGetters.getTagName(tag) }}
-        </p>
-      </li>
-    </ul>
+  <div
+    :class="[
+      'inline-flex items-center justify-center',
+      strong ? 'font-medium rounded-none' : 'rounded-md font-normal',
+      getVariantClasses,
+      sizeClasses,
+    ]"
+    data-testid="tag"
+  >
+    <slot />
   </div>
 </template>
-
 <script setup lang="ts">
-import { tagGetters } from '@plentymarkets/shop-sdk';
-import type { TagsProps } from '~/components/ui/Tags/types';
+import { type TagProps, TagSize } from '~/components/ui/Tag/types';
 
-const { product } = withDefaults(defineProps<TagsProps>(), {});
-const tags = tagGetters.getTags(product);
+const props = withDefaults(defineProps<TagProps>(), {
+  variant: 'primary',
+  strong: false,
+  size: 'base',
+});
+
+const sizeClasses = computed(() => (props.size === TagSize.sm ? 'text-xs p-1 gap-1' : 'text-sm p-1.5 gap-1.5'));
+
+const getVariantClasses = computed(() => {
+  switch (props.variant) {
+    case 'secondary': {
+      return ['text-white', props.strong ? 'bg-secondary-800' : 'bg-secondary-100'];
+    }
+    case 'negative': {
+      return ['text-negative-800', props.strong ? 'bg-negative-600' : 'bg-negative-100'];
+    }
+    default: {
+      return ['text-primary-800', props.strong ? 'bg-primary-600' : 'bg-primary-100'];
+    }
+  }
+});
 </script>

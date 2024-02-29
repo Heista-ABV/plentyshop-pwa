@@ -39,11 +39,10 @@
               "
             >
               <li v-for="(menuNode, index) in categoryTree" :key="index">
-                <SfButton
+                <button
                   ref="triggerReference"
-                  variant="tertiary"
                   data-testid="category-button"
-                  class="group mr-2 text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                  class="group mr-2 uppercase font-bold text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                   @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                   @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                 >
@@ -54,7 +53,7 @@
                       class="rotate-90 text-secondary-700 group-hover:text-primary-700 group-active:text-primary-700 bg-white"
                     />
                   </NuxtLink>
-                </SfButton>
+                </button>
 
                 <div
                   v-if="

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "scss/fonts";
 
 .scrollbar-hidden {
   -ms-overflow-style: none;
@@ -10,3 +11,4 @@
     @apply hidden /* for Chrome, Safari, and Opera */;
   }
 }
+
