@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full h-full z-50 md:sticky md:shadow-md">
+  <div class="w-full h-full z-50 md:sticky shadow-md">
     <header ref="referenceRef" class="relative">
       <div
-        class="flex justify-between items-center flex-wrap md:flex-nowrap px-4 md:px-10 py-2 md:py-5 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
+        class="flex justify-between items-center flex-wrap md:flex-nowrap px-2 md:px-10 py-2 md:py-5 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
         data-testid="navbar-top"
       >
         <div class="flex items-center">
@@ -10,7 +10,7 @@
             variant="tertiary"
             square
             aria-label="Close menu"
-            class="block md:hidden mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
+            class="block lg:hidden mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
             @click="openMenu([])"
           >
             <SfIconMenu class="text-secondary-700 hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white" />
@@ -19,7 +19,7 @@
           <NuxtLink
             :to="localePath(paths.home)"
             aria-label="Sf Homepage"
-            class="flex shrink-0 w-full h-8 lg:w-[12.5rem] lg:h-[1.75rem] items-center mr-auto text-white md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
+            class="w-full items-center  text-white  focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
           >
             <UiVsfLogo />
           </NuxtLink>
@@ -29,7 +29,7 @@
           <!-- Desktop dropdown -->
           <nav ref="floatingRef">
             <ul
-              class="hidden md:flex px-6 py-2"
+              class="hidden lg:flex px-6 py-2"
               @blur="
                 (event) => {
                   if (!(event.currentTarget as Element).contains(event.relatedTarget as Element)) {
@@ -42,7 +42,7 @@
                 <button
                   ref="triggerReference"
                   data-testid="category-button"
-                  class="group mr-2 uppercase font-bold text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                  class="group mr-5 uppercase font-bold text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                   @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                   @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                 >
@@ -125,7 +125,7 @@
       >
         <nav>
           <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">
-            <p class="typography-text-base font-medium">Browse products</p>
+            <p class="typography-text-base font-medium">Unsere Kategorien</p>
             <SfButton variant="tertiary" square aria-label="Close menu" class="ml-2" @click="close()">
               <SfIconClose class="text-neutral-500" />
             </SfButton>
@@ -171,6 +171,9 @@
               </li>
             </template>
           </ul>
+          <div class="mobileNavFooter">
+
+          </div>
         </nav>
       </SfDrawer>
     </header>

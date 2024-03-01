@@ -1,6 +1,7 @@
 <template>
   <div>
     <UiHeader />
+    <!--
     <template v-if="breadcrumbs?.length">
       <NarrowContainer>
         <div class="p-4 md:px-0">
@@ -8,6 +9,7 @@
         </div>
       </NarrowContainer>
     </template>
+    -->
     <main>
       <slot />
     </main>

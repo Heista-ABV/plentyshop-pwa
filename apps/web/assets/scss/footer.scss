@@ -1,0 +1,10 @@
+.footerImg{
+    max-height: 35px;
+    height: 35px;
+    @media (min-width: 992px){
+        max-height: 30px;
+    }
+    @media (min-width: 1200px){
+        max-height: 35px;
+    }
+}

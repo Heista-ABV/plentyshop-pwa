@@ -1,7 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "scss/variables";
 @import "scss/fonts";
+@import "scss/header";
+@import "scss/global";
+@import "scss/home";
+@import "scss/footer";
+@import "scss/item";
+@import "scss/category";
+
 
 .scrollbar-hidden {
   -ms-overflow-style: none;

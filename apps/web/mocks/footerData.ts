@@ -1,63 +1,70 @@
 export const categories = [
   {
-    key: 'howToBuy',
+    key: 'footer.rowHeading1',
     subcategories: [
       {
-        key: 'paymentMethods',
-        link: paths.home,
+        key: 'row1ListEntry1',
+        link: 'row1ListLink1',
       },
       {
-        key: 'orderPickup',
-        link: paths.home,
+        key: 'row1ListEntry2',
+        link: 'row1ListLink2',
       },
       {
-        key: 'purchaseStatus',
-        link: paths.home,
+        key: 'row1ListEntry3',
+        link: 'row1ListLink3',
       },
       {
-        key: 'trackOrders',
-        link: paths.home,
+        key: 'row1ListEntry4',
+        link: 'row1ListLink4',
       },
       {
-        key: 'returns',
-        link: paths.home,
+        key: 'row1ListEntry5',
+        link: 'row1ListLink5',
+      },
+      {
+        key: 'row1ListEntry6',
+        link: 'row1ListLink6',
       },
     ],
   },
   {
-    key: 'legal',
+    key: 'footer.rowHeading2',
     subcategories: [
       {
-        key: 'termsAndConditions',
-        link: paths.termsAndConditions,
+        key: 'row2ListEntry1',
+        link: 'row2ListLink1',
       },
       {
-        key: 'cancellationRights',
-        link: paths.cancellationRights,
+        key: 'row2ListEntry2',
+        link: 'row2ListLink2',
       },
       {
-        key: 'legalDisclosure',
-        link: paths.legalDisclosure,
+        key: 'row2ListEntry3',
+        link: 'row2ListLink3',
       },
       {
-        key: 'privacyPolicy',
-        link: paths.privacyPolicy,
+        key: 'row2ListEntry4',
+        link: 'row2ListLink4',
       },
       {
-        key: 'cancellationForm',
-        link: paths.cancellationForm,
+        key: 'row2ListEntry5',
+        link: 'row2ListLink5',
+      },
+      {
+        key: 'row2ListEntry6',
+        link: 'row2ListLink6',
+      },
+      {
+        key: 'row2ListEntry7',
+        link: 'row2ListLink7',
+      },
+      {
+        key: 'row2ListEntry8',
+        link: 'row2ListLink8',
       },
     ],
-  },
-  {
-    key: 'contact',
-    subcategories: [
-      {
-        key: 'contact',
-        link: '/contact',
-      },
-    ],
-  },
+  },  
 ];
 
-export const companyName = `© PLENTYSYSTEMS AG ${new Date().getFullYear()}`;
+export const companyName = `© Copyright ${new Date().getFullYear()} | Alle Rechte vorbehalten.`;

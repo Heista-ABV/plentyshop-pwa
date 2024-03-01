@@ -1,35 +1,113 @@
 <template>
-  <footer class="pt-10 bg-neutral-100 mb-[58px] md:mb-0" data-testid="footer">
+  <footer class="pt-10 border-t-2 border-primary-700 bg-white mb-[58px] md:mb-0" data-testid="footer">
     <div
-      class="grid justify-center grid-cols-[1fr_1fr] md:grid-cols-[repeat(4,1fr)] px-4 md:px-6 pb-10 max-w-screen-3xl mx-auto"
+      class="flex flex-wrap  px-4 md:px-10 lg:px-14  pb-10 max-w-screen-3xl mx-auto"
       data-testid="section-top"
     >
-      <div v-for="{ key, subcategories } in categories" :key="key" class="min-w-[25%] xs:min-w-[50%] flex flex-col">
-        <div class="ml-4 text-lg font-medium leading-7 text-neutral-900">
-          {{ $t(`categories.${key}.label`) }}
+      <div v-for="{ key, subcategories } in categories" :key="key" class="min-w-[100%] md:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4">
+        <div class="text-lg font-medium leading-7 text-neutral-900 mb-3">
+          {{ $t(`${key}`) }}
         </div>
         <ul>
-          <SfListItem
-            v-for="{ key: subcategoryKey, link } in subcategories"
+          <li
+            v-for="{ key: subcategoryKey, link, text } in subcategories"
             :key="subcategoryKey"
-            class="py-2 !bg-transparent typography-text-sm"
+            class="py-1 !bg-transparent typography-text-sm"
           >
-            <SfLink
-              :tag="NuxtLink"
+            <a             
+              v-if="$t(`footer.${link}`).length > 0" 
               class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
-              variant="secondary"
-              :to="localePath(link)"
-            >
-              {{ $t(`categories.${key}.subcategories.${subcategoryKey}`) }}
-            </SfLink>
-          </SfListItem>
+              :href="$t(`footer.${link}`)"
+            >              
+              <span>
+                {{ $t(`footer.${subcategoryKey}`) }}
+              </span>
+            </a>
+            <template v-else>             
+              <span>
+                {{ $t(`footer.${subcategoryKey}`) }}
+              </span>
+            </template>
+          </li>
         </ul>
+      </div>
+      <div  class="min-w-[100%] sm:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4">
+        <div class="text-lg font-medium leading-7 text-neutral-900 mb-3">
+          {{ $t(`footer.rowHeading3`) }}
+        </div>
+        <ul class="footerCompanyLogos flex gap-4">         
+          <li
+            v-for="i in 2" :key="i"
+            class="py-1 !bg-transparent typography-text-sm"
+          > 
+            <a      
+               v-if="$t(`footer.row3ListLink${i}`).length > 0" 
+              class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
+              :href="$t(`footer.row3ListLink${i}`)">       
+              <template v-if="$t(`footer.row3ListImage${i}`).length > 0 && $t(`footer.row3ListImage${i}`) != 'undefined'">
+                <img :src="$t(`footer.row3ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row3ListImageText${i}`) }}" alt="{{ $t(`footer.row3ListImageText${i}`) }}">
+              </template>
+              <template v-else>
+                <span>
+                  {{ $t(`footer.row3ListImageText${i}`) }}
+                </span>
+              </template>
+            </a>
+            <template v-else>
+              <template v-if="$t(`footer.row3ListImage${i}`).length > 0 && $t(`footer.row3ListImage${i}`) != 'undefined'">
+                <img :src="$t(`footer.row3ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row3ListImageText${i}`) }}" alt="{{ $t(`footer.row3ListImageText${i}`) }}">
+              </template>
+              <template v-else>
+                <span>
+                  {{ $t(`footer.row3ListImageText${i}`) }}
+                </span>
+              </template>
+            </template>
+          </li>
+        </ul>
+      </div>
+      <div  class="min-w-[100%] sm:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4">
+        <template v-for="index in 2">
+          <div class="text-lg font-medium leading-7 text-neutral-900 mb-3">
+            {{ $t(`footer.rowHeading4${index}`) }}
+          </div>
+          <ul class="footerCompanyLogos flex gap-4 mb-4">         
+            <li
+              v-for="i in 2" :key="i"
+              class="py-1 !bg-transparent typography-text-sm"
+            > 
+              <a      
+                v-if="$t(`footer.row4${index}ListLink${i}`).length > 0" 
+                class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
+                :href="$t(`footer.row4${index}ListLink${i}`)">       
+                <template v-if="$t(`footer.row4${index}ListImage${i}`).length > 0 && $t(`footer.row4${index}ListImage${i}`) != 'undefined'">
+                  <img :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row4${index}ListImageText${i}`) }}" alt="{{ $t(`footer.row4${index}ListImageText${i}`) }}">
+                </template>
+                <template v-else>
+                  <span>
+                    {{ $t(`footer.row4${index}ListImageText${i}`) }}
+                  </span>
+                </template>
+              </a>
+              <template v-else>
+                <template v-if="$t(`footer.row4${index}ListImage${i}`).length > 0 && $t(`footer.row4${index}ListImage${i}`) != 'undefined'">
+                  <img :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row4${index}ListImageText${i}`) }}" alt="{{ $t(`footer.row4${index}ListImageText${i}`) }}">
+                </template>
+                <template v-else>
+                  <span>
+                    {{ $t(`footer.row4${index}ListImageText${i}`) }}
+                  </span>
+                </template>
+              </template>
+            </li>
+          </ul>
+        </template>
       </div>
     </div>
     <hr />
-    <div class="bg-neutral-900" data-testid="section-bottom">
-      <div class="justify-end px-4 py-10 md:flex md:py-6 max-w-screen-3xl mx-auto">
-        <p class="flex items-center justify-center leading-5 text-center typography-text-sm text-white/50 md:ml-6">
+    <div  data-testid="section-bottom">
+      <div class="justify-center px-4 py-2 md:flex  max-w-screen-3xl mx-auto">
+        <p class="flex items-center justify-center leading-5 text-center typography-text-xs md:ml-6">
           {{ companyName }}
         </p>
       </div>

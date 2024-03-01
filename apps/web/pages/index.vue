@@ -1,6 +1,217 @@
 <template>
-  <div class="">
-
+  <div class="widget h-image-collection-widget heista-widget">
+    <div class=" max-w-screen-3xl mx-auto">
+      <div class="homeGalleryWrapper px-3">
+        <div class="lg:flex"> 
+          <div class="min-w-[100%] lg:min-w-[50%] galleryGroup group-1 lg:flex flex-col justify-between">
+            <div>
+              <a :href="$t('homeTwo.galleryCategory1')" class="imageBox w-100">
+                <div> 
+                  <div class="imgWrapper">
+                    <img :src="$t('homeTwo.galleryImage1')" :alt="$t('homeTwo.galleryName1')" :title="$t('homeTwo.galleryName1')">
+                  </div>
+                  <div class="h2 text-center">
+                    <p>
+                      {{ $t('homeTwo.galleryName1') }}
+                    </p>
+                  </div>
+                  <div class="h4 text-center">
+                    <p>
+                      {{ $t('homeTwo.gallerySubText1') }}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="hidden lg:block">
+              <a :href="$t('homeTwo.galleryCategory2')" class="imageBox w-100">
+                <div>
+                  <div class="imgWrapper">
+                    <img :src="$t('homeTwo.galleryImage2')" :alt="$t('homeTwo.galleryName2')" :title="$t('homeTwo.galleryName2')">
+                  </div>
+                  <div class="h2 text-center">
+                    <p>
+                      {{ $t('homeTwo.galleryName2') }}
+                    </p>
+                  </div>
+                  <div class="h4 text-center">
+                    <p>
+                      {{ $t('homeTwo.gallerySubText2') }}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="min-w-[100%] lg:min-w-[50%]">
+            <div class="md:flex">
+              <div class="min-w-[100%] md:min-w-[50%] galleryGroup group-2 md:flex flex-col justify-between px-3">
+                <div>
+                  <a :href="$t('homeTwo.galleryCategory3')" class="imageBox w-100">
+                    <div>
+                      <div class="imgWrapper">
+                        <img :src="$t('homeTwo.galleryImage3')" :alt="$t('homeTwo.galleryName3')" :title="$t('homeTwo.galleryName3')">
+                      </div>
+                      <div class="h2 text-center">
+                        <p>
+                          {{ $t('homeTwo.galleryName3') }}
+                        </p>
+                      </div>
+                      <div class="h4 text-center">
+                        <p>
+                          {{ $t('homeTwo.gallerySubText3') }}
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="hidden lg:block">
+                  <a :href="$t('homeTwo.galleryCategory4')" class="imageBox w-100">
+                    <div>
+                      <div class="imgWrapper">
+                        <img :src="$t('homeTwo.galleryImage4')" :alt="$t('homeTwo.galleryName4')" :title="$t('homeTwo.galleryName4')">
+                      </div>
+                      <div class="h2 text-center">
+                        <p>
+                          {{ $t('homeTwo.galleryName4') }}
+                        </p>
+                      </div>
+                      <div class="h4 text-center">
+                        <p>
+                          {{ $t('homeTwo.gallerySubText4') }}
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="min-w-[100%] md:min-w-[50%] galleryGroup group-3 lg:flex flex-col justify-between">
+                  <div class="hidden lg:block">
+                    <a :href="$t('homeTwo.galleryCategory5')" class="imageBox w-100">
+                      <div >
+                        <div class="imgWrapper">
+                          <img :src="$t('homeTwo.galleryImage5')" :alt="$t('homeTwo.galleryName5')" :title="$t('homeTwo.galleryName5')">
+                        </div>
+                        <div class="h2 text-center">
+                          <p>
+                            {{ $t('homeTwo.galleryName5') }}
+                          </p>
+                        </div>
+                        <div class="h4 text-center">
+                          <p>
+                            {{ $t('homeTwo.gallerySubText5') }}
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div >
+                    <a :href="$t('homeTwo.galleryCategory6')" class="imageBox w-100">
+                      <div>
+                        <div class="imgWrapper">
+                          <img :src="$t('homeTwo.galleryImage6')" :alt="$t('homeTwo.galleryName6')" :title="$t('homeTwo.galleryName6')">
+                        </div>
+                        <div class="h2 text-center">
+                          <p>
+                            {{ $t('homeTwo.galleryName6') }}
+                          </p>
+                        </div>
+                        <div class="h4 text-center">
+                          <p>
+                            {{ $t('homeTwo.gallerySubText6') }}
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative homeParallaxContainer my-10 py-5"> 
+    <div class="bgContainer"  >
+      <div class="bgImage bg-cover absolute inset-x-0 inset-y-0 h-100 bg-no-repeat bg-fixed opacity-75 bg-center" v-bind:style="{ 'background-image': 'url(' + $t('homeTwo.parallaxImage') + ')' }">
+      </div>       
+    </div>
+    <div class="max-w-screen-3xl mx-auto relative z-10">
+        <div class="text-center pt-10   pr-5 pb-10 pl-5 homeHeadline ">
+          <h1 class="text-center pt-10 pb-10 text-secondary-700  uppercase font-bold leading-loose">
+            {{ $t('homeTwo.parallaxText') }}
+          </h1>
+        </div>
+    </div>
+  </div>
+  <div class="relative  homeParallaxContainer my-10 pt-5">
+    <div class="max-w-screen-3xl mx-auto px-5">
+      <h2 class="text-center mb-10  text-secondary-700 typography-headline-3 lg:typography-headline-2 uppercase font-bold leading-loose tracking-widest break-words">
+         {{ $t('homeTwo.mainHeading') }}
+      </h2>     
+    </div>
+    <div class="max-w-screen-lg mx-auto px-5 md:px-10">
+        <p  class="text-left mb-10 text-secondary-700 leading-normal lg:px-5">
+          {{ $t('homeTwo.mainText') }}
+        </p>
+    </div>
+  </div>
+  <div class="relative md:flex flex-wrap categorySnippet mb-5 max-w-screen-3xl  mx-auto">
+    <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
+      <NuxtLazyHydrate when-visible>
+        <section class="mx-4 mt-28 mb-20 overflow-hidden">        
+          <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" />
+        </section>
+      </NuxtLazyHydrate>
+    </div>
+    <div class="categorySnippetImaage min-w-[100%] md:min-w-[25%]">
+      <a :href="$t('homeTwo.categoryCat1')">
+        <NuxtImg
+              :src="$t('homeTwo.categoryImage1')"
+              :alt="$t('homeTwo.categoryText1')"
+              class="img-fluid"
+              loading="lazy"
+            />
+      </a>
+    </div>
+  </div>
+  <div class="relative md:flex flex-wrap categorySnippet mb-5 max-w-screen-3xl  mx-auto">
+    <div class="categorySnippetImaage min-w-[100%] md:min-w-[25%]">
+      <a :href="$t('homeTwo.categoryCat2')">
+        <NuxtImg
+              :src="$t('homeTwo.categoryImage2')"
+              :alt="$t('homeTwo.categoryText2')"
+              class="img-fluid"
+              loading="lazy"
+            />
+      </a>
+    </div>
+    <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
+      <NuxtLazyHydrate when-visible>
+        <section class="mx-4 mt-28 mb-20 overflow-hidden">        
+          <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" />
+        </section>
+      </NuxtLazyHydrate>
+    </div>    
+  </div>
+  <div class="relative md:flex flex-wrap categorySnippet mb-5 max-w-screen-3xl mx-auto">
+    <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
+      <NuxtLazyHydrate when-visible>
+        <section class="mx-4 mt-28 mb-20 overflow-hidden">        
+          <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" />
+        </section>
+      </NuxtLazyHydrate>
+    </div>
+    <div class="categorySnippetImaage min-w-[100%] md:min-w-[25%]">
+      <a :href="$t('homeTwo.categoryCat3')">
+        <NuxtImg
+              :src="$t('homeTwo.categoryImage3')"
+              :alt="$t('homeTwo.categoryText3')"
+              class="img-fluid"
+              loading="lazy"
+            />
+        </a>
+    </div>
   </div>
 
   <div class="relative min-h-[600px]">
@@ -103,14 +314,7 @@
     <NuxtLazyHydrate when-visible>
       <NewsletterSubscribe />
     </NuxtLazyHydrate>
-    <NuxtLazyHydrate when-visible>
-      <section class="mx-4 mt-28 mb-20 overflow-hidden">
-        <p data-testid="recommended-products" class="my-4 typography-text-lg">
-          {{ $t('moreItemsOfThisCategory') }}
-        </p>
-        <ProductRecommendedProducts cache-key="homepage" :category-id="recommendedProductsCategoryId" />
-      </section>
-    </NuxtLazyHydrate>
+    
   </div>
 </template>
 
