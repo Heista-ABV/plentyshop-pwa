@@ -156,15 +156,15 @@
         </p>
     </div>
   </div>
-  <div class="relative md:flex flex-wrap categorySnippet mb-5 max-w-screen-3xl  mx-auto">
+  <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl  mx-auto">
     <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
       <NuxtLazyHydrate when-visible>
         <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-          <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" />
+          <ProductRecommendedProducts cache-key="homepage" :category-id="29" />
         </section>
       </NuxtLazyHydrate>
     </div>
-    <div class="categorySnippetImaage min-w-[100%] md:min-w-[25%]">
+    <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
       <a :href="$t('homeTwo.categoryCat1')">
         <NuxtImg
               :src="$t('homeTwo.categoryImage1')"
@@ -172,11 +172,18 @@
               class="img-fluid"
               loading="lazy"
             />
+        <div class="captionWrapper">
+          <div>
+            <p>
+              {{ $t('homeTwo.categoryText1') }}
+            </p>
+          </div>
+        </div>
       </a>
     </div>
   </div>
-  <div class="relative md:flex flex-wrap categorySnippet mb-5 max-w-screen-3xl  mx-auto">
-    <div class="categorySnippetImaage min-w-[100%] md:min-w-[25%]">
+  <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl  mx-auto">
+    <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
       <a :href="$t('homeTwo.categoryCat2')">
         <NuxtImg
               :src="$t('homeTwo.categoryImage2')"
@@ -184,25 +191,32 @@
               class="img-fluid"
               loading="lazy"
             />
+        <div class="captionWrapper">
+          <div>
+            <p>
+              {{ $t('homeTwo.categoryText2') }}
+            </p>
+          </div>
+        </div>
       </a>
     </div>
     <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
       <NuxtLazyHydrate when-visible>
         <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-          <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" />
+          <ProductRecommendedProducts cache-key="homepage" :category-id="27" />
         </section>
       </NuxtLazyHydrate>
     </div>    
   </div>
-  <div class="relative md:flex flex-wrap categorySnippet mb-5 max-w-screen-3xl mx-auto">
+  <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl mx-auto">
     <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
       <NuxtLazyHydrate when-visible>
         <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-          <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" />
+          <ProductRecommendedProducts cache-key="homepage" :category-id="24" />
         </section>
       </NuxtLazyHydrate>
     </div>
-    <div class="categorySnippetImaage min-w-[100%] md:min-w-[25%]">
+    <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
       <a :href="$t('homeTwo.categoryCat3')">
         <NuxtImg
               :src="$t('homeTwo.categoryImage3')"
@@ -210,10 +224,17 @@
               class="img-fluid"
               loading="lazy"
             />
-        </a>
+        <div class="captionWrapper">
+          <div>
+            <p>
+              {{ $t('homeTwo.categoryText3') }}
+            </p>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
-
+  <!--
   <div class="relative min-h-[600px]">
     <picture>
       <source srcset="/images/homepage-hero-bg.webp" media="(min-width: 768px)" />
@@ -316,6 +337,7 @@
     </NuxtLazyHydrate>
     
   </div>
+  -->
 </template>
 
 <script lang="ts" setup>
