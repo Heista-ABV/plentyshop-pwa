@@ -14,6 +14,12 @@
       :rating="productGetters.getAverageRating(product)"
     />
   </SfScrollable>
+  <div class="mt-4 typography-text-xs flex gap-1">
+    <span>{{ $t('asterisk') }}</span>
+    <span v-if="showNetPrices">{{ $t('itemExclVAT') }}</span>
+    <span v-else>{{ $t('itemInclVAT') }}</span>
+    <span>{{ $t('excludedShipping') }}</span>
+  </div>
 </template>
 
 <script setup lang="ts">

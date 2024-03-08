@@ -4,9 +4,7 @@
     data-testid="product-card"
   >
     <div class="relative">
-      <!--
       <UiTags class="absolute m-2" :product="product" />
-      -->
       <SfLink :tag="NuxtLink" rel="preload" :to="localePath(`${path}/${productSlug}`)" as="image">
         <NuxtImg
           :src="imageUrl"
@@ -62,7 +60,6 @@
           {{ n(oldPrice, 'currency') }}
         </span>
       </div>
-      <!--
       <SfButton
         v-if="productGetters.canBeAddedToCartFromCategoryPage(product) || isFromWishlist"
         size="sm"
@@ -85,7 +82,6 @@
           <SfIconChevronRight size="sm" />
         </template>
       </SfButton>
-      -->
     </div>
   </div>
 </template>
