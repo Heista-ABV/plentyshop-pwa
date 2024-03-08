@@ -10,7 +10,7 @@
         </div>
         <ul>
           <li
-            v-for="{ key: subcategoryKey, link, text } in subcategories"
+            v-for="{ key: subcategoryKey, link } in subcategories"
             :key="subcategoryKey"
             class="py-1 !bg-transparent typography-text-sm"
           >
