@@ -107,6 +107,155 @@
                   </template>
                 </div>
               </li>
+              <li>
+                <button
+                  ref="triggerReference"
+                  data-testid="category-button"
+                  class="group mr-5 uppercase font-bold text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                  @mouseenter="openMenu([4])"
+                  @click="openMenu([4])"
+                >
+                  <a :href="$t('header.allMirrorsMenuURL')">
+                    <span>{{ $t('header.allMirrorsMenuText') }}</span>
+                    <SfIconChevronRight                     
+                      class="rotate-90 text-secondary-700 group-hover:text-primary-700 group-active:text-primary-700 bg-white"
+                    />
+                  </a>
+                </button>
+                <div                   
+                    :key="4"
+                    ref="megaMenuReference"
+                    :style="style"
+                    class="hidden md:block bg-white shadow-lg p-6 left-0 right-0 outline-none z-[1000]  topSearchDropper"
+                    tabindex="0"
+                    @mouseleave="close()"
+                    @keydown.esc="focusTrigger(4)"
+                  >      
+                  <div class="w-100 my-5 text-center"> 
+                    <p>
+                        {{ $t('header.allMirrorsChooseText') }}
+                    </p>
+                  </div>
+                  <div class="flex">
+                    <div class="min-w-[50%]">
+                      <div class="topSearchUrls anwendungURL">
+                        <ul>
+                          <template v-for="index in 4">
+                            <SfListItem
+                              :tag="NuxtLink"
+                              size="sm"
+                              :href="$t('header.aMCat1Category'+index)"
+                              class="typography-text-sm mb-2"
+                              > 
+                              <div class="imgRow flex flex-row gap-3 items-center">
+                                <div class="imgWrapper text-center">
+                                  <NuxtImg
+                                      :src="$t('header.aMCat1Icon'+index)"
+                                      :alt="$t('header.aMCat1Text'+index)"
+                                      class="headerIcon"
+                                      loading="lazy"
+                                    /> 
+                                </div>
+                                <span>
+                                  {{ $t('header.aMCat1Text'+index) }}
+                                </span>
+                              </div>
+                            </SfListItem>
+                          </template>
+                        </ul> 
+                      </div>
+                    </div>     
+
+                    <div class="min-w-[50%]">
+                      <div class="topSearchUrls functionURL">
+                        <ul>
+                          <template v-for="index in 5">
+                            <SfListItem
+                              :tag="NuxtLink"
+                              size="sm"
+                              :href="$t('header.aMCat2Category'+index)"
+                              class="typography-text-sm mb-2"
+                              > 
+                              <div class="imgRow flex flex-row gap-3 items-center">
+                                <div class="imgWrapper text-center">
+                                  <NuxtImg
+                                      :src="$t('header.aMCat2Icon'+index)"
+                                      :alt="$t('header.aMCat2Text'+index)"
+                                      class="headerIcon"
+                                      loading="lazy"
+                                    /> 
+                                </div>
+                                <span>
+                                  {{ $t('header.aMCat2Text'+index) }}
+                                </span>
+                              </div>
+                            </SfListItem>
+                          </template>
+                        </ul> 
+                      </div>
+                    </div> 
+
+                    <div class="min-w-[50%]">
+                      <div class="topSearchUrls designURL">
+                        <ul>
+                          <template v-for="index in 4">
+                            <SfListItem
+                              :tag="NuxtLink"
+                              size="sm"
+                              :href="$t('header.aMCat3Category'+index)"
+                              class="typography-text-sm mb-2"
+                              > 
+                              <div class="imgRow flex flex-row gap-3 items-center">
+                                <div class="imgWrapper text-center">
+                                  <NuxtImg
+                                      :src="$t('header.aMCat3Icon'+index)"
+                                      :alt="$t('header.aMCat3Text'+index)"
+                                      class="headerIcon"
+                                      loading="lazy"
+                                    /> 
+                                </div>
+                                <span>
+                                  {{ $t('header.aMCat3Text'+index) }}
+                                </span>
+                              </div>
+                            </SfListItem>
+                          </template>
+                        </ul> 
+                      </div>
+                    </div> 
+
+                    <div class="min-w-[50%]">
+                      <div class="topSearchUrls montageURL">
+                        <ul>
+                          <template v-for="index in 1">
+                            <SfListItem
+                              :tag="NuxtLink"
+                              size="sm"
+                              :href="$t('header.aMCat4Category'+index)"
+                              class="typography-text-sm mb-2"
+                              > 
+                              <div class="imgRow flex flex-row gap-3 items-center">
+                                <div class="imgWrapper text-center">
+                                  <NuxtImg
+                                      :src="$t('header.aMCat4Icon'+index)"
+                                      :alt="$t('header.aMCat4Text'+index)"
+                                      class="headerIcon"
+                                      loading="lazy"
+                                    /> 
+                                </div>
+                                <span>
+                                  {{ $t('header.aMCat4Text'+index) }}
+                                </span>
+                              </div>
+                            </SfListItem>
+                          </template>
+                        </ul> 
+                      </div>
+                    </div>                                 
+                  </div>                  
+                </div>
+              
+              </li>
             </ul>
           </nav>
         </div>
