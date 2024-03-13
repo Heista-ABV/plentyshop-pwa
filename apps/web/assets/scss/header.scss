@@ -6,3 +6,17 @@
         width: 30px;
     }
 }
+.topSearchDropper{
+    left: unset !important;
+}
+.topSearchWrapper{
+    &:hover{
+        .topSearchDropper{
+            display: block;
+        }
+        > button > a,
+        > button > a > svg{
+            color: $brand-primary;
+        }
+    }
+}

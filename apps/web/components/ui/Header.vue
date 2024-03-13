@@ -3,7 +3,7 @@
     <NuxtLazyHydrate when-visible>
       <!--  Search Slot
       <UiSearch class="hidden md:block flex-1" />-->
-      <nav class=" ml-4 flex flex-row flex-nowrap">
+      <nav class=" ml-4 flex flex-row flex-nowrap  py-2 md:py-5">
         <!--
         LangSelect Slot
         <SfButton

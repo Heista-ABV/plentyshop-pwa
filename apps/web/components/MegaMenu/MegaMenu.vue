@@ -2,10 +2,10 @@
   <div class="w-full h-full z-50 md:sticky shadow-md">
     <header ref="referenceRef" class="relative">
       <div
-        class="flex justify-between items-center flex-wrap md:flex-nowrap px-2 md:px-10 py-2 md:py-5 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
+        class="flex justify-between items-center flex-wrap md:flex-nowrap px-2 md:px-10 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
         data-testid="navbar-top"
       >
-        <div class="flex items-center">
+        <div class="flex items-center  py-2 md:py-5">
           <SfButton
             variant="tertiary"
             square
@@ -25,11 +25,11 @@
           </NuxtLink>
         </div>
 
-        <div class="navigationWrapper">
+        <div class="navigationWrapper h-full">
           <!-- Desktop dropdown -->
-          <nav ref="floatingRef">
+          <nav ref="floatingRef" class="h-full">
             <ul
-              class="hidden lg:flex px-6 py-2"
+              class="hidden lg:flex px-6 h-full items-center"
               @blur="
                 (event) => {
                   if (!(event.currentTarget as Element).contains(event.relatedTarget as Element)) {
@@ -38,7 +38,7 @@
                 }
               "
             >
-              <li v-for="(menuNode, index) in categoryTree" :key="index">
+              <li v-for="(menuNode, index) in categoryTree" :key="index" class="h-full flex">
                 <button
                   ref="triggerReference"
                   data-testid="category-button"
@@ -46,7 +46,7 @@
                   @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                   @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                 >
-                  <NuxtLink :to="localePath(generateCategoryLink(menuNode))">
+                  <NuxtLink :to="localePath(generateCategoryLink(menuNode))" class="h-full">
                     <span>{{ categoryTreeGetters.getName(menuNode) }}</span>
                     <SfIconChevronRight
                       v-if="menuNode.childCount > 0"
@@ -107,7 +107,7 @@
                   </template>
                 </div>
               </li>
-              <li>
+              <li class="topSearchWrapper h-full flex">
                 <button
                   ref="triggerReference"
                   data-testid="category-button"
@@ -115,7 +115,7 @@
                   @mouseenter="openMenu([4])"
                   @click="openMenu([4])"
                 >
-                  <a :href="$t('header.allMirrorsMenuURL')">
+                  <a :href="$t('header.allMirrorsMenuURL')" class="h-full">
                     <span>{{ $t('header.allMirrorsMenuText') }}</span>
                     <SfIconChevronRight                     
                       class="rotate-90 text-secondary-700 group-hover:text-primary-700 group-active:text-primary-700 bg-white"
@@ -126,7 +126,7 @@
                     :key="4"
                     ref="megaMenuReference"
                     :style="style"
-                    class="hidden md:block bg-white shadow-lg p-6 left-0 right-0 outline-none z-[1000]  topSearchDropper"
+                    class="hidden bg-white max-w-[600px]  xl:max-w-[800px] min-w-[600px] xl:min-w-[800px] !right-1/2 translate-x-1/2 shadow-lg p-6   outline-none z-[1000]  topSearchDropper"
                     tabindex="0"
                     @mouseleave="close()"
                     @keydown.esc="focusTrigger(4)"
@@ -136,118 +136,120 @@
                         {{ $t('header.allMirrorsChooseText') }}
                     </p>
                   </div>
-                  <div class="flex">
-                    <div class="min-w-[50%]">
+                  <div class="flex flex-wrap"> 
+                    <div class="min-w-[50%] max-w-[50%]">
                       <div class="topSearchUrls anwendungURL">
                         <ul>
                           <template v-for="index in 4">
-                            <SfListItem
-                              :tag="NuxtLink"
-                              size="sm"
-                              :href="$t('header.aMCat1Category'+index)"
-                              class="typography-text-sm mb-2"
-                              > 
-                              <div class="imgRow flex flex-row gap-3 items-center">
-                                <div class="imgWrapper text-center">
-                                  <NuxtImg
-                                      :src="$t('header.aMCat1Icon'+index)"
-                                      :alt="$t('header.aMCat1Text'+index)"
-                                      class="headerIcon"
-                                      loading="lazy"
-                                    /> 
+                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                              <a
+                                :href="$t('header.aMCat1Category'+index)"
+                                class="typography-text-md mb-2"
+                                > 
+                                <div class="imgRow flex flex-row gap-3 items-center">
+                                  <div class="imgWrapper text-center">
+                                    <NuxtImg
+                                        :src="$t('header.aMCat1Icon'+index)"
+                                        :alt="$t('header.aMCat1Text'+index)"
+                                        class="headerIcon"
+                                        loading="lazy"
+                                      /> 
+                                  </div>
+                                  <span>
+                                    {{ $t('header.aMCat1Text'+index) }}
+                                  </span>
                                 </div>
-                                <span>
-                                  {{ $t('header.aMCat1Text'+index) }}
-                                </span>
-                              </div>
-                            </SfListItem>
+                              </a>
+                            </li>
                           </template>
                         </ul> 
                       </div>
                     </div>     
 
-                    <div class="min-w-[50%]">
+                    <div class="min-w-[50%] max-w-[50%]">
                       <div class="topSearchUrls functionURL">
                         <ul>
                           <template v-for="index in 5">
-                            <SfListItem
-                              :tag="NuxtLink"
-                              size="sm"
-                              :href="$t('header.aMCat2Category'+index)"
-                              class="typography-text-sm mb-2"
-                              > 
-                              <div class="imgRow flex flex-row gap-3 items-center">
-                                <div class="imgWrapper text-center">
-                                  <NuxtImg
-                                      :src="$t('header.aMCat2Icon'+index)"
-                                      :alt="$t('header.aMCat2Text'+index)"
-                                      class="headerIcon"
-                                      loading="lazy"
-                                    /> 
+                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                              <a
+                                :href="$t('header.aMCat2Category'+index)"
+                                class="typography-text-sm mb-2"
+                                > 
+                                <div class="imgRow flex flex-row gap-3 items-center">
+                                  <div class="imgWrapper text-center">
+                                    <NuxtImg
+                                        :src="$t('header.aMCat2Icon'+index)"
+                                        :alt="$t('header.aMCat2Text'+index)"
+                                        class="headerIcon"
+                                        loading="lazy"
+                                      /> 
+                                  </div>
+                                  <span>
+                                    {{ $t('header.aMCat2Text'+index) }}
+                                  </span>
                                 </div>
-                                <span>
-                                  {{ $t('header.aMCat2Text'+index) }}
-                                </span>
-                              </div>
-                            </SfListItem>
+                              </a>
+                            </li>
                           </template>
                         </ul> 
                       </div>
                     </div> 
 
-                    <div class="min-w-[50%]">
+                    <div class="min-w-[50%] max-w-[50%]">
                       <div class="topSearchUrls designURL">
                         <ul>
                           <template v-for="index in 4">
-                            <SfListItem
-                              :tag="NuxtLink"
-                              size="sm"
-                              :href="$t('header.aMCat3Category'+index)"
-                              class="typography-text-sm mb-2"
-                              > 
-                              <div class="imgRow flex flex-row gap-3 items-center">
-                                <div class="imgWrapper text-center">
-                                  <NuxtImg
-                                      :src="$t('header.aMCat3Icon'+index)"
-                                      :alt="$t('header.aMCat3Text'+index)"
-                                      class="headerIcon"
-                                      loading="lazy"
-                                    /> 
+                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                              <a
+                                :href="$t('header.aMCat3Category'+index)"
+                                class="typography-text-sm mb-2"
+                                > 
+                                <div class="imgRow flex flex-row gap-3 items-center">
+                                  <div class="imgWrapper text-center">
+                                    <NuxtImg
+                                        :src="$t('header.aMCat3Icon'+index)"
+                                        :alt="$t('header.aMCat3Text'+index)"
+                                        class="headerIcon"
+                                        loading="lazy"
+                                      /> 
+                                  </div>
+                                  <span>
+                                    {{ $t('header.aMCat3Text'+index) }}
+                                  </span>
                                 </div>
-                                <span>
-                                  {{ $t('header.aMCat3Text'+index) }}
-                                </span>
-                              </div>
-                            </SfListItem>
+                              </a>
+                            </li>
                           </template>
                         </ul> 
                       </div>
                     </div> 
 
-                    <div class="min-w-[50%]">
+                    <div class="min-w-[50%] max-w-[50%]">
                       <div class="topSearchUrls montageURL">
                         <ul>
                           <template v-for="index in 1">
-                            <SfListItem
-                              :tag="NuxtLink"
-                              size="sm"
-                              :href="$t('header.aMCat4Category'+index)"
-                              class="typography-text-sm mb-2"
-                              > 
-                              <div class="imgRow flex flex-row gap-3 items-center">
-                                <div class="imgWrapper text-center">
-                                  <NuxtImg
-                                      :src="$t('header.aMCat4Icon'+index)"
-                                      :alt="$t('header.aMCat4Text'+index)"
-                                      class="headerIcon"
-                                      loading="lazy"
-                                    /> 
+                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                              <a
+                                :tag="NuxtLink"
+                                size="sm"
+                                :href="$t('header.aMCat4Category'+index)"
+                                class="typography-text-sm mb-2"
+                                > 
+                                <div class="imgRow flex flex-row gap-3 items-center">
+                                  <div class="imgWrapper text-center">
+                                    <NuxtImg
+                                        :src="$t('header.aMCat4Icon'+index)"
+                                        :alt="$t('header.aMCat4Text'+index)"
+                                        class="headerIcon"
+                                        loading="lazy"
+                                      /> 
+                                  </div>
+                                  <span>
+                                    {{ $t('header.aMCat4Text'+index) }}
+                                  </span>
                                 </div>
-                                <span>
-                                  {{ $t('header.aMCat4Text'+index) }}
-                                </span>
-                              </div>
-                            </SfListItem>
+                              </a>
+                            </li>
                           </template>
                         </ul> 
                       </div>
