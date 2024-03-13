@@ -114,10 +114,13 @@
         </p>
         <p class="flex items-center justify-center leading-5 text-center typography-text-xs md:ml-6">
           {{ companyName }}
-        </p>
+        </p> 
       </div>
-    </div>
+    </div> 
+    
+ 
   </footer>
+ 
 </template>
 
 <script setup lang="ts">

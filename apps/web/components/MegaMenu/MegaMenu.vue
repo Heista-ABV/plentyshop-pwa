@@ -136,124 +136,40 @@
                         {{ $t('header.allMirrorsChooseText') }}
                     </p>
                   </div>
-                  <div class="flex flex-wrap"> 
-                    <div class="min-w-[50%] max-w-[50%]">
-                      <div class="topSearchUrls anwendungURL">
-                        <ul>
-                          <template v-for="index in 4">
-                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                              <a
-                                :href="$t('header.aMCat1Category'+index)"
-                                class="typography-text-md mb-2"
-                                > 
-                                <div class="imgRow flex flex-row gap-3 items-center">
-                                  <div class="imgWrapper text-center">
-                                    <NuxtImg
-                                        :src="$t('header.aMCat1Icon'+index)"
-                                        :alt="$t('header.aMCat1Text'+index)"
-                                        class="headerIcon"
-                                        loading="lazy"
-                                      /> 
-                                  </div>
-                                  <span>
-                                    {{ $t('header.aMCat1Text'+index) }}
-                                  </span>
-                                </div>
-                              </a>
-                            </li>
-                          </template>
-                        </ul> 
+                  <div class="flex flex-wrap">                    
+                    <template v-for="i in 4">         
+                      <div class="min-w-[50%] max-w-[50%]">         
+                        <div class="topSearchUrls ">
+                          
+                          <ul>
+                            <template v-for="index in 5">
+                              <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
+                                <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                                  <a
+                                    :href="$t('header.aMCat'+i+'Category'+index)"
+                                    class="typography-text-md mb-2"
+                                    > 
+                                    <div class="imgRow flex flex-row gap-3 items-center">
+                                      <div class="imgWrapper text-center">
+                                        <NuxtImg
+                                            :src="$t('header.aMCat'+i+'Icon'+index)"
+                                            :alt="$t('header.aMCat'+i+'Text'+index)"
+                                            class="headerIcon"
+                                            loading="lazy"
+                                          /> 
+                                      </div>
+                                      <span>
+                                        {{ $t('header.aMCat'+i+'Text'+index) }}
+                                      </span>
+                                    </div>
+                                  </a>
+                                </li>
+                              </template>
+                            </template>
+                          </ul> 
+                        </div> 
                       </div>
-                    </div>     
-
-                    <div class="min-w-[50%] max-w-[50%]">
-                      <div class="topSearchUrls functionURL">
-                        <ul>
-                          <template v-for="index in 5">
-                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                              <a
-                                :href="$t('header.aMCat2Category'+index)"
-                                class="typography-text-sm mb-2"
-                                > 
-                                <div class="imgRow flex flex-row gap-3 items-center">
-                                  <div class="imgWrapper text-center">
-                                    <NuxtImg
-                                        :src="$t('header.aMCat2Icon'+index)"
-                                        :alt="$t('header.aMCat2Text'+index)"
-                                        class="headerIcon"
-                                        loading="lazy"
-                                      /> 
-                                  </div>
-                                  <span>
-                                    {{ $t('header.aMCat2Text'+index) }}
-                                  </span>
-                                </div>
-                              </a>
-                            </li>
-                          </template>
-                        </ul> 
-                      </div>
-                    </div> 
-
-                    <div class="min-w-[50%] max-w-[50%]">
-                      <div class="topSearchUrls designURL">
-                        <ul>
-                          <template v-for="index in 4">
-                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                              <a
-                                :href="$t('header.aMCat3Category'+index)"
-                                class="typography-text-sm mb-2"
-                                > 
-                                <div class="imgRow flex flex-row gap-3 items-center">
-                                  <div class="imgWrapper text-center">
-                                    <NuxtImg
-                                        :src="$t('header.aMCat3Icon'+index)"
-                                        :alt="$t('header.aMCat3Text'+index)"
-                                        class="headerIcon"
-                                        loading="lazy"
-                                      /> 
-                                  </div>
-                                  <span>
-                                    {{ $t('header.aMCat3Text'+index) }}
-                                  </span>
-                                </div>
-                              </a>
-                            </li>
-                          </template>
-                        </ul> 
-                      </div>
-                    </div> 
-
-                    <div class="min-w-[50%] max-w-[50%]">
-                      <div class="topSearchUrls montageURL">
-                        <ul>
-                          <template v-for="index in 1">
-                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                              <a
-                                :tag="NuxtLink"
-                                size="sm"
-                                :href="$t('header.aMCat4Category'+index)"
-                                class="typography-text-sm mb-2"
-                                > 
-                                <div class="imgRow flex flex-row gap-3 items-center">
-                                  <div class="imgWrapper text-center">
-                                    <NuxtImg
-                                        :src="$t('header.aMCat4Icon'+index)"
-                                        :alt="$t('header.aMCat4Text'+index)"
-                                        class="headerIcon"
-                                        loading="lazy"
-                                      /> 
-                                  </div>
-                                  <span>
-                                    {{ $t('header.aMCat4Text'+index) }}
-                                  </span>
-                                </div>
-                              </a>
-                            </li>
-                          </template>
-                        </ul> 
-                      </div>
-                    </div>                                 
+                    </template>                              
                   </div>                  
                 </div>
               
@@ -267,12 +183,12 @@
       
 
       <!-- Mobile drawer -->
-      <div v-if="isOpen" class="md:hidden fixed inset-0 bg-neutral-500 bg-opacity-50" />
+      <div v-if="isOpen" class="lg:hidden fixed inset-0 bg-neutral-500 bg-opacity-50" />
       <SfDrawer
         ref="drawerReference"
         v-model="isOpen"
         placement="left"
-        class="md:hidden right-[50px] max-w-[376px] bg-white overflow-y-auto z-[1000]"
+        class="lg:hidden right-[50px] max-w-[376px] bg-white overflow-y-auto z-[1000]"
       >
         <nav>
           <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">
@@ -298,7 +214,7 @@
             </li>
             <template v-for="node in activeMenu.children" :key="node.id">
               <li v-if="node.childCount === 0">
-                <SfListItem size="lg" :tag="NuxtLink" :href="localePath(generateCategoryLink(node))" @click="close()">
+                <SfListItem size="lg" :tag="NuxtLink" :href="localePath(generateCategoryLink(node))" @click="close()" class="px-4 py-2 hover:bg-white active:bg-white hover:!text-primary-700 active:!text-primary-700">
                   <div class="flex items-center">
                     <p class="text-left">{{ categoryTreeGetters.getName(node) }}</p>
                     <SfCounter class="ml-2">{{ categoryTreeGetters.getCount(node) }}</SfCounter>
@@ -308,9 +224,9 @@
               <li v-else>
                 <SfListItem size="lg" tag="button" type="button" class="!p-0">
                   <div class="flex items-center w-100">
-                    <NuxtLink class="flex-1 m-0 p-4 pr-0" :to="localePath(generateCategoryLink(node))" @click="close()">
+                    <NuxtLink class="flex-1 m-0 p-2 px-4 pr-0" :to="localePath(generateCategoryLink(node))" @click="close()">
                       <div class="flex items-center">
-                        <p class="text-left">{{ categoryTreeGetters.getName(node) }}</p>
+                        <p class="text-left">{{ categoryTreeGetters.getName(node) }}</p> 
                         <SfCounter class="ml-2">{{ categoryTreeGetters.getCount(node) }}</SfCounter>
                       </div>
                     </NuxtLink>
@@ -321,6 +237,54 @@
                 </SfListItem>
               </li>
             </template>
+            <li  class="mobileAllMirrorsDropper">
+              <div class="inline-flex items-center gap-2 w-full cursor-pointer hover:!text-primary-700 active:!text-primary-700 focus-visible:outline focus-visible:outline-offset focus-visible:relative focus-visible:z-10 px-4 py-2 mobileAllMirrorOpener">
+                <span @click="addClassToObject('openMenu', 'mobileAllMirrorsDropper')">
+                  <a :href="$t('header.allMirrorsMenuURL')"  >
+                    <span>{{ $t('header.allMirrorsMenuText') }}</span>
+                  </a>
+                </span>
+                <div @click="addClassToObject('openMenu', 'mobileAllMirrorsDropper')" class="w-100 flex-1">
+                  <SfIconChevronRight                     
+                    class="rotate-90  group-hover:!text-primary-700 group-active:!text-primary-700 bg-white"
+                    
+                  />    
+                </div>
+              </div>
+              <ul id="mobileTopSearch" class="mobileAllMirrorsContent">
+                <li>
+                  <template v-for="i in 4">                  
+                    <div class="topSearchUrls anwendungURL">
+                      <div class="nameWrapper px-4 ">
+                        <span class="underline typography-text-sm md:typography-text-md">
+                          <b>
+                            {{ $t('header.allMirrorsCat'+i) }} 
+                          </b>
+                        </span>
+                      </div>
+                      <ul>
+                        <template v-for="index in 5">
+                          <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
+                            <li class="py-1 pr-4 pl-6 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                              <a
+                                :href="$t('header.aMCat'+i+'Category'+index)"
+                                class="typography-text-sm mb-2"
+                                > 
+                                <div class="imgRow flex flex-row gap-3 items-center">
+                                  <span>
+                                    {{ $t('header.aMCat'+i+'Text'+index) }}
+                                  </span>
+                                </div>
+                              </a>
+                            </li>
+                          </template>
+                        </template>
+                      </ul> 
+                    </div> 
+                  </template>
+                </li>
+              </ul>
+            </li>
           </ul>
           <div class="mobileNavFooter">
 
@@ -349,6 +313,7 @@ import {
 } from '@storefront-ui/vue';
 import { unrefElement } from '@vueuse/core';
 import type { MegaMenuProps } from '~/components/MegaMenu/types';
+import $ from "jquery";
 
 const localePath = useLocalePath();
 const NuxtLink = resolveComponent('NuxtLink');
@@ -364,7 +329,7 @@ const categoryTree = ref(categoryTreeGetters.getTree(props.categories));
 
 const findNode = (keys: number[], node: CategoryTreeItem): CategoryTreeItem => {
   if (keys.length > 1) {
-    const [currentKey, ...restKeys] = keys;
+    const [currentKey, ...restKeys] = keys; 
     return findNode(restKeys, node.children?.find((child) => child.id === currentKey) || node);
   } else {
     return node.children?.find((child) => child.id === keys[0]) || node;
@@ -396,6 +361,12 @@ const openMenu = (menuType: number[]) => {
   activeNode.value = menuType;
   open();
 };
+
+function addClassToObject(className: string, objectName: string) {
+  const classToAdd = className;
+  const objectToAddTo = objectName;
+  $('.'+objectToAddTo).toggleClass(classToAdd)
+}
 
 const goBack = () => {
   activeNode.value = activeNode.value.slice(0, -1);

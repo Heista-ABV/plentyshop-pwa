@@ -20,3 +20,21 @@
         }
     }
 }
+.mobileAllMirrorsDropper{
+    > div > a{
+        pointer-events: none; 
+    }
+    .mobileAllMirrorsContent{
+        transition: all .5s;
+        max-height: 0;
+        overflow: hidden;
+    }
+    &.openMenu{
+        .mobileAllMirrorsContent{
+            max-height: 600px;
+        }
+        > div > a{
+            pointer-events: unset; 
+        }
+    }
+}

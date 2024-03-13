@@ -4,7 +4,7 @@ import type { Config } from 'tailwindcss';
 
 export default {
   presets: [tailwindConfig],
-  content: ['./**/*.vue', '../../node_modules/@storefront-ui/vue/**/*.{js,mjs}'],
+  content: ['./**/*.vue', '../../node_modules/@storefront-ui/vue/**/*.{js,mjs}', './node_modules/tw-elements/js/**/*.js'],
   theme: {
     extend: {
       colors: {
@@ -57,5 +57,5 @@ export default {
       },
     },
   },
- plugins: [sfTypography, require('@savvywombat/tailwindcss-grid-areas')],
+ plugins: [sfTypography, require('@savvywombat/tailwindcss-grid-areas'), require("tw-elements/plugin.cjs")],
 } as Config;
