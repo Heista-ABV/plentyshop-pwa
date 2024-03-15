@@ -1,27 +1,54 @@
 <template>
-  <NarrowContainer class="mb-20 px-4 md:px-0" data-testid="category-layout">
-    <h1 class="my-10 font-bold typography-headline-3 md:typography-headline-2">{{ title }}</h1>
-    <div class="md:flex gap-6" data-testid="category-page-content">
+  <div class="w-full h-category-top-banner py-10">
+    <div class="max-w-screen-3xl mx-auto lg:px-10  px-4 md:px-6">
+      <div class="md:flex">
+        <div class="hidden md:block">
+          <div class="aspect-square">
+            <div class="px-3 py-3">
+              <!--
+              <NuxtImg
+                :src="$t('header.aMCat'+i+'Icon'+index)"
+                :alt="$t('header.aMCat'+i+'Text'+index)"
+                class="headerIcon"
+                loading="lazy"
+              /> 
+              -->
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <h1 class=" font-bold typography-headline-3 md:typography-headline-2">{{ title }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <NarrowContainer class="mb-20 px-4 md:px-0" data-testid="category-layout">    
+    <div class="md:flex flex-col gap-6" data-testid="category-page-content">
       <CategorySidebar :is-open="isOpen" @close="close">
         <NuxtLazyHydrate when-visible>
           <slot name="sidebar" />
         </NuxtLazyHydrate>
       </CategorySidebar>
       <div class="flex-1">
-        <div class="flex justify-between items-center mb-6">
-          <span class="font-bold font-headings md:text-lg">
-            {{ $t('numberOfProducts', { count: products?.length ?? 0, total: totalProducts }) }}
-          </span>
-          <SfButton @click="open" variant="tertiary" class="md:hidden whitespace-nowrap">
-            <template #prefix>
-              <SfIconTune />
-            </template>
-            {{ $t('listSettings') }}
-          </SfButton>
+        <div class="flex flex-wrap lg:flex-row lg:flex-nowrap justify-between items-center mb-6">
+          <div class="flex flex-wrap w-full justify-between items-center">
+            <span class="font-bold font-headings md:text-lg">
+              {{ $t('numberOfProducts', { count: products?.length ?? 0, total: totalProducts }) }}
+            </span>
+            <SfButton @click="open" variant="tertiary" class="md:hidden whitespace-nowrap">
+              <template #prefix>
+                <SfIconTune />
+              </template>
+            </SfButton>
+          </div>          
+          <NuxtLazyHydrate when-visible>
+            <slot name="sorting" />
+          </NuxtLazyHydrate>          
         </div>
         <section
           v-if="products"
-          class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 mb-10 md:mb-5"
+          class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 mb-10 md:mb-5"
           data-testid="category-grid"
         >
           <NuxtLazyHydrate when-visible v-for="(product, index) in products" :key="productGetters.getId(product)">

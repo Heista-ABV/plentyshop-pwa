@@ -93,7 +93,7 @@
         <button
           v-else
           @click="openAuthentication"
-          class="group hidden xs:inline-flex p-2 customClassLogin relative text-secondary hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 mr-1 -ml-0.5 rounded-md"
+          class="group hidden xs:inline-flex p-2 customClassLogin relative text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 mr-1 -ml-0.5 rounded-md"
           variant="tertiary"
           :tag="NuxtLink"
           square

@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="pl-3">
     <picture>
       <img src="/images/Logo-Animation_2.gif" 
       :alt="i18n.t('header.logoAltText')" 
-      class="w-100 h-auto logoImg img-fluid" /> 
+      class="w-100 h-auto logoImg img-fluid " /> 
     </picture>
   </div>
 </template>

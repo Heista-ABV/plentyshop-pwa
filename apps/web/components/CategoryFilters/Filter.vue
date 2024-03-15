@@ -1,9 +1,9 @@
 <template>
-  <SfAccordionItem v-if="facet" v-model="open">
+  <SfAccordionItem v-if="facet" v-model="open" class="accordItem border border-secondary-700 px-2">
     <template #summary>
-      <div class="flex justify-between p-2 mb-2">
-        <p class="mb-2 font-medium typography-headline-5">{{ facetGetters.getName(facet) }}</p>
-        <SfIconChevronLeft :class="['text-neutral-500', open ? 'rotate-90' : '-rotate-90']" />
+      <div class="flex justify-between py-2">
+        <p class="typography-headline-5 font-bold">{{ facetGetters.getName(facet) }}</p>
+        <SfIconChevronLeft class="text-secondary-700" :class="[open ? 'rotate-90' : '-rotate-90']" />
       </div>
     </template>
 
@@ -28,7 +28,7 @@
       </SfListItem> -->
     </div>
 
-    <div class="mb-4" v-else-if="facetGetters.getType(facet) === 'price'">
+    <div class="mb-1" v-else-if="facetGetters.getType(facet) === 'price'">
       <form @submit.prevent="updatePriceFilter">
         <div class="mb-3">
           <SfInput v-model="minPrice" :placeholder="$t('min')" id="min" />
@@ -55,14 +55,14 @@
       </form>
     </div>
 
-    <div class="mb-4" v-else>
+    <div class="mb-1" v-else>
       <SfListItem
         v-for="(filter, index) in facetGetters.getFilters(facet) as Filter[]"
         :key="index"
         tag="label"
         size="sm"
         :data-testid="'category-filter-' + index"
-        :class="['px-1.5 bg-transparent hover:bg-transparent']"
+        :class="['!px-0 bg-transparent hover:bg-transparent']"
       >
         <template #prefix>
           <SfCheckbox
@@ -102,7 +102,7 @@ import type { Filters } from '~/composables';
 
 const route = useRoute();
 const { getFacetsFromURL, updateFilters, updatePrices } = useCategoryFilter();
-const open = ref(true);
+const open = ref(false);
 const props = defineProps<FilterProps>();
 const filters = facetGetters.getFilters(props.facet ?? ({} as FilterGroup)) as Filter[];
 const models: Filters = {};

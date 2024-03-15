@@ -1,10 +1,6 @@
 <template>
-  <div class="w-full md:max-w-[376px]" data-testid="category-items-per-page">
-    <h6 class="bg-neutral-100 mb-4 px-4 py-2 rounded uppercase typography-headline-6 font-bold tracking-widest">
-      {{ $t('perPage') }}
-    </h6>
-
-    <div class="px-4">
+  <div class="w-full lg:max-w-[50%] typography-text-sm !mt-3 sm:!mt-0" data-testid="category-items-per-page">   
+    <div>
       <SfSelect
         v-model="selected"
         :aria-label="$t('perPage')"

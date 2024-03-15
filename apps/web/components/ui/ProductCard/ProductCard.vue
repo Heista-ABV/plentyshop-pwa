@@ -1,17 +1,17 @@
 <template>
   <div
-    class="border border-neutral-200 rounded-md hover:shadow-lg flex flex-col flex-auto flex-shrink-0"
+    class="flex flex-col flex-auto flex-shrink-0 catProduct"
     data-testid="product-card"
   >
     <div class="relative">
       <!--
       <UiBadges class="absolute m-2" :product="product" />
       -->
-      <SfLink :tag="NuxtLink" rel="preload" :to="localePath(`${path}/${productSlug}`)" as="image">
+      <SfLink :tag="NuxtLink" rel="preload" :to="localePath(`${path}/${productSlug}`)" as="image" class="">
         <NuxtImg
           :src="imageUrl"
           :alt="imageAlt"
-          class="object-contain rounded-md aspect-square w-full h-fit"
+          class="object-contain rounded-md aspect-square w-full h-fit transition duration-150 group-hover:!scale-100 scale-90 "
           data-testid="image-slot"
           width="190"
           height="190"
@@ -29,20 +29,32 @@
         />
       </slot>
     </div>
-    <div class="p-2 border-t border-neutral-200 typography-text-sm flex flex-col flex-auto">
-      <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline" variant="secondary">
-        {{ name }}
-      </SfLink>
+    <div class="p-2 border-t border-primary-700 typography-text-sm flex flex-col flex-auto">
+     
+      <template v-for="propGroup in product.variationProperties" >
+        <template v-if="propGroup.id == 11">
+          <template v-for="prop in propGroup.properties">
+            <template  v-if="prop.id == 93">
+              <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline" variant="secondary">
+                {{ product.item.manufacturer.externalName }} {{ prop.values.value }}
+              </SfLink>
+            </template>
+          </template>
+        </template>
+      </template>
+      <!--
       <div class="flex items-center pt-1">
         <SfRating size="xs" :value="rating ?? 0" :max="5" />
         <SfLink to="#" variant="secondary" :tag="NuxtLink" class="ml-1 no-underline">
           <SfCounter size="xs">{{ ratingCount }}</SfCounter>
         </SfLink>
       </div>
-
+      -->
+      <!--
       <p class="block py-2 font-normal typography-text-xs text-neutral-700 text-justify">
         {{ description }}
       </p>
+      -->
       <LowestPrice :product="product" />
       <div v-if="showBasePrice" class="mb-2">
         <BasePriceInLine :base-price="basePrice" :unit-content="unitContent" :unit-name="unitName" />
@@ -62,6 +74,7 @@
           {{ n(oldPrice, 'currency') }}
         </span>
       </div>
+      <!--
       <SfButton
         v-if="productGetters.canBeAddedToCartFromCategoryPage(product) || isFromWishlist"
         size="sm"
@@ -84,6 +97,7 @@
           <SfIconChevronRight size="sm" />
         </template>
       </SfButton>
+      -->
     </div>
   </div>
 </template>

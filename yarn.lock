@@ -4289,6 +4289,7 @@ __metadata:
     "@plentymarkets/shop-api": ^0.28.0
     "@plentymarkets/shop-sdk": ^0.44.0
     "@trivago/prettier-plugin-sort-imports": ^4.3.0
+    "@types/jquery": ^3.5.29
     "@types/uuid": ^9.0.8
     "@vee-validate/nuxt": ^4.12.5
     "@vee-validate/yup": ^4.12.5
@@ -4303,12 +4304,14 @@ __metadata:
     dotenv: ^16.4.5
     husky: ^8.0.3
     is-ci: ^3.0.1
+    jquery: ^3.7.1
     lint-staged: ^14.0.1
     nuxt: ^3.10.3
     prettier: ^3.2.5
     rimraf: ^5.0.5
     rollup: ^3.29.4
     turbo: 1.12.4
+    tw-elements: ^2.0.0
     typescript: 5.3.3
     wait-on: ^7.2.0
   languageName: unknown
@@ -5123,6 +5126,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jquery@npm:^3.5.29":
+  version: 3.5.29
+  resolution: "@types/jquery@npm:3.5.29"
+  dependencies:
+    "@types/sizzle": "*"
+  checksum: 5e959762d6f7050b07b4387b6507a308113384566a77cfc4f8d0f54c2fb0a79f6bc8c057706c6aa4840cde56f32ad0e5814fb53c5f078c5db9e01670a1ecd535
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.9":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -5329,7 +5341,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sizzle@npm:^2.3.2":
+"@types/sizzle@npm:*, @types/sizzle@npm:^2.3.2":
   version: 2.3.8
   resolution: "@types/sizzle@npm:2.3.8"
   checksum: 2ac62443dc917f5f903cbd9afc51c7d6cc1c6569b4e1a15faf04aea5b13b486e7f208650014c3dc4fed34653eded3e00fe5abffe0e6300cbf0e8a01beebf11a6
@@ -13343,6 +13355,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jquery@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "jquery@npm:3.7.1"
+  checksum: 4370b8139d6ae82867eb6f7f21d1edccf1d1bdf41c0840920ea80d366c2cd5dbe1ceebb110ee9772aa839b04400faa1572c5c560b507c688ed7b61cea26c0e27
+  languageName: node
+  linkType: hard
+
 "js-beautify@npm:^1.14.9":
   version: 1.15.1
   resolution: "js-beautify@npm:1.15.1"
@@ -19492,6 +19511,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tw-elements@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "tw-elements@npm:2.0.0"
+  checksum: ddc00fc6623eb406f48f4dd1bf589259fe07eddbf1efcee9b9ef254bb753c66f5fc5a5e2013c76800d106d1c41c8a0059cd3a6fba112c9c5fb483a9330b4b0eb
+  languageName: node
+  linkType: hard
+
 "tweetnacl@npm:^0.14.3, tweetnacl@npm:~0.14.0":
   version: 0.14.5
   resolution: "tweetnacl@npm:0.14.5"
@@ -19702,11 +19728,11 @@ __metadata:
 
 "typescript@patch:typescript@5.3.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4 || ^5.2.2#~builtin<compat/typescript>":
   version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#~builtin<compat/typescript>::version=5.3.3&hash=29ae49"
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#~builtin<compat/typescript>::version=5.3.3&hash=e012d7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: f61375590b3162599f0f0d5b8737877ac0a7bc52761dbb585d67e7b8753a3a4c42d9a554c4cc929f591ffcf3a2b0602f65ae3ce74714fd5652623a816862b610
+  checksum: 4e604a9e107ce0c23b16a2f8d79d0531d4d8fe9ebbb7a8c395c66998c39892f0e0a071ef0b0d4e66420a8ec2b8d6cfd9cdb29ba24f25b37cba072e9282376df9
   languageName: node
   linkType: hard
 

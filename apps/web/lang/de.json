@@ -143,7 +143,7 @@
     "reviewsUp": "Kundenbewertung ⬆",
     "reviewsDown": "Kundenbewertung ⬇"
   },
-  "numberOfProducts": "{count} Produkte von {total} Produkten",
+  "numberOfProducts": "{count} von {total} Produkten",
   "prev": "Vorherige",
   "next": "Nächste",
   "noneExisting": "Keine vorhanden",

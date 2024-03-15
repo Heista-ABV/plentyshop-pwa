@@ -15,9 +15,13 @@
     >
       <template #sidebar>
         <CategoryTree :category="category" />
-        <CategorySorting />
-        <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
         <CategoryFilters :facets="productsCatalog.facets" />
+      </template>
+      <template #sorting>        
+        <div class="flex flex-col sm:flex-row sm:gap-3 w-full mt-2 md:mt-0">
+          <CategorySorting />
+          <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
+        </div>
       </template>
     </CategoryPageContent>
   </NuxtLayout>

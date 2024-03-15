@@ -2,7 +2,7 @@
   <div class="w-full h-full z-50 md:sticky shadow-md">
     <header ref="referenceRef" class="relative">
       <div
-        class="flex justify-between items-center flex-wrap md:flex-nowrap px-2 md:px-10 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
+        class="flex justify-between items-center flex-wrap md:flex-nowrap px-2 md:px-5  xl:px-10 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
         data-testid="navbar-top"
       >
         <div class="flex items-center  py-2 md:py-5">
@@ -10,7 +10,7 @@
             variant="tertiary"
             square
             aria-label="Close menu"
-            class="block lg:hidden mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
+            class="hidden mr-2 xl:mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
             @click="openMenu([])"
           >
             <SfIconMenu class="text-secondary-700 hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white" />
@@ -29,7 +29,7 @@
           <!-- Desktop dropdown -->
           <nav ref="floatingRef" class="h-full">
             <ul
-              class="hidden lg:flex px-6 h-full items-center"
+              class="hidden lg:flex px-6 lg:px-3 xl:px-6 h-full items-center"
               @blur="
                 (event) => {
                   if (!(event.currentTarget as Element).contains(event.relatedTarget as Element)) {
@@ -42,7 +42,7 @@
                 <button
                   ref="triggerReference"
                   data-testid="category-button"
-                  class="group mr-5 uppercase font-bold text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                  class="group mr-2 xl:mr-5 uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                   @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                   @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                 >
@@ -101,7 +101,7 @@
                           >
                             {{ categoryTreeGetters.getName(child) }}
                           </SfListItem>
-                        </li>
+                        </li> 
                       </ul>
                     </div>
                   </template>
@@ -111,7 +111,7 @@
                 <button
                   ref="triggerReference"
                   data-testid="category-button"
-                  class="group mr-5 uppercase font-bold text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                  class="group mr-2 xl:mr-5 uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                   @mouseenter="openMenu([4])"
                   @click="openMenu([4])"
                 >
@@ -131,7 +131,7 @@
                     @mouseleave="close()"
                     @keydown.esc="focusTrigger(4)"
                   >      
-                  <div class="w-100 my-5 text-center"> 
+                  <div class="w-100 mb-3 text-center"> 
                     <p>
                         {{ $t('header.allMirrorsChooseText') }}
                     </p>
@@ -193,7 +193,7 @@
         <nav>
           <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">
             <p class="typography-text-base font-medium">Unsere Kategorien</p>
-            <SfButton variant="tertiary" square aria-label="Close menu" class="ml-2" @click="close()">
+            <SfButton variant="tertiary" square aria-label="Close menu" class="ml-2 !p-0" @click="close()">
               <SfIconClose class="text-neutral-500" />
             </SfButton>
           </div>
