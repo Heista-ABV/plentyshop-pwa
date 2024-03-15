@@ -10,7 +10,7 @@
             variant="tertiary"
             square
             aria-label="Close menu"
-            class="hidden mr-2 xl:mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
+            class="hidden md:block lg:hidden mr-2 xl:mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
             @click="openMenu([])"
           >
             <SfIconMenu class="text-secondary-700 hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white" />
