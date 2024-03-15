@@ -37,14 +37,21 @@ definePageMeta({
 
 const { t, locale } = useI18n();
 const route = useRoute();
+const router = useRouter();
 const { getFacetsFromURL, checkFiltersInURL } = useCategoryFilter();
 const { fetchProducts, data: productsCatalog, productsPerPage, loading } = useProducts();
 const { data: categoryTree } = useCategoryTree();
-const localePath = useLocalePath();
+const { buildCategoryLanguagePath } = useLocalization();
 
 const handleQueryUpdate = async () => {
   await fetchProducts(getFacetsFromURL());
   checkFiltersInURL();
+  if (!productsCatalog.value.category) {
+    throw new Response(null, {
+      status: 404,
+      statusText: 'Not found',
+    });
+  }
 };
 
 await handleQueryUpdate();
@@ -64,8 +71,8 @@ const breadcrumbs = computed(() => {
 watch(
   () => locale.value,
   async (changedLocale: any) => {
-    navigateTo({
-      path: localePath(`/c${productsCatalog.value.languageUrls[changedLocale]}`),
+    router.push({
+      path: buildCategoryLanguagePath(`${productsCatalog.value.languageUrls[changedLocale]}`),
       query: route.query,
     });
   },

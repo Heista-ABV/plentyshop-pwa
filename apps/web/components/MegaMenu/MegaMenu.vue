@@ -316,6 +316,7 @@ import type { MegaMenuProps } from '~/components/MegaMenu/types';
 import $ from "jquery";
 
 const localePath = useLocalePath();
+const { buildCategoryMenuLink } = useLocalization();
 const NuxtLink = resolveComponent('NuxtLink');
 const props = defineProps<MegaMenuProps>();
 const { close, open, isOpen, activeNode, category, setCategory } = useMegaMenu();
@@ -337,7 +338,7 @@ const findNode = (keys: number[], node: CategoryTreeItem): CategoryTreeItem => {
 };
 
 const generateCategoryLink = (category: CategoryTreeItem) => {
-  return categoryTreeGetters.generateCategoryLink(categoryTree.value, category);
+  return buildCategoryMenuLink(category, categoryTree.value);
 };
 
 const drawerReference = ref();
