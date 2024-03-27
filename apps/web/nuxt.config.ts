@@ -116,12 +116,20 @@ export default defineNuxtConfig({
     sitemaps: {
       content: {
         exclude: [
+          '/en/**', // default language
           '/search',
           '/offline',
           '/my-account/**',
           '/readonly-checkout',
           '/set-new-password',
           '/reset-password-success',
+          '/cart',
+          '/checkout',
+          '/thank-you',
+          '/wishlist',
+          '/login',
+          '/signup',
+          '/reset-password',
         ],
         includeAppSources: true,
       },

@@ -5,7 +5,11 @@
   >
     <div class="relative">
       <!--
-      <UiBadges class="absolute m-2" :product="product" />
+      <UiBadges
+        :class="['absolute', isFromWishlist ? 'mx-2' : 'm-2']"
+        :product="product"
+        :use-availability="isFromWishlist"
+      />
       -->
       <SfLink :tag="NuxtLink" rel="preload" :to="localePath(`${path}/${productSlug}`)" as="image" class="">
         <NuxtImg
@@ -21,6 +25,7 @@
           format="webp"
         />
       </SfLink>
+
       <slot name="wishlistButton">
         <WishlistButton
           square
