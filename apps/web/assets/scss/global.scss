@@ -2,3 +2,32 @@
     max-width: 100%;
     height: auto;
 }
+.btn{
+    display: inline-block;
+    font-weight: 400;
+    color: #3e4346;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    border-radius: 0;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.btn-primary {
+    color: $white;
+    background-color: $brand-primary;
+    border-color:  $brand-primary;
+    &:hover{
+        background-color: $brand-secondary !important;
+        border-color: $brand-secondary !important;
+    }
+}

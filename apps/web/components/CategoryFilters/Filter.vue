@@ -1,14 +1,14 @@
 <template>
-  <SfAccordionItem v-if="facet" v-model="open" class="accordItem border border-secondary-700 px-2">
+  <SfAccordionItem v-if="facet" v-model="open" class="accordItem border border-secondary-700 relative" :class="[open ? 'filterOpen' : 'filterClosed', facetGetters.getType(facet)]">
     <template #summary>
-      <div class="flex justify-between py-2">
-        <p class="typography-headline-5 font-bold">{{ facetGetters.getName(facet) }}</p>
+      <div class="flex justify-between py-2  px-2">
+        <p class="typography-headline-5 font-bold">{{ facetGetters.getName(facet) }}</p> 
         <SfIconChevronLeft class="text-secondary-700" :class="[open ? 'rotate-90' : '-rotate-90']" />
       </div>
     </template>
-
+    <!-- 
     <div v-if="facetGetters.getType(facet) === 'feedback'">
-      <!-- <SfListItem
+      <SfListItem
         v-for="(filter, index) in facetGetters.getFilters(facet) as Filter[]"
         :key="index"
         tag="label"
@@ -25,60 +25,63 @@
           }}</span>
           <SfCounter size="sm">{{ filter.count }}</SfCounter>
         </div>
-      </SfListItem> -->
+      </SfListItem> 
     </div>
+    -->
+   
+      
+      <div class="filterContent   absolute py-3" v-if="facetGetters.getType(facet) === 'price'">
+        <form @submit.prevent="updatePriceFilter" class="px-2">
+          <div class="mb-3">
+            <SfInput v-model="minPrice" :placeholder="$t('min')" id="min" />
+          </div>
+          <div class="mb-3">
+            <SfInput v-model="maxPrice" :placeholder="$t('max')" id="max" />
+          </div>
+          <div class="flex">
+            <SfButton
+              type="submit"
+              class="w-full mr-3 h-10"
+              :disabled="minPrice.length === 0 && maxPrice.length === 0"
+              variant="secondary"
+            >
+              <template #prefix>
+                <SfIconCheck />
+              </template>
+              {{ $t('apply') }}
+            </SfButton>
+            <SfButton type="reset" @click="resetPriceFilter" class="h-10" variant="secondary">
+              <SfIconClose />
+            </SfButton>
+          </div>
+        </form>
+      </div>
 
-    <div class="mb-1" v-else-if="facetGetters.getType(facet) === 'price'">
-      <form @submit.prevent="updatePriceFilter">
-        <div class="mb-3">
-          <SfInput v-model="minPrice" :placeholder="$t('min')" id="min" />
-        </div>
-        <div class="mb-3">
-          <SfInput v-model="maxPrice" :placeholder="$t('max')" id="max" />
-        </div>
-        <div class="flex">
-          <SfButton
-            type="submit"
-            class="w-full mr-3 h-10"
-            :disabled="minPrice.length === 0 && maxPrice.length === 0"
-            variant="secondary"
-          >
-            <template #prefix>
-              <SfIconCheck />
-            </template>
-            {{ $t('apply') }}
-          </SfButton>
-          <SfButton type="reset" @click="resetPriceFilter" class="h-10" variant="secondary">
-            <SfIconClose />
-          </SfButton>
-        </div>
-      </form>
-    </div>
-
-    <div class="mb-1" v-else>
-      <SfListItem
-        v-for="(filter, index) in facetGetters.getFilters(facet) as Filter[]"
-        :key="index"
-        tag="label"
-        size="sm"
-        :data-testid="'category-filter-' + index"
-        :class="['!px-0 bg-transparent hover:bg-transparent']"
-      >
-        <template #prefix>
-          <SfCheckbox
-            class="flex items-center"
-            :value="filter"
-            v-model="models[filter.id]"
-            :id="filter.name"
-            @change="facetChange"
-          />
-        </template>
-        <p>
-          <span class="mr-2 text-sm">{{ filter.name ?? '' }}</span>
-          <SfCounter size="sm">{{ filter.count ?? 0 }}</SfCounter>
-        </p>
-      </SfListItem>
-    </div>
+      <div class="filterContent   absolute" v-else>
+        <SfListItem
+          v-for="(filter, index) in facetGetters.getFilters(facet) as Filter[]"
+          :key="index"
+          tag="label"
+          size="sm"
+          :data-testid="'category-filter-' + index"
+          class="px-2 py-0"
+          :class="['!px-0 bg-transparent hover:bg-transparent']"
+        >
+          <template #prefix>
+            <SfCheckbox
+              class="flex items-center hidden"
+              :value="filter"
+              v-model="models[filter.id]"
+              :id="filter.name"
+              @change="facetChange"
+            />
+          </template>
+          <p class="whitespace-pre">
+            <span class="mr-2 text-sm">{{ filter.name ?? '' }}</span>
+            <SfCounter size="sm">{{ filter.count ?? 0 }}</SfCounter>
+          </p>
+        </SfListItem>
+      </div>
   </SfAccordionItem>
 </template>
 
@@ -99,6 +102,9 @@ import {
 } from '@storefront-ui/vue';
 import type { FilterProps } from '~/components/CategoryFilters/types';
 import type { Filters } from '~/composables';
+
+const opened = ref<boolean[]>([]);
+const isTransitioning = ref(false);
 
 const route = useRoute();
 const { getFacetsFromURL, updateFilters, updatePrices } = useCategoryFilter();

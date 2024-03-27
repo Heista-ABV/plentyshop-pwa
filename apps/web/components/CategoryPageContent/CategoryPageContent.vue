@@ -1,26 +1,71 @@
 <template>
-  <div class="w-full h-category-top-banner py-10">
-    <div class="max-w-screen-3xl mx-auto lg:px-10  px-4 md:px-6">
-      <div class="md:flex">
-        <div class="hidden md:block">
-          <div class="aspect-square">
-            <div class="px-3 py-3">
-              <!--
-              <NuxtImg
-                :src="$t('header.aMCat'+i+'Icon'+index)"
-                :alt="$t('header.aMCat'+i+'Text'+index)"
-                class="headerIcon"
-                loading="lazy"
-              /> 
-              -->
+  <template v-if="category.details[0].imagePath.length > 0">
+    <div class="w-full h-category-top-banner py-10">
+      <div class="max-w-screen-3xl mx-auto lg:px-10  px-4 md:px-6">
+        <div class="md:flex">
+          <div class="hidden md:block max-w-[33.33%]">
+            <div class="aspect-square catHeaderBg">
+              <div class="px-5 py-5">
+                <div class="catImgWrapper">
+                  <NuxtImg
+                    :src="'https://www.kosmetikspiegel.shop/documents/'+category.details[0].imagePath"
+                    :alt="category.details[0].name"
+                    class="headerIcon"
+                    loading="lazy" 
+                  /> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="categoryDescWrapper max-w-[66.66%]">
+            <h1 class=" font-bold typography-headline-3 md:typography-headline-2">{{ title }}</h1>
+            <template v-if="$t('cat.catSubline'+category.id).length > 1">
+              <div class="subHeadingWrapper">
+                <h2>
+                  <span class="d-none d-md-inline subHeadingLine"></span>
+                  {{ $t('cat.catSubline'+category.id) }}
+                </h2>
+              </div>
+            </template>
+            <p class="" v-html="category.details[0].description" > 
+            </p>
+            <div class="catDescLink">
+              <a href="#description2" class="smoothScroll">
+               {{ $t('cat.moreToThisCat') }}
+              <i class="fa fa-arrow-down"></i></a>
             </div>
           </div>
         </div>
-        <div class="">
-          <h1 class=" font-bold typography-headline-3 md:typography-headline-2">{{ title }}</h1>
+      </div>
+    </div>
+  </template>
+  <template v-else>
+    <div class="w-full h-category-top-banner py-10">
+      <div class="max-w-screen-3xl mx-auto lg:px-10  px-4 md:px-6">
+        <div class="md:flex">
+          <div class="">
+            <h1 class=" font-bold typography-headline-3 md:typography-headline-2">{{ title }}</h1>
+          </div>
         </div>
       </div>
     </div>
+  </template>
+    
+  <div class="list-wrapper filterWrapper">
+    <span class="hidden md:inline md:mr-5 filterOpenerText">
+      {{ $t('cat.filterText1') }}
+    </span>
+    <button class="btn  openFilter md-hidden w-100">
+      <img src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg">
+      <span>{{ $t('cat.filterBtnText') }}</span>
+    </button>
+    <button class="btn  scrollFilter hidden w-100">
+          <img src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg">
+        <span>{{ $t('cat.filterBtnText') }}</span>
+    </button>
+    <span class="hidden lg:inline lg:ml-5 filterOpenerText">
+      {{ $t('cat.filterText2') }}
+    </span>
   </div>
 
   <NarrowContainer class="mb-20 px-4 md:px-0" data-testid="category-layout">    
@@ -91,11 +136,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '@plentymarkets/shop-api';
-import { productGetters } from '@plentymarkets/shop-sdk';
+import type { Product, Category } from '@plentymarkets/shop-api';
+import { productGetters, categoryGetters } from '@plentymarkets/shop-sdk';
 import { SfButton, SfIconTune, useDisclosure } from '@storefront-ui/vue';
 import { whenever } from '@vueuse/core';
 import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
+
 
 withDefaults(defineProps<CategoryPageContentProps>(), {
   itemsPerPage: 24,

@@ -28,9 +28,10 @@
     "lhci:mobile": "lhci autorun"
   },
   "dependencies": {
-    "@plentymarkets/shop-api": "^0.28.1",
+    "@plentymarkets/shop-api": "^0.27.0",
     "@vee-validate/nuxt": "^4.12.5",
     "@vee-validate/yup": "^4.12.5",
+    "bootstrap": "v5.3.3",
     "country-flag-icons": "^1.5.9",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
@@ -43,7 +44,7 @@
     "@lhci/cli": "^0.13.0",
     "@nuxtjs/turnstile": "^0.6.3",
     "@paypal/paypal-js": "7.1.1",
-    "@plentymarkets/shop-sdk": "^0.45.1",
+    "@plentymarkets/shop-sdk": "^0.42.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jquery": "^3.5.29",
     "@types/uuid": "^9.0.8",
@@ -60,7 +61,7 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "rollup": "^3.29.4",
-    "turbo": "1.10.13",
+    "turbo": "^1.13.0",
     "typescript": "5.3.3",
     "wait-on": "^7.2.0"
   },
@@ -68,7 +69,7 @@
     "yarn": ">=3.6.1",
     "node": ">=20.0.0"
   },
-  "packageManager": "yarn@3.6.4",
+  "packageManager": "yarn@3.8.0",
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog",

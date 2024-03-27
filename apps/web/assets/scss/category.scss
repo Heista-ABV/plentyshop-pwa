@@ -2,3 +2,216 @@
     background: #c4b599;
     background: linear-gradient(0deg, rgba(196, 181, 153, 0.25) 0%, rgba(225, 217, 203, 0.62) 20%, rgb(255, 255, 255) 100%);
 }
+.accordItem {
+    color: $black;
+    &.filterOpen summary{
+        &::after{
+            position: absolute;
+            content: " ";
+            left: 0px;
+            right: 0px;
+            height: 1px;
+            bottom:  -1px;
+            z-index: 1000;
+            background-color: #fff;
+            min-height: 0;
+        }
+    }
+    &.price.filterOpen summary{
+        &::after{
+            position: absolute;
+            content: " ";
+            right: -2px;
+        }
+    }
+    &.price .filterContent{
+        border-bottom: 1px solid $black;
+    }
+}
+.catImgWrapper{
+    max-width: 320px;
+    img{
+        width: 100%;
+    }
+    @media (min-width:992px) {
+        
+    }
+}
+.filterContent{
+    position: absolute;
+    left: -1px;
+    top: 40px;
+    right: unset;
+    background-color: #fff;
+    z-index: 999;
+    min-width: calc(100% + 2px);
+    border: none;   
+    border-left: 1px solid $black;
+    border-right: 1px solid $black;
+    font-size: 12px;
+    color: $black;
+    border-top: 1px solid $black;
+    label{
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
+        transition: all .3s;
+        background-color: rgba(0, 0, 0, 0);       
+        &:last-child{
+            border-bottom:1px solid $black;
+        }
+    }
+}
+.catHeaderBg{
+    background-image: url("https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Redesign/CategoryTopBannerWidgetBg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.categoryDescWrapper{
+    color: $black;
+    p{
+        font-size: 12px;
+        color: #707070;
+        line-height: 1.4;
+        @media (min-width: 768px) {
+            text-align: left !important;
+            font-size: 14px;        
+        }
+        @media (min-width: 992px) {
+            font-size: 16px;        
+        }
+        @media (min-width: 1400px) {
+            font-size: 18px;      
+        }
+
+    }
+    h1{
+        font-size: 22px;
+        margin-bottom: 0;
+        @media (min-width: 768px) {
+            font-size: 26px;
+            margin-bottom: 12px;       
+        }
+        @media (min-width: 992px) {
+            font-size: 32px;        
+        }
+        @media (min-width: 1200px) {
+            font-size: 38px;      
+        }
+    }
+    .subHeadingWrapper{
+        padding-left: 15px;
+        @media (min-width: 992px){
+            padding-left: 25px;
+        }
+        h2{
+            font-size: 16px;
+            position: relative;
+            color: $brand-primary;
+            font-weight: 300;
+            @media (min-width: 768px) {
+                padding-left: 35px;
+                font-size: 20px;    
+            }
+            @media (min-width: 992px) {
+                padding-left: 50px;
+                font-size: 26px;
+            }
+            @media (min-width: 1200px) {
+                padding-left: 75px;
+                font-size: 32px;
+                margin-bottom: 48px;
+            }
+        }
+    }
+    .subHeadingLine::before{
+        position: absolute;
+        content: " ";
+        width: 20px;
+        height: 2px;
+        background-color: #dabc71;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        @media (min-width: 992px) {
+            width: 40px;
+        }
+        @media (min-width: 1200px) {
+            width: 55px;
+        }
+    }
+}
+.categoryDescWrapper{
+    @media (min-width: 992px){
+        padding-right: 50px;
+    }
+    @media (min-width: 1200px){
+        padding-left: 80px;
+    }
+    @media (min-width: 1400px){
+        padding-right: 0px;
+    }
+}
+.catDescLink{
+    @media (min-width: 768px){
+        padding-left: 20px;
+        text-align: center;
+    }
+    @media (min-width: 1200px){
+        font-size: 18px;
+    }
+    @media (min-width: 1400px){
+        font-size: 20px;
+    }
+}
+.filterWrapper{
+    z-index: 1029;
+    left: 0;
+    right: 0;
+    top: 74px;
+    padding: 6px;
+    background: $brand-primary;
+    box-shadow: 1px 4px 10px 0px rgba(33,33,33,.3);
+    margin: 0 -12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .filterOpenerText{
+        color: #fff;
+        @media (min-width: 1200px){
+            font-size: 20px;
+        }
+        @media (min-width: 1400px){
+            font-size: 22px;
+        }
+    }
+    .openFilter, 
+    .scrollFilter{
+        min-height: 0;
+        height: 34px;
+        color: $brand-primary;
+        background-color: $white;
+        border-color: $white;
+        padding: 0 45px;
+        font-size: 16px;
+        width: auto !important;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        @media (min-width: 1200px){
+            font-size: 20px;
+            height: 36px;
+            line-height: 36px;
+        }
+        @media (min-width: 1400px){
+            font-size: 22px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 16px;
+        }
+        img{
+            transition: all .3s;
+            opacity: 0;
+        }
+    }
+}

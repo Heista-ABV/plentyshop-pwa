@@ -12,7 +12,8 @@
       :total-products="productsCatalog.pagination.totals"
       :products="productsCatalog.products"
       :items-per-page="Number(productsPerPage)"
-    >
+      :category="category"
+    > 
       <template #sidebar>
         <CategoryTree :category="category" />
         <CategoryFilters :facets="productsCatalog.facets" />
