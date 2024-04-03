@@ -1,16 +1,16 @@
 <template>
-  <div class="w-full lg:max-w-[50%] typography-text-sm !mt-3 sm:!mt-0" data-testid="category-sorting">
+  <div class="w-full lg:max-w-[50%] typography-text-sm !mt-3 lg:!mt-0" data-testid="category-sorting">
     <!--
     <h6 class="bg-neutral-100 mb-4 px-4 py-2 rounded uppercase typography-headline-6 font-bold tracking-widest">
       {{ $t('sortBy') }}
     </h6>
     -->
     <div>
-      <SfSelect v-model="selected" :aria-label="$t('sortBy')" id="sortBy" @change="sortingChanged">
-        <option v-for="{ value, label } in options" :key="value" :value="value">
+      <select v-model="selected" :aria-label="$t('sortBy')" id="sortBy" @change="sortingChanged" class="!static w-full appearance-none disabled:cursor-not-allowed cursor-pointer pl-4 pr-3.5 text-neutral-900 ring-inset focus:ring-primary-700 focus:ring-2 outline-none bg-transparent rounded-md ring-1 ring-neutral-300 hover:ring-primary-700 active:ring-2 active:ring-primary-700 disabled:bg-disabled-100 disabled:text-disabled-900 disabled:ring-disabled-200 py-2 !static">
+        <option v-for="{ value, label } in options" :key="value" :value="value"> 
           {{ $t(`sortType.${label}`) }}
         </option>
-      </SfSelect>
+      </select>
     </div>
   </div>
 </template>

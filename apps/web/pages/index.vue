@@ -158,10 +158,10 @@
       </div>
     </div>
     <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl  mx-auto">
-      <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
+      <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" />
+            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" :max-item-count="4" />
           </section>
         </NuxtLazyHydrate>
       </div>
@@ -201,19 +201,19 @@
           </div>
         </a>
       </div>
-      <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
+      <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID2')" />
+            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID2')" :max-item-count="4"/>
           </section>
         </NuxtLazyHydrate>
       </div>    
     </div>
     <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl mx-auto">
-      <div class="categorySnippet mb-5 min-w-[100%] md:min-w-[75%]">
+      <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" />
+            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" :max-item-count="4"/>
           </section>
         </NuxtLazyHydrate>
       </div>

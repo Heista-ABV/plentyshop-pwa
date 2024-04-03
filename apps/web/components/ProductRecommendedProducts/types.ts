@@ -1,4 +1,5 @@
 export type ProductRecommendedProductsProps = {
-  categoryId: string;
-  cacheKey?: string;
+    categoryId: string;
+    cacheKey?: string;
+    maxItemCount: int;
 };

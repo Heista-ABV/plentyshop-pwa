@@ -18,14 +18,14 @@
       <div >
         <div class="p-4 flex justify-between items-center md:hidden">
           <span class="font-bold text-lg">{{ $t('filters') }}</span>
-          <SfButton variant="tertiary" @click="$emit('close')" :aria-label="$t('closeListSettings')">
+          <SfButton variant="tertiary" @click="$emit('close')" :aria-label="$t('closeListSettings')" class="!px-2 group active:!bg-primary-700 active:!text-white">
             <template #prefix>
-              <SfIconClose class="text-neutral-500" />
+              <SfIconClose class="text-neutral-500 group-active:text-white" />
             </template>
           </SfButton>
         </div>
         <slot class="overflow-y-auto md:overflow-y-visible py-4 md:p-0" />
-        <div class="p-4 md:mt-2 flex flex-wrap justify-between border-t border-t-neutral-200 md:border-0 gap-3">
+        <div class="p-4 md:mt-2 flex flex-wrap justify-between border-t border-t-neutral-200 md:border-0 gap-3 md:hidden">
           <SfButton class="md:hidden whitespace-nowrap flex flex-1" variant="primary" @click="$emit('close')">
             {{ $t('showProducts') }}
           </SfButton>

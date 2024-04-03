@@ -19,7 +19,7 @@
         <CategoryFilters :facets="productsCatalog.facets" />
       </template>
       <template #sorting>        
-        <div class="flex flex-col sm:flex-row sm:gap-3 w-full mt-2 md:mt-0">
+        <div class="flex flex-col sm:flex-row sm:gap-3 w-full xl:max-w-[33%]">
           <CategorySorting />
           <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
         </div>

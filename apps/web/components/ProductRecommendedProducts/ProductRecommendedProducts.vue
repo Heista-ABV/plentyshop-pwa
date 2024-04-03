@@ -1,5 +1,5 @@
 <template>
-  <RecommendedProducts :products="recommendedProducts"></RecommendedProducts>
+  <RecommendedProducts :products="recommendedProducts" :max-item-count="maxItemCount"></RecommendedProducts>
 </template>
 
 <script setup lang="ts">

@@ -1,16 +1,17 @@
 <template>
-  <div class="w-full lg:max-w-[50%] typography-text-sm !mt-3 sm:!mt-0" data-testid="category-items-per-page">   
+  <div class="w-full lg:max-w-[50%] typography-text-sm !mt-3 lg:!mt-0" data-testid="category-items-per-page">   
     <div>
-      <SfSelect
+      <select
         v-model="selected"
         :aria-label="$t('perPage')"
         id="perPage"
         @change="updateItemsPerPage(Number(selected))"
+        class="!static w-full appearance-none disabled:cursor-not-allowed cursor-pointer pl-4 pr-3.5 text-neutral-900 ring-inset focus:ring-primary-700 focus:ring-2 outline-none bg-transparent rounded-md ring-1 ring-neutral-300 hover:ring-primary-700 active:ring-2 active:ring-primary-700 disabled:bg-disabled-100 disabled:text-disabled-900 disabled:ring-disabled-200 py-2 !static"
       >
         <option v-for="{ value, label, disabled } in options" :key="value" :value="value" :disabled="disabled">
           {{ label }}
         </option>
-      </SfSelect>
+      </select>
     </div>
   </div>
 </template>

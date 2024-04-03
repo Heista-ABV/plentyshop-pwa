@@ -3,5 +3,6 @@ import type { Product } from '@plentymarkets/shop-api';
 
 export type ProductSliderProps = {
   items?: Product[];
-  wrapperClass?: HTMLAttributes['class'];
+  wrapperClass?: HTMLAttributes['class']; 
+  maxItemCount: int;
 };

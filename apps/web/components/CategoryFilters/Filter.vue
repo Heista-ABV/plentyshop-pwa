@@ -30,7 +30,7 @@
     -->
    
       
-      <div class="filterContent   absolute py-3" v-if="facetGetters.getType(facet) === 'price'">
+      <div class="filterContent  py-3" v-if="facetGetters.getType(facet) === 'price'">
         <form @submit.prevent="updatePriceFilter" class="px-2">
           <div class="mb-3">
             <SfInput v-model="minPrice" :placeholder="$t('min')" id="min" />
@@ -48,7 +48,6 @@
               <template #prefix>
                 <SfIconCheck />
               </template>
-              {{ $t('apply') }}
             </SfButton>
             <SfButton type="reset" @click="resetPriceFilter" class="h-10" variant="secondary">
               <SfIconClose />
@@ -57,7 +56,7 @@
         </form>
       </div>
 
-      <div class="filterContent   absolute" v-else>
+      <div class="filterContent" v-else>
         <SfListItem
           v-for="(filter, index) in facetGetters.getFilters(facet) as Filter[]"
           :key="index"
@@ -76,7 +75,7 @@
               @change="facetChange"
             />
           </template>
-          <p class="whitespace-pre">
+          <p>
             <span class="mr-2 text-sm">{{ filter.name ?? '' }}</span>
             <SfCounter size="sm">{{ filter.count ?? 0 }}</SfCounter>
           </p>
