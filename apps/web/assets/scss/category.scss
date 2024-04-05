@@ -179,7 +179,7 @@
     }
 }
 .filterWrapper{
-    z-index: 10;
+    z-index: 101;
     left: 0;
     right: 0;
     top: 74px;
@@ -257,4 +257,156 @@
     p{
         margin-bottom: 1rem;
     }
+}
+.catProduct{
+    flex-direction: row;
+    padding-bottom: .5rem;
+    position: relative;
+    border-bottom: 1px solid $brand-primary;
+    .catImageWrapper{
+        flex: 8;
+    }
+    .categoryContentWrapper{
+        flex: 6;
+        transition: all .6s;
+        .catContentTopSide{
+            text-align: right;
+            height: 45px;
+            justify-content: space-between;
+            display: flex;
+            flex-direction: column;
+            .prices{
+                align-items: flex-end;
+                justify-content: flex-end;
+                flex-flow: wrap;
+                flex-direction: column;
+            }
+        }
+        .catContentBotSide {
+            text-align: right;
+            height: calc(100% - 45px);
+            .bottomWrapper{
+                height: 100%;
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+                flex-wrap: wrap;
+                .sizeCont{
+                    .sizesHeading{
+                        color: #707070;
+                        font-size: 12px;
+                        font-weight: 300;
+                    }
+                    .availableSizes{
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 5px;
+                        .availableSize{
+                            width: 25px;
+                            height: 25px;
+                            border-radius: 50%;
+                            border: 1px solid #707070;
+                            color: #d1ac4e;
+                            font-size: 10px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+                .hv-category-item-properties{
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 3px;
+                    flex-wrap: wrap;
+                    margin-top: 5px;
+                    .propertyWrapper{
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        font-size: 14px;
+                        position: relative;
+                    }
+                    .valueBox, 
+                    .property71, 
+                    .property86{
+                        display: none;
+                    }
+                    .iconImg{
+                        max-width: 30px;
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+@media (min-width:768px) {
+    .catProduct{
+        border-bottom:none;
+        .prices {
+            height: 28px;
+            position: relative;
+        }
+        .categoryContentWrapper .catContentTopSide {
+            height: 35px;
+            padding-bottom: 5px;
+        }
+        .crossPrice{
+            line-height: 1 !important;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            top: 50%;
+            font-size: 28px;
+            transition: all .5s;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .catPrice{
+            line-height: 1 !important;
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%) translateY(-50%);
+            top: 50%;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            transition: all .7s;
+        }
+        .catContentMid{
+            background-color: #dabc71;
+            height: 1px;
+            transition: height .6s;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 24px;
+            font-size: 14px;
+            white-space: nowrap;
+            a {
+                color: rgba(0, 0, 0, 0);
+                font-size: 0;
+            }
+        }
+        &:hover{
+            .crossPrice{
+                opacity: 1;
+                visibility: visible;
+                left: 0%;
+                transform: translateX(0) translateY(-50%);
+            }
+            .catPrice{
+                right: 0;
+                transform: translateX(0) translateY(-50%);
+            }
+            .catContentMid {
+                height: 24px;
+                a{
+                    color: #fff;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    
 }

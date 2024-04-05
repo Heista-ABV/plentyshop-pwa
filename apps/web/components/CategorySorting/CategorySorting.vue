@@ -38,14 +38,6 @@ const options = ref([
     label: 'priceDown',
     value: 'sorting.price.avg_desc',
   },
-  {
-    label: 'reviewsUp',
-    value: 'item.feedbackDecimal_asc',
-  },
-  {
-    label: 'reviewsDown',
-    value: 'item.feedbackDecimal_desc',
-  },
 ]);
 const selected = ref(options.value[0].value);
 
