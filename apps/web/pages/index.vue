@@ -344,7 +344,7 @@
 
 <script lang="ts" setup>
 import { SfButton } from '@storefront-ui/vue';
-
+const { t } = useI18n();
 definePageMeta({
   pageType: 'static',
 });
@@ -367,10 +367,10 @@ watch(
 const displayDetails = [
   {
     image: '/images/homepage-display-1.webp',
-    title: 'Sunny Days Ahead',
-    subtitle: 'Be inspired',
-    description: 'Step out in style with our sunglasses collection',
-    buttonText: 'Discover now',
+    title: t('homepage.displayDetails.detail1.title'),
+    subtitle: t('homepage.displayDetails.detail1.subtitle'),
+    description: t('homepage.displayDetails.detail1.description'),
+    buttonText: t('homepage.displayDetails.detail1.buttonText'),
     reverse: false,
     backgroundColor: 'bg-negative-200',
     titleClass: 'md:typography-display-2',
@@ -379,19 +379,19 @@ const displayDetails = [
   },
   {
     image: '/images/homepage-display-2.webp',
-    title: 'Pack it Up',
-    subtitle: 'Be active',
-    description: 'Explore the great outdoors with our backpacks',
-    buttonText: 'Discover now',
+    title: t('homepage.displayDetails.detail2.title'),
+    subtitle: t('homepage.displayDetails.detail2.subtitle'),
+    description: t('homepage.displayDetails.detail2.description'),
+    buttonText: t('homepage.displayDetails.detail2.buttonText'),
     reverse: true,
     backgroundColor: 'bg-warning-200',
   },
   {
     image: '/images/homepage-display-3.webp',
-    title: 'Fresh and Bold',
-    subtitle: 'New collection',
-    description: 'Add a pop up color to your outfit',
-    buttonText: 'Discover now',
+    title: t('homepage.displayDetails.detail3.title'),
+    subtitle: t('homepage.displayDetails.detail3.subtitle'),
+    description: t('homepage.displayDetails.detail3.description'),
+    buttonText: t('homepage.displayDetails.detail3.buttonText'),
     reverse: false,
     backgroundColor: 'bg-secondary-200',
   },
@@ -399,15 +399,15 @@ const displayDetails = [
 
 const categories = [
   {
-    title: `Women`,
+    title: t('homepage.women'),
     image: '/images/homepage-women-category.webp',
   },
   {
-    title: `Men`,
+    title: t('homepage.men'),
     image: '/images/homepage-men-category.webp',
   },
   {
-    title: `Kid`,
+    title: t('homepage.kid'),
     image: '/images/homepage-kid-category.webp',
   },
 ];

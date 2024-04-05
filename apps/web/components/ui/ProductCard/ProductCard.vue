@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col flex-auto flex-shrink-0 catProduct"
+    class="flex flex-col flex-auto flex-shrink-0 catProduct group"
     data-testid="product-card"
   >
     <div class="relative">
@@ -13,17 +13,18 @@
       -->
       <SfLink :tag="NuxtLink" rel="preload" :to="localePath(`${path}/${productSlug}`)" as="image" class="">
         <NuxtImg
-          :src="imageUrl"
+          ref="img"
+          :src="addModernImageExtension(imageUrl)"
           :alt="imageAlt"
+          :loading="lazy && !priority ? 'lazy' : 'eager'"
+          :fetchpriority="priority ? 'high' : undefined"
+          :preload="priority || false"
           class="object-contain rounded-md aspect-square w-full h-fit transition duration-150 group-hover:!scale-100 scale-90 "
           data-testid="image-slot"
           width="190"
           height="190"
-          :loading="lazy && !priority ? 'lazy' : 'eager'"
-          :fetchpriority="priority ? 'high' : undefined"
-          :preload="priority || false"
-          format="webp"
         />
+        <SfLoaderCircular v-if="!imageLoaded" class="absolute" size="sm" />
       </SfLink>
 
       <slot name="wishlistButton">
@@ -66,8 +67,8 @@
       </div>
       <div class="flex items-center mt-auto">
         <span class="block pb-2 font-bold typography-text-sm" data-testid="product-card-vertical-price">
-          <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1"
-            >{{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
+          <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1">
+            {{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
           </span>
           <span>{{ n(cheapestPrice ?? mainPrice, 'currency') }}</span>
           <span v-if="showNetPrices">{{ t('asterisk') }} </span>
@@ -121,6 +122,7 @@ import {
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 
 const localePath = useLocalePath();
+const { addModernImageExtension } = useModernImage();
 const { t, n } = useI18n();
 const { product } = withDefaults(defineProps<ProductCardProps>(), {
   lazy: true,
@@ -133,9 +135,26 @@ const { data: categoryTree } = useCategoryTree();
 const { addToCart } = useCart();
 const { send } = useNotification();
 const loading = ref(false);
-
+const imageLoaded = ref(false);
+const img = ref();
+const emit = defineEmits(['load']);
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
+
+onMounted(() => {
+  const imgElement = (img.value?.$el as HTMLImageElement) || null;
+
+  if (imgElement) {
+    if (!imageLoaded.value) {
+      if (imgElement.complete) imageLoaded.value = true;
+      imgElement.addEventListener('load', () => (imageLoaded.value = true));
+    }
+
+    nextTick(() => {
+      if (!imgElement.complete) emit('load');
+    });
+  }
+});
 
 const addWithLoader = async (productId: number) => {
   loading.value = true;
@@ -165,6 +184,5 @@ const cheapestPrice = productGetters.getCheapestGraduatedPrice(product);
 const oldPrice = productGetters.getRegularPrice(product);
 const path = computed(() => productGetters.getCategoryUrlPath(product, categoryTree.value));
 const productSlug = computed(() => productGetters.getSlug(product) + `_${productGetters.getItemId(product)}`);
-
 const NuxtLink = resolveComponent('NuxtLink');
 </script>
