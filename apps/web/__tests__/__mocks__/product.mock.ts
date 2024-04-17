@@ -74,7 +74,10 @@ export const ProductMock = {
             "isCountryStateMandatory": null,
             "isoCode2": "DE"
         },
-        "manufacturer": [],
+        "manufacturer": {
+            "position": 0, 
+            "externalName": "A & C Design"
+        },
         "rebate": 0,
         "salableVariationCount": 1,
         "customsTariffNumber": ""

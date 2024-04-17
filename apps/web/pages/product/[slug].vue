@@ -25,7 +25,7 @@
       <section class="mx-4 mt-28 mb-20">
         <NuxtLazyHydrate when-visible>
           <ProductRecommendedProducts
-            :category-id="productGetters.getCategoryIds(product)[0]"
+            :category-id="productGetters.getCategoryIds(product)[0]" :max-item-count="4"
           ></ProductRecommendedProducts>
         </NuxtLazyHydrate>
       </section>

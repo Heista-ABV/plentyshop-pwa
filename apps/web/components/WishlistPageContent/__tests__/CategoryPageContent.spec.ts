@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { CategoryPageContent } from '#components';
+import { CategoryMock } from '../../../__tests__/__mocks__/category.mock';
 
 describe('<CategoryPageContent />', () => {
   it('should render component', () => {
@@ -9,6 +10,7 @@ describe('<CategoryPageContent />', () => {
         totalProducts: 0,
         products: [],
         itemsPerPage: 24,
+        category: CategoryMock,
       },
     });
 

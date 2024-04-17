@@ -388,7 +388,10 @@
                 font-size: 0;
             }
         }
+        margin-bottom: 30px;
+        transition: all .6s;
         &:hover{
+            margin-bottom: 0px;
             .crossPrice{
                 opacity: 1;
                 visibility: visible;

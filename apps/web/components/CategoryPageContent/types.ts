@@ -1,9 +1,9 @@
-import type { Product } from '@plentymarkets/shop-api';
+import type { Product, Category } from '@plentymarkets/shop-api';
 
 export type CategoryPageContentProps = {
   title: string;
   totalProducts: number;
   itemsPerPage: number;
   products?: Product[];
-  category: object;
+  category: Category | undefined;
 };

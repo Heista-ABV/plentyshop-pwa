@@ -6,6 +6,7 @@ describe('<ProductSlider />', () => {
     const { getByTestId } = mount(ProductSlider, {
       props: {
         items: [],
+        maxItemCount: 4,
       },
     });
 

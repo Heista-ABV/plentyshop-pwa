@@ -8,6 +8,7 @@
         :total-products="productsCatalog.pagination.totals"
         :products="productsCatalog.products"
         :items-per-page="Number(productsPerPage)"
+        :category="undefined"
       >
         <template #sidebar>
           <CategorySorting />
