@@ -14,15 +14,13 @@
       <SfLink :tag="NuxtLink" rel="preload" :to="localePath(`${path}/${productSlug}`)" as="image" class="">
         <NuxtImg
           ref="img"
-          :src="addModernImageExtension(imageUrl)"
+          :src="imageUrl"
           :alt="imageAlt"
           :loading="lazy && !priority ? 'lazy' : 'eager'"
           :fetchpriority="priority ? 'high' : undefined"
           :preload="priority || false"
           class="object-contain rounded-md aspect-square w-full h-fit transition duration-300 md:group-hover:!scale-100 md:scale-90 "
           data-testid="image-slot"
-          width="190"
-          height="190"
         />
         <!--
         <SfLoaderCircular v-if="!imageLoaded" class="absolute" size="sm" />
@@ -184,12 +182,12 @@ import {
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 
 const localePath = useLocalePath();
-const { addModernImageExtension } = useModernImage();
 const { t, n } = useI18n();
 const { product } = withDefaults(defineProps<ProductCardProps>(), {
   lazy: true,
   imageAlt: '',
   isFromWishlist: false,
+  isFromSlider: false,
 });
 
 const { data: categoryTree } = useCategoryTree();

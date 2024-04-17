@@ -13,6 +13,7 @@
         :price="productGetters.getSpecialPrice(product)"
         :rating-count="productGetters.getTotalReviews(product)"
         :rating="productGetters.getAverageRating(product)"
+         is-from-slider
       />
     </template>
     <template v-else>
@@ -28,6 +29,7 @@
         :price="productGetters.getSpecialPrice(product)"
         :rating-count="productGetters.getTotalReviews(product)"
         :rating="productGetters.getAverageRating(product)"
+        is-from-slider
       />
     </template>
   </SfScrollable>
