@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full z-50 md:sticky shadow-md">
+  <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white">
     <header ref="referenceRef" class="relative">
       <div
         class="flex justify-between items-center flex-wrap md:flex-nowrap px-2 md:px-5  xl:px-10 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"

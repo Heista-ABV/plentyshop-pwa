@@ -1,27 +1,52 @@
 <template>
-  <div>
-    <label
-      :for="'attribute-' + productAttributeGetters.getAttributeId(attribute)"
-      class="leading-5 text-sm text-zinc-900"
-    >
-      {{ productAttributeGetters.getAttributeName(attribute) }}
-    </label>
-    <div :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)" class="w-full flex gap-4 flex-wrap">
+  <div class="attributeRow flex flex-row items-center flex-wrap">
+    <div class="attributeInfoWrapper ">
+      <p class="mb-0">
+        {{ productAttributeGetters.getAttributeName(attribute) }}
+      </p>
+    </div>
+    <div :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)" class="varBoxes flex flex-wrap">
       <div
         v-for="item in productAttributeGetters.getAttributeValues(attribute)"
         :key="productAttributeGetters.getAttributeValueId(item)"
-        class="border h-12 border-zinc-300 rounded-md cursor-pointer hover:bg-[#3C3C4226]"
+        class=" cursor-pointer varBox"
         :class="{
-          'text-zinc-400 border-dashed': productAttributeGetters.isAttributeValueDisabled(item),
-          '!border-primary-700 bg-zinc-100': value === productAttributeGetters.getAttributeValueId(item),
-          '!ring-negative-700 !border-negative-700 ring-1': Boolean(errors['selectedValue']),
+          'disabled': productAttributeGetters.isAttributeValueDisabled(item),
+          'active': value === productAttributeGetters.getAttributeValueId(item),
+          '': Boolean(errors['selectedValue']),
         }"
         @click="doUpdateValue(productAttributeGetters.getAttributeValueId(item))"
       >
+
+        
+        <div class="attrImgWrapper">
+          <img :src="'https://www.kosmetikspiegel.shop'+productAttributeGetters.getAttributeValueImageUrl(item)" class="attrImg">
+          <template v-if="productAttributeGetters.getAttributeId(attribute) == 1">
+            <div class="activeArrow">
+                <img ref="itemLazyImage" src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/Kosmetikspiegel_Golden_Tick.svg" :alt="productAttributeGetters.getAttributeValueName(item)" :title="productAttributeGetters.getAttributeValueName(item)" role="option" >                
+            </div>
+            <div class="magnificationWrapper">
+                <div>
+                    <span>
+                      <template v-if="productAttributeGetters.getAttributeValueId(item) == 1">
+                          3
+                      </template>
+                      <template v-else-if="productAttributeGetters.getAttributeValueId(item) == 2">
+                          5
+                      </template>
+                      <template  v-else-if="productAttributeGetters.getAttributeValueId(item) == 3">
+                          7
+                      </template>
+                    </span>
+                </div>
+            </div>
+        </template>
+        </div>
+        
         <SfTooltip :label="getLabel(item)" strategy="absolute" :show-arrow="true" placement="top">
-          <div class="font-medium h-12 flex items-center px-4">
+          <div class="font-medium flex items-center">
             {{ productAttributeGetters.getAttributeValueName(item) }}
-          </div>
+          </div>        
         </SfTooltip>
       </div>
     </div>

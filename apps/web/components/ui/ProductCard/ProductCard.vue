@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col flex-auto flex-shrink-0 catProduct group md:!flex-col"
+    class="flex flex-col flex-auto flex-shrink-0 catProduct group !flex-col"
     data-testid="product-card"
   >
     <div class="relative catImageWrapper">
@@ -19,7 +19,7 @@
           :loading="lazy && !priority ? 'lazy' : 'eager'"
           :fetchpriority="priority ? 'high' : undefined"
           :preload="priority || false"
-          class="object-contain rounded-md aspect-square w-full h-fit transition duration-300 md:group-hover:!scale-100 md:scale-90 "
+          class="object-contain rounded-md aspect-square w-full h-fit transition duration-500 md:group-hover:!scale-100 md:scale-90 "
           data-testid="image-slot"
         />
         <!--
@@ -37,7 +37,7 @@
     </div>
     <div class="categoryContentWrapper ">
       <div class="thumb-content catContentTopSide"> 
-        <div class="prices flex md:!flex-row md:!gap-3 md:!items-center md:!justify-between">          
+        <div class="prices flex !flex-row !gap-3 !items-center !justify-between">          
           <span
             v-if="oldPrice && oldPrice !== mainPrice"
             class="text-primary-200 line-through price-view-port typography-text-md crossPrice"
@@ -54,9 +54,10 @@
       </div>
       <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
         <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline" variant="secondary">
-          {{manufName }} {{ getVarPropName(product.variationProperties, 93) }} 
+          {{ manufName }} {{ getVarPropName(productGetters.getPropertyGroupById(11, product)) }}   
         </SfLink>
       </div>
+      {{ productGetters.getPropertyGroupById(11, product) }}
       <div class="catContentBotSide">
         <div class="bottomWrapper md:flex !flex-row !justify-center !items-end gap-3 md:!h-auto">
           <div class="sizeCont">
@@ -84,56 +85,17 @@
             </div>
           </div>
           <div class="hv-category-item-properties">
-            <!--
-            <template v-for="propId in iconPropIds"> 
-              <template v-if="product.variationProperties && getVarPropNameIcon(product.variationProperties, propId)"> 
-                <div :class="'propertyWrapper property'+propId">
-                  <div class="iconBox">
-                    <div class="imageWrapper">
-                      <NuxtImg
-                        ref="img"
-                        :src="getVarPropNameIcon(product.variationProperties, propId)"
-                        :alt="getVarPropName(product.variationProperties, propId)"
-                        :loading="lazy && !priority ? 'lazy' : 'eager'"
-                        :fetchpriority="priority ? 'high' : undefined"
-                        :preload="priority || false"
-                        class="iconImg"
-                        data-testid="image-slot"
-                        width="35"
-                        height="35"
-                      />
-                    </div>
-                  </div>
-                  <div class="valueBox">
-                    <template v-if="iconPropOPValueIds.includes(propId)">
-                      <span class="value">
-                        {{ getVarPropName(product.variationProperties, propId) }} 
-                        <br> mm
-                      </span>
-                    </template>   
-                    <template v-else>
-                      <span class="valueName">
-                          {{ $t('cat.catVarItemPropsName'+propId) }}
-                      </span>
-                    </template>               
-                  </div>                  
-                </div>
-              </template>
-            </template>
-
-            -->
-
             <template v-if="product.variationProperties">
               <template v-for="propGroup in product.variationProperties">
-                <template v-for="prop in product.properties">
+                <template v-for="prop in propGroup.properties">
                   <template v-if="iconPropIds.includes(prop.id)">
                     <div :class="'propertyWrapper property'+prop.id">
                       <div class="iconBox">
                         <div class="imageWrapper">
                           <NuxtImg
                             ref="img"
-                            :src="prop.names.description"
-                            :alt="prop.names.name"
+                            :src="productPropertyGetters.getPropertyNameDescription(prop)"
+                            :alt="productPropertyGetters.getPropertyValue(prop)"
                             :loading="lazy && !priority ? 'lazy' : 'eager'"
                             :fetchpriority="priority ? 'high' : undefined"
                             :preload="priority || false"
@@ -144,7 +106,7 @@
                           />
                         </div>
                       </div>
-                      <div class="valueBox">
+                      <div class="valueBox leading-4 text-left ml-1">
                         <template v-if="iconPropOPValueIds.includes(prop.id)">
                           <span class="value">
                             {{ prop.values.value  }} 
@@ -285,35 +247,19 @@ const mainPrice = computed(() => {
 });
 
 
-
-
-function getVarPropName(variationProperties: Object[] | undefined, propId: Number) {
-  if(variationProperties){
-    for (let variation of variationProperties) {
-      for (let property of variation.properties) {
-        if (productPropertyGetters.getPropertyId(property) === propId) {
-          return productPropertyGetters.getPropertyValue(property);
-        }
+function getVarPropName(variationProperties) {
+  if(variationProperties){    
+    for (let property of variationProperties.properties) {
+      if (productPropertyGetters.getPropertyId(property) === 93) {
+        return productPropertyGetters.getPropertyValue(property);
       }
-    }
+    }    
   }
   return undefined;
 }
-/*
-function getVarPropNameIcon(variationProperties: Object[] | undefined, propIds: Number) {
-  if(variationProperties){
-    for (let variation of variationProperties) {
-      for (let property of variation.properties) {
-        if (productPropertyGetters.getPropertyId(property) === propId) {
-          return productPropertyGetters.getPropertyNameDescription(property);
-        }
-      }
-    }
-  }
-  return undefined;
-}
-*/
-const manufName = product.item.manufacturer.externalName;
+
+const manufacturer = product.item.manufacturer as { name: string };
+const manufName = manufacturer.externalName;
 
 
 const cheapestPrice = productGetters.getCheapestGraduatedPrice(product);

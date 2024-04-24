@@ -50,11 +50,12 @@
               <SfIconShoppingCart />
               <SfBadge
                 :content="cartItemsCount"
-                class="outline outline-secondary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
+                class="outline outline-primary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
                 data-testid="cart-badge"
               />
             </template>
           </SfButton>
+          <!--
           <SfDropdown v-if="isAuthorized" v-model="isAccountDropdownOpen" placement="bottom-end">
             <template #trigger>
               <SfButton
@@ -102,7 +103,7 @@
             <SfIconPerson />
           
           </button>
-          
+          -->
         </nav>
       </NuxtLazyHydrate>
     </template>

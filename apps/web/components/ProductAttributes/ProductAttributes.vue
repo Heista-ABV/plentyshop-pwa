@@ -1,6 +1,10 @@
 <template>
   <div data-testid="product-attributes" class="mb-2">
-    <div v-for="(attribute, index) in attributes" :key="index" class="mb-2">
+    <div class="attributesHeaderWrapper">
+      <span class="attributesHeader">{{ $t('item.attributeHeader') }}</span>
+      <span class="attributesHeaderLine"></span>      
+    </div>
+    <div v-for="(attribute, index) in attributes" :key="index" class="mb-2 variationSelect" :class="'attribute'+attribute.attributeId">
       <ClientOnly>
         <Component
           v-if="componentsMapper[productAttributeGetters.getAttributeType(attribute)]"

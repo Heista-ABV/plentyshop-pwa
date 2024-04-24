@@ -34,3 +34,10 @@ body{
         border-color: $brand-secondary !important;
     }
 }
+.productSlide{
+    .catProduct {
+        @media (min-width:768px) {
+            padding: 0 15px 0.5rem;
+        }
+    }
+}

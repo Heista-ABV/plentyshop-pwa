@@ -346,7 +346,7 @@
   "orderErrorProvider": "Unbekannte Antwort des Zahlungsanbieters: {paymentType}",
   "orderNumber": "Auftrags-ID",
   "returnNumber": "Rückgabe-ID",
-  "productDetails": "Produkt-Details",
+  "productDetails": "Beschreibung",
   "technicalData": "Technische Daten",
   "customerReviews": "Kundenrezensionen",
   "customerReviewsNone": "Es hat noch niemand eine Bewertung für dieses Produkt abgegeben",
@@ -916,5 +916,8 @@
     "catVarItemPropsName39": "Höhenverstellbar",
     "catVarItemPropsName41": "Zum Kleben",
     "catVarItemPropsName82": "Vergrößerung"
+  },
+  "item":{
+      "attributeHeader": "Dein Produkt konfigurieren"
   }
 }

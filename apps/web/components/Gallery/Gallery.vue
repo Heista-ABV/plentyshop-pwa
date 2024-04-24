@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col md:flex-row h-full flex relative scroll-smooth md:gap-4" data-testid="gallery">
+  <div class="flex-col h-full flex relative scroll-smooth md:gap-4" data-testid="gallery">
     <div
       class="after:block after:pt-[100%] flex-1 relative overflow-hidden w-full max-h-[600px]"
       data-testid="gallery-images"
@@ -40,12 +40,11 @@
       </SfScrollable>
     </div>
 
-    <div class="md:-order-1 overflow-hidden flex-shrink-0 basis-auto">
+    <div class="overflow-hidden flex-shrink-0 basis-auto">
       <SfScrollable
         ref="thumbsReference"
         wrapper-class="hidden md:inline-flex"
-        direction="vertical"
-        class="flex-row w-full items-center md:flex-col md:h-full md:px-0 md:scroll-pl-4 snap-y snap-mandatory flex gap-0.5 md:gap-2 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+        class="flex-row w-full items-center md:h-full md:px-0 md:scroll-pl-4 snap-y snap-mandatory flex gap-0.5 md:gap-2 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
         :active-index="activeIndex"
         :prev-disabled="activeIndex === 0"
         :next-disabled="activeIndex === images.length - 1"

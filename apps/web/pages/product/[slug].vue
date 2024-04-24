@@ -2,7 +2,7 @@
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <NarrowContainer>
       <div class="md:grid gap-x-6 grid-areas-product-page grid-cols-product-page">
-        <section class="grid-in-left-top md:h-full xl:max-h-[700px]">
+        <section class="grid-in-left-top md:h-full">
           <NuxtLazyHydrate when-idle>
             <Gallery :images="addModernImageExtensionForGallery(productGetters.getGallery(product))" />
           </NuxtLazyHydrate>
@@ -12,15 +12,26 @@
             <UiPurchaseCard v-if="product" :product="product" :review-average="productReviewAverage" />
           </NuxtLazyHydrate>
         </section>
-        <section class="grid-in-left-bottom md:mt-8">
+        <section class="grid-in-left-bottom md:mt-8"><!--
           <UiDivider class="mt-4 mb-2 md:mt-8" />
           <NuxtLazyHydrate when-visible>
             <ProductAccordion v-if="product" :product="product" />
           </NuxtLazyHydrate>
+          -->
+          <div> 
+            <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl">
+                <span class="pb-1 border-b-4 border-primary-700">
+                  {{ $t('productDetails') }}
+                </span>
+            </h2>
+            <div v-html="productGetters.getDescription(product)"></div>
+          </div>
+          <!--
           <NuxtLazyHydrate when-visible>
             <ReviewsAccordion :product="product" :total-reviews="reviewGetters.getTotalReviews(productReviewAverage)" />
           </NuxtLazyHydrate>
-        </section>
+          -->
+        </section>        
       </div>
       <section class="mx-4 mt-28 mb-20">
         <NuxtLazyHydrate when-visible>

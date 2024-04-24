@@ -135,6 +135,11 @@
             padding-left: 25px;
         }
     }
+    .catDescLink{
+        @media (min-width: 992px) {
+            padding-left: 25px;
+        }
+    }
     .subHeadingLine::before{
         position: absolute;
         content: " ";
@@ -340,6 +345,7 @@
             }
         }
     }
+    
 }
 @media (min-width:768px) {
     .catProduct{
@@ -410,6 +416,33 @@
                 }
             }
         }
+    }    
+}
+@media (min-width:992px) {
+    .catProduct{
+        .catContentMid {
+            line-height: 30px;
+        }
+        &:hover{
+            .catContentMid {
+                height: 30px;
+                a{
+                    color: #fff;
+                    font-size: 14px;
+                }
+            }
+        }
     }
-    
+}
+@media (min-width:1200px) {
+    .catProduct{
+        &:hover{
+            .catContentMid {
+                a{
+                    color: #fff;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 }

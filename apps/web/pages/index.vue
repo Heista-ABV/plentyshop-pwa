@@ -161,7 +161,7 @@
       <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" :max-item-count="4" />
+            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" :max-item-count="3" />
           </section>
         </NuxtLazyHydrate>
       </div>
@@ -204,7 +204,7 @@
       <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID2')" :max-item-count="4"/>
+            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID2')" :max-item-count="3"/>
           </section>
         </NuxtLazyHydrate>
       </div>    
@@ -213,7 +213,7 @@
       <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" :max-item-count="4"/>
+            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" :max-item-count="3"/>
           </section>
         </NuxtLazyHydrate>
       </div>
