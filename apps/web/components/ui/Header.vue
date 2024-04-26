@@ -39,7 +39,7 @@
             </template>
           </SfButton>
           <SfButton
-            class="group relative  text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 mr-1 -ml-0.5 rounded-md"
+            class="group relative  text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 rounded-md"
             :tag="NuxtLink"
             :to="localePath(paths.cart)"
             :aria-label="t('numberInCart', { count: cartItemsCount })"

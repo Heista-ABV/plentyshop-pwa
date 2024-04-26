@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col flex-auto flex-shrink-0 catProduct group !flex-col"
+    class="flex flex-col flex-auto flex-shrink-0 catProduct group !flex-col stretched-link"
     data-testid="product-card"
   >
     <div class="relative catImageWrapper">
@@ -54,7 +54,7 @@
       </div>
       <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
         <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline" variant="secondary">
-          {{ manufName }} {{ getVarPropName(productGetters.getPropertyGroupById(11, product)) }}   
+          {{ manufName }} {{ getVarPropName(product.variationProperties) }}   
         </SfLink>
       </div>
       {{ productGetters.getPropertyGroupById(11, product) }}
@@ -65,7 +65,7 @@
                <template v-if="product.variationProperties">
 								<template v-for="propGroup in product.variationProperties">
 									<template v-if="propGroup.id == 10">
-										<template v-for="prop in propGroup.properties">
+										<template v-for="prop in propGroup.properties"> 
 											<template v-if="prop.id == 82"> 
                         <div class="sizeWrapper"> 
 													<p class="sizesHeading mb-0">{{ $t('cat.catVarItemPropsName82') }}</p>
@@ -120,7 +120,6 @@
                         </template>               
                       </div>                  
                     </div>
-
                   </template>
                 </template>
               </template>
@@ -175,7 +174,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"> 
 import { productGetters, productPropertyGetters   } from '@plentymarkets/shop-sdk';
 import {
   SfLink,

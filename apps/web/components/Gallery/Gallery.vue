@@ -42,9 +42,8 @@
 
     <div class="overflow-hidden flex-shrink-0 basis-auto">
       <SfScrollable
-        ref="thumbsReference"
         wrapper-class="hidden md:inline-flex"
-        class="flex-row w-full items-center md:h-full md:px-0 md:scroll-pl-4 snap-y snap-mandatory flex gap-0.5 md:gap-2 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+        class="flex-row w-full items-center md:h-full md:px-0 snap-y snap-mandatory flex gap-0.5 md:gap-2 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
         :active-index="activeIndex"
         :prev-disabled="activeIndex === 0"
         :next-disabled="activeIndex === images.length - 1"
@@ -54,7 +53,7 @@
             variant="secondary"
             size="sm"
             square
-            class="absolute !rounded-full bg-white z-10 top-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
+            class="absolute !rounded-full bg-white z-10 left-0 disabled:!hidden !ring-neutral-500 !text-neutral-500"
             :class="{ hidden: firstVisibleThumbnailIntersected }"
             :aria-label="$t('gallery.prev')"
           >
@@ -78,7 +77,7 @@
         >
           <NuxtImg
             :alt="cleanImageName"
-            class="object-contain"
+            class="object-contain max-h-[100%]"
             width="80"
             height="80"
             :src="urlPreview"
@@ -92,7 +91,7 @@
             variant="secondary"
             size="sm"
             square
-            class="absolute !rounded-full bg-white z-10 bottom-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
+            class="absolute !rounded-full bg-white z-10  right-0 disabled:!hidden !ring-neutral-500 !text-neutral-500"
             :class="{ hidden: lastVisibleThumbnailIntersected }"
             :aria-label="$t('gallery.next')"
           >

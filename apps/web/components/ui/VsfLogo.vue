@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-3">
+  <div>
     <picture>
       <img src="/images/Logo-Animation_2.gif" 
       :alt="i18n.t('header.logoAltText')" 

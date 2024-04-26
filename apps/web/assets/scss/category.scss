@@ -187,7 +187,7 @@
     z-index: 101;
     left: 0;
     right: 0;
-    top: 74px;
+    top: 66px;
     padding: 6px;
     background: $brand-primary;
     box-shadow: 1px 4px 10px 0px rgba(33,33,33,.3);
@@ -196,8 +196,9 @@
     justify-content: center;
     align-items: center;
     position: sticky;
-    top: 0;
-
+    @media (min-width: 768px){
+        top:80px;
+    }
     .filterOpenerText{
         color: #fff;
         @media (min-width: 1200px){
@@ -344,8 +345,18 @@
                 }
             }
         }
-    }
-    
+    }    
+}
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0, 0, 0, 0);
 }
 @media (min-width:768px) {
     .catProduct{
