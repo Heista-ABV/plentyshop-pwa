@@ -1,7 +1,7 @@
 <template>
   <SfAccordionItem v-if="facet" v-model="open" class="accordItem border border-secondary-700 relative" :class="[open ? 'filterOpen' : 'filterClosed', facetGetters.getType(facet)]">
     <template #summary>
-      <div class="flex justify-between py-2  px-2">
+      <div class="flex justify-between py-2 px-2 select-none">
         <p class="typography-headline-5 font-bold">{{ facetGetters.getName(facet) }}</p> 
         <SfIconChevronLeft class="text-secondary-700" :class="[open ? 'rotate-90' : '-rotate-90']" />
       </div>
@@ -110,7 +110,7 @@ const { getFacetsFromURL, updateFilters, updatePrices } = useCategoryFilter();
 const open = ref(false);
 const props = defineProps<FilterProps>();
 const filters = facetGetters.getFilters(props.facet ?? ({} as FilterGroup)) as Filter[];
-const models: Filters = {};
+const models = ref({} as Filters);
 const currentFacets = computed(() => getFacetsFromURL().facets?.split(',') ?? []);
 
 // Price
@@ -134,17 +134,13 @@ const updateFilter = () => {
   for (const filter of filters) {
     const filterId = typeof filter.id === 'string' ? filter.id : filter.id.toString();
 
-    models[filterId] = Boolean(filter.selected) ?? false;
+    models.value[filterId] = Boolean(filter.selected) ?? false;
 
-    if (currentFacets.value.includes(filterId)) {
-      models[filterId] = true;
-    }
+    if (currentFacets.value.includes(filterId)) models.value[filterId] = true;
   }
 };
 
-const facetChange = () => {
-  updateFilters(models);
-};
+const facetChange = () => updateFilters(models.value);
 
 updateFilter();
 

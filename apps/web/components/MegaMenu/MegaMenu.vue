@@ -8,6 +8,7 @@
         >
           <div class="flex items-center  py-2 md:py-5">
             <SfButton
+              v-if="viewport.isLessThan('md')"
               variant="tertiary"
               square
               aria-label="Close menu"
@@ -28,7 +29,7 @@
 
           <div class="navigationWrapper h-full">
             <!-- Desktop dropdown -->
-            <nav v-if="isTablet" ref="floatingRef" class="h-full">
+            <nav v-if="viewport.isGreaterOrEquals('md')" ref="floatingRef" class="h-full">
               <ul
                 class="hidden lg:flex px-6 lg:px-3 xl:px-6 h-full items-center"
                 @blur="
@@ -317,7 +318,7 @@ import { unrefElement } from '@vueuse/core';
 import type { MegaMenuProps } from '~/components/MegaMenu/types';
 import $ from "jquery";
 
-const { isTablet } = useBreakpoints();
+const viewport = useViewport();
 const localePath = useLocalePath();
 const { buildCategoryMenuLink } = useLocalization();
 const NuxtLink = resolveComponent('NuxtLink');

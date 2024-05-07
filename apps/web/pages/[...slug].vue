@@ -16,20 +16,22 @@
     > 
       <template #sidebar>
         <CategoryTree :category="category" />
-        <CategoryFilters :facets="productsCatalog.facets" />
+        <CategoryFilters  v-if="facetGetters.hasFilters(productsCatalog.facets)" :facets="productsCatalog.facets" />
       </template>
+      <!--
       <template #sorting>        
         <div class="flex flex-col sm:flex-row sm:gap-3 w-full xl:max-w-[33%]">
           <CategorySorting />
           <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
         </div>
       </template>
+      -->
     </CategoryPageContent>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { categoryGetters, categoryTreeGetters } from '@plentymarkets/shop-sdk';
+import { categoryGetters, categoryTreeGetters, facetGetters } from '@plentymarkets/shop-sdk';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 const { setCategoriesPageMeta } = useCanonical();
 definePageMeta({

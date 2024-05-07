@@ -106,6 +106,8 @@
               :price="actualPrice(product)"
               :image-url="addModernImageExtension(productGetters.getCoverImagePreview(product))"
               :image-alt="productGetters.getName(product) ?? ''"
+              :image-height="productGetters.getImageHeight(product) ?? 600"
+              :image-width="productGetters.getImageWidth(product) ?? 600"
               :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
               :priority="index === 0"
               :base-price="productGetters.getDefaultBaseSinglePrice(product)"
@@ -148,7 +150,6 @@
 import type { Product, Category } from '@plentymarkets/shop-api';
 import { productGetters, categoryGetters } from '@plentymarkets/shop-sdk';
 import { SfButton, SfIconTune, useDisclosure } from '@storefront-ui/vue';
-import { whenever } from '@vueuse/core';
 import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 import $ from "jquery";
 
@@ -164,7 +165,7 @@ const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
 
 const { isOpen, open, close } = useDisclosure();
-const { isTablet, isDesktop } = useBreakpoints();
+const viewport = useViewport();
 
 
 
@@ -174,9 +175,9 @@ function openMobileFilter(className: string, objectName: string) {
   $(''+objectToAddTo).toggleClass(classToAdd)
 }
 
-const maxVisiblePages = computed(() => (isDesktop.value ? 5 : 1));
+const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 1));
 
-whenever(isTablet, close);
+if (viewport.isLessThan('md')) close;
 
 const actualPrice = (product: Product): number => {
   const price = productGetters.getPrice(product);
