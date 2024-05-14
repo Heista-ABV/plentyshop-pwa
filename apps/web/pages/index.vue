@@ -1,8 +1,8 @@
 <template>
   <div> 
     <div class="widget h-image-collection-widget heista-widget">
-      <div class=" max-w-screen-3xl mx-auto">
-        <div class="homeGalleryWrapper px-3">
+      <div class=" max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+        <div class="homeGalleryWrapper px-3 md:px-0">
           <div class="lg:flex"> 
             <div class="min-w-[100%] lg:min-w-[50%] galleryGroup group-1 lg:flex flex-col justify-between">
               <div>
@@ -137,7 +137,7 @@
         <div class="bgImage bg-cover absolute inset-x-0 inset-y-0 h-100 bg-no-repeat bg-fixed opacity-75 bg-center" v-bind:style="{ 'background-image': 'url(' + $t('homeTwo.parallaxImage') + ')' }">
         </div>       
       </div>
-      <div class="max-w-screen-3xl mx-auto relative z-10">
+      <div class="max-w-screen-3xl mx-auto md:px-6 lg:px-10 relative z-10">
           <div class="text-center pt-10   pr-5 pb-10 pl-5 homeHeadline ">
             <h1 class="text-center pt-10 pb-10 text-secondary-700  uppercase font-bold leading-loose">
               {{ $t('homeTwo.parallaxText') }}
@@ -157,7 +157,7 @@
           </p>
       </div>
     </div>
-    <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl  mx-auto">
+    <div class="relative md:flex items-center categorySnippet mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
       <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        
@@ -183,7 +183,7 @@
         </a>
       </div>
     </div>
-    <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl  mx-auto">
+    <div class="relative md:flex items-center categorySnippet mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
       <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
         <a :href="$t('homeTwo.categoryCat2')">
           <NuxtImg
@@ -209,7 +209,7 @@
         </NuxtLazyHydrate>
       </div>    
     </div>
-    <div class="relative md:flex gap-4 items-center categorySnippet mb-5 max-w-screen-3xl mx-auto">
+    <div class="relative md:flex  items-center categorySnippet mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
       <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
         <NuxtLazyHydrate when-visible>
           <section class="mx-4 mt-28 mb-20 overflow-hidden">        

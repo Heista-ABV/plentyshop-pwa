@@ -7,7 +7,7 @@
             <Gallery :images="addModernImageExtensionForGallery(productGetters.getGallery(product))" />
           </NuxtLazyHydrate>
         </section>
-        <section class="mb-10 grid-in-right md:mb-0">
+        <section class="grid-in-right ">
           <NuxtLazyHydrate when-idle>
             <UiPurchaseCard v-if="product" :product="product" :review-average="productReviewAverage" />
           </NuxtLazyHydrate>
@@ -18,7 +18,7 @@
             <ProductAccordion v-if="product" :product="product" />
           </NuxtLazyHydrate>
           -->
-          <div> 
+          <div class="px-4 md:px-0"> 
             <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl">
                 <span class="pb-1 border-b-4 border-primary-700">
                   {{ $t('productDetails') }}
@@ -33,7 +33,7 @@
           -->
         </section>        
       </div>
-      <section class="mx-4 mt-28 mb-20">
+      <section class="mx-4 md:!mx-0 mt-28 mb-20">
         <NuxtLazyHydrate when-visible>
           <ProductRecommendedProducts
             :category-id="productGetters.getCategoryIds(product)[0]" :max-item-count="4"

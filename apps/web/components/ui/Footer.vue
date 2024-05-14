@@ -1,10 +1,10 @@
 <template>
   <footer class="pt-10 border-t-2 border-primary-700 bg-white mb-[58px] md:mb-0" data-testid="footer">
     <div
-      class="flex flex-wrap  px-4 md:px-10 lg:px-14  pb-10 max-w-screen-3xl mx-auto"
+      class="flex flex-wrap  px-4 md:px-6 lg:px-10 pb-10 max-w-screen-3xl mx-auto footerWrapper"
       data-testid="section-top"
     >
-      <div v-for="{ key, subcategories } in categories" :key="key" class="min-w-[100%] md:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4">
+      <div v-for="{ key, subcategories, index } in categories" :key="key" class="min-w-[100%] md:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4 ">
         <div class="text-lg font-medium leading-7 text-neutral-900 mb-3">
           {{ $t(`${key}`) }}
         </div>

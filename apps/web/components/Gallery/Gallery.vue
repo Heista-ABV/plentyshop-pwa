@@ -77,7 +77,7 @@
         >
           <NuxtImg
             :alt="cleanImageName"
-            class="object-contain"
+            class="object-contain max-h-full"
             :width="width ?? 80"
             :height="height ?? 80"
             :src="urlPreview"

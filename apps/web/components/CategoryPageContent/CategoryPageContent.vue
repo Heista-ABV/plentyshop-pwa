@@ -28,10 +28,11 @@
               </div>
             </template>
             <div v-html="category.details[0].description" class="catBannerDesc text-center md:text-left"></div>
-            <div class="catDescLink text-center md:text-left">
-              <a href="#description2" class="smoothScroll">
-               {{ $t('cat.moreToThisCat') }}
-              <i class="fa fa-arrow-down"></i></a>
+            <div class="catDescLink text-center">
+              <span class="cursor-pointer" @click="scrollToDescription">
+                {{ $t('cat.moreToThisCat') }}
+                <SfIconArrowBack class="rotate-[270deg]"/>
+              </span>
             </div>
           </div>
         </div>
@@ -50,15 +51,15 @@
     </div>
   </template>
     
-  <div class="list-wrapper filterWrapper">
+  <div class="list-wrapper filterWrapper" id="filterCont" ref="filter" >
     <span class="hidden md:inline md:mr-5 filterOpenerText">
       {{ $t('cat.filterText1') }}
     </span>
-    <button class="btn openFilter !flex !md:hidden w-100"  @click="open">
+    <button class="btn openFilter !flex md:!hidden w-100"  @click="open">
       <img src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline">
       <span>{{ $t('cat.filterBtnText') }}</span>
     </button>
-    <button class="btn scrollFilter !hidden !md:flex w-100">
+    <button class="btn scrollFilter !hidden md:!flex w-100" @click="scrollToFilter">
         <img src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline">
         <span>{{ $t('cat.filterBtnText') }}</span>
     </button>
@@ -67,7 +68,7 @@
     </span>
   </div>
 
-  <NarrowContainer class="mb-20 px-4 md:px-0" data-testid="category-layout">    
+  <NarrowContainer class="mb-20 px-4 md:px-0" data-testid="category-layout" ref="element">    
     <div class="md:flex flex-col" data-testid="category-page-content">
       <CategorySidebar :is-open="isOpen" @close="close">
         <NuxtLazyHydrate when-visible>
@@ -75,26 +76,28 @@
         </NuxtLazyHydrate>
       </CategorySidebar>
       <div class="flex-1">
+        <!--
         <div class="flex flex-wrap lg:flex-row lg:flex-nowrap justify-between items-center mb-6 mt-3">
           <div class="flex flex-wrap w-full justify-between items-center" >
             <span class="font-bold font-headings md:text-lg">
               {{ $t('numberOfProducts', { count: products?.length ?? 0, total: totalProducts }) }}
             </span>
-            <!--
+            
             <SfButton @click="open" variant="tertiary" class="md:hidden whitespace-nowrap">
               <template #prefix>
                 <SfIconTune />
               </template>
             </SfButton>
-            -->
+            
           </div>          
           <NuxtLazyHydrate when-visible>
             <slot name="sorting" />
           </NuxtLazyHydrate>          
         </div>
+        -->
         <section
           v-if="products"
-          class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3 mb-10 md:mb-5"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6 lg:grid-cols-3 mb-10 md:mb-5"
           data-testid="category-grid"
         >
           <NuxtLazyHydrate when-visible v-for="(product, index) in products" :key="productGetters.getId(product)">
@@ -127,13 +130,15 @@
             <span>{{ $t('excludedShipping') }}</span>
           </div>
           -->
-          <UiPagination
-            v-if="totalProducts > 0"
-            :current-page="getFacetsFromURL().page ?? 1"
-            :total-items="totalProducts"
-            :page-size="itemsPerPage"
-            :max-visible-pages="maxVisiblePages"
-          />
+          <div id="pagination">
+            <UiPagination
+              v-if="totalProducts > 0"
+              :current-page="getFacetsFromURL().page ?? 1"
+              :total-items="totalProducts"
+              :page-size="itemsPerPage"
+              :max-visible-pages="maxVisiblePages"
+            />
+          </div>
         </NuxtLazyHydrate>
       </div>
     </div>
@@ -149,10 +154,10 @@
 <script setup lang="ts">
 import type { Product, Category } from '@plentymarkets/shop-api';
 import { productGetters, categoryGetters } from '@plentymarkets/shop-sdk';
-import { SfButton, SfIconTune, useDisclosure } from '@storefront-ui/vue';
+import { SfButton, SfIconTune, useDisclosure, SfIconArrowBack } from '@storefront-ui/vue';
 import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 import $ from "jquery";
-
+// import { onMounted, ref } from 'vue';
 
 withDefaults(defineProps<CategoryPageContentProps>(), {
   itemsPerPage: 24,
@@ -166,13 +171,45 @@ const showNetPrices = runtimeConfig.public.showNetPrices;
 
 const { isOpen, open, close } = useDisclosure();
 const viewport = useViewport();
+/*
+const target = ref<Element>();
+const sticking = ref<boolean>(false);
 
+const observer = new IntersectionObserver(
+    ([entry]) => {
+        sticking.value = entry.isIntersecting;
+    },
+    { threshold: 0.0 }
+);
+
+onMounted(() => {
+    observer.observe(target.value as Element);
+});
+*/
 
 
 function openMobileFilter(className: string, objectName: string) {
   const classToAdd = className;
   const objectToAddTo = objectName;
   $(''+objectToAddTo).toggleClass(classToAdd)
+}
+
+function scrollToDescription() {
+  const paginationElement = document.querySelector('#pagination') as HTMLElement;
+  if(paginationElement !== null){
+    paginationElement.scrollIntoView({
+      behavior: 'smooth'
+    });
+  } 
+}
+
+function scrollToFilter() {
+  const descElement = document.querySelector('.catDescLink') as HTMLElement;
+  if(descElement !== null){
+    descElement.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
 }
 
 const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 1));

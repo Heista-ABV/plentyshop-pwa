@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full fixed bottom-0 left-0 flex flex-row items-stretch md:hidden" data-testid="navbar-bottom">
+  <nav class="w-full fixed bottom-0 left-0 flex flex-row items-stretch md:hidden z-[1000]" data-testid="navbar-bottom">
     <SfButton
       v-for="{ label, icon, link } in items"
       :key="label"
@@ -73,11 +73,6 @@ const items = computed(() => [
     label: t('cart'),
     icon: SfIconShoppingCart,
     link: localePath(paths.cart),
-  },
-  {
-    label: isAuthorized.value ? t('account.navBottomHeadingAccount') : t('account.navBottomHeadingLogin'),
-    icon: SfIconPerson,
-    link: isAuthorized.value ? localePath(paths.account) : localePath(paths.authLogin),
   },
 ]);
 

@@ -7,6 +7,7 @@
     "
     :disabled="wishlistLoading"
     @click="onWishlistClick()"
+    class="hover:!bg-primary-700 hover:!text-white active:!bg-primary-700 active:!text-white"
     data-testid="wishlist-trigger"
   >
     <SfLoaderCircular v-if="wishlistLoading" class="flex justify-center items-center" size="sm" />

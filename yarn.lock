@@ -7715,7 +7715,7 @@ __metadata:
   peerDependencies:
     "@popperjs/core": ^2.11.8
   checksum: 537b68db30150075614310e9ebdf1be9b4affdf89ca226d59f4352e82a368b203af13ed0ce5ccfa4e06f141ecd233f7432ca3817e9c1a39863a05fbe13c73c4b
-    languageName: node
+  languageName: node
   linkType: hard
 
 "bowser@npm:^2.11.0":

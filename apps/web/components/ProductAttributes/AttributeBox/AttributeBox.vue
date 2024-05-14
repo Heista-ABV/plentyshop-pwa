@@ -50,7 +50,7 @@
         </SfTooltip>
       </div>
     </div>
-    <VeeErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2" />
+    <VeeErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2 mx-auto" />
   </div>
 </template>
 

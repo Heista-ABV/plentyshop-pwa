@@ -1,9 +1,9 @@
 <template>
   <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white sticky top-0 left-0 right-0">
     <div class="max-w-screen-3xl mx-auto px-3 md:px-6 lg:px-10">
-      <header ref="referenceRef" class="relative">
+      <header ref="referenceRef" class="relative headerWrapper">
         <div
-          class="flex justify-between items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
+          class="flex justify-center md:justify-between  items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
           data-testid="navbar-top"
         >
           <div class="flex items-center  py-2 md:py-5">
@@ -12,7 +12,7 @@
               variant="tertiary"
               square
               aria-label="Close menu"
-              class="lg:hidden mr-2 xl:mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
+              class="hidden mr-2 xl:mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
               @click="openMenu([])"
             >
               <SfIconMenu class="text-secondary-700 hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white" />
@@ -44,7 +44,7 @@
                   <button
                     ref="triggerReference"
                     data-testid="category-button"
-                    class="group mr-2 xl:mr-5 uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                    class="group mr-2 xl:mr-5 2xl:mr-10 3xl:mr-[3rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                     @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                     @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                   >

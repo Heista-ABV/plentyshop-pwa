@@ -206,8 +206,8 @@
 .attributeRow{
     .attributeInfoWrapper {
         -webkit-box-flex: 0;
-        width: 45%;
-        flex: 0 0 45%;
+        width: 40%;
+        flex: 0 0 40%;
         text-align: right;
         padding-right: 10px;
         font-size: 14px;
@@ -217,10 +217,12 @@
         }
         @media(min-width:768px){
             font-size: 13px;
-        }
-        @media(min-width:992px){
             width: 35%;
             flex: 0 0 35%;
+        }
+        @media(min-width:992px){
+            width: 30%;
+            flex: 0 0 30%;
         }
         @media(min-width:1200px){
             font-size: 14px;
@@ -229,15 +231,23 @@
             width: 25%;
             flex: 0 0 25%;
         }
+        @media(min-width:1800px){
+            width: 18%;
+            flex: 0 0 18%;
+        }
     }
     .varBoxes{ 
         -webkit-box-flex: 0;
         width: 55%;
         flex: 0 0 55%;
         padding-left: 10px;
-        @media(min-width:992px){
+        @media(min-width:768px){
             width: 65%; 
             flex: 0 0 65%;
+        }
+        @media(min-width:992px){
+            width: 70%; 
+            flex: 0 0 70%;
         }   
         @media(min-width:1600px){
             gap: 10px;
@@ -246,6 +256,8 @@
         }      
         @media(min-width:1800px){
             gap: 15px;
+            width: 82%;
+            flex: 0 0 82%;
         }
         margin: 0;
     } 
@@ -262,6 +274,11 @@
             padding: 0;
             @media(min-width:992px){
                 max-width: 35px;
+            }
+        }
+        span{
+            div{
+                word-break: break-word;
             }
         }
         &.active{
@@ -383,4 +400,7 @@
             display: none;
         }
     }
+}
+.grid-cols-product-page{
+    grid-template-columns:1fr 1fr;
 }
