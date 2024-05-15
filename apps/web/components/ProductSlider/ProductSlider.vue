@@ -1,5 +1,5 @@
 <template>
-  <SfScrollable buttons-placement="floating" class="pb-4 !gap-0 productSlide" :wrapper-class="wrapperClass" data-testid="product-slider" totalItems="4">
+  <SfScrollable buttons-placement="floating" class="pb-4 !gap-0 productSlide w-full" :wrapper-class="wrapperClass" data-testid="product-slider" totalItems="4">
     <template v-if="maxItemCount && items">
       <template  v-if="maxItemCount == 3">
         <UiProductCard
