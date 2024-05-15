@@ -6,11 +6,11 @@
       v-model="productDetailsOpen"
     >
       <template #summary>
-        <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl">
+        <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl mb-3">  
           {{ $t('productDetails') }}
         </h2>
       </template>
-      <div v-html="productGetters.getDescription(product)"></div>
+      <div v-html="productGetters.getDescription(product)" class="description"></div>
     </UiAccordionItem>
     <!--
     <UiDivider v-if="productDetailsOpen && productGetters.getDescription(product)?.length" class="mb-2 mt-2" />

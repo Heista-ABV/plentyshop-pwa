@@ -63,7 +63,7 @@
       </div>
       <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
         <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline w-full text-center" variant="secondary" >
-          {{ manufName }} {{ getVarPropName(product.variationProperties) }}   
+          {{ manufName }} {{ getVarPropName }}   
         </SfLink> 
       </div>      
       <div class="catContentBotSide">
@@ -71,25 +71,17 @@
           <div class="bottomWrapper md:flex !flex-row !justify-center !items-end gap-2 md:!h-auto">
             <div class="sizeCont">
               <div class="sizeWrapper md:flex justify-center flex-col">
-                <template v-if="product.variationProperties">
-                  <template v-for="propGroup in product.variationProperties">
-                    <template v-if="propGroup.id == 10">
-                      <template v-for="prop in propGroup.properties"> 
-                        <template v-if="prop.id == 82"> 
-                          <div class="sizeWrapper"> 
-                            <p class="sizesHeading mb-0">{{ $t('cat.catVarItemPropsName82') }}</p>
-                            <div class="availableSizes md:!justify-center">
-                              <template v-for="vals in prop.values">													
-                                <div class="availableSize">
-                                  {{ vals.value }}
-                                </div>							 						
-                              </template>
-                            </div>
-                          </div>
+                <template v-if="getMagnifyValues">
+                  <div class="sizeWrapper">
+                    <p class="sizesHeading mb-0">{{ $t('cat.catVarItemPropsName82') }}</p>
+                    <div class="availableSizes md:!justify-center">
+                      <template v-for="magnifyNumber in getMagnifyValues">													
+                          <div class="availableSize">
+                            {{ magnifyNumber.selectionId }}
+                          </div>							 						
                         </template>
-                      </template>
-                    </template>
-                  </template>
+                    </div>
+                  </div>
                 </template>
               </div>
             </div>
@@ -259,25 +251,26 @@ const mainPrice = computed(() => {
 });
 
 
-function getVarPropName(variationProperties) {
-  if(variationProperties){    
-    var propObject = JSON.parse(JSON.stringify(variationProperties));
-    for (let propertyGroup of propObject) {
-      for (let property of propertyGroup.properties) {
-        if (productPropertyGetters.getPropertyId(property) === 93) {
-          return productPropertyGetters.getPropertyValue(property);
-          console.log(productPropertyGetters.getPropertyValue(property))
-        }
-      }    
-    }
+const getVarPropName = computed(() => {
+  var getProp = productGetters.getPropertyById(93, product);
+  if(getProp){
+    return getProp.values.value;
   }
-  return undefined;
-}
+});
+
+const getMagnifyValues: any = computed(() => {
+  var getProp = productGetters.getPropertyById(82, product);
+  if(getProp){
+    return getProp.values;
+  }
+});
+
+
 
 const manufacturer = product.item.manufacturer as { externalName: string };
 const manufName = manufacturer.externalName;
 
-
+ 
 
 const cheapestPrice = productGetters.getCheapestGraduatedPrice(product);
 const oldPrice = productGetters.getRegularPrice(product);

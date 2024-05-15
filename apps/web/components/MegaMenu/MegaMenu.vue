@@ -3,16 +3,16 @@
     <div class="max-w-screen-3xl mx-auto px-3 md:px-6 lg:px-10">
       <header ref="referenceRef" class="relative headerWrapper">
         <div
-          class="flex justify-center md:justify-between  items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
+          class="flex justify-center md:justify-between  items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10 "
           data-testid="navbar-top"
         >
-          <div class="flex items-center  py-2 md:py-5">
+          <div class="flex items-center py-2 md:py-5">
             <SfButton
               v-if="viewport.isLessThan('md')"
               variant="tertiary"
               square
               aria-label="Close menu"
-              class="hidden mr-2 xl:mr-5 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
+              class="hidden mr-2 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
               @click="openMenu([])"
             >
               <SfIconMenu class="text-secondary-700 hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white" />
@@ -40,11 +40,11 @@
                   }
                 "
               >
-                <li v-for="(menuNode, index) in categoryTree" :key="index" class="h-full flex">
+                <li v-for="(menuNode, index) in categoryTree" :key="index" class="navLink h-full flex">
                   <button
                     ref="triggerReference"
                     data-testid="category-button"
-                    class="group mr-2 xl:mr-5 2xl:mr-10 3xl:mr-[3rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                    class="group mr-2 xl:mr-1 xl:ml-1  2xl:mr-5 2xl:ml-5 3xl:mr-[1.5rem] 3xl:ml-[1.5rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                     @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                     @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                   >
@@ -109,11 +109,11 @@
                     </template>
                   </div>
                 </li>
-                <li class="topSearchWrapper h-full flex">
+                <li class="navLink topSearchWrapper h-full flex">
                   <button
                     ref="triggerReference"
                     data-testid="category-button"
-                    class="group mr-2 xl:mr-5 uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                    class="group mr-2 xl:mr-1 xl:ml-1  2xl:mr-5 2xl:ml-5 3xl:mr-[1.5rem] 3xl:ml-[1.5rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                     @mouseenter="openMenu([4])"
                     @click="openMenu([4])"
                   >
@@ -128,7 +128,7 @@
                       :key="4"
                       ref="megaMenuReference"
                       :style="style"
-                      class="hidden bg-white max-w-[600px]  xl:max-w-[800px] min-w-[600px] xl:min-w-[800px] !right-1/2 translate-x-1/2 shadow-lg p-6   outline-none z-[1000]  topSearchDropper"
+                      class="hidden bg-white max-w-[700px] xl:max-w-[800px] min-w-[700px] xl:min-w-[800px] 2xl:min-w-[860px] 2xl:max-w-[860px] !right-1/2 translate-x-1/2 shadow-lg p-6   outline-none z-[1000]  topSearchDropper shadow-md"
                       tabindex="0"
                       @mouseleave="close()"
                       @keydown.esc="focusTrigger(4)"

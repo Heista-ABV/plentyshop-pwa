@@ -68,11 +68,11 @@
                               <div class="textWrapper">
                                   <span>
                                       {{ prop.values.value }}
-                                      <template v-if="productGetters.getPropertyById(prop.id, product).options.units[0] == 'GRM'">
-                                          g
+                                      <template v-if="iconPropMMIDs.includes(prop.id)">
+                                          mm
                                       </template>
-                                      <template v-else>
-                                          {{ productGetters.getPropertyById(prop.id, product).options.units[0] }}
+                                      <template v-else-if="iconPropGDs.includes(prop.id)">
+                                        g
                                       </template>
                                   </span>
                               </div>
@@ -354,4 +354,8 @@ const scrollToReviews = () => {
 
   scrollToReviewsAccordion();
 };
+
+const iconPropMMIDs = [71,86]
+const iconPropGDs = [37]
+
 </script>
