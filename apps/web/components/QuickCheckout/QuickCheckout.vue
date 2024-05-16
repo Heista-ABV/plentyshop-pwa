@@ -30,24 +30,25 @@
           class="mb-3"
         />
 
-        <h1 class="font-bold typography-headline-4 mb-3" data-testid="product-name">
+        <h3 class="font-bold mb-3" data-testid="product-name">
           {{ productGetters.getName(product) }}
-        </h1>
+        </h3>
 
         <ProductPrice :product="product" />
-
+        <!--
         <div
           class="mb-4 font-normal typography-text-sm"
           data-testid="product-description"
           v-html="productGetters.getShortDescription(product)"
         ></div>
-
+        
         <div class="mt-4 typography-text-xs flex gap-1">
           <span>{{ t('asterisk') }}</span>
           <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
           <span v-else>{{ t('itemInclVAT') }}</span>
           <span>{{ t('excludedShipping') }}</span>
         </div>
+        -->
       </div>
       <div class="py-8 px-10">
         <div class="mb-8">

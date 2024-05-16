@@ -24,7 +24,7 @@
         />
       </div>
       <div class="mt-4 mb-4">
-        <h1 class="font-bold" data-testid="product-name">        
+        <h1 class="font-bold productName" data-testid="product-name">        
           <template v-if="productGetters.getPropertyById(85, product).values.value">
             {{ productGetters.getPropertyById(85, product).values.value }}
           </template>

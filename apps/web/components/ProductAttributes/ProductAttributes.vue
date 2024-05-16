@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="product-attributes" class="mb-2">
+  <div data-testid="product-attributes" class="mb-2" v-if="attributes.length">
     <div class="attributesHeaderWrapper">
       <span class="attributesHeader">{{ $t('item.attributeHeader') }}</span>
       <span class="attributesHeaderLine"></span>      
@@ -8,7 +8,7 @@
       <ClientOnly>
         <Component
           v-if="componentsMapper[productAttributeGetters.getAttributeType(attribute)]"
-          :attribute="attribute"
+          :attribute="attribute" 
           :is="componentsMapper[productAttributeGetters.getAttributeType(attribute)]"
         />
       </ClientOnly>

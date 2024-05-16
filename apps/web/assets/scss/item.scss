@@ -404,3 +404,12 @@
 .grid-cols-product-page{
     grid-template-columns:1fr 1fr;
 }
+.productName{
+    font-size: inherit;
+    @media (min-width:1200px) {
+        font-size: 20px;
+    }
+    @media (min-width:1400px) {
+        font-size: 22px;
+    }
+}

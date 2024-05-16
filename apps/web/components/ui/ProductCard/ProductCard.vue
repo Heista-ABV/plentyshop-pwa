@@ -74,7 +74,7 @@
                 <template v-if="getMagnifyValues">
                   <div class="sizeWrapper">
                     <p class="sizesHeading mb-0">{{ $t('cat.catVarItemPropsName82') }}</p>
-                    <div class="availableSizes md:!justify-center">
+                    <div class="availableSizes justify-center">
                       <template v-for="magnifyNumber in getMagnifyValues">													
                           <div class="availableSize">
                             {{ magnifyNumber.selectionId }}

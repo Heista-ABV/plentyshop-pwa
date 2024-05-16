@@ -157,82 +157,103 @@
           </p>
       </div>
     </div>
-    <div class="relative md:flex items-center categorySnippet mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
-      <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
-        <NuxtLazyHydrate when-visible>
-          <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" :max-item-count="3" />
-          </section>
-        </NuxtLazyHydrate>
+    <div class="relative mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+      <div class="categorySnippetHeadingWrapper">
+        <h3 class="uppercase tracking-[5px] xl:tracking-[10px] text-center font-bold">
+          {{ $t('homeTwo.categoryHeading1') }}
+        </h3>
       </div>
-      <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-        <a :href="$t('homeTwo.categoryCat1')">
-          <NuxtImg
-                :src="$t('homeTwo.categoryImage1')"
-                :alt="$t('homeTwo.categoryText1')"
-                class="img-fluid"
-                loading="lazy"
-              />
-          <div class="captionWrapper">
-            <div>
-              <p>
-                {{ $t('homeTwo.categoryText1') }}
-              </p>
+      <div class="md:flex items-center categorySnippet">
+        <div class="snippetContent min-w-[100%] md:min-w-[75%]">
+          <NuxtLazyHydrate when-visible>
+            <section class="mx-4 mt-10 mb-10 overflow-hidden">        
+              <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID1')" :max-item-count="3" />
+            </section>
+          </NuxtLazyHydrate>
+        </div>
+        <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
+          <a :href="$t('homeTwo.categoryCat1')">
+            <NuxtImg
+                  :src="$t('homeTwo.categoryImage1')"
+                  :alt="$t('homeTwo.categoryText1')"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+            <div class="captionWrapper">
+              <div>
+                <p>
+                  {{ $t('homeTwo.categoryText1') }}
+                </p>
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="relative md:flex items-center categorySnippet mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
-      <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-        <a :href="$t('homeTwo.categoryCat2')">
-          <NuxtImg
-                :src="$t('homeTwo.categoryImage2')"
-                :alt="$t('homeTwo.categoryText2')"
-                class="img-fluid"
-                loading="lazy"
-              />
-          <div class="captionWrapper">
-            <div>
-              <p>
-                {{ $t('homeTwo.categoryText2') }}
-              </p>
-            </div>
-          </div>
-        </a>
+    <div class="relative mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+      <div class="categorySnippetHeadingWrapper">
+        <h3 class="uppercase tracking-[5px] xl:tracking-[10px] text-center font-bold">
+          {{ $t('homeTwo.categoryHeading2') }}
+        </h3>
       </div>
-      <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
-        <NuxtLazyHydrate when-visible>
-          <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID2')" :max-item-count="3"/>
-          </section>
-        </NuxtLazyHydrate>
-      </div>    
+      <div class="md:flex flex-row-reverse items-center categorySnippet">        
+        <div class="snippetContent min-w-[100%] md:min-w-[75%]">
+          <NuxtLazyHydrate when-visible>
+            <section class="mx-4 mt-10 mb-10 overflow-hidden">        
+              <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID2')" :max-item-count="3"/>
+            </section>
+          </NuxtLazyHydrate>
+        </div>
+        <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
+          <a :href="$t('homeTwo.categoryCat2')">
+            <NuxtImg
+                  :src="$t('homeTwo.categoryImage2')"
+                  :alt="$t('homeTwo.categoryText2')"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+            <div class="captionWrapper">
+              <div>
+                <p>
+                  {{ $t('homeTwo.categoryText2') }}
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>    
+      </div>
     </div>
-    <div class="relative md:flex  items-center categorySnippet mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
-      <div class="snippetContent mb-5 min-w-[100%] md:min-w-[75%]">
-        <NuxtLazyHydrate when-visible>
-          <section class="mx-4 mt-28 mb-20 overflow-hidden">        
-            <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" :max-item-count="3"/>
-          </section>
-        </NuxtLazyHydrate>
+    <div class="relative mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+      <div class="categorySnippetHeadingWrapper">
+        <h3 class="uppercase tracking-[5px] xl:tracking-[10px] text-center font-bold">
+          {{ $t('homeTwo.categoryHeading3') }}
+        </h3>
       </div>
-      <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-        <a :href="$t('homeTwo.categoryCat3')">
-          <NuxtImg
-                :src="$t('homeTwo.categoryImage3')"
-                :alt="$t('homeTwo.categoryText3')"
-                class="img-fluid"
-                loading="lazy"
-              />
-          <div class="captionWrapper">
-            <div>
-              <p>
-                {{ $t('homeTwo.categoryText3') }}
-              </p>
+      <div class="md:flex items-center categorySnippet">
+        <div class="snippetContent min-w-[100%] md:min-w-[75%]">
+          <NuxtLazyHydrate when-visible>
+            <section class="mx-4 mt-10 mb-10 overflow-hidden">        
+              <ProductRecommendedProducts cache-key="homepage" :category-id="$t('homeTwo.categoryCatID3')" :max-item-count="3"/>
+            </section>
+          </NuxtLazyHydrate>
+        </div>
+        <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
+          <a :href="$t('homeTwo.categoryCat3')">
+            <NuxtImg
+                  :src="$t('homeTwo.categoryImage3')"
+                  :alt="$t('homeTwo.categoryText3')"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+            <div class="captionWrapper">
+              <div>
+                <p>
+                  {{ $t('homeTwo.categoryText3') }}
+                </p>
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
     <!--

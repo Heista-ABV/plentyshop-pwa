@@ -6,7 +6,7 @@
       v-model="productDetailsOpen"
     >
       <template #summary>
-        <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl mb-3">  
+        <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl mb-3 "> 
           {{ $t('productDetails') }}
         </h2>
       </template>

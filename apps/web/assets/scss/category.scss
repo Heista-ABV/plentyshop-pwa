@@ -305,7 +305,6 @@
                     }
                     .availableSizes{
                         display: flex;
-                        justify-content: flex-end;
                         gap: 5px;
                         .availableSize{
                             width: 25px;
@@ -339,7 +338,10 @@
                         display: none;
                     }
                     .iconImg{
-                        max-width: 30px;
+                        max-width: 25px;
+                        @media (min-width:992px) {
+                            max-width: 30px;
+                        }
                     }
                     
                 }

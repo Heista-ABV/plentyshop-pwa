@@ -19,7 +19,7 @@
           </NuxtLazyHydrate>
           -->
           <div class="px-4 md:px-0"> 
-            <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl">
+            <h2 class="font-bold uppercase text-primary-700 font-headings text-lg leading-6 md:text-2xl mb-3">
                 <span class="pb-1 border-b-4 border-primary-700">
                   {{ $t('productDetails') }}
                 </span>
