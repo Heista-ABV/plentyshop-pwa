@@ -72,15 +72,15 @@
                       {{ propKey }}
                     </div>
                     <div class="w-3/4">
-                      <template v-if="propKey === 'PrivacyPolicy'">
-                        <!-- TODO -->
-                        <SfLink :tag="NuxtLink" :link="localePath(paths.privacyPolicy)">
-                          {{ $t('CookieBar.Privacy Settings') }}
-                        </SfLink>
-                      </template>
-                      <template v-else-if="getCookiePropValue(cookie, propKey)">
-                        {{ $t(getCookiePropValue(cookie, propKey)) }}
-                      </template>
+                        <template v-if="propKey === 'PrivacyPolicy'">
+                            <!-- TODO -->
+                            <SfLink :tag="NuxtLink" :href="$t(getCookiePropValue(cookie, propKey))" target="_blank">
+                            {{ $t('CookieBar.Privacy Settings') }}
+                            </SfLink>
+                        </template>
+                        <template v-else-if="getCookiePropValue(cookie, propKey)">
+                            {{ $t(getCookiePropValue(cookie, propKey)) }}
+                        </template>
                     </div>
                   </div>
                 </div>
