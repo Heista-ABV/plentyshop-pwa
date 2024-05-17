@@ -8,7 +8,7 @@
         <NuxtImg
           ref="img"
           :src="addModernImageExtension(cartItemImage) || '/images/placeholder.png'"
-          :alt="cartItemImage || ''"
+          :alt="cartGetters.getItemName(cartItem)"
           width="300"
           height="300"
           loading="lazy"
@@ -103,7 +103,10 @@
         />
       </div>
     </div>
-    <SfLoaderCircular v-if="deleteLoading" />
+
+    <div v-if="deleteLoading" class="absolute top-2 right-2 bg-white p-1.5">
+      <SfLoaderCircular />
+    </div>
 
     <SfButton
       v-else-if="!disabled"

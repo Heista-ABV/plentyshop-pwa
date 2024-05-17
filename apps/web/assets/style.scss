@@ -11,12 +11,14 @@
 @import "scss/category";
 
 
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
-  &::-webkit-scrollbar {
-    @apply hidden /* for Chrome, Safari, and Opera */;
+    &::-webkit-scrollbar {
+      @apply hidden;
+    }
   }
 }
 

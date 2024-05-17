@@ -1,6 +1,6 @@
 <template>
   <form
-    @submit.prevent="handleAddToCart"
+    @submit.prevent="handleAddToCart()"
     class="p-4 xl:p-6 md:border  md:border-t-0 md:border-neutral-100 md:shadow-lg md:rounded-br-md md:rounded-bl-md md:sticky md:top-[80px]"
     data-testid="purchase-card"
   >
@@ -199,12 +199,9 @@
           <span>{{ t('excludedShipping') }}</span>
         </div>
         -->
-        <PayPalExpressButton
-          v-if="getCombination()"
-          :value="{ product: product, quantity: quantitySelectorValue, basketItemOrderParams: getPropertiesForCart() }"
-          class="mt-4"
-          type="SingleItem"
-        />
+        <client-only>
+            <PayPalExpressButton v-if="getCombination()" class="mt-4" type="SingleItem" @on-click="paypalHandleAddToCart" />
+        </client-only>
       </div>
     </div>
   </form>
@@ -212,16 +209,9 @@
 
 <script setup lang="ts">
 import { productGetters, productPropertyGetters, reviewGetters, productBundleGetters } from '@plentymarkets/shop-sdk';
-import {
-  SfButton,
-  SfCounter,
-  SfLink,
-  SfRating,
-  SfIconShoppingCart,
-  SfLoaderCircular,
-  SfTooltip,
-} from '@storefront-ui/vue';
+import {  SfButton, SfCounter, SfLink, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip } from '@storefront-ui/vue';
 import type { PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
+import type { PayPalAddToCartCallback } from '~/components/PayPal/types';
 
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
@@ -270,7 +260,7 @@ const basePriceSingleValue = computed(
     productGetters.getDefaultBaseSinglePrice(product.value),
 );
 
-const handleAddToCart = async () => {
+const handleAddToCart = async (quickCheckout = true) => {
   await validateAllFieldsAttributes();
   await validateAllFields();
   if (invalidFields.value.length > 0 || invalidAttributeFields.value.length > 0) {
@@ -287,12 +277,12 @@ const handleAddToCart = async () => {
       ],
       type: 'negative',
     });
-    return;
+    return false;
   }
 
   if (!getCombination()) {
     send({ message: t('productAttributes.notValidVariation'), type: 'negative' });
-    return;
+    return false;
   }
 
   const params = {
@@ -301,10 +291,18 @@ const handleAddToCart = async () => {
     basketItemOrderParams: getPropertiesForCart(),
   };
 
-  if (await addToCart(params)) {
-    openQuickCheckout(product.value);
+  const added = await addToCart(params);
+  if (added) {
+    if (quickCheckout) openQuickCheckout(product.value, quantitySelectorValue.value);
     send({ message: t('addedToCart'), type: 'positive' });
   }
+  return added;
+};
+
+const paypalHandleAddToCart = async (callback: PayPalAddToCartCallback) => {
+  const added = await handleAddToCart(false);
+
+  callback(added);
 };
 
 const changeQuantity = (quantity: string) => {

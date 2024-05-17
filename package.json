@@ -29,7 +29,7 @@
     "lhci:mobile": "lhci autorun"
   },
   "dependencies": {
-    "@plentymarkets/shop-api": "^0.35.0",
+    "@plentymarkets/shop-api": "^0.36.1",
     "@vee-validate/nuxt": "^4.12.6",
     "@vee-validate/yup": "^4.12.6",
     "bootstrap": "v5.3.3",
@@ -45,7 +45,7 @@
     "@lhci/cli": "^0.13.0",
     "@nuxtjs/turnstile": "^0.7.1",
     "@paypal/paypal-js": "7.1.1",
-    "@plentymarkets/shop-sdk": "^0.52.1",
+    "@plentymarkets/shop-sdk": "^0.53.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jquery": "^3.5.29",
     "@types/uuid": "^9.0.8",

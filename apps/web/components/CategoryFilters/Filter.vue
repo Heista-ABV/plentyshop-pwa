@@ -111,7 +111,6 @@ const open = ref(false);
 const props = defineProps<FilterProps>();
 const filters = facetGetters.getFilters(props.facet ?? ({} as FilterGroup)) as Filter[];
 const models = ref({} as Filters);
-const currentFacets = computed(() => getFacetsFromURL().facets?.split(',') ?? []);
 
 // Price
 const minPrice = ref(getFacetsFromURL().priceMin ?? '');
@@ -131,12 +130,11 @@ function resetPriceFilter() {
 }
 
 const updateFilter = () => {
+  const currentFacets = getFacetsFromURL().facets?.split(',') ?? [];
   for (const filter of filters) {
     const filterId = typeof filter.id === 'string' ? filter.id : filter.id.toString();
 
-    models.value[filterId] = Boolean(filter.selected) ?? false;
-
-    if (currentFacets.value.includes(filterId)) models.value[filterId] = true;
+    models.value[filterId] = currentFacets.includes(filterId);
   }
 };
 

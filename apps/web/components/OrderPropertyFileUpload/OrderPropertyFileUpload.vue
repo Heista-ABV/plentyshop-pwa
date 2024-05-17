@@ -33,7 +33,7 @@
             variant="tertiary"
             @click="openUploadModal"
           >
-            <img src="/images/file-upload.svg" :alt="t('orderProperties.upload.uploadFile')" />
+            <NuxtImg src="/images/file-upload.svg" :alt="t('orderProperties.upload.uploadFile')" loading="lazy" />
             <i18n-t keypath="orderProperties.upload.dragAndDropFileHereOrUpload" scope="global">
               <template #uploadFile>
                 <div class="underline">
@@ -149,7 +149,7 @@ const upload = async () => {
 
     if (file) {
       loaded.value = true;
-      property.property.value = file.data;
+      property.property.value = file;
     } else {
       loadedFile.value = null;
       loaded.value = false;

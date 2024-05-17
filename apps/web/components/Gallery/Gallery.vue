@@ -5,7 +5,7 @@
       data-testid="gallery-images"
     >
       <SfScrollable
-        class="flex items-center snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] w-full h-full"
+        class="flex items-center snap-x snap-mandatory scrollbar-hidden w-full h-full"
         wrapper-class="!absolute top-0 left-0 w-full h-full"
         buttons-placement="none"
         :active-index="activeIndex"
@@ -28,9 +28,8 @@
             :src="url"
             sizes="2xs:100vw, md:700px"
             draggable="false"
-            :loading="index !== 0 ? 'lazy' : undefined"
-            :fetchpriority="index === 0 ? 'high' : undefined"
-            :preload="index === 0"
+            :loading="index === 0 ? 'eager' : 'lazy'"
+            :fetchpriority="index === 0 ? 'high' : 'auto'"
             @load="updateImageStatusFor(`gallery-img-${index}`)"
             :width="width ?? 600"
             :height="height ?? 600"
@@ -124,9 +123,7 @@ import { SfScrollable, SfButton, SfIconChevronLeft, SfIconChevronRight, SfLoader
 import { unrefElement, useIntersectionObserver, useTimeoutFn } from '@vueuse/core';
 import type { ImagesData } from '@plentymarkets/shop-api';
 
-const props = defineProps<{
-  images: ImagesData[];
-}>();
+const props = defineProps<{ images: ImagesData[] }>();
 
 const { isPending, start, stop } = useTimeoutFn(() => {}, 50);
 
@@ -185,17 +182,19 @@ const onChangeIndex = (index: number) => {
   activeIndex.value = clamp(index, 0, props.images.length - 1);
   start();
 };
+
 const onScroll = ({ left, scrollWidth }: SfScrollableOnScrollData) => {
-  if (!isPending.value) {
-    onChangeIndex(Math.round(left / (scrollWidth / props.images.length)));
-  }
+  if (!isPending.value) onChangeIndex(Math.round(left / (scrollWidth / props.images.length)));
 };
+
 const assignReference = (element: Element | ComponentPublicInstance | null, index: number) => {
   if (!element) return;
+
   if (index === props.images.length - 1) {
     lastThumbReference.value = element as HTMLButtonElement;
-  } else if (index === 0) {
-    firstThumbReference.value = element as HTMLButtonElement;
+    return;
   }
+
+  if (index === 0) firstThumbReference.value = element as HTMLButtonElement;
 };
 </script>

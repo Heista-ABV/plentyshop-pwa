@@ -22,7 +22,7 @@
           :src="imageUrl"
           :alt="imageAlt"
           :loading="lazy && !priority ? 'lazy' : 'eager'"
-          :fetchpriority="priority ? 'high' : undefined"
+          :fetchpriority="priority ? 'high' : 'auto'"
           :preload="priority || false"
           class="object-contain rounded-md aspect-square w-full h-fit transition duration-500 md:group-hover:!scale-100 md:scale-90 "
           data-testid="image-slot"
@@ -137,9 +137,7 @@
       <!--
       <div class="flex items-center pt-1">
         <SfRating size="xs" :value="rating ?? 0" :max="5" />
-        <SfLink to="#" variant="secondary" :tag="NuxtLink" class="ml-1 no-underline">
-          <SfCounter size="xs">{{ ratingCount }}</SfCounter>
-        </SfLink>
+        <SfCounter size="xs">{{ ratingCount }}</SfCounter>
       </div>
       <p class="block py-2 font-normal typography-text-xs text-neutral-700 text-justify">
         {{ description }}
@@ -233,7 +231,7 @@ const addWithLoader = async (productId: number) => {
       quantity: 1,
     });
 
-    openQuickCheckout(product);
+    openQuickCheckout(product, 1);
     send({ message: t('addedToCart'), type: 'positive' });
   } finally {
     loading.value = false;

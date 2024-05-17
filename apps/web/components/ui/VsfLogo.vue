@@ -1,9 +1,12 @@
 <template>
   <div>
     <picture>
-      <img src="/images/Logo-Animation_2.gif" 
-      :alt="i18n.t('header.logoAltText')" 
-      class="w-100 h-auto logoImg img-fluid " /> 
+      <NuxtImg 
+        src="/images/Logo-Animation_2.gif" 
+        :alt="i18n.t('header.logoAltText')" 
+        class="w-100 h-auto logoImg img-fluid "
+        loading="lazy"
+       /> 
     </picture>
   </div>
 </template>
