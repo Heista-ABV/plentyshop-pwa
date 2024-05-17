@@ -5,8 +5,7 @@
     :aria-label="
       isWishlistItem(variationId) ? t('removeProductFromWishlist', productName) : t('addProductToWishlist', productName)
     "
-    :class="{ 'p-[0.9rem]': !isCloseButton }"
-    class="m-2"
+    :class="{ 'p-[0.9rem]': !isCloseButton }"    
     :disabled="wishlistLoading"
     @click="onWishlistClick()"
     class="hover:!bg-primary-700 hover:!text-white active:!bg-primary-700 active:!text-white"
