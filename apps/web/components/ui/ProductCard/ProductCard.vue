@@ -77,7 +77,7 @@
                     <div class="availableSizes justify-center">
                       <template v-for="magnifyNumber in getMagnifyValues">													
                           <div class="availableSize">
-                            {{ magnifyNumber.selectionId }}
+                            {{ magnifyNumber.value }}
                           </div>							 						
                         </template>
                     </div>

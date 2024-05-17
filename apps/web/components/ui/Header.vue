@@ -21,7 +21,7 @@
           </SfButton>
           -->
           <SfButton
-            class="group hidden 2xs:inline-flex relative text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 mr-1 -ml-0.5 rounded-md"
+            class="group hidden 2xs:inline-flex relative text-secondary-700 hover:text-secondary-700 active:text-secondary-700 hover:bg-white active:bg-white mr-1 -ml-0.5 rounded-md heartbeat"
             :tag="NuxtLink"
             :to="localePath(paths.wishlist)"
             :aria-label="t('numberInWishlist', { count: wishlistItemIds.length })"
@@ -33,24 +33,24 @@
               <SfIconFavorite />
               <SfBadge
                 :content="wishlistItemIds.length"
-                class="outline outline-primary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
+                class="outline outline-primary-700 bg-white !text-neutral-900 flex justify-center"
                 data-testid="wishlist-badge"
               /> 
             </template>
           </SfButton>
           <SfButton
-            class="group relative  text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 rounded-md"
+            class="group relative  text-secondary-700 hover:text-secondary-700 active:text-secondary-700 hover:bg-white active:bg-white rounded-md basketAnimation"
             :tag="NuxtLink"
-            :to="localePath(paths.cart)"
+            :to="localePath(paths.checkout)"
             :aria-label="t('numberInCart', { count: cartItemsCount })"
             variant="tertiary"
             square
           >
             <template #prefix>
-              <SfIconShoppingCart />
+              <SfIconShoppingCart  />
               <SfBadge
                 :content="cartItemsCount"
-                class="outline outline-primary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
+                class="outline outline-primary-700 bg-white !text-neutral-900 flex justify-center"
                 data-testid="cart-badge"
               />
             </template>

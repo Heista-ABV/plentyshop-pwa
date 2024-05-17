@@ -2,7 +2,7 @@
   <div data-testid="checkout-address" class="md:px-4 py-6">
     <div class="flex justify-between items-center">
       <h2 class="text-neutral-900 text-lg font-bold mb-4">{{ heading }}</h2>
-      <div v-if="!disabled && addresses.length > 0" class="flex items-center">
+      <div v-if="!disabled && addresses.length > 0" class="flex items-center flex-wrap">
         <SfButton v-if="type === AddressType.Billing" size="sm" variant="tertiary" @click="pick">
           {{ $t('savedBillingAddress') }}
         </SfButton>
@@ -42,9 +42,9 @@
         <h3 id="address-modal-title" class="text-neutral-900 text-lg md:text-2xl font-bold">
           {{ $t('pickSavedAddress') }}
         </h3>
-        <h1 class="my-2 mb-6 font-semibold">{{ $t('pickSavedAddressSubtitle') }}</h1>
+        <h4 class="my-2 mb-6 font-semibold normal-case">{{ $t('pickSavedAddressSubtitle') }}</h4>
       </header>
-      <div class="hover:bg-primary-50" v-for="address in addresses" :key="userAddressGetters.getId(address)">
+      <div v-for="address in addresses" :key="userAddressGetters.getId(address)">
         <Address
           :address="address"
           :is-selected="selectedAddress.id === Number(userAddressGetters.getId(address))"
@@ -56,7 +56,7 @@
         />
       </div>
       <div class="flex justify-end w-full">
-        <SfButton variant="secondary" v-if="type === AddressType.Billing" class="mt-10" @click="create">
+        <SfButton variant="secondary" v-if="type === AddressType.Billing" class="mt-10 " @click="create">
           {{ $t('newBillingAddress') }}
         </SfButton>
         <SfButton variant="secondary" v-if="type === AddressType.Shipping" class="mt-10" @click="create">

@@ -49,8 +49,8 @@
             @update:active-payment="handlePaymentMethodUpdate($event)"
           />
         </div>
-        <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0 mb-10" />
-        <CheckoutGeneralTerms />
+        
+        
       </div>
       <div class="col-span-6 xl:col-span-5">
         <div v-for="(cartItem, index) in cart?.items" :key="cartItem.id">
@@ -59,7 +59,9 @@
         <div class="relative md:sticky md:top-20 h-fit" :class="{ 'pointer-events-none opacity-50': cartLoading }">
           <SfLoaderCircular v-if="cartLoading" class="absolute top-[130px] right-0 left-0 m-auto z-[999]" size="2xl" />
           <Coupon />
+          
           <OrderSummary v-if="cart" :cart="cart" class="mt-4">
+            <CheckoutGeneralTerms />
             <client-only v-if="selectedPaymentId === paypalPaymentId">
               <PayPalExpressButton
                 :disabled="!termsAccepted || disableShippingPayment || cartLoading"

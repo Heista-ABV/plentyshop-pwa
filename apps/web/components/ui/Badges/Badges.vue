@@ -1,23 +1,25 @@
 <template>
   <div data-testid="badges">
     <ul>
-      <template v-if="tagsEnabled && productTags.length > 0">
-        <SfListItem
-          v-for="(tag, index) in productTags"
-          :key="index"
-          size="sm"
-          class="text-xs font-medium select-none rounded-md !w-fit !px-2 opacity-75 mr-2 mb-2 cursor-pointer"
-          :class="[
-            tagGetters.getAgenciesTagCLass(tag),
-            tagGetters.getTagTextColorIsDark(tag) ? 'text-dark' : 'text-white',
-          ]"
-          @click="onTagClick(tag)"
-          :style="{ backgroundColor: tagGetters.getTagBackgroundColor(tag) }"
-        >
-          {{ tagGetters.getTagName(tag) }}
-        </SfListItem>
-      </template>
-
+        <!--
+        <template v-if="tagsEnabled && productTags.length > 0">
+            
+            <SfListItem
+            v-for="(tag, index) in productTags"
+            :key="index"
+            size="sm"
+            class="text-xs font-medium select-none rounded-md !w-fit !px-2 opacity-75 mr-2 mb-2 cursor-pointer"
+            :class="[
+                tagGetters.getAgenciesTagCLass(tag),
+                tagGetters.getTagTextColorIsDark(tag) ? 'text-dark' : 'text-white',
+            ]"
+            @click="onTagClick(tag)"
+            :style="{ backgroundColor: tagGetters.getTagBackgroundColor(tag) }"
+            >
+            {{ tagGetters.getTagName(tag) }}
+            </SfListItem>
+        </template>
+        --> 
       <SfListItem
         v-if="availabilityEnabled && productGetters.getAvailabilityName(product)"
         size="sm"
