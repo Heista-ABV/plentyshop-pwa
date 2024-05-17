@@ -23,7 +23,7 @@
           :src="manufLogo" 
         />
       </div>
-      <div class="mt-4 mb-4">
+      <div class="my-4">
         <h1 class="font-bold productName" data-testid="product-name">        
           <template v-if="productGetters.getPropertyById(85, product).values.value">
             {{ productGetters.getPropertyById(85, product).values.value }}
@@ -118,7 +118,7 @@
           </template>
         </div>
       </div>
-      <div class="flex space-x-2 mb-2">
+      <div class="flex space-x-2 mb-2 pt-2">
         <Price
           :price="currentActualPrice"
           :normal-price="normalPrice"
@@ -162,7 +162,7 @@
       <ProductAttributes v-if="product" :product="product" />
       <GraduatedPriceList v-if="product" :product="product" :count="quantitySelectorValue" />
 
-      <div class="py-4">
+      <div class="pt-2">
         <div class="flex flex-col md:flex-row flex-wrap gap-4">
           <!--
           <UiQuantitySelector
@@ -200,7 +200,7 @@
         </div>
         -->
         <client-only>
-            <PayPalExpressButton v-if="getCombination()" class="mt-4" type="SingleItem" @on-click="paypalHandleAddToCart" />
+            <PayPalExpressButton v-if="getCombination()" type="SingleItem" @on-click="paypalHandleAddToCart" />
         </client-only>
       </div>
     </div>

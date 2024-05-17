@@ -112,10 +112,17 @@
     },
     "marketing": {
       "label": "Marketing",
-      "description": "Marketing-Cookies werden von Drittanbietern und Publishern verwendet, um personalisierte Werbung anzuzeigen. Sie tun dies, indem sie Besucher über Websites hinweg verfolgen."
+      "description": "Marketing-Cookies werden von Drittanbietern und Publishern verwendet, um personalisierte Werbung anzuzeigen. Sie tun dies, indem sie Besucher über Websites hinweg verfolgen.",
+      "cookies":{
+        "ga4":{
+            "name": "Google Analytics",
+            "provider": "Google LLC",
+            "status": "Der Cookie von Google für Website-Analysen erzeugt statistische Daten darüber, wie der Besucher die Website nutzt."
+        }
+      }
     },
     "Cookie Settings": "Cookie-Einstellungen",
-    "Privacy Settings": "Datenschutzeinstellungen",
+    "Privacy Settings": "Datenschutzeinstellungen", 
     "More information": "Mehr Informationen",
     "Further Settings": "Weitere Einstellungen",
     "Back": "Zurück",

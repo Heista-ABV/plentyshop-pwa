@@ -148,17 +148,17 @@
     <SfButton
       v-else
       variant="secondary"
-      class="z-10 fixed bottom-[4.3rem] md:bottom-2 left-2 xl:left-auto xl:right-2 bg-white !px-3"
+      class="z-10 fixed bottom-[4.3rem] md:bottom-2 left-2 xl:left-auto xl:right-2 bg-white !px-3 hover:!bg-primary-700 hover:!text-white active:!bg-primary-700 active:!text-white"
       :aria-label="$t('CookieBar.Cookie Settings')"
       @click="changeVisibilityState"
     >
-      <SfIconCheckBox />
+      <SfIconLock />
     </SfButton>
   </client-only>
 </template>
 
 <script setup lang="ts">
-import { SfLink, SfButton, SfCheckbox, SfIconCheckBox } from '@storefront-ui/vue';
+import { SfLink, SfButton, SfCheckbox, SfIconLock } from '@storefront-ui/vue';
 import type { Cookie, CookieGroup } from '~/cookie.config';
 
 const NuxtLink = resolveComponent('NuxtLink');

@@ -95,7 +95,16 @@ export default {
       name: 'CookieBar.marketing.label',
       showMore: false,
       description: 'CookieBar.marketing.description',
-      cookies: [],
+      cookies: [
+        {
+            name: 'CookieBar.marketing.cookies.ga4.name',
+            Provider: 'CookieBar.marketing.cookies.ga4.provider',
+            Status: 'CookieBar.marketing.cookies.ga4.status',
+            PrivacyPolicy: 'https://policies.google.com/privacy',
+            Lifespan: 'Session',
+            script: ['loadGA4Script'], 
+        },
+      ],
     },
   ],
 };
