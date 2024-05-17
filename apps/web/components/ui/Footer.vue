@@ -1,5 +1,5 @@
 <template>
-  <footer class="pt-10 border-t-2 border-primary-700 bg-white mb-[58px] md:mb-0" data-testid="footer">
+  <footer class="pt-10 border-t-2 border-primary-700 bg-white mb-[58px] lg:mb-0" data-testid="footer">
     <div
       class="flex flex-wrap  px-4 md:px-6 lg:px-10 pb-10 max-w-screen-3xl mx-auto footerWrapper"
       data-testid="section-top"
@@ -106,7 +106,7 @@
     </div>
     <hr />
     <div  data-testid="section-bottom">
-      <div class="justify-center px-4 py-2 md:flex  max-w-screen-3xl mx-auto">
+      <div class="justify-center px-4 py-2 md:flex max-w-screen-3xl mx-auto text-center">
         <p class="typography-text-xs">       
           <span>{{ $t('asterisk') }}</span>
           <span >{{ $t('itemInclVAT') }}</span>

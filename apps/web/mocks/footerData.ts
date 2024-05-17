@@ -22,10 +22,6 @@ export const categories = [
         key: 'row1ListEntry5',
         link: 'row1ListLink5',
       },
-      {
-        key: 'row1ListEntry6',
-        link: 'row1ListLink6',
-      },
     ],
   },
   {
@@ -54,14 +50,6 @@ export const categories = [
       {
         key: 'row2ListEntry6',
         link: 'row2ListLink6',
-      },
-      {
-        key: 'row2ListEntry7',
-        link: 'row2ListLink7',
-      },
-      {
-        key: 'row2ListEntry8',
-        link: 'row2ListLink8',
       },
     ],
   },  
