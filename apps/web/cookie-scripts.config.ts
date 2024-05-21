@@ -10,7 +10,7 @@ const cookieScripts: CookieScripts = {
   loadGA4Script: () => {
     // Implementation of GA4
     return "https://www.googletagmanager.com/gtag/js?id=G-EZ1LTWVYXB"
-    //<script async src="https://www.googletagmanager.com/gtag/js?id=G-EZ1LTWVYXB" type="text/plain" ></script>
+    
     /*
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
