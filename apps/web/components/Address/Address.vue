@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{ 'border border-primary-700 mb-4 pb-1 pt-4': isSelected }"
-    class="pl-4 pr-4 pt-1"
+    class="pl-4 pr-4 pt-1 hover:bg-gray-200"
     data-testid="address-data"
   >
     <div class="my-2 flex justify-between">

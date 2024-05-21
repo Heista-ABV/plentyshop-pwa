@@ -12,7 +12,7 @@
       :model-value="true"
       :disable-click-away="true"
       :disable-esc="true"
-      class="w-full shadow-none md:translate-x-0 z-[1500] md:z-[100] md:static md:!block -translate-x-full bg-white"
+      class="w-full shadow-none md:translate-x-0 z-[1500] md:z-[100] md:static md:!block -translate-x-full bg-white outline-0"
       data-testid="category-sidebar"
     >
       <div >

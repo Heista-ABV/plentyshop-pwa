@@ -76,22 +76,6 @@ export default {
     },
     {
       id: 2,
-      name: 'CookieBar.functional.label',
-      showMore: false,
-      description: 'CookieBar.functional.description',
-      cookies: [
-        {
-          name: 'CookieBar.functional.cookies.scriptDemo.name',
-          Provider: 'CookieBar.functional.cookies.scriptDemo.provider',
-          Status: 'CookieBar.functional.cookies.scriptDemo.status',
-          PrivacyPolicy: '/PrivacyPolicy',
-          Lifespan: 'Session',
-          script: ['loadExampleScript'],
-        },
-      ],
-    },
-    {
-      id: 3,
       name: 'CookieBar.marketing.label',
       showMore: false,
       description: 'CookieBar.marketing.description',

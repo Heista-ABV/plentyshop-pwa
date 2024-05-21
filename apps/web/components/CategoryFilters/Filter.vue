@@ -68,7 +68,7 @@
         >
           <template #prefix>
             <SfCheckbox
-              class="flex items-center hidden"
+              class="flex items-center"
               :value="filter"
               v-model="models[filter.id]"
               :id="filter.name"

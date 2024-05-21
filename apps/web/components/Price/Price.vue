@@ -4,7 +4,7 @@
         <span class="bg-primary-700 text-white px-1 mr-2 whitespace-break-spaces font-bold">
             UVP
         </span>
-        <span class="line-through">
+        <span class="line-through text-primary-400">
             {{ $n(oldPrice, 'currency') }}
         </span>
     </span>

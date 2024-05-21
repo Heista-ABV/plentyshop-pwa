@@ -44,11 +44,11 @@
                   <button
                     ref="triggerReference"
                     data-testid="category-button"
-                    class="group mr-2 xl:mr-1 xl:ml-1  2xl:mr-5 2xl:ml-5 3xl:mr-[1.5rem] 3xl:ml-[1.5rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
+                    class="group mr-2 xl:mr-1 xl:ml-1  2xl:mr-5 2xl:ml-5 3xl:mr-[1.5rem] 3xl:ml-[1.5rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700 hover:!text-primary-700 active:!text-primary-700 bg-white"
                     @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                     @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                   >
-                    <NuxtLink :to="localePath(generateCategoryLink(menuNode))" class="h-full">
+                    <NuxtLink :to="localePath(generateCategoryLink(menuNode))" class="h-full inline-flex items-center">
                       <span>{{ categoryTreeGetters.getName(menuNode) }}</span>
                       <SfIconChevronRight
                         v-if="menuNode.childCount > 0"
@@ -117,7 +117,7 @@
                     @mouseenter="openMenu([4])"
                     @click="openMenu([4])"
                   >
-                    <a :href="$t('header.allMirrorsMenuURL')" class="h-full">
+                    <a :href="$t('header.allMirrorsMenuURL')" class="h-full inline-flex items-center">
                       <span>{{ $t('header.allMirrorsMenuText') }}</span>
                       <SfIconChevronRight                     
                         class="rotate-90 text-secondary-700 group-hover:text-primary-700 group-active:text-primary-700 bg-white"

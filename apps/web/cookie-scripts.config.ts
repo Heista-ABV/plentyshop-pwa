@@ -9,8 +9,9 @@ const cookieScripts: CookieScripts = {
   // Add other scripts if needed 
   loadGA4Script: () => {
     // Implementation of GA4
-    /*<script async src="https://www.googletagmanager.com/gtag/js?id=G-EZ1LTWVYXB" type="text/plain" data-cookie-consent="tracking.googleAnalytics"></script>
-
+    return "https://www.googletagmanager.com/gtag/js?id=G-EZ1LTWVYXB"
+    //<script async src="https://www.googletagmanager.com/gtag/js?id=G-EZ1LTWVYXB" type="text/plain" ></script>
+    /*
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
 

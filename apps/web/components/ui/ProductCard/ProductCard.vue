@@ -48,7 +48,7 @@
           <div class="prices flex !flex-row !gap-3 !items-center !justify-between">          
             <span
               v-if="oldPrice && oldPrice !== mainPrice"
-              class="text-primary-200 line-through price-view-port typography-text-md crossPrice"
+              class="text-primary-400 line-through price-view-port typography-text-md crossPrice"
             >
               {{ n(oldPrice, 'currency') }}
             </span>
