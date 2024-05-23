@@ -67,7 +67,7 @@
                   </label>
                 </div>
                 <div v-for="propKey in Object.keys(cookie)" :key="propKey">
-                  <div v-if="propKey !== 'name' && propKey !== 'accepted'" class="flex w-full mb-1 p-2 bg-white">
+                  <div v-if="propKey !== 'name' && propKey !== 'accepted' && propKey !== 'script'" class="flex w-full mb-1 p-2 bg-white">
                     <div class="w-1/4">
                       {{ propKey }}
                     </div>
