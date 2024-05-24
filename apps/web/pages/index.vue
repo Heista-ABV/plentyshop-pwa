@@ -164,12 +164,10 @@
         </h3>
       </div>
       <div class="md:flex items-center categorySnippet">
-        <div class="snippetContent min-w-[100%] md:min-w-[75%]">
-          <NuxtLazyHydrate when-visible>
+        <div class="snippetContent min-w-[100%] md:min-w-[75%]">          
             <section class="mx-4 mt-10 mb-10 overflow-hidden">        
               <ProductRecommendedProducts category-id="29" :max-item-count="3" />
-            </section>
-          </NuxtLazyHydrate>
+            </section>          
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
           <a :href="$t('homeTwo.categoryCat1')">
@@ -198,7 +196,7 @@
       </div>
       <div class="md:flex flex-row-reverse items-center categorySnippet">        
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
-          <NuxtLazyHydrate when-visible>
+          <NuxtLazyHydrate when-idle>
             <section class="mx-4 mt-10 mb-10 overflow-hidden">        
               <ProductRecommendedProducts category-id="27" :max-item-count="3"/>
             </section>
