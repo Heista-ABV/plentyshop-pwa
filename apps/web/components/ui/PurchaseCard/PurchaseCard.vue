@@ -198,10 +198,11 @@
           <span v-else>{{ t('itemInclVAT') }}</span>
           <span>{{ t('excludedShipping') }}</span>
         </div>
-        -->
+        
         <client-only>
             <PayPalExpressButton v-if="getCombination()" type="SingleItem" @on-click="paypalHandleAddToCart" />
         </client-only>
+        -->
       </div>
     </div>
   </form>

@@ -34,7 +34,7 @@
             <div class="mr-1 flex">
                 <span class="self-center"> {{ quantity }}x </span>
             </div>
-            <h3 class="font-bold mb-3" data-testid="product-name">
+            <h3 class="font-bold mb-0" data-testid="product-name">
                 {{ productGetters.getName(product) }}
             </h3>
         </div>
