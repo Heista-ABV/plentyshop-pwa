@@ -165,11 +165,11 @@
       </div>
       <div class="md:flex items-center categorySnippet">
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
-          <NuxtLazyHydrate when-visible>
+         
             <section class="mx-4 mt-10 mb-10 overflow-hidden">        
-              <ProductRecommendedProducts cache-key="homepage" category-id="29" :max-item-count="3" />
+              <ProductRecommendedProducts category-id="29" :max-item-count="3" />
             </section>
-          </NuxtLazyHydrate>
+         
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
           <a :href="$t('homeTwo.categoryCat1')">
@@ -177,7 +177,7 @@
                   :src="$t('homeTwo.categoryImage1')"
                   :alt="$t('homeTwo.categoryText1')"
                   class="img-fluid"
-                  loading="lazy"
+                  loading="lazy" 
                 />
             <div class="captionWrapper">
               <div>
@@ -200,7 +200,7 @@
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
           <NuxtLazyHydrate when-visible>
             <section class="mx-4 mt-10 mb-10 overflow-hidden">        
-              <ProductRecommendedProducts cache-key="homepage" category-id="27" :max-item-count="3"/>
+              <ProductRecommendedProducts category-id="27" :max-item-count="3"/>
             </section>
           </NuxtLazyHydrate>
         </div>
@@ -230,12 +230,10 @@
         </h3>
       </div>
       <div class="md:flex items-center categorySnippet">
-        <div class="snippetContent min-w-[100%] md:min-w-[75%]">
-          <NuxtLazyHydrate when-visible>
+        <div class="snippetContent min-w-[100%] md:min-w-[75%]">          
             <section class="mx-4 mt-10 mb-10 overflow-hidden">        
-              <ProductRecommendedProducts cache-key="homepage" category-id="24" :max-item-count="3"/>
-            </section>
-          </NuxtLazyHydrate>
+              <ProductRecommendedProducts  category-id="24" :max-item-count="3"/>
+            </section>          
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
           <a :href="$t('homeTwo.categoryCat3')">
