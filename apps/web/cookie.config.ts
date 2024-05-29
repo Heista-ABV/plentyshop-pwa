@@ -86,7 +86,7 @@ export default {
             Status: 'CookieBar.marketing.cookies.ga4.status',
             PrivacyPolicy: 'https://policies.google.com/privacy',
             Lifespan: 'Session',
-            script: ['https://www.googletagmanager.com/gtag/js?id=G-EZ1LTWVYXB','https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/pwa/ga4script.js'], 
+            script: ['https://www.googletagmanager.com/gtag/js?id=G-EZ1LTWVYXB', 'https://www.googletagmanager.com/gtag/js?id=AW-1002375971','https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/pwa/ga4script.js'], 
         },
       ],
     },
