@@ -9,13 +9,13 @@
           class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[33%]"
           :name="productGetters.getName(product)"
           :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
-          :image-url="addModernImageExtension(getImageForViewport(product, 'ItemList'))"
+          :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
           :image-alt="productGetters.getName(product)"
           :image-height="productGetters.getImageHeight(product) ?? 600"
           :image-width="productGetters.getImageWidth(product) ?? 600"
           :price="productGetters.getSpecialPrice(product)"
-          :rating-count="productGetters.getTotalReviews(product)"
-          :rating="productGetters.getAverageRating(product)"
+          :rating-count="productGetters.sgetTotalReviews(product)"
+          :rating="productGetters.getAverageRating(product, 'half')"
           is-from-slider
         />
       </template>
@@ -27,13 +27,13 @@
           class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[25%]"
           :name="productGetters.getName(product)"
           :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
-          :image-url="addModernImageExtension(getImageForViewport(product, 'ItemList'))"
+          :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
           :image-alt="productGetters.getName(product)"
           :image-height="productGetters.getImageHeight(product) ?? 600"
           :image-width="productGetters.getImageWidth(product) ?? 600"
           :price="productGetters.getSpecialPrice(product)"
           :rating-count="productGetters.getTotalReviews(product)"
-          :rating="productGetters.getAverageRating(product)"
+          :rating="productGetters.getAverageRating(product, 'half')"
           is-from-slider
         />
       </template>
@@ -46,13 +46,13 @@
         class="max-w-[25%]"
         :name="productGetters.getName(product)"
         :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
-        :image-url="addModernImageExtension(getImageForViewport(product, 'ItemList'))"
+        :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
         :image-alt="productGetters.getName(product)"
         :image-height="productGetters.getImageHeight(product) ?? 600"
         :image-width="productGetters.getImageWidth(product) ?? 600"
         :price="productGetters.getSpecialPrice(product)"
         :rating-count="productGetters.getTotalReviews(product)"
-        :rating="productGetters.getAverageRating(product)"
+        :rating="productGetters.getAverageRating(product, 'half')"
         is-from-slider
       />
     </template>
@@ -67,12 +67,11 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters } from '@plentymarkets/shop-sdk';
+import { productGetters } from '@plentymarkets/shop-api';
 import { SfScrollable } from '@storefront-ui/vue';
 import type { ProductSliderProps } from '~/components/ProductSlider/types';
 
-
-const { addModernImageExtension, getImageForViewport } = useModernImage();
+const { addModernImageExtension } = useModernImage();
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
 

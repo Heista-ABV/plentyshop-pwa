@@ -142,7 +142,7 @@
      
       <!--
       <div class="inline-flex items-center mt-4 mb-2">
-        <SfRating size="xs" :value="reviewGetters.getAverageRating(reviewAverage)" :max="5" />
+        <SfRating size="xs" :value="reviewGetters.getAverageRating(reviewAverage, 'half')" :max="5" :half-increment="true" />
         <SfCounter class="ml-1" size="xs">{{ reviewGetters.getTotalReviews(reviewAverage) }}</SfCounter>
         <SfLink variant="secondary" @click="scrollToReviews" class="ml-2 text-xs text-neutral-500 cursor-pointer">
           {{ t('showAllReviews') }}
@@ -184,10 +184,14 @@
               class="w-full"
               :disabled="loading || !productGetters.isSalable(product)"
             >
-              <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="sm" />
-              <template v-else>
-                {{ t('addToCart') }}
-              </template>
+                <template #prefix>
+                    <div v-if="!loading" class="flex row items-center">                       
+                        {{ t('addToCart') }}
+                    </div>
+                    <div v-else>
+                        <SfLoaderCircular size="sm" />
+                    </div>
+                </template>
             </SfButton>
           </SfTooltip>
         </div>
@@ -209,7 +213,7 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters, productPropertyGetters, reviewGetters, productBundleGetters } from '@plentymarkets/shop-sdk';
+import { productGetters, productPropertyGetters, reviewGetters, productBundleGetters } from '@plentymarkets/shop-api';
 import {  SfButton, SfCounter, SfLink, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip } from '@storefront-ui/vue';
 import type { PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 import type { PayPalAddToCartCallback } from '~/components/PayPal/types';

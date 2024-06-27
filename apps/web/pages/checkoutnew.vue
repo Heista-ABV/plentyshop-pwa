@@ -1,7 +1,6 @@
 <template>
   <NuxtLayout
     name="checkout"
-    :back-href="localePath(paths.cart)"
     :back-label-desktop="t('backToCart')"
     :back-label-mobile="t('back')"
     :heading="t('checkout')"
@@ -16,7 +15,7 @@
           :heading="useAsShippingAddress ? `${t('billing.heading')} / ${t('shipping.heading')}` : t('billing.heading')"
           :description="t('billing.description')"
           :button-text="t('billing.addButton')"
-          :addresses="billingAddresses"
+          ref="checkoutAddressBillingReference"
           :type="AddressType.Billing"
           @on-saved="loadAddresses"
         />
@@ -27,9 +26,13 @@
           :heading="t('shipping.heading')"
           :description="t('shipping.description')"
           :button-text="t('shipping.addButton')"
-          :addresses="shippingAddresses"
           :type="AddressType.Shipping"
-          @on-saved="loadAddresses"
+          @on-saved="
+            async () => {
+              await disableEditModeOnBillingForm();
+              loadAddresses();
+            }
+          "
         />
         <UiDivider class-name="w-screen md:w-auto -mx-4 md:mx-0" />
         <div class="relative" :class="{ 'pointer-events-none opacity-50': disableShippingPayment }">
@@ -111,37 +114,25 @@
 </template>
 
 <script setup lang="ts">
-import { AddressType } from '@plentymarkets/shop-api';
-import {
-  shippingProviderGetters,
-  paymentProviderGetters,
-  cartGetters,
-  userAddressGetters,
-} from '@plentymarkets/shop-sdk';
+import CheckoutAddressNew from '~/components/CheckoutAddressNew/CheckoutAddressNew.vue';
+import { AddressType, shippingProviderGetters, paymentProviderGetters } from '@plentymarkets/shop-api';
 import { SfButton, SfLoaderCircular } from '@storefront-ui/vue';
 import _ from 'lodash';
 import PayPalExpressButton from '~/components/PayPal/PayPalExpressButton.vue';
 import { PayPalCreditCardPaymentKey, PayPalPaymentKey } from '~/composables/usePayPal/types';
 
 definePageMeta({
-  layoutName: 'checkout',
   pageType: 'static',
 });
 
 const ID_CHECKBOX = '#terms-checkbox';
-const ID_BILLING_ADDRESS = '#billing-address';
-const ID_SHIPPING_ADDRESS = '#shipping-address';
+const checkoutAddressBillingReference = ref<InstanceType<typeof CheckoutAddressNew> | null>(null);
 
 const localePath = useLocalePath();
-const { send } = useNotification();
 const { data: cart, getCart, clearCartItems, loading: cartLoading } = useCart();
-const {
-  data: billingAddresses,
-  getAddresses: getBillingAddresses,
-  useAsShippingAddress,
-} = useAddress(AddressType.Billing);
-import { type Address } from '@plentymarkets/shop-api';
-const { data: shippingAddresses, getAddresses: getShippingAddresses } = useAddress(AddressType.Shipping);
+const { getAddresses: getBillingAddresses, useAsShippingAddress } = useAddress(AddressType.Billing);
+
+const { getAddresses: getShippingAddresses } = useAddress(AddressType.Shipping);
 const { checkboxValue: termsAccepted, setShowErrors } = useAgreementCheckbox('checkoutGeneralTerms');
 const {
   loading: loadShipping,
@@ -162,23 +153,10 @@ const paypalCreditCardPaymentId = computed(() =>
   paymentProviderGetters.getIdByPaymentKey(paymentMethodData.value.list, PayPalCreditCardPaymentKey),
 );
 
-const equalAddresses = (address1: Address, address2: Address) => {
-  return Object.keys(address1)
-    .filter((key) => key !== 'id')
-    .every((key) => address1[key as keyof Address] === address2[key as keyof Address]);
-};
-
-const cartAddressId = (type: AddressType) => {
-  return type === AddressType.Billing
-    ? cartGetters.getCustomerInvoiceAddressId(cart.value)
-    : cartGetters.getCustomerShippingAddressId(cart.value);
-};
-
-const selectedAddress = (addresses: Address[], type: AddressType) => {
-  return (
-    addresses.find((address) => userAddressGetters.getId(address) === cartAddressId(type)?.toString()) ??
-    ({} as Address)
-  );
+const disableEditModeOnBillingForm = () => {
+  if (checkoutAddressBillingReference?.value?.disableEditMode) {
+    checkoutAddressBillingReference.value.disableEditMode();
+  }
 };
 
 const loadAddresses = async () => {
@@ -189,9 +167,6 @@ const loadAddresses = async () => {
     getCart(),
     fetchPaymentMethods(),
   ]);
-  const selectedBillingAddress = selectedAddress(billingAddresses.value, AddressType.Billing);
-  const selectedShippingAddress = selectedAddress(shippingAddresses.value, AddressType.Shipping);
-  useAsShippingAddress.value = equalAddresses(selectedBillingAddress, selectedShippingAddress);
 };
 
 await loadAddresses();
@@ -239,24 +214,7 @@ const validateTerms = (): boolean => {
 };
 
 const validateAddresses = () => {
-  if (billingAddresses.value.length === 0) {
-    send({
-      type: 'negative',
-      message: t('billingAddressRequired'),
-    });
-    scrollToHTMLObject(ID_BILLING_ADDRESS);
-    return false;
-  }
-
-  if (shippingAddresses.value.length === 0) {
-    send({
-      type: 'negative',
-      message: t('shippingAddressRequired'),
-    });
-    scrollToHTMLObject(ID_SHIPPING_ADDRESS);
-    return false;
-  }
-
+  // no address validation until we establish conventions
   return true;
 };
 

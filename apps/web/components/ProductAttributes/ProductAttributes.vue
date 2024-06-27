@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="product-attributes" class="mb-2" v-if="attributes.length">
+  <div data-testid="product-attributes" class="mb-2" v-if="attributes.length > 0">
     <div class="attributesHeaderWrapper">
       <span class="attributesHeader">{{ $t('item.attributeHeader') }}</span>
       <span class="attributesHeaderLine"></span>      
@@ -21,7 +21,7 @@ import type { ProductAttributesProps, ComponentsMapper } from './types';
 import AttributeDropdown from './AttributeDropdown/AttributeDropdown.vue';
 import AttributeBox from './AttributeBox/AttributeBox.vue';
 import AttributeImage from './AttributeImage/AttributeImage.vue';
-import { productAttributeGetters } from '@plentymarkets/shop-sdk';
+import { productAttributeGetters } from '@plentymarkets/shop-api';
 
 const componentsMapper: ComponentsMapper = {
   dropdown: AttributeDropdown,

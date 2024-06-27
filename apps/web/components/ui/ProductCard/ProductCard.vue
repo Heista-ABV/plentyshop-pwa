@@ -148,7 +148,7 @@
         <BasePriceInLine :base-price="basePrice" :unit-content="unitContent" :unit-name="unitName" />
       </div>
       <SfButton
-        v-if="productGetters.canBeAddedToCartFromCategoryPage(product) || isFromWishlist"
+        v-if="productGetters.canBeAddedToCartFromCategoryPage(product)"
         size="sm"
         class="min-w-[80px] w-fit"
         data-testid="add-to-basket-short"
@@ -164,26 +164,16 @@
         </span>
       </SfButton>
       <SfButton v-else type="button" :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" size="sm" class="w-fit">
-        <span>{{ t('showArticle') }}</span>
-        <template #prefix>
-          <SfIconChevronRight size="sm" />
-        </template>
+        <span>{{ t('showOptions') }}</span>
       </SfButton>
     </div>
     -->
   </div>
 </template>
 
-<script setup lang="ts"> 
-import { productGetters, productPropertyGetters   } from '@plentymarkets/shop-sdk';
-import {
-  SfLink,
-  SfButton,
-  SfIconShoppingCart,
-  SfIconChevronRight,
-  SfRating,
-  SfCounter,
-} from '@storefront-ui/vue';
+<script setup lang="ts">
+import { productGetters, productPropertyGetters } from '@plentymarkets/shop-api';
+import { SfLink, SfButton, SfIconShoppingCart, SfLoaderCircular, SfIconChevronRight, SfRating, SfCounter } from '@storefront-ui/vue';
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 
 const localePath = useLocalePath();

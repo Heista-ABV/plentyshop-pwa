@@ -1,4 +1,3 @@
-import type { Ref } from 'vue';
 import type { BasketItemOrderParamsProperty, ProductProperty, Product } from '@plentymarkets/shop-api';
 
 export interface UseProductOrderPropertiesState {
@@ -17,6 +16,7 @@ export interface UseProductOrderProperties {
   getPropertiesForCart: () => BasketItemOrderParamsProperty[] | undefined;
   getPropertiesPrice: GetPropertiesPrice;
   uploadFile: (file: File) => Promise<string | null>;
+  downloadFile: (url: string) => Promise<string | null>;
 }
 
 export type UseProductOrderPropertiesReturn = () => UseProductOrderProperties;

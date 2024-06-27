@@ -1,7 +1,8 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "types": ["vitest/globals", "@vite-pwa/nuxt", "@vue-storefront/sdk","jquery"]
+    "types": ["vitest/globals", "@vite-pwa/nuxt","jquery"],
+    "verbatimModuleSyntax": false,
   },
   "exclude": ["node_modules", "mocks", "__tests__", "cypress.config.ts"],
   "typedocOptions": {
