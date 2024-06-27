@@ -153,7 +153,7 @@
 
 <script setup lang="ts">
 import type { Product, Category } from '@plentymarkets/shop-api';
-import { productGetters, categoryGetters } from '@plentymarkets/shop-sdk';
+import { productGetters, categoryGetters } from '@plentymarkets/shop-api';
 import { SfButton, SfIconTune, useDisclosure, SfIconArrowBack } from '@storefront-ui/vue';
 import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 import $ from "jquery";

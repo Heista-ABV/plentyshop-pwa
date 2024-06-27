@@ -4353,7 +4353,6 @@ __metadata:
     "@vite-pwa/nuxt": ^0.7.0
     "@vue-storefront/eslint-config": ~2.0.0
     babel-preset-node: ^5.1.1
-    bootstrap: v5.3.3
     commitizen: ^4.3.0
     concurrently: ^8.2.2
     country-flag-icons: ^1.5.11
@@ -4370,6 +4369,7 @@ __metadata:
     rimraf: ^5.0.7
     rollup: ^3.29.4
     turbo: 1.13.3
+    tw-elements: ^2.0.0
     typescript: 5.4.5
     wait-on: ^7.2.0
   languageName: unknown
@@ -8426,15 +8426,6 @@ __metadata:
   version: 1.0.0
   resolution: "boolbase@npm:1.0.0"
   checksum: 3e25c80ef626c3a3487c73dbfc70ac322ec830666c9ad915d11b701142fab25ec1e63eff2c450c74347acfd2de854ccde865cd79ef4db1683f7c7b046ea43bb0
-  languageName: node
-  linkType: hard
-
-"bootstrap@npm:v5.3.3":
-  version: 5.3.3
-  resolution: "bootstrap@npm:5.3.3"
-  peerDependencies:
-    "@popperjs/core": ^2.11.8
-  checksum: 537b68db30150075614310e9ebdf1be9b4affdf89ca226d59f4352e82a368b203af13ed0ce5ccfa4e06f141ecd233f7432ca3817e9c1a39863a05fbe13c73c4b
   languageName: node
   linkType: hard
 

@@ -138,40 +138,42 @@
                           {{ $t('header.allMirrorsChooseText') }}
                       </p>
                     </div>
-                    <div class="flex flex-wrap">                    
-                      <template v-for="i in 4">         
-                        <div class="min-w-[50%] max-w-[50%]">         
-                          <div class="topSearchUrls ">
-                            
-                            <ul>
-                              <template v-for="index in 5">
-                                <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
-                                  <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                                    <a
-                                      :href="$t('header.aMCat'+i+'Category'+index)"
-                                      class="typography-text-md mb-2"
-                                      > 
-                                      <div class="imgRow flex flex-row gap-3 items-center">
-                                        <div class="imgWrapper text-center">
-                                          <NuxtImg
-                                              :src="$t('header.aMCat'+i+'Icon'+index)"
-                                              :alt="$t('header.aMCat'+i+'Text'+index)"
-                                              class="headerIcon"
-                                              loading="lazy"
-                                            /> 
-                                        </div>
-                                        <span>
-                                          {{ $t('header.aMCat'+i+'Text'+index) }}
-                                        </span>
-                                      </div>
-                                    </a>
-                                  </li>
-                                </template>
-                              </template>
-                            </ul> 
-                          </div> 
-                        </div>
-                      </template>                              
+                    <div class="flex flex-wrap">        
+                        <NuxtLazyHydrate when-idle>
+                            <template v-for="i in 4">         
+                                <div class="min-w-[50%] max-w-[50%]">         
+                                    <div class="topSearchUrls ">
+                                        
+                                        <ul>
+                                        <template v-for="index in 5">
+                                            <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
+                                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                                                <a
+                                                :href="$t('header.aMCat'+i+'Category'+index)"
+                                                class="typography-text-md mb-2"
+                                                > 
+                                                <div class="imgRow flex flex-row gap-3 items-center">
+                                                    <div class="imgWrapper text-center">
+                                                    <NuxtImg
+                                                        :src="$t('header.aMCat'+i+'Icon'+index)"
+                                                        :alt="$t('header.aMCat'+i+'Text'+index)"
+                                                        class="headerIcon"
+                                                        loading="lazy"
+                                                        /> 
+                                                    </div>
+                                                    <span>
+                                                    {{ $t('header.aMCat'+i+'Text'+index) }}
+                                                    </span>
+                                                </div>
+                                                </a>
+                                            </li>
+                                            </template>
+                                        </template>
+                                        </ul> 
+                                    </div> 
+                                </div>
+                            </template>        
+                        </NuxtLazyHydrate>
                     </div>                  
                   </div>
                 
