@@ -6,7 +6,7 @@
           <div class="lg:flex"> 
             <div class="min-w-[100%] lg:min-w-[50%] galleryGroup group-1 lg:flex flex-col justify-between">
               <div>
-                <a :href="$t('homeTwo.galleryCategory1')" class="imageBox w-100">
+                <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory1'))" class="imageBox w-100">
                   <div> 
                     <div class="imgWrapper">
                       <img :src="$t('homeTwo.galleryImage1')" :alt="$t('homeTwo.galleryName1')" :title="$t('homeTwo.galleryName1')">
@@ -22,10 +22,10 @@
                       </p>
                     </div>
                   </div>
-                </a>
+                </NuxtLink>
               </div>
               <div class="hidden lg:block">
-                <a :href="$t('homeTwo.galleryCategory2')" class="imageBox w-100">
+                <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory2'))" class="imageBox w-100">
                   <div>
                     <div class="imgWrapper">
                       <img :src="$t('homeTwo.galleryImage2')" :alt="$t('homeTwo.galleryName2')" :title="$t('homeTwo.galleryName2')">
@@ -41,14 +41,14 @@
                       </p>
                     </div>
                   </div>
-                </a>
+                </NuxtLink>
               </div>
             </div>
             <div class="min-w-[100%] lg:min-w-[50%]">
               <div class="md:flex">
                 <div class="min-w-[100%] md:min-w-[50%] galleryGroup group-2 md:flex flex-col justify-between px-3">
                   <div>
-                    <a :href="$t('homeTwo.galleryCategory3')" class="imageBox w-100">
+                    <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory3'))" class="imageBox w-100">
                       <div>
                         <div class="imgWrapper">
                           <img :src="$t('homeTwo.galleryImage3')" :alt="$t('homeTwo.galleryName3')" :title="$t('homeTwo.galleryName3')">
@@ -64,10 +64,10 @@
                           </p>
                         </div>
                       </div>
-                    </a>
+                    </NuxtLink>
                   </div>
                   <div class="hidden lg:block">
-                    <a :href="$t('homeTwo.galleryCategory4')" class="imageBox w-100">
+                    <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory4'))" class="imageBox w-100">
                       <div>
                         <div class="imgWrapper">
                           <img :src="$t('homeTwo.galleryImage4')" :alt="$t('homeTwo.galleryName4')" :title="$t('homeTwo.galleryName4')">
@@ -83,12 +83,12 @@
                           </p>
                         </div>
                       </div>
-                    </a>
+                    </NuxtLink>
                   </div>
                 </div>
                 <div class="min-w-[100%] md:min-w-[50%] galleryGroup group-3 lg:flex flex-col justify-between">
                     <div class="hidden lg:block">
-                      <a :href="$t('homeTwo.galleryCategory5')" class="imageBox w-100">
+                      <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory5'))" class="imageBox w-100">
                         <div >
                           <div class="imgWrapper">
                             <img :src="$t('homeTwo.galleryImage5')" :alt="$t('homeTwo.galleryName5')" :title="$t('homeTwo.galleryName5')">
@@ -104,10 +104,10 @@
                             </p>
                           </div>
                         </div>
-                      </a>
+                      </NuxtLink>
                     </div>
                     <div >
-                      <a :href="$t('homeTwo.galleryCategory6')" class="imageBox w-100">
+                      <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory6'))" class="imageBox w-100">
                         <div>
                           <div class="imgWrapper">
                             <img :src="$t('homeTwo.galleryImage6')" :alt="$t('homeTwo.galleryName6')" :title="$t('homeTwo.galleryName6')">
@@ -123,7 +123,7 @@
                             </p>
                           </div>
                         </div>
-                      </a>
+                      </NuxtLink>
                     </div>
                 </div>
               </div>
@@ -170,7 +170,7 @@
             </section>          
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-          <a :href="$t('homeTwo.categoryCat1')">
+          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat1'))">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage1')"
                   :alt="$t('homeTwo.categoryText1')"
@@ -184,7 +184,7 @@
                 </p>
               </div>
             </div>
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -203,7 +203,7 @@
           </NuxtLazyHydrate>
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-          <a :href="$t('homeTwo.categoryCat2')">
+          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat2'))">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage2')"
                   :alt="$t('homeTwo.categoryText2')"
@@ -217,7 +217,7 @@
                 </p>
               </div>
             </div>
-          </a>
+          </NuxtLink>
         </div>    
       </div>
     </div>
@@ -236,7 +236,7 @@
           </NuxtLazyHydrate>
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-          <a :href="$t('homeTwo.categoryCat3')">
+          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat3'))">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage3')"
                   :alt="$t('homeTwo.categoryText3')"
@@ -250,114 +250,10 @@
                 </p>
               </div>
             </div>
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>
-    <!--
-    <div class="relative min-h-[600px]">
-      <picture>
-        <source srcset="/images/homepage-hero-bg.webp" media="(min-width: 768px)" />
-        <img
-          src="/images/homepage-hero-bg-mobile.webp"
-          alt="Hero mobile background"
-          class="absolute w-full h-full z-[-1] md:object-cover"
-        />
-      </picture>
-      <div class="md:flex md:flex-row-reverse md:justify-center max-w[1536px] mx-auto md:min-h-[600px]">
-        <div class="flex flex-col md:basis-2/4 md:items-stretch md:overflow-hidden">
-          <img src="/images/homepage-hero-headphones.webp" alt="Headphones" class="h-full object-cover object-left" />
-        </div>
-        <div class="p-4 md:p-10 md:max-w-[768px] md:flex md:flex-col md:justify-center md:items-start md:basis-2/4">
-          <p class="typography-text-xs md:typography-text-sm font-bold tracking-widest text-neutral-500 uppercase">
-            {{ $t('shipping.heading') }}
-          </p>
-          <h1 class="typography-display-2 md:typography-display-1 md:leading-[67.5px] font-bold mt-2 mb-4">
-            New Wireless Pro
-          </h1>
-          <p class="typography-text-base md:typography-text-lg">
-            Spatial audio. Adjustable ear cups. On-device controls. All-day battery.
-          </p>
-          <div class="flex flex-col md:flex-row gap-4 mt-6">
-            <SfButton size="lg"> Order now </SfButton>
-            <SfButton size="lg" variant="secondary" class="bg-white"> Show more </SfButton>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="max-w-screen-3xl mx-auto md:px-6 lg:px-10">
-      <div class="flex flex-wrap gap-4 lg:gap-6 lg:flex-no-wrap justify-center my-10">
-        <div
-          v-for="{ title, image } in categories"
-          :key="title"
-          role="img"
-          :aria-label="title"
-          :aria-labelledby="`image-${title}`"
-          class="relative flex-col min-w-[140px] max-w-[360px] justify-center group"
-        >
-          <img
-            class="rounded-full bg-neutral-100 group-hover:shadow-xl group-active:shadow-none"
-            :src="image"
-            :alt="title"
-            width="360"
-            height="360"
-          />
-          <div :id="`image-${title}`" class="flex justify-center">
-            <div
-              class="mt-4 font-semibold no-underline text-normal-900 typography-text-base group-hover:text-primary-800 group-hover:font-normal group-active:text-primary-800 group-active:font-normal"
-            >
-              {{ title }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row flex-wrap gap-6 mt-max-w-[1540px]">
-        <div
-          v-for="{
-            image,
-            title,
-            subtitle,
-            description,
-            buttonText,
-            backgroundColor,
-            reverse,
-            titleClass,
-            subtitleClass,
-          } in displayDetails"
-          :key="title"
-          :class="[
-            'relative flex md:max-w-[1536px] md:[&:not(:first-of-type)]:flex-1 md:first-of-type:w-full',
-            backgroundColor,
-          ]"
-        >
-          <a
-            class="absolute w-full h-full z-1 focus-visible:outline focus-visible:rounded-lg"
-            :aria-label="title"
-            href="#"
-          />
-          <div :class="['flex justify-between overflow-hidden grow', { 'flex-row-reverse': reverse }]">
-            <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
-              <p :class="['uppercase typography-text-xs block font-bold tracking-widest', subtitleClass]">
-                {{ subtitle }}
-              </p>
-              <h2 :class="['mb-4 mt-2 font-bold typography-display-3', titleClass]">
-                {{ title }}
-              </h2>
-              <p class="typography-text-base block mb-4">
-                {{ description }}
-              </p>
-              <SfButton class="!bg-black">{{ buttonText }}</SfButton>
-            </div>
-            <img :src="image" :alt="title" class="w-1/2 self-end object-contain" />
-          </div>
-        </div>
-      </div>
-      <NuxtLazyHydrate when-visible>
-        <NewsletterSubscribe />
-      </NuxtLazyHydrate>
-      
-    </div>
-    -->
   </div>
 </template>
 
@@ -368,6 +264,8 @@ const { t } = useI18n();
 const { data: categoryTree } = useCategoryTree();
 const recommendedProductsCategoryId = ref('');
 definePageMeta({ pageType: 'static' });
+const localePath = useLocalePath();
+const NuxtLink = resolveComponent('NuxtLink'); 
 
 type Size = {
   width: string;
@@ -428,7 +326,7 @@ const displayDetails = computed(() => {
       description: t('homepage.displayDetails.detail2.description'),
       buttonText: t('homepage.displayDetails.detail2.buttonText'),
       reverse: true,
-      backgroundColor: 'bg-warning-200',
+      backgroundColor: 'bg-warning-200', 
       sizes: {
         lg: {
           width: '358',

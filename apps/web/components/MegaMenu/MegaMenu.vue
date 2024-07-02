@@ -117,12 +117,12 @@
                     @mouseenter="openMenu([4])"
                     @click="openMenu([4])"
                   >
-                    <a :href="$t('header.allMirrorsMenuURL')" class="h-full inline-flex items-center">
+                    <SfLink :tag="NuxtLink"  :to="localePath($t('header.allMirrorsMenuURL'))" class="uppercase no-underline h-full inline-flex items-center font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white">                   
                       <span>{{ $t('header.allMirrorsMenuText') }}</span>
                       <SfIconChevronRight                     
                         class="rotate-90 text-secondary-700 group-hover:text-primary-700 group-active:text-primary-700 bg-white"
                       />
-                    </a>
+                    </SfLink>
                   </button>
                   <div                   
                       :key="4"
@@ -148,24 +148,21 @@
                                         <template v-for="index in 5">
                                             <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
                                             <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                                                <a
-                                                :href="$t('header.aMCat'+i+'Category'+index)"
-                                                class="typography-text-md mb-2"
-                                                > 
-                                                <div class="imgRow flex flex-row gap-3 items-center">
-                                                    <div class="imgWrapper text-center">
-                                                    <NuxtImg
-                                                        :src="$t('header.aMCat'+i+'Icon'+index)"
-                                                        :alt="$t('header.aMCat'+i+'Text'+index)"
-                                                        class="headerIcon"
-                                                        loading="lazy"
-                                                        /> 
+                                                <NuxtLink :tag="NuxtLink" :to="localePath($t('header.aMCat'+i+'Category'+index))" class="typography-text-md mb-2">
+                                                    <div class="imgRow flex flex-row gap-3 items-center">
+                                                        <div class="imgWrapper text-center">
+                                                        <NuxtImg
+                                                            :src="$t('header.aMCat'+i+'Icon'+index)"
+                                                            :alt="$t('header.aMCat'+i+'Text'+index)"
+                                                            class="headerIcon"
+                                                            loading="lazy"
+                                                            /> 
+                                                        </div>
+                                                        <span>
+                                                        {{ $t('header.aMCat'+i+'Text'+index) }}
+                                                        </span>
                                                     </div>
-                                                    <span>
-                                                    {{ $t('header.aMCat'+i+'Text'+index) }}
-                                                    </span>
-                                                </div>
-                                                </a>
+                                                </NuxtLink>
                                             </li>
                                             </template>
                                         </template>
@@ -244,9 +241,9 @@
               <li  class="mobileAllMirrorsDropper">
                 <div class="inline-flex items-center gap-2 w-full cursor-pointer hover:!text-primary-700 active:!text-primary-700 focus-visible:outline focus-visible:outline-offset focus-visible:relative focus-visible:z-10 px-4 py-2 mobileAllMirrorOpener">
                   <span @click="addClassToObject('openMenu', 'mobileAllMirrorsDropper')">
-                    <a :href="$t('header.allMirrorsMenuURL')"  >
+                    <NuxtLink :tag="NuxtLink" :to="localePath($t('header.allMirrorsMenuURL'))">                    
                       <span>{{ $t('header.allMirrorsMenuText') }}</span>
-                    </a>
+                    </NuxtLink>
                   </span>
                   <div @click="addClassToObject('openMenu', 'mobileAllMirrorsDropper')" class="w-100 flex-1">
                     <SfIconChevronRight                     
@@ -270,16 +267,13 @@
                           <template v-for="index in 5">
                             <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
                               <li class="py-1 pr-4 pl-6 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                                <a
-                                  :href="$t('header.aMCat'+i+'Category'+index)"
-                                  class="typography-text-sm mb-2"
-                                  > 
+                                <NuxtLink :tag="NuxtLink" :to="localePath($t('header.aMCat'+i+'Category'+index))" class="typography-text-sm mb-2">
                                   <div class="imgRow flex flex-row gap-3 items-center">
                                     <span>
                                       {{ $t('header.aMCat'+i+'Text'+index) }}
                                     </span>
                                   </div>
-                                </a>
+                                </NuxtLink>
                               </li>
                             </template>
                           </template>
@@ -303,16 +297,17 @@
 <script lang="ts" setup>
 import { type CategoryTreeItem, categoryTreeGetters } from '@plentymarkets/shop-api';
 import {
-  SfIconClose,
-  SfButton,
-  SfDrawer,
-  SfListItem,
-  SfIconChevronRight,
-  SfCounter,
-  SfIconArrowBack,
-  SfIconMenu,
-  useTrapFocus,
-  useDropdown,
+    SfIconClose,
+    SfButton,
+    SfDrawer,
+    SfListItem,
+    SfIconChevronRight,
+    SfCounter,
+    SfIconArrowBack,
+    SfIconMenu,
+    useTrapFocus,
+    useDropdown,
+    SfLink,
 } from '@storefront-ui/vue';
 import { unrefElement } from '@vueuse/core';
 import type { MegaMenuProps } from '~/components/MegaMenu/types';

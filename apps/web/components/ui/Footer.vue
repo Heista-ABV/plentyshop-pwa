@@ -14,15 +14,14 @@
             :key="subcategoryKey"
             class="py-1 !bg-transparent typography-text-sm"
           >
-            <a             
+            <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.${link}`))"        
               v-if="$t(`footer.${link}`).length > 0" 
               class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
-              :href="$t(`footer.${link}`)"
             >              
               <span>
                 {{ $t(`footer.${subcategoryKey}`) }}
               </span>
-            </a>
+            </NuxtLink>
             <template v-else>             
               <span>
                 {{ $t(`footer.${subcategoryKey}`) }}
@@ -40,10 +39,9 @@
             v-for="i in 2" :key="i"
             class="py-1 !bg-transparent typography-text-sm"
           > 
-            <a      
+            <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.row3ListLink${i}`))"    
                v-if="$t(`footer.row3ListLink${i}`).length > 0" 
-              class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
-              :href="$t(`footer.row3ListLink${i}`)">       
+              class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900">       
               <template v-if="$t(`footer.row3ListImage${i}`).length > 0 && $t(`footer.row3ListImage${i}`) != 'undefined'">
                 <img :src="$t(`footer.row3ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row3ListImageText${i}`) }}" alt="{{ $t(`footer.row3ListImageText${i}`) }}">
               </template>
@@ -52,7 +50,7 @@
                   {{ $t(`footer.row3ListImageText${i}`) }}
                 </span>
               </template>
-            </a>
+            </NuxtLink>
             <template v-else>
               <template v-if="$t(`footer.row3ListImage${i}`).length > 0 && $t(`footer.row3ListImage${i}`) != 'undefined'">
                 <img :src="$t(`footer.row3ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row3ListImageText${i}`) }}" alt="{{ $t(`footer.row3ListImageText${i}`) }}">
@@ -76,10 +74,9 @@
               v-for="i in 2" :key="i"
               class="py-1 !bg-transparent typography-text-sm"
             > 
-              <a      
+              <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.row4${index}ListLink${i}`))"      
                 v-if="$t(`footer.row4${index}ListLink${i}`).length > 0" 
-                class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
-                :href="$t(`footer.row4${index}ListLink${i}`)">       
+                class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900">       
                 <template v-if="$t(`footer.row4${index}ListImage${i}`).length > 0 && $t(`footer.row4${index}ListImage${i}`) != 'undefined'">
                   <img :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row4${index}ListImageText${i}`) }}" alt="{{ $t(`footer.row4${index}ListImageText${i}`) }}">
                 </template>
@@ -88,7 +85,7 @@
                     {{ $t(`footer.row4${index}ListImageText${i}`) }}
                   </span>
                 </template>
-              </a>
+              </NuxtLink>
               <template v-else>
                 <template v-if="$t(`footer.row4${index}ListImage${i}`).length > 0 && $t(`footer.row4${index}ListImage${i}`) != 'undefined'">
                   <img :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row4${index}ListImageText${i}`) }}" alt="{{ $t(`footer.row4${index}ListImageText${i}`) }}">
@@ -117,10 +114,7 @@
         </p> 
       </div>
     </div> 
-    
- 
-  </footer>
- 
+  </footer> 
 </template>
 
 <script setup lang="ts">
