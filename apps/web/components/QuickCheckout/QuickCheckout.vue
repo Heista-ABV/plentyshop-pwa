@@ -63,7 +63,7 @@
             <p data-testid="subtotal" class="font-medium text-right">{{ n(totals.subTotal, 'currency') }}</p>
           </div>
         </div>
-
+        <!--
         <SfButton
           data-testid="quick-checkout-cart-button"
           @click="goToPage(paths.cart)"
@@ -73,7 +73,7 @@
         >
           {{ $t('quickCheckout.checkYourCart') }}
         </SfButton>
-
+        -->
         <SfButton
           data-testid="quick-checkout-checkout-button"
           @click="goToPage(paths.checkout)"
