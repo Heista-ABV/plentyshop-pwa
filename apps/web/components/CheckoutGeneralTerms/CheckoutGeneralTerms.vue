@@ -1,5 +1,5 @@
 <template>
-  <div class="text-sm mx-4 md:pb-4">
+  <div class="text-sm mx-4 pb-4">
     <div class="flex items-center">
       <SfCheckbox
         :model-value="checkboxValue"
