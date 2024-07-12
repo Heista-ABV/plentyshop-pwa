@@ -4,7 +4,7 @@
             <NuxtLazyHydrate when-visible>
                 <!--  Search Slot
                 <UiSearch class="hidden md:block flex-1" />-->
-                <nav class=" ml-4 flex flex-row flex-nowrap topControlWrapper justify-end">
+                <nav class=" ml-4 flex flex-row flex-nowrap topControlWrapper justify-end" v-if="$route.fullPath != '/checkout'">
                     <!--
                     LangSelect Slot
                     <SfButton

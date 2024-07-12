@@ -49,7 +49,7 @@
         
         
       </div>
-      <div class="col-span-6 xl:col-span-5">
+      <div class="col-span-6 xl:col-span-5 456">
         <div v-for="(cartItem, index) in cart?.items" :key="cartItem.id">
           <UiCartProductCard :cart-item="cartItem" :class="{ 'border-t': index === 0 }" />
         </div>
@@ -94,7 +94,14 @@
               </span>
             </SfButton>
           </OrderSummary>
+          <div class="sslEncryption mt-3 text-success flex mt-4 ">
+                <SfIconLock class="mr-2" />
+                <span class="">                
+                    <b> {{ t('checkoutEncryption') }}</b>
+                </span>
+            </div>
         </div>
+        
       </div>
     </div>
     <UiModal
@@ -110,7 +117,7 @@
 
 <script setup lang="ts">
 import { AddressType, shippingProviderGetters, paymentProviderGetters } from '@plentymarkets/shop-api';
-import { SfButton, SfLoaderCircular } from '@storefront-ui/vue';
+import { SfButton, SfLoaderCircular, SfIconLock } from '@storefront-ui/vue';
 import _ from 'lodash';
 import PayPalExpressButton from '~/components/PayPal/PayPalExpressButton.vue';
 import { PayPalCreditCardPaymentKey, PayPalPaymentKey } from '~/composables/usePayPal/types';

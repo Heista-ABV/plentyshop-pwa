@@ -27,7 +27,7 @@
             </NuxtLink>
           </div>
 
-          <div class="navigationWrapper h-full">
+          <div class="navigationWrapper h-full" v-if="$route.fullPath != '/checkout'">   
             <!-- Desktop dropdown -->
             <nav v-if="viewport.isGreaterOrEquals('md')" ref="floatingRef" class="h-full">
               <ul
@@ -315,6 +315,9 @@ import $ from "jquery";
 
 const viewport = useViewport();
 const localePath = useLocalePath();
+const localeRoute = useLocaleRoute();
+
+
 const { buildCategoryMenuLink } = useLocalization();
 const NuxtLink = resolveComponent('NuxtLink');
 const props = defineProps<MegaMenuProps>();
@@ -345,6 +348,8 @@ const megaMenuReference = ref();
 const triggerReference = ref();
 
 const activeMenu = computed(() => (category.value ? findNode(activeNode.value, category.value) : null));
+
+
 
 const trapFocusOptions = {
   activeState: isOpen,

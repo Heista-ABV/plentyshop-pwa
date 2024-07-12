@@ -35,7 +35,15 @@
         <div class="flex flex-col gap-2 text-right">
           <p data-testid="subtotal" class="font-medium">{{ n(totals.subTotal, 'currency') }}</p>
           <p data-testid="shipping" class="font-medium">
-            {{ getShippingAmount(cartGetters.getShippingPrice(props.cart)) }}
+            <template v-if="cartGetters.getShippingPrice(props.cart) == 0">
+                <span class="freeDelivery text-success">
+                    <b> {{ t('shippingToGermany') }}</b>
+                </span>
+            </template>
+            <template v-else>
+                 {{ getShippingAmount(cartGetters.getShippingPrice(props.cart)) }}
+            </template>
+           
           </p>
           <p v-if="cartGetters.getCouponDiscount(props.cart)" class="font-medium" data-testid="coupon-value">
             {{ n(cartGetters.getCouponDiscount(props.cart), 'currency') }}

@@ -15,6 +15,9 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
+      bodyAttrs: {
+        class: '',
+      },
       meta: [
         { name: 'description', content: '» kosmetikspiegel.shop' },
         { name: 'theme-color', content: '#dabc71' },

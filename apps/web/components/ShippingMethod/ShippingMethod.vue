@@ -24,6 +24,7 @@
             />
           </template>
           <div class="flex items-center flex-row gap-2">
+            {{  shippingProviderGetters.getShippingMethodImage(method) }}
             <span>{{ shippingProviderGetters.getShippingMethodName(method) }}</span>
             <span class="ml-auto">{{ getShippingAmount(shippingProviderGetters.getShippingAmount(method)) }}</span>
           </div>

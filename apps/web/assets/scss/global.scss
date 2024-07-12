@@ -101,3 +101,35 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     font-weight: 600;
     line-height: 1.25;
 }
+.basketCheck{
+    width: 35px;
+    height: 35px;
+    color: $green;
+}
+.text-success{
+    color: $green;
+}
+.paymentSelect{
+    &:hover,
+    &:active{
+        border-color: $green !important;
+    }
+}
+.paymentPeer{
+    ~ .paymentSelect { 
+        .activePayment{
+            display: none;
+        }
+    }
+    &:checked ~{
+        .paymentSelect {
+            outline-color:$green !important;
+            .activePayment{
+                display: block;
+            }
+            .inactivePayment{
+                display: none;
+            }
+        }
+    }
+} 

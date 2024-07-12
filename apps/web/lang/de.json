@@ -372,6 +372,8 @@
   "backToCheckout": "Zurück zur Kasse",
   "continueShopping": "Einkauf fortsetzen",
   "continueAsGuest": "Weiter als Gast",
+  "shippingToGermany": "innerhalb Deutschland GRATIS",
+  "checkoutEncryption": "Ihre Daten werden durch eine 256-Bit SSL-Verschlüsselung geschützt",
   "orderErrorMessage": "Etwas ging schief. Versuchen Sie es später noch einmal.",
   "orderErrorProvider": "Unbekannte Antwort des Zahlungsanbieters: {paymentType}",
   "orderNumber": "Auftrags-ID",
@@ -1011,7 +1013,7 @@
     "productInformationMissing": "Produktinformationen fehlen"
   },
   "quickCheckout": {
-    "heading": "Zum Warenkorb hinzugefügt",
+    "heading": "Super! Sie haben eine gute Wahl getroffen",
     "subTotal": "Zwischensumme",
     "checkYourCart": "Warenkorb prüfen",
     "cartContains": "Ihr Warenkorb enthält {count} Artikel"

@@ -8,8 +8,8 @@
     aria-labelledby="quick-checkout-modal"
   >
     <header>
-      <h2 class="font-bold font-headings text-lg leading-6 md:text-2xl">
-        <span>{{ t('quickCheckout.heading') }}</span>
+      <h2 class="font-bold font-headings text-lg leading-6 md:text-2xl flex items-end">
+        <SfIconCheck class="basketCheck" /><span>{{ t('quickCheckout.heading') }}</span>
       </h2>
       <div class="absolute right-2 top-2 flex items-center">
         <span v-if="hasTimer" class="mr-2 text-gray-400">{{ timer }}s</span>
@@ -92,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import { SfButton, SfIconClose } from '@storefront-ui/vue';
+import { SfButton, SfIconClose, SfIconCheck } from '@storefront-ui/vue';
 import type { QuickCheckoutProps } from './types';
 import { cartGetters, productGetters } from '@plentymarkets/shop-api';
 import ProductPrice from '~/components/ProductPrice/ProductPrice.vue';
