@@ -337,7 +337,7 @@ const scrollToReviewsAccordion = () => {
   });
 };
 
-const prod = JSON.parse(JSON.stringify(product.value));
+const prod = JSON.parse(JSON.stringify(product));
 
 const manufacturer = prod.item.manufacturer as { name: string };
 const manufacturerLogo = prod.item.manufacturer as { logo: string };

@@ -24,11 +24,9 @@
           :fetchpriority="priority ? 'high' : 'auto'"
           :preload="priority || false"
           class="object-contain rounded-md aspect-square w-full h-fit transition duration-500 md:group-hover:!scale-100 md:scale-90 "
-          data-testid="image-slot"
           :width="imageWidth"
           :height="imageHeight"
           @load="trackImageLoading"
-          class="object-contain rounded-md aspect-square w-full"
           data-testid="image-slot"
         />
         <!--
@@ -46,7 +44,7 @@
     </div>
     <div class="categoryContentWrapper ">
       <div class="thumb-content catContentTopSide"> 
-        <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline" variant="secondary">
+        <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary">
           <div class="prices flex !flex-row !gap-3 !items-center !justify-between">          
             <span
               v-if="oldPrice && oldPrice !== mainPrice"
@@ -64,12 +62,12 @@
         </SfLink>
       </div>
       <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
-        <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline w-full text-center" variant="secondary" >
+        <SfLink :tag="NuxtLink" :to="productPath" class="no-underline w-full text-center" variant="secondary" >
           {{ manufName }} {{ getVarPropName }}   
         </SfLink> 
       </div>      
       <div class="catContentBotSide">
-        <SfLink :tag="NuxtLink" :to="localePath(`${path}/${productSlug}`)" class="no-underline hover:text-secondary-700" variant="secondary">
+        <SfLink :tag="NuxtLink" :to="productPath" class="no-underline hover:text-secondary-700" variant="secondary">
           <div class="bottomWrapper md:flex !flex-row !justify-center !items-end gap-2 md:!h-auto">
             <div class="sizeCont">
               <div class="sizeWrapper md:flex justify-center flex-col">
@@ -267,13 +265,8 @@ const getMagnifyValues: any = computed(() => {
   }
 });
 
-
-
 const manufacturer = product.item.manufacturer as { externalName: string };
 const manufName = manufacturer.externalName;
-
- 
-
 const cheapestPrice = productGetters.getCheapestGraduatedPrice(product);
 const oldPrice = productGetters.getRegularPrice(product);
 const NuxtLink = resolveComponent('NuxtLink');
