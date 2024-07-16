@@ -58,14 +58,12 @@
           <Coupon />
           
           <OrderSummary v-if="cart" :cart="cart" class="mt-4">
-            <CheckoutGeneralTerms />
-            <client-only v-if="selectedPaymentId === paypalPaymentId">
-              <PayPalExpressButton
-                :disabled="!termsAccepted || disableShippingPayment || cartLoading"
-                @on-click="validateTerms"
-                type="Checkout"
-              />
-            </client-only>
+            <PayPalExpressButton
+              v-if="selectedPaymentId === paypalPaymentId"
+              :disabled="!termsAccepted || disableShippingPayment || cartLoading"
+              @on-click="validateTerms"
+              type="Checkout"
+            />
             <SfButton
               v-else-if="selectedPaymentId === paypalCreditCardPaymentId"
               type="submit"
@@ -124,6 +122,7 @@ import { PayPalCreditCardPaymentKey, PayPalPaymentKey } from '~/composables/useP
 import type { PayPalAddToCartCallback } from '~/components/PayPal/types';
 
 definePageMeta({
+  layout: 'simplified-header-and-footer',
   pageType: 'static',
 });
 
@@ -167,7 +166,6 @@ const loadAddresses = async () => {
 };
 
 await loadAddresses();
-await fetchPaymentMethods();
 
 const shippingMethods = computed(() => shippingProviderGetters.getShippingProviders(shippingMethodData.value));
 const paymentMethods = computed(() => paymentMethodData.value);

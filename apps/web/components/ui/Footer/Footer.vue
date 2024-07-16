@@ -120,8 +120,10 @@
 <script setup lang="ts">
 import { SfLink, SfListItem } from '@storefront-ui/vue';
 import { categories, companyName } from '~/mocks';
+import type { FooterProps } from './types';
+
+const { simplifiedFooter } = withDefaults(defineProps<FooterProps>(), { simplifiedFooter: false });
 
 const localePath = useLocalePath();
-
 const NuxtLink = resolveComponent('NuxtLink');
 </script>

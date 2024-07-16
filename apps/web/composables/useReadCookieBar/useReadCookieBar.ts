@@ -56,7 +56,7 @@ export const useReadCookieBar: UseReadCookieBarReturn = () => {
   };
 
   const loadThirdPartyScripts = (): void => {
-    if (!process.server) {
+    if (!import.meta.server) {
       state.value.data.groups.forEach((cookieGroup: CookieGroup, groupIndex: number) => {
         cookieGroup.cookies.forEach((cookie: Cookie, cookieIndex: number) => {
           if (cookie.accepted) {
