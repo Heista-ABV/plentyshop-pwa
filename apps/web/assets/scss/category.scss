@@ -271,6 +271,34 @@
     border-bottom: 1px solid $brand-primary;
     .catImageWrapper{
         flex: 8;
+        .desktopMagnifyVals{
+            position: absolute;
+            z-index: 9;
+            left: 5px;
+            top:45px;
+            @media (min-width:1200px) {
+                top:85px;
+            }
+        }
+        .availableSizes{
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            .availableSize{
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                border-radius: 50%;
+                border: 1px solid #707070;
+                color: #d1ac4e;
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $white;
+                
+            }
+        }
     }
     .categoryContentWrapper{
         flex: 6;
@@ -325,12 +353,29 @@
                     gap: 3px;
                     flex-wrap: wrap;
                     margin-top: 5px;
+                    @media (min-width:768px) {
+                        margin-top: 0;
+                    }
+                    @media (min-width:992px) {
+                        gap: 5px;
+                    }
                     .propertyWrapper{
                         display: flex;
                         align-items: center;
                         flex-wrap: wrap;
                         font-size: 14px;
                         position: relative;
+                        min-width: 50px;
+                        @media (min-width:768px) {
+                            flex-direction: column;
+                            align-items: center;
+                        }
+                        @media (min-width:992px) {
+                            min-width: 35px;
+                        }
+                        @media (min-width:1200px) {
+                            min-width: 50px;
+                        }
                     }
                     .valueBox, 
                     .property71, 
@@ -339,8 +384,18 @@
                     }
                     .iconImg{
                         max-width: 25px;
+                        @media (min-width:768px) {
+                            max-width: 35px;
+                        }
                         @media (min-width:992px) {
                             max-width: 30px;
+                        }
+                        @media (min-width:1200px) {
+                            max-width: 35px;
+                        }
+                        @media (min-width:1200px) {
+                            max-width: 40px;
+                            width: 40px;
                         }
                     }
                     
@@ -349,13 +404,111 @@
         }
     }    
 }
+.catMainContent{
+    display: flex;
+    flex-direction: column-reverse;
+    @media (min-width:768px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-top: 10px;
+        .catPrice{
+            position: static;
+            transform: none;
+        }
+    }
+}
+.percentSavings{
+    position: absolute;
+    z-index: 9;
+    left: 0px;
+    top: 5px;
+    z-index: 10;
+    background-color: $brand-primary;
+    padding: 2px 4px;
+    color: $white;
+    border-radius: 4px;
+    @media (min-width:1200px) {
+        top: 30px;
+    }   
+}
+.catProduct{
+    .thumbImageWrapper{
+        position: relative;
+        z-index: 12;
+        .previewImg{           
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.6s;
+            padding: 2px;
+            border: 1px solid $brand-secondary;
+            &:hover{
+                border: 1px solid $brand-primary;
+            }
+            img{
+                max-height: 44px;
+                aspect-ratio: unset;
+                width: auto;
+                max-width: 100%;
+                margin: 0 auto;
+            }     
+        }
+    }
+    .catImgFS{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        display: none;
+        background-color: $white;
+    }
+    &:hover{
+        .thumbImageWrapper{
+            .previewImg{
+                opacity: 1;
+                pointer-events: initial;
+            }
+        }        
+    }
+    &.showPreview0:hover{
+        .catImg0{
+            display: block;
+        }
+    }
+    &.showPreview1:hover{
+        .catImg1{
+            display: block;
+        }
+    }
+    &.showPreview2:hover{
+        .catImg2{
+            display: block;
+        }
+    }
+    &.showPreview3:hover{
+        .catImg3{
+            display: block;
+        }
+    }
+    &.showPreview4:hover{
+        .catImg4{
+            display: block;
+        }
+    }
+    &.showPreview5:hover{
+        .catImg5{
+            display: block;
+        }
+    }
+
+}
 .stretched-link::after {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1;
+    z-index: 11;
     pointer-events: auto;
     content: "";
     background-color: rgba(0, 0, 0, 0);
@@ -364,34 +517,23 @@
     .catProduct{
         border-bottom:none;
         .prices {
-            height: 28px;
+            //height: 28px;
             position: relative;
+            gap: 0 !important;
+            flex-direction: column !important;
         }
         .categoryContentWrapper .catContentTopSide {
-            height: 35px;
-            padding-bottom: 5px;
+            justify-content: center;
         }
         .crossPrice{
-            line-height: 1 !important;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            top: 50%;
-            font-size: 24px;
-            transition: all .5s;
-            opacity: 0;
-            visibility: hidden;
+            line-height: 1 !important;            
+            font-size: 20px;  
         }
         .catPrice{
-            line-height: 1 !important;
-            position: absolute;
-            right: 50%;
-            transform: translateX(50%) translateY(-50%);
-            top: 50%;
-            font-size: 24px;
+            line-height: 1 !important;           
+            font-size: 20px;
             display: flex;
-            align-items: center;
-            transition: all .7s;
+            align-items: center;            
         }
         .catContentMid{
             background-color: #dabc71;
@@ -410,17 +552,7 @@
         margin-bottom: 30px;
         transition: all .6s;
         &:hover{
-            margin-bottom: 0px;
-            .crossPrice{
-                opacity: 1;
-                visibility: visible;
-                left: 0%;
-                transform: translateX(0) translateY(-50%);
-            }
-            .catPrice{
-                right: 0;
-                transform: translateX(0) translateY(-50%);
-            }
+            margin-bottom: 0px;            
             .catContentMid {
                 height: 24px;
                 a{
@@ -439,77 +571,80 @@
             font-size: 10px;
             width: 0;
             position: relative;
-            height: 20px;
+            height: 13px;
             overflow: hidden;    
-            margin-left: 2px;    
+            margin-left: 0;    
             transition: all .6s;    
             .valueName,
             .value{
                 word-break: break-word;
                 overflow: hidden;     
                 position: absolute;
+                text-align: center;
                 left: -100%;
                 right: 0;
                 top: 50%;
                 transform: translateY(-50%);
-                height: 20px;
+                height: 13px;
                 transition: all .6s;
+                margin: 0;
+
             }
         }
         .property71{
             .valueBox .value,
             .valueBox .valueName{
-                width: 24px;
+                width: 40px;
             }
         }
         .property39{
             .valueBox .value,
             .valueBox .valueName{
-                width: 47px;
+                width: 85px;
             }
         }
         .property86{
             .valueBox .value,
             .valueBox .valueName{
-                width: 45px;
+                width: 62px;
             }
         }
         .property36{
             .valueBox .value,
             .valueBox .valueName{
-                width: 25px;
+                width: 50px;
             }
         }
         .property41{
             .valueBox .value,
             .valueBox .valueName{
-                width: 37px;
+                width: 57px;
             }
         }
         &:hover{
             .property71{
                 .valueBox{
-                    width: 24px;
+                    width: 40px;
                 }
             }
             .property39{
                 .valueBox{
-                    width: 47px;
+                    width: 85px;
                 }
             }
             .property36{
                 .valueBox{
-                    width: 25px;
+                    width: 50px;
                 }
             }
             .property86{
                 .valueBox{
-                    width: 45px;
+                    width: 62px;
                 }
             }
             .property41{
                 .valueBox{
-                    width: 36px;
+                    width: 57px;
                 }
             }
             .valueBox{   
@@ -529,10 +664,10 @@
 
         }
         .crossPrice{
-            font-size: 20px;
+            font-size: 18px;
         }
         .catPrice{
-            font-size: 20px;
+            font-size: 18px;
         }
         &:hover{
             .catContentMid {
@@ -548,13 +683,14 @@
 @media (min-width:1200px) {
     .catProduct{
         .crossPrice{
-            font-size: 22px;
+            font-size: 20px;
         }
         .catPrice{
-            font-size: 22px;
+            font-size: 20px;
         }
         .valueBox{
-            margin-left: 3px
+            //font-size: 12px;
+            //height: 15px;
         }
         &:hover{
             .catContentMid {
@@ -569,73 +705,74 @@
 @media (min-width:1400px) {
     .catProduct{
         .crossPrice{
-            font-size: 24px;
+            font-size: 22px;
         }
         .catPrice{
-            font-size: 24px;
+            font-size: 22px;
         }
         .valueBox{
             font-size: 12px;
-            height: 26px;
+            height: 15px;
+            margin-top: 5px;
             .valueName,
             .value{
-                height: 26px;
+                height: 15px;
             }
         }
         .property71{
             .valueBox .value,
             .valueBox .valueName{
-                width: 30px;
+                width: 48px;
             }
         }
         .property39{
             .valueBox .value,
             .valueBox .valueName{
-                width: 60px;
+                width: 100px;
             }
         }
         .property36{
             .valueBox .value,
             .valueBox .valueName{
-                width: 30px;
+                width: 60px;
             }
         }
         .property41{
             .valueBox .value,
             .valueBox .valueName{
-                width: 43px;
+                width: 70px;
             }
         }
         .property86{
             .valueBox .value,
             .valueBox .valueName{
-                width: 58px;
+                width: 75px;
             }
         }
         &:hover{  
             .property86{
                 .valueBox{
-                    width: 58px;
+                    width: 75px;
                 }
             }
             .property71{
                 .valueBox{
-                    width: 30px;
+                    width: 48px;
                 }
             }
             .property39{
                 .valueBox{
-                    width: 60px;
+                    width: 100px;
                 }
             }
             .property36{
                 .valueBox{
-                    width: 30px;
+                    width: 60px;
                 }
             }
             .property41{
                 .valueBox{
-                    width: 43px;
+                    width: 70px;
                 }
             }
         }
@@ -644,45 +781,75 @@
 @media (min-width:1600px) {
     .catProduct{
         .crossPrice{
-            font-size: 26px;
+            font-size: 22px;
         }
         .catPrice{
-            font-size: 26px;
+            font-size: 22px;
         }
     }
 }
+
 @media (min-width:1800px) {
     .catProduct{
         .valueBox {
             font-size: 14px;
-            height: 30px;
         }
-        .valueBox .valueName, 
-        .valueBox .value {
-            height: 30px;
-        }
-        .property39 .valueBox .value, 
-        .property39 .valueBox .valueName {
-            width: 66px;
-        }
-        .property36 .valueBox .value, 
-        .property36 .valueBox .valueName {
-            width: 36px;
-        }
-        .property41 .valueBox .value, 
-        .property41 .valueBox .valueName {
-            width: 50px;
-        }
-        &:hover{
-            .property39 .valueBox{
-                width: 66px;
+        .property71{
+            .valueBox .value,
+            .valueBox .valueName{
+                width: 58px;
             }
-            .property36 .valueBox {
-                width: 36px;
+        }
+        .property39{
+            .valueBox .value,
+            .valueBox .valueName{
+                width: 118px;
             }
-            .property41 .valueBox {
-                width: 50px;
+        }
+        .property36{
+            .valueBox .value,
+            .valueBox .valueName{
+                width: 75px;
             }
-        }        
+        }
+        .property41{
+            .valueBox .value,
+            .valueBox .valueName{
+                width: 80px;
+            }
+        }
+        .property86{
+            .valueBox .value,
+            .valueBox .valueName{
+                width: 90px;
+            }
+        }
+        &:hover{  
+            .property86{
+                .valueBox{
+                    width: 90px;
+                }
+            }
+            .property71{
+                .valueBox{
+                    width: 58px;
+                }
+            }
+            .property39{
+                .valueBox{
+                    width: 118px;
+                }
+            }
+            .property36{
+                .valueBox{
+                    width: 75px;
+                }
+            }
+            .property41{
+                .valueBox{
+                    width: 80px;
+                }
+            }
+        }
     }
 }

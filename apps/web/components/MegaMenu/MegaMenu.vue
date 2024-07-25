@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white sticky top-0 left-0 right-0">
+  <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white sticky top-0 left-0 right-0" :class="{ 'homeHeader': $route.fullPath == '/' }">
     <div class="max-w-screen-3xl mx-auto px-3 md:px-6 lg:px-10">
       <header ref="referenceRef" class="relative headerWrapper">
         <div

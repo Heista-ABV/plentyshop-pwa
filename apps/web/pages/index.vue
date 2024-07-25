@@ -1,5 +1,78 @@
 <template>
   <div> 
+    <div class="heroSection relative">
+        <div class="heroSectionGradient hidden md:block"></div>
+        <div class=" max-w-screen-3xl mx-auto  3xl:px-10">
+            <div class="relative">
+                <NuxtImg
+                    :src="$t('homeTwo.heroSectionImage')"
+                    :alt="$t('homeTwo.categoryText1')"
+                    class="img-fluid w-full"
+                    loading="lazy" 
+                />
+                <div class="heroSectionContent">
+                    <h1 class="text-left text-white font-bold leading-loose">
+                        {{ $t('homeTwo.heroSectionHeading') }}
+                    </h1>            
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="new-image-collection-widget h-image-collection-widget mt-10 xl:mt-[50px]">
+        <div class=" max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+            <div class="homeGalleryWrapper px-3 md:px-0">
+                <div class="md:flex"> 
+                    <div class="min-w-[100%] md:min-w-[50%] galleryGroup group-1 md:flex flex-col justify-between md:pr-[20px] xl:pr-[25px]">
+                         <div>
+                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory1'))" class="imageBox w-100">
+                                <div> 
+                                    <div class="imgWrapper">
+                                        <img :src="$t('homeTwo.newGallerImage1')" :alt="$t('homeTwo.newGallerName1')" :title="$t('homeTwo.newGallerName1')">
+                                        <div class="h2 text-left contentWrapper">
+                                            <p>
+                                                {{ $t('homeTwo.newGallerName1') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </NuxtLink>
+                        </div>                  
+                    </div>
+                    <div class="min-w-[100%] md:min-w-[50%] relative galleryGroup mt-10 md:mt-0 group-2 md:flex flex-col justify-between md:pl-[20px] xl:pl-[25px]">
+                        <div class="imageWrapper">
+                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory2'))" class="imageBox w-100">
+                                <div> 
+                                    <div class="imgWrapper">
+                                        <img :src="$t('homeTwo.newGallerImage2')" :alt="$t('homeTwo.newGallerName2')" :title="$t('homeTwo.newGallerName2')">
+                                        <div class="h2 text-left contentWrapper">
+                                            <p>
+                                                {{ $t('homeTwo.newGallerName2') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </NuxtLink>
+                        </div>
+                        <div class="imageWrapper hidden md:block">
+                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory3'))" class="imageBox w-100">
+                                <div> 
+                                    <div class="imgWrapper relative">
+                                        <img :src="$t('homeTwo.newGallerImage3')" :alt="$t('homeTwo.newGallerName3')" :title="$t('homeTwo.newGallerName3')">
+                                        <div class="h2 text-left contentWrapper">
+                                            <p>
+                                                {{ $t('homeTwo.newGallerName3') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </NuxtLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
     <div class="widget h-image-collection-widget heista-widget">
       <div class=" max-w-screen-3xl mx-auto md:px-6 lg:px-10">
         <div class="homeGalleryWrapper px-3 md:px-0">
@@ -132,6 +205,8 @@
         </div>
       </div>
     </div>
+    -->
+    <!--
     <div class="relative homeParallaxContainer my-10 py-5"> 
       <div class="bgContainer"  >
         <div class="bgImage bg-cover absolute inset-x-0 inset-y-0 h-100 bg-no-repeat bg-fixed opacity-75 bg-center" v-bind:style="{ 'background-image': 'url(' + $t('homeTwo.parallaxImage') + ')' }">
@@ -145,6 +220,7 @@
           </div>
       </div>
     </div>
+    --> 
     <div class="relative  homeParallaxContainer my-10 pt-5">
       <div class="max-w-screen-3xl mx-auto px-5">
         <h2 class="text-center mb-10  text-secondary-700 typography-headline-3 lg:typography-headline-2 uppercase font-bold leading-loose tracking-widest break-words">

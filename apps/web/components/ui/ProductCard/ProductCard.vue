@@ -3,171 +3,201 @@
     class="flex flex-col flex-auto flex-shrink-0 catProduct group !flex-col "
     data-testid="product-card"
   >
-    <div class="relative catImageWrapper">
-      <!--
-      <UiBadges
-        :class="['absolute', isFromWishlist ? 'mx-2' : 'm-2']"
-        :product="product"
-        :use-availability="isFromWishlist"
-      />
-      -->
-      <SfLink 
+    <SfLink 
         :tag="NuxtLink" 
         rel="preload" 
         :to="productPath" 
         as="image" 
+        class="stretched-link"
       >
-        <NuxtImg
-          :src="imageUrl"
-          :alt="imageAlt"
-          :loading="lazy && !priority ? 'lazy' : 'eager'"
-          :fetchpriority="priority ? 'high' : 'auto'"
-          :preload="priority || false"
-          class="object-contain rounded-md aspect-square w-full h-fit transition duration-500 md:group-hover:!scale-100 md:scale-90 "
-          :width="imageWidth"
-          :height="imageHeight"
-          @load="trackImageLoading"
-          data-testid="image-slot"
-        />
-        <!--
-        <SfLoaderCircular v-if="!imageLoaded" class="absolute" size="sm" />
-        -->
-      </SfLink>
+    </SfLink>
+    <div class="relative catImageWrapper">
+        <div class="hidden md:flex percentSavings justify-center w-[45px]" v-if="getPercentSavings">
+            <span>-{{ getPercentSavings }}%</span>
+        </div>
+        <div class="hidden md:flex desktopMagnifyVals">
+            <div class="sizeCont ">
+                <div class="sizeWrapper justify-center flex-col">
+                    <template v-if="getMagnifyValues">
+                        <div class="sizeWrapper">
+                            <!--
+                                <p class="sizesHeading mb-0">{{ $t('cat.catVarItemPropsName82') }}</p>
+                            -->
+                            <div class="availableSizes justify-center">
+                                <template v-for="magnifyNumber in getMagnifyValues">													
+                                    <div class="availableSize">
+                                        {{ magnifyNumber.value }}
+                                    </div>							 						
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div class="catImageSwapper">
+            <SfLink 
+                :tag="NuxtLink" 
+                rel="preload" 
+                :to="productPath" 
+                as="image"
+                class="catImg0"
+            >
+                <NuxtImg
+                :src="imageUrl"
+                :alt="imageAlt"
+                :loading="lazy && !priority ? 'lazy' : 'eager'"
+                :fetchpriority="priority ? 'high' : 'auto'"
+                :preload="priority || false"
+                class="object-contain rounded-md aspect-square w-full h-fit transition duration-500 md:group-hover:!scale-100 md:scale-90 "
+                :width="imageWidth"
+                :height="imageHeight"
+                @load="trackImageLoading"
+                data-testid="image-slot"
+                />
+            
+            </SfLink>
+            <template v-if="getImgGallery && getImgGallery.length > 1">       
+                <template v-for="(thumb, index) in getImgGallery">
+                    <template v-if="index > 0 && index < 6">
+                        <SfLink :tag="NuxtLink" rel="preload" :to="productPath" as="image" :class="'catImgFS catImg'+index" >
+                            <NuxtImg
+                                :src="thumb.urlPreview"
+                                :alt="imageAlt"
+                                :loading="lazy && !priority ? 'lazy' : 'eager'"
+                                :fetchpriority="priority ? 'high' : 'auto'"
+                                :preload="priority || false"
+                                class="object-contain rounded-md aspect-square w-full h-fit transition duration-500"
+                                :width="imageWidth"
+                                :height="imageHeight"
+                                @load="trackImageLoading"
+                                data-testid="image-slot"
+                            />                        
+                        </SfLink>
+                    </template>
+                </template>
+            </template>
+        </div>
 
       <slot name="wishlistButton">
         <WishlistButton
           square
-          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full hover:!bg-primary-700 active:!bg-primary-700 hover:!text-white active:!text-white"
+          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full hover:!bg-primary-700 active:!bg-primary-700 hover:!text-white active:!text-white z-[20]"
           :product="product"
         />
       </slot>
     </div>
-    <div class="categoryContentWrapper ">
-      <div class="thumb-content catContentTopSide"> 
-        <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary">
-          <div class="prices flex !flex-row !gap-3 !items-center !justify-between">          
-            <span
-              v-if="oldPrice && oldPrice !== mainPrice"
-              class="text-primary-400 line-through price-view-port typography-text-md crossPrice"
-            >
-              {{ n(oldPrice, 'currency') }}
-            </span>
-            <span class="font-bold typography-text-md price text-primary-700 catPrice" data-testid="product-card-vertical-price">
-              <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1">
-                {{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
-              </span>
-              <span>{{ n(cheapestPrice ?? mainPrice, 'currency') }}</span>
-            </span>
-          </div>
-        </SfLink>
-      </div>
-      <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
-        <SfLink :tag="NuxtLink" :to="productPath" class="no-underline w-full text-center" variant="secondary" >
-          {{ manufName }} {{ getVarPropName }}   
-        </SfLink> 
-      </div>      
-      <div class="catContentBotSide">
-        <SfLink :tag="NuxtLink" :to="productPath" class="no-underline hover:text-secondary-700" variant="secondary">
-          <div class="bottomWrapper md:flex !flex-row !justify-center !items-end gap-2 md:!h-auto">
-            <div class="sizeCont">
-              <div class="sizeWrapper md:flex justify-center flex-col">
-                <template v-if="getMagnifyValues">
-                  <div class="sizeWrapper">
-                    <p class="sizesHeading mb-0">{{ $t('cat.catVarItemPropsName82') }}</p>
-                    <div class="availableSizes justify-center">
-                      <template v-for="magnifyNumber in getMagnifyValues">													
-                          <div class="availableSize">
-                            {{ magnifyNumber.value }}
-                          </div>							 						
-                        </template>
-                    </div>
-                  </div>
-                </template>
-              </div>
-            </div>
-            <div class="hv-category-item-properties">
-              <template v-if="product.variationProperties">
-                <template v-for="propGroup in product.variationProperties">
-                  <template v-for="prop in propGroup.properties">
-                    <template v-if="iconPropIds.includes(prop.id)">
-                      <div :class="'propertyWrapper property'+prop.id">
-                        <div class="iconBox">
-                          <div class="imageWrapper">
+    <div class="thumbImageWrapper hidden md:block">
+        <template v-if="getImgGallery">            
+            <div class="flex items-center justify-center py-2 h-[66px] gap-2.5">
+                <template v-for="(thumb, index) in getImgGallery">
+                    <template v-if="index <= 5"> 
+                        <div class="max-w-[50px] w-[50px] max-h-full h-full previewImg" :class="'previewImg'+index" @mouseover="addClassToParent('showPreview'+index, 'catProduct')" @mouseleave="removeClassFromParent('showPreview'+index, 'catProduct')">
                             <NuxtImg
-                              ref="img"
-                              :src="productPropertyGetters.getPropertyNameDescription(prop)"
-                              :alt="productPropertyGetters.getPropertyValue(prop)"
-                              :loading="lazy && !priority ? 'lazy' : 'eager'"
-                              :fetchpriority="priority ? 'high' : undefined"
-                              :preload="priority || false"
-                              class="iconImg"
-                              data-testid="image-slot"
-                              width="35"
-                              height="35"
-                            />
-                          </div>
+                                :src="thumb.urlPreview"
+                                :alt="thumb.names.alternate"
+                                :loading="'lazy'"
+                                :fetchpriority="priority ? 'high' : 'auto'"
+                                :preload="priority || false"
+                                class=" rounded-md aspect-square w-full h-full transition duration-500"                          
+                                @load="trackImageLoading"
+                                data-testid="image-slot-preview"
+                                />
                         </div>
-                        <div class="valueBox leading-4 text-left ml-1">
-                          <template v-if="iconPropOPValueIds.includes(prop.id)">
-                            <span class="value">
-                              {{ prop.values.value  }} 
-                              <br> mm
-                            </span>
-                          </template>   
-                          <template v-else>
-                            <span class="valueName">
-                                {{ $t('cat.catVarItemPropsName'+prop.id) }}
-                            </span>
-                          </template>               
-                        </div>                  
-                      </div>
                     </template>
-                  </template>
                 </template>
-              </template>
             </div>
-          </div>
-        </SfLink>
-      </div>
-    </div>
-    <!--
-    <div class="p-2 typography-text-sm flex flex-col flex-auto">
-     
-      
-      <!--
-      <div class="flex items-center pt-1">
-        <SfRating size="xs" :value="rating ?? 0" :max="5" />
-        <SfCounter size="xs">{{ ratingCount }}</SfCounter>
-      </div>
-      <p class="block py-2 font-normal typography-text-xs text-neutral-700 text-justify">
-        {{ description }}
-      </p>
-      
-      <LowestPrice :product="product" />
-      <div v-if="showBasePrice" class="mb-2">
-        <BasePriceInLine :base-price="basePrice" :unit-content="unitContent" :unit-name="unitName" />
-      </div>
-      <SfButton
-        v-if="productGetters.canBeAddedToCartFromCategoryPage(product)"
-        size="sm"
-        class="min-w-[80px] w-fit"
-        data-testid="add-to-basket-short"
-        @click="addWithLoader(Number(productGetters.getId(product)))"
-        :disabled="loading"
-      >
-        <template #prefix v-if="!loading">
-          <SfIconShoppingCart size="sm" />
         </template>
-        <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="sm" />
-        <span v-else>
-          {{ t('addToCartShort') }}
-        </span>
-      </SfButton>
-      <SfButton v-else type="button" :tag="NuxtLink" :to="productPath" size="sm" class="w-fit">
-        <span>{{ t('showOptions') }}</span>
-      </SfButton>
     </div>
-    -->
+    <div class="categoryContentWrapper ">
+        <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
+            <SfLink :tag="NuxtLink" :to="productPath" class="no-underline w-full text-center" variant="secondary" >
+                {{ manufName }} {{ getVarPropName }}   
+            </SfLink> 
+        </div>  
+        <div class="catMainContent">
+            <div class="catContentBotSide">
+                <SfLink :tag="NuxtLink" :to="productPath" class="no-underline hover:text-secondary-700" variant="secondary">
+                    <div class="bottomWrapper md:flex !flex-row !justify-center !items-end gap-2 md:gap-0 md:!h-auto">
+                        <div class="sizeCont ">
+                            <div class="sizeWrapper md:hidden justify-center flex-col">
+                                <template v-if="getMagnifyValues">
+                                    <div class="sizeWrapper">
+                                        <p class="sizesHeading mb-0">{{ $t('cat.catVarItemPropsName82') }}</p>
+                                        <div class="availableSizes justify-center">
+                                        <template v-for="magnifyNumber in getMagnifyValues">													
+                                            <div class="availableSize">
+                                                {{ magnifyNumber.value }}
+                                            </div>							 						
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="hv-category-item-properties">
+                            <template v-if="product.variationProperties">
+                                <template v-for="propGroup in product.variationProperties">
+                                    <template v-for="prop in propGroup.properties">
+                                        <template v-if="iconPropIds.includes(prop.id)">
+                                            <div :class="'propertyWrapper property'+prop.id">
+                                                <div class="iconBox">
+                                                    <div class="imageWrapper">
+                                                        <NuxtImg
+                                                            ref="img"
+                                                            :src="productPropertyGetters.getPropertyNameDescription(prop)"
+                                                            :alt="productPropertyGetters.getPropertyValue(prop)"
+                                                            :loading="lazy && !priority ? 'lazy' : 'eager'"
+                                                            :fetchpriority="priority ? 'high' : undefined"
+                                                            :preload="priority || false"
+                                                            class="iconImg"
+                                                            data-testid="image-slot"
+                                                            width="35"
+                                                            height="35"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="valueBox leading-4 text-left ml-1">
+                                                    <template v-if="iconPropOPValueIds.includes(prop.id)">
+                                                        <span class="value">
+                                                            {{ prop.values.value  }} mm
+                                                        </span>
+                                                    </template>   
+                                                <template v-else>
+                                                    <span class="valueName">
+                                                        {{ $t('cat.catVarItemPropsName'+prop.id) }}
+                                                    </span>
+                                                </template>               
+                                                </div>                  
+                                            </div>
+                                        </template>
+                                    </template>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
+                </SfLink>
+            </div>
+            <div class="thumb-content catContentTopSide"> 
+                <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary">
+                    <div class="prices flex !flex-row !gap-3 !items-center md:!items-end !justify-between">          
+                        <span 
+                        v-if="oldPrice && oldPrice > mainPrice"
+                        class="text-primary-400 line-through price-view-port typography-text-md crossPrice"
+                        >
+                        {{ n(oldPrice, 'currency') }}
+                        </span>
+                        <span class="font-bold typography-text-md price text-primary-700 catPrice" data-testid="product-card-vertical-price">
+                        <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1">
+                            {{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
+                        </span>
+                        <span>{{ n(cheapestPrice ?? mainPrice, 'currency') }}</span>
+                        </span>
+                    </div>
+                </SfLink>
+            </div>
+        </div>
+    </div>    
   </div>
 </template>
 
@@ -175,6 +205,7 @@
 import { CategoryTreeItem, productGetters, productPropertyGetters } from '@plentymarkets/shop-api';
 import { SfLink, SfButton, SfIconShoppingCart, SfLoaderCircular, SfIconChevronRight, SfRating, SfCounter } from '@storefront-ui/vue';
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
+import $ from "jquery";
 
 const localePath = useLocalePath();
 const { t, n } = useI18n();
@@ -224,6 +255,22 @@ const trackImageLoading = (event: Event) => {
   if (imgElement?.complete) imageLoaded.value = true;
 };
 
+function addClassToParent(className: string, objectName: string) {
+    const classToAdd = className;
+    const objectToAddTo = objectName;  
+    var target = $( event!.target )  as any;
+    var catArticle = target.parents('.'+objectToAddTo);
+    catArticle.addClass(classToAdd)
+}  
+
+function removeClassFromParent(className: string, objectName: string) {
+    const classToAdd = className;
+    const objectToAddTo = objectName;  
+    var target = $( event!.target )  as any;
+    var catArticle = target.parents('.'+objectToAddTo);
+    catArticle.removeClass(classToAdd)
+} 
+
 const addWithLoader = async (productId: number) => {
   loading.value = true;
 
@@ -250,12 +297,33 @@ const mainPrice = computed(() => {
   return 0;
 });
 
+const getImgGallery: any = computed(() => {
+    var getImages  = productGetters.getGallery(product);
+    return getImages;
+});
+
+
 
 const getVarPropName = computed(() => {
   var getProp = productGetters.getPropertyById(93, product);
   if(getProp){
-    return getProp.values.value;
+    return getProp.values.value; 
   }
+});
+
+const getPercentSavings: any = computed(() => {
+    // UVP
+    var regularPrice  = productGetters.getRegularPrice(product);
+    // Verkaufspreis
+    var specialPrice  = productGetters.getSpecialPrice(product);
+    if(specialPrice){
+        var priceDiff = regularPrice - specialPrice;
+        var percentCalc = (priceDiff / regularPrice) * 100;
+        var roundedPercent = Math.round(percentCalc);
+        if(roundedPercent > 0){
+            return roundedPercent;
+        }      
+    }
 });
 
 const getMagnifyValues: any = computed(() => {

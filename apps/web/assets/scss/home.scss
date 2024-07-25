@@ -1,3 +1,87 @@
+.homeHeader{
+    //background-color: transparent;   
+    @media (min-width:768px) {
+        //position: fixed !important;
+        //max-height: 80px;
+        box-shadow:none;
+    }
+    .navLink {
+        > button,
+        > button > a,
+        svg{
+            background-color: transparent;            
+        }
+
+    }
+}
+.heroSection {
+    .heroSectionGradient{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 50px;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+        z-index: 1;
+        @media (min-width:1200px) {
+            height: 75px;
+        }
+        @media (min-width:1600px) {
+            height: 100px;
+        }
+    }
+    .heroSectionContent{
+        position: absolute;
+        left: 0;
+        padding: 0 5px;
+        top: 20px;
+        width: 210px;
+        h1{
+            font-size: 20px;
+            line-height: 1.4;
+            text-transform: none;
+        }
+        @media (min-width:576px) {
+            padding: 0 25px;
+            width: 330px;
+            top: 40px;
+            h1{
+                font-size: 30px;
+            }
+        }
+        @media (min-width:768px) {
+            width: 420px;
+            top: 60px;
+            h1{
+                font-size: 40px;
+            }
+        }
+        @media (min-width:992px) {
+            width: 520px;
+            top: 75px;
+            h1{
+                font-size: 50px;
+            }
+        }
+        @media (min-width:1200px) {
+            padding: 0 50px;
+            width: 520px;
+            top: 100px;
+            h1{
+                font-size: 56px;
+            }
+        }
+        @media (min-width:1600px) {
+            padding: 0 100px;
+            width: 720px;
+            top: 175px;
+          
+        }
+       
+
+    }
+}
+
 .h-image-collection-widget{
     .h2{
         font-weight: bold;
@@ -57,6 +141,46 @@
     a.imageBox>div,
     .imgWrapper {
         overflow: hidden;
+    }
+}
+.new-image-collection-widget{
+    .contentWrapper{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        color: $white;
+        text-transform: none;
+        font-weight: 400;
+        padding: 0 10px 5px;
+        margin: 0;     
+        @media (min-width:992px) {
+            padding: 0 20px 10px;    
+        }  
+        @media (min-width:1200px) {
+            padding: 0 30px 15px;   
+            font-size: 30px; 
+        } 
+        @media (min-width:1600px) {
+            padding: 0 35px 15px;   
+            font-size: 35px; 
+        } 
+    }
+    .group-2{
+        .imageWrapper{
+            &:first-child{
+                padding-bottom: 20px;
+                @media (min-width:1200px) {
+                    padding-bottom: 25px;
+                }
+            } 
+            &:last-child{
+                padding-top: 20px;
+                @media (min-width:1200px) {
+                    padding-top: 25px;
+                }
+            }              
+        }
     }
 }
 .homeHeadline h1 {
