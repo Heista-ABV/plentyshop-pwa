@@ -258,15 +258,17 @@ const trackImageLoading = (event: Event) => {
 function addClassToParent(className: string, objectName: string) {
     const classToAdd = className;
     const objectToAddTo = objectName;  
-    var target = $( event!.target )  as any;
+    var target = $( event!.target! ) ;
     var catArticle = target.parents('.'+objectToAddTo);
     catArticle.addClass(classToAdd)
+    
+    
 }  
 
 function removeClassFromParent(className: string, objectName: string) {
     const classToAdd = className;
     const objectToAddTo = objectName;  
-    var target = $( event!.target )  as any;
+    var target = $( event!.target! );
     var catArticle = target.parents('.'+objectToAddTo);
     catArticle.removeClass(classToAdd)
 } 
