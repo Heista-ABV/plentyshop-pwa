@@ -65,6 +65,7 @@
     background-image: url("https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Redesign/CategoryTopBannerWidgetBg.png");
     background-size: cover;
     background-repeat: no-repeat;
+    max-width: 360px;
 }
 .categoryDescWrapper{
     color: $black;
@@ -712,11 +713,11 @@
         }
         .valueBox{
             font-size: 12px;
-            height: 15px;
+            height: 16px;
             margin-top: 5px;
             .valueName,
             .value{
-                height: 15px;
+                height: 16px;
             }
         }
         .property71{

@@ -3,7 +3,7 @@
     <div class="w-full h-category-top-banner py-10 xl:py-[50px]">
       <div class="max-w-screen-3xl mx-auto lg:px-10 px-4 md:px-6">
         <div class="md:flex">
-          <div class="hidden md:block max-w-[33.33%]" v-if="category.details[0].imagePath.length > 0">
+          <div class="hidden md:block max-w-[33.33%] w-[33.33%] 2xl:max-w-[25%] 2xl:w-[25%]" v-if="category.details[0].imagePath.length > 0">
             <div class="aspect-square catHeaderBg">
               <div class="px-5 py-5">
                 <div class="catImgWrapper">
@@ -17,7 +17,7 @@
               </div>
             </div>
           </div>
-          <div class="categoryDescWrapper " :class="{ 'md:max-w-[66.66%]': category.details[0].imagePath.length > 0 }">
+          <div class="categoryDescWrapper " :class="{ 'md:max-w-[66.66%] 2xl:max-w-[75%] 2xl:w-[75%]': category.details[0].imagePath.length > 0 }">
             <h1 class=" font-bold typography-headline-3 md:typography-headline-2 text-center md:text-left">{{ title }}</h1>
             <template v-if="$t('cat.catSubline'+category.id).length > 1">
               <div class="subHeadingWrapper text-center md:text-left">
@@ -97,7 +97,7 @@
         -->
         <section
           v-if="products"
-          class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6 lg:grid-cols-3 mb-10 md:mb-5"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6 lg:grid-cols-3 2xl:grid-cols-4 mb-10 md:mb-5"
           data-testid="category-grid"
         >
           <NuxtLazyHydrate when-visible v-for="(product, index) in products" :key="productGetters.getId(product)">
@@ -130,6 +130,7 @@
             <span>{{ $t('excludedShipping') }}</span>
           </div>
           -->
+            <!--
           <div id="pagination">
             <UiPagination
               v-if="totalProducts > 0"
@@ -139,6 +140,7 @@
               :max-visible-pages="maxVisiblePages"
             />
           </div>
+          -->
         </NuxtLazyHydrate>
       </div>
     </div>
@@ -160,7 +162,7 @@ import $ from "jquery";
 // import { onMounted, ref } from 'vue';
 
 withDefaults(defineProps<CategoryPageContentProps>(), {
-  itemsPerPage: 24,
+  itemsPerPage: 100,
 });
 
 const { getFacetsFromURL } = useCategoryFilter();

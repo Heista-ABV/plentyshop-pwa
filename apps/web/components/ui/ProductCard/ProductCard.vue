@@ -59,7 +59,7 @@
             </SfLink>
             <template v-if="getImgGallery && getImgGallery.length > 1">       
                 <template v-for="(thumb, index) in getImgGallery">
-                    <template v-if="index > 0 && index < 6">
+                    <template v-if="index > 0 && index < 5">
                         <SfLink :tag="NuxtLink" rel="preload" :to="productPath" as="image" :class="'catImgFS catImg'+index" >
                             <NuxtImg
                                 :src="thumb.urlPreview"
@@ -82,7 +82,7 @@
       <slot name="wishlistButton">
         <WishlistButton
           square
-          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full hover:!bg-primary-700 active:!bg-primary-700 hover:!text-white active:!text-white z-[20] hidden"
+          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full hover:!bg-primary-700 active:!bg-primary-700 hover:!text-white active:!text-white z-[20]"
           :product="product"
         />
       </slot>
@@ -91,7 +91,7 @@
         <template v-if="getImgGallery">            
             <div class="flex items-center justify-center py-2 h-[66px] gap-2.5">
                 <template v-for="(thumb, index) in getImgGallery">
-                    <template v-if="index <= 5"> 
+                    <template v-if="index <= 4"> 
                         <div class="max-w-[50px] w-[50px] max-h-full h-full previewImg" :class="'previewImg'+index" @mouseover="addClassToParent('showPreview'+index, 'catProduct')" @mouseleave="removeClassFromParent('showPreview'+index, 'catProduct')">
                             <NuxtImg
                                 :src="thumb.urlPreview"
