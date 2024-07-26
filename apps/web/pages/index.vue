@@ -221,27 +221,27 @@
       </div>
     </div>
     --> 
-    <div class="relative  homeParallaxContainer my-10 pt-5">
+    <div class="relative homeParallaxContainer my-10 xl:my-[50px]">
       <div class="max-w-screen-3xl mx-auto px-5">
-        <h2 class="text-center mb-10  text-secondary-700 typography-headline-3 lg:typography-headline-2 uppercase font-bold leading-loose tracking-widest break-words">
+        <h2 class="text-center mb-5 xl:mb-[25px] text-secondary-700 typography-headline-3 lg:typography-headline-2 uppercase font-bold leading-loose tracking-widest break-words">
           {{ $t('homeTwo.mainHeading') }}
         </h2>     
       </div>
       <div class="max-w-screen-lg mx-auto px-5 md:px-10">
-          <p  class="text-left mb-10 text-secondary-700 leading-normal lg:px-5">
+          <p  class="text-left mb-10 xl:mb-[50px] text-secondary-700 leading-normal lg:px-5">
             {{ $t('homeTwo.mainText') }}
           </p>
       </div>
     </div>
-    <div class="relative mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+    <div class="relative mb-10 xl:mb-[50px] max-w-screen-3xl mx-auto md:px-6 lg:px-10">
       <div class="categorySnippetHeadingWrapper">
-        <h3 class="uppercase tracking-[5px] xl:tracking-[10px] text-center font-bold">
+        <h3 class="uppercase tracking-[5px] mb-5 xl:mb-[25px] xl:tracking-[10px] text-center font-bold">
           {{ $t('homeTwo.categoryHeading1') }}
         </h3>
       </div>
       <div class="md:flex items-center categorySnippet">
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">          
-            <section class="mx-4 mt-10 mb-10 overflow-hidden">        
+            <section class="mx-[15px] mb-5 md:mb-0 overflow-hidden">        
               <ProductRecommendedProducts category-id="29" :max-item-count="3" />
             </section>          
         </div>
@@ -264,21 +264,21 @@
         </div>
       </div>
     </div>
-    <div class="relative mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+    <div class="relative mb-10 xl:mb-[50px] max-w-screen-3xl mx-auto md:px-6 lg:px-10">
       <div class="categorySnippetHeadingWrapper">
-        <h3 class="uppercase tracking-[5px] xl:tracking-[10px] text-center font-bold">
+        <h3 class="uppercase tracking-[5px] mb-5 xl:mb-[25px] xl:tracking-[10px] text-center font-bold">
           {{ $t('homeTwo.categoryHeading2') }}
         </h3>
       </div>
       <div class="md:flex flex-row-reverse items-center categorySnippet">        
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
           <NuxtLazyHydrate when-idle>
-            <section class="mx-4 mt-10 mb-10 overflow-hidden">        
+            <section class="mx-[15px] mb-5 md:mb-0 overflow-hidden">        
               <ProductRecommendedProducts category-id="27" :max-item-count="3"/>
             </section>
           </NuxtLazyHydrate>
         </div>
-        <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
+        <div class="categorySnippetImaage  relative min-w-[100%] md:min-w-[25%]">
           <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat2'))">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage2')"
@@ -297,16 +297,16 @@
         </div>    
       </div>
     </div>
-    <div class="relative mb-5 max-w-screen-3xl mx-auto md:px-6 lg:px-10">
+    <div class="relative mb-10 xl:mb-[50px] max-w-screen-3xl mx-auto md:px-6 lg:px-10">
       <div class="categorySnippetHeadingWrapper">
-        <h3 class="uppercase tracking-[5px] xl:tracking-[10px] text-center font-bold">
+        <h3 class="uppercase tracking-[5px] mb-5 xl:mb-[25px] xl:tracking-[10px] text-center font-bold">
           {{ $t('homeTwo.categoryHeading3') }}
         </h3>
       </div>
       <div class="md:flex items-center categorySnippet">
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
           <NuxtLazyHydrate when-visible>
-            <section class="mx-4 mt-10 mb-10 overflow-hidden">        
+            <section class="mx-[15px] mb-5 md:mb-0 overflow-hidden">        
               <ProductRecommendedProducts  category-id="24" :max-item-count="3"/>
             </section>
           </NuxtLazyHydrate>

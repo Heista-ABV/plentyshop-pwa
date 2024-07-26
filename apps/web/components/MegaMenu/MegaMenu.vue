@@ -6,7 +6,7 @@
           class="flex justify-center md:justify-between  items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10 "
           data-testid="navbar-top"
         >
-          <div class="flex items-center py-2 md:py-5">
+          <div class="flex items-center py-[5px] md:py-[15px]">
             <SfButton
               v-if="viewport.isLessThan('md')"
               variant="tertiary"
@@ -128,12 +128,12 @@
                       :key="4"
                       ref="megaMenuReference"
                       :style="style"
-                      class="hidden bg-white max-w-[700px] xl:max-w-[800px] min-w-[700px] xl:min-w-[800px] 2xl:min-w-[860px] 2xl:max-w-[860px] !right-1/2 translate-x-1/2 shadow-lg p-6   outline-none z-[1000]  topSearchDropper shadow-md"
+                      class="hidden bg-white max-w-[700px] xl:max-w-[800px] min-w-[700px] xl:min-w-[800px] 2xl:min-w-[860px] 2xl:max-w-[860px] !right-1/2 translate-x-1/2 shadow-lg p-5 outline-none z-[1000] topSearchDropper shadow-md"
                       tabindex="0"
                       @mouseleave="close()"
                       @keydown.esc="focusTrigger(4)"
                     >      
-                    <div class="w-100 mb-3 text-center"> 
+                    <div class="w-100 mb-[10px] text-center"> 
                       <p>
                           {{ $t('header.allMirrorsChooseText') }}
                       </p>
@@ -147,7 +147,7 @@
                                         <ul>
                                         <template v-for="index in 5">
                                             <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
-                                            <li class="py-1 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
+                                            <li class="py-[5px] text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
                                                 <NuxtLink :tag="NuxtLink" :to="localePath($t('header.aMCat'+i+'Category'+index))" class="typography-text-md mb-2">
                                                     <div class="imgRow flex flex-row gap-3 items-center">
                                                         <div class="imgWrapper text-center">

@@ -1,7 +1,7 @@
 .itemPropContainer{
     min-height: 0;  
     .propContainer{
-        margin-bottom: 12px !important;               
+        margin-bottom: 10px !important;               
         &:nth-child(odd){
             padding-right: 6px;                    
         }
@@ -201,7 +201,7 @@
     }
 }
 .attributeRow:not(:last-child) {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 .attributeRow{
     .attributeInfoWrapper {

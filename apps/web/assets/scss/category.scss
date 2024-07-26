@@ -89,7 +89,7 @@
         margin-bottom: 0;
         @media (min-width: 768px) {
             font-size: 26px;
-            margin-bottom: 12px;       
+            margin-bottom: 10px;       
         }
         @media (min-width: 992px) {
             font-size: 32px;        
@@ -122,14 +122,14 @@
             @media (min-width: 1200px) {
                 padding-left: 75px;
                 font-size: 32px;
-                margin-bottom: 48px;
+                margin-bottom: 50px;
             }
         }
     }
     .catBannerDesc{
-        margin-bottom: 1rem;
+        margin-bottom: 15px;
         p{
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
         }
         @media (min-width: 992px) {
             padding-left: 25px;
@@ -251,17 +251,17 @@
         padding-bottom: 0 !important;
         padding-top: 0 !important;
         margin-top: 2rem !important;
-        margin-bottom: 1rem;
+        margin-bottom: 15px;
         font-size: 1.3125rem;
         font-weight: 700;
     }
     h3, .h3 {
         font-size: 1.167rem;
-        margin-bottom: 1rem;
+        margin-bottom: 15px;
         font-weight: 700;
     }
     p{
-        margin-bottom: 1rem;
+        margin-bottom: 15px;
     }
 }
 .catProduct{

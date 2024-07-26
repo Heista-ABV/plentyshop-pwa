@@ -5,7 +5,7 @@
       :key="label"
       variant="tertiary"
       :class="[
-        '!p-1 !py-3 flex flex-col h-full w-full rounded-none bg-primary-700 text-white hover:text-white hover:bg-primary-800 active:text-white active:bg-primary-900 !text-xs !font-base',
+        '!p-1 !py-[10px] flex flex-col h-full w-full rounded-none bg-primary-700 text-white hover:text-white hover:bg-primary-800 active:text-white active:bg-primary-900 !text-xs !font-base',
         { 'text-white bg-primary-900': $route.path === link },
       ]"
       size="sm"

@@ -1,18 +1,18 @@
 <template>
-  <footer class="pt-10 border-t-2 border-primary-700 bg-white mb-[58px] lg:mb-0" data-testid="footer">
+  <footer class="pt-5 border-t-2 border-primary-700 bg-white mb-[50px] lg:mb-0" data-testid="footer">
     <div
-      class="flex flex-wrap  px-4 md:px-6 lg:px-10 pb-10 max-w-screen-3xl mx-auto footerWrapper"
+      class="flex flex-wrap px-4 md:px-6 lg:px-10 max-w-screen-3xl mx-auto footerWrapper"
       data-testid="section-top"
     >
-      <div v-for="{ key, subcategories } in categories" :key="key" class="min-w-[100%] md:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4 ">
-        <div class="text-lg font-medium leading-7 text-neutral-900 mb-3">
+      <div v-for="{ key, subcategories } in categories" :key="key" class="min-w-[100%] md:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-5 ">
+        <div class="text-lg font-medium leading-7 text-neutral-900 mb-[10px]">
           {{ $t(`${key}`) }}
         </div>
         <ul>
           <li
             v-for="{ key: subcategoryKey, link } in subcategories"
             :key="subcategoryKey"
-            class="py-1 !bg-transparent typography-text-sm"
+            class="!bg-transparent typography-text-sm"
           >
             <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.${link}`))"        
               v-if="$t(`footer.${link}`).length > 0" 
@@ -31,13 +31,13 @@
         </ul>
       </div>
       <div  class="min-w-[100%] sm:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4">
-        <div class="text-lg font-medium leading-7 text-neutral-900 mb-3">
+        <div class="text-lg font-medium leading-7 text-neutral-900 mb-[10px]">
           {{ $t(`footer.rowHeading3`) }}
         </div>
-        <ul class="footerCompanyLogos flex gap-4">         
+        <ul class="footerCompanyLogos flex gap-[15px]">         
           <li
             v-for="i in 2" :key="i"
-            class="py-1 !bg-transparent typography-text-sm"
+            class="!bg-transparent typography-text-sm"
           > 
             <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.row3ListLink${i}`))"    
                v-if="$t(`footer.row3ListLink${i}`).length > 0" 
@@ -64,15 +64,15 @@
           </li>
         </ul>
       </div>
-      <div  class="min-w-[100%] sm:min-w-[50%] lg:min-w-[25%]  flex flex-col mb-4">
+      <div  class="min-w-[100%] sm:min-w-[50%] lg:min-w-[25%] flex flex-col">
         <template v-for="index in 2">
-          <div class="text-lg font-medium leading-7 text-neutral-900 mb-3">
+          <div class="text-lg font-medium leading-7 text-neutral-900 mb-[10px]" >
             {{ $t(`footer.rowHeading4${index}`) }}
           </div>
-          <ul class="footerCompanyLogos flex gap-4 mb-4">         
+          <ul class="footerCompanyLogos flex gap-[15px] mb-5">         
             <li
               v-for="i in 2" :key="i"
-              class="py-1 !bg-transparent typography-text-sm"
+              class="!bg-transparent typography-text-sm"
             > 
               <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.row4${index}ListLink${i}`))"      
                 v-if="$t(`footer.row4${index}ListLink${i}`).length > 0" 
@@ -103,7 +103,7 @@
     </div>
     <hr />
     <div  data-testid="section-bottom">
-      <div class="justify-center px-4 py-2 md:flex max-w-screen-3xl mx-auto text-center">
+      <div class="justify-center px-4 py-[5px] md:flex max-w-screen-3xl mx-auto text-center">
         <p class="typography-text-xs">       
           <span>{{ $t('asterisk') }}</span>
           <span >{{ $t('itemInclVAT') }}</span>

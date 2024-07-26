@@ -1,7 +1,7 @@
 <template>
   <template v-if="category && category.details[0].imagePath && category.details[0].imagePath.length > 0">
-    <div class="w-full h-category-top-banner py-10">
-      <div class="max-w-screen-3xl mx-auto lg:px-10  px-4 md:px-6">
+    <div class="w-full h-category-top-banner py-10 xl:py-[50px]">
+      <div class="max-w-screen-3xl mx-auto lg:px-10 px-4 md:px-6">
         <div class="md:flex">
           <div class="hidden md:block max-w-[33.33%]" v-if="category.details[0].imagePath.length > 0">
             <div class="aspect-square catHeaderBg">
