@@ -20,8 +20,17 @@ export default defineNuxtConfig({
         class: '',
       },
       meta: [
-        { name: 'description', content: '» kosmetikspiegel.shop' },
+        { name: 'title', content: process.env.METATITLE || '» kosmetikspiegel.shop' },
+        { name: 'shop-name', content: 'kosmetikspiegel.shop' },
+        { name: 'description', content: process.env.METADESC || '» kosmetikspiegel.shop' },
+        { name: 'keywords', content: process.env.METAKEYWORDS || 'kosmetikspiegel.shop, kosmetikspiegel' },
         { name: 'theme-color', content: '#dabc71' },
+        { property: 'og:title', content: process.env.OGTITLE || '' },
+        { property: 'og:image', content: process.env.OGIMAGE || '' },
+        { property: 'og:type', content: process.env.OGTYPE || 'website' },
+        { property: 'og:url', content: process.env.OGURL || 'kosmetikspiegel.shop' },
+        { property: 'og:site_name', content: process.env.OGSITENAME || 'kosmetikspiegel.shop' },
+        { property: 'og:description', content: process.env.OGDESCRIPTION || 'kosmetikspiegel.shop' },
       ],
       link: [
         { rel: 'icon', href: 'https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/favicon.png' },
@@ -56,17 +65,9 @@ export default defineNuxtConfig({
   site: {
     url: '',
   },
+  pages: true,
   hooks: {
-    'pages:extend'(pages) {
-      pages.push({
-        name: 'product',
-        path: '/:slug?/:slug_2?/:slug_3?/:slug_4?/:slug_5?/:slug_6?_:itemId',
-        file: __dirname + '/pages/product/[slug].vue',
-      });
-    },
-    'build:before': async () => {
-      await fetchConfiguration();
-    },
+    'build:before': async () => await fetchConfiguration(),
   },
   runtimeConfig: {
     public: {
