@@ -20,7 +20,7 @@ export default defineNuxtConfig({
         class: '',
       },
       meta: [
-        { name: 'title', content: process.env.METATITLE || '» kosmetikspiegel.shop' },
+        { name: 'title', content: process.env.METATITLE || 'kosmetikspiegel.shop' },
         { name: 'shop-name', content: 'kosmetikspiegel.shop' },
         { name: 'description', content: process.env.METADESC || '» kosmetikspiegel.shop' },
         { name: 'keywords', content: process.env.METAKEYWORDS || 'kosmetikspiegel.shop, kosmetikspiegel' },
