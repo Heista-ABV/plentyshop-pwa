@@ -63,7 +63,6 @@ export const mockProductReviews: Review = {
   pagination: {
     page: '1',
     lastPage: 1,
-    isLastPage: true,
-    totalCount: 1
+    isLastPage: true
   }
 }
