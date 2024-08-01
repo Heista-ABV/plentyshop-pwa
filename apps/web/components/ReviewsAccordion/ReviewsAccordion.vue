@@ -70,8 +70,7 @@
         />
         <p v-if="!totalReviews && paginatedProductReviews.length === 0" class="font-bold leading-6 w-full py-2">
           {{ t('customerReviewsNone') }}
-        </p>
-        <!--
+        </p>        
         <UiPagination
           v-if="paginatedProductReviews.length > 0"
           :current-page="currentPage"
@@ -79,8 +78,7 @@
           :page-size="defaults.DEFAULT_FEEDBACK_ITEMS_PER_PAGE"
           :max-visible-pages="maxVisiblePages"
           current-page-name="feedbackPage"
-        />
-        -->
+        />        
       </UiAccordionItem>
     </div>
   </div>
@@ -166,9 +164,8 @@ const {
 
 const { data: productReviewsAverageData, fetchProductReviewAverage } = useProductReviewAverage(productId);
 const paginatedProductReviews = computed(() => reviewGetters.getReviewItems(productReviewsData.value));
-/*
 const pagination = computed(() => reviewGetters.getReviewPagination(productReviewsData.value));
-const currentPage = computed(() => reviewGetters.getCurrentReviewsPage(productReviewsData.value));*/
+const currentPage = computed(() => reviewGetters.getCurrentReviewsPage(productReviewsData.value));
 
 const ratingPercentages = ref([] as number[]);
 const splitRatings = ref([] as number[]);
