@@ -64,6 +64,5 @@ export const mockProductReviews: Review = {
     page: '1',
     lastPage: 1,
     isLastPage: true
-    //totalCount: 1
   }
 }
