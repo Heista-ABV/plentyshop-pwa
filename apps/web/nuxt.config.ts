@@ -1,8 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { validateApiUrl } from './utils/pathHelper';
-import cookieConfig from './cookie.config';
-import { nuxtI18nOptions } from './i18n.config';
+import cookieConfig from './configuration/cookie.config';
+import { nuxtI18nOptions } from './configuration/i18n.config';
 import fetchConfiguration from './build/fetchConfiguration';
+import { appConfiguration } from './configuration/app.config';
 
 export default defineNuxtConfig({
   telemetry: false,
@@ -10,34 +11,7 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
-  app: {
-    head: {
-      viewport: 'minimum-scale=1, initial-scale=1, width=device-width',
-      htmlAttrs: {
-        lang: 'en',
-      },
-      bodyAttrs: {
-        class: '',
-      },
-      meta: [
-        { name: 'title', content: process.env.METATITLE || 'kosmetikspiegel.shop' },
-        { name: 'shop-name', content: 'kosmetikspiegel.shop' },
-        { name: 'description', content: process.env.METADESC || '» kosmetikspiegel.shop' },
-        { name: 'keywords', content: process.env.METAKEYWORDS || 'kosmetikspiegel.shop, kosmetikspiegel' },
-        { name: 'theme-color', content: '#dabc71' },
-        { property: 'og:title', content: process.env.OGTITLE || '' },
-        { property: 'og:image', content: process.env.OGIMAGE || '' },
-        { property: 'og:type', content: process.env.OGTYPE || 'website' },
-        { property: 'og:url', content: process.env.OGURL || 'kosmetikspiegel.shop' },
-        { property: 'og:site_name', content: process.env.OGSITENAME || 'kosmetikspiegel.shop' },
-        { property: 'og:description', content: process.env.OGDESCRIPTION || 'kosmetikspiegel.shop' },
-      ],
-      link: [
-        { rel: 'icon', href: 'https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/favicon.png' },
-        { rel: 'apple-touch-icon', href: 'https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/favicon.png' },
-      ],
-    },
-  },
+  app: appConfiguration,
   experimental: {
     asyncContext: true,
   },
@@ -154,7 +128,7 @@ export default defineNuxtConfig({
     },
   },
   tailwindcss: {
-    configPath: '~/tailwind.config.ts',
+    configPath: '~/configuration/tailwind.config.ts',
   },
   turnstile: {
     siteKey: process.env?.CLOUDFLARE_TURNSTILE_SITE_KEY,

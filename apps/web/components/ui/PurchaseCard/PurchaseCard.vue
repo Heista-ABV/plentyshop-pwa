@@ -158,9 +158,9 @@
       -->
 
       <BundleOrderItems v-if="product.bundleComponents" :product="product" />
-      <OrderProperties v-if="product" :product="product" />
-      <ProductAttributes v-if="product" :product="product" />
-      <GraduatedPriceList v-if="product" :product="product" :count="quantitySelectorValue" />
+      <OrderProperties :product="product" />
+      <ProductAttributes  :product="product" />
+      <GraduatedPriceList  :product="product" :count="quantitySelectorValue" />
 
       <div class="pt-2">
         <div class="flex flex-col md:flex-row flex-wrap gap-4">

@@ -165,7 +165,7 @@
 
 <script setup lang="ts">
 import { SfLink, SfButton, SfCheckbox, SfIconLock, SfIconBase, SfTooltip } from '@storefront-ui/vue';
-import { Cookie, CookieGroup } from '~/cookie.config';
+import { Cookie, CookieGroup } from '~/configuration/cookie.config';
 
 const NuxtLink = resolveComponent('NuxtLink');
 const localePath = useLocalePath();
