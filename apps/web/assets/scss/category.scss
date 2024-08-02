@@ -34,6 +34,9 @@
         
     }
 }
+#pagination{
+    scroll-margin-top: 75px;
+}
 .filterContent{   
     background-color: #fff;
     z-index: 999;    
@@ -188,7 +191,7 @@
     z-index: 101;
     left: 0;
     right: 0;
-    top: 66px;
+    top: 60px;
     padding: 6px;
     background: $brand-primary;
     box-shadow: 1px 4px 10px 0px rgba(33,33,33,.3);
@@ -706,13 +709,13 @@
 @media (min-width:1400px) {
     .catProduct{
         .crossPrice{
-            font-size: 22px;
+            font-size: 18px;
         }
         .catPrice{
-            font-size: 22px;
+            font-size: 18px;
         }
         .valueBox{
-            font-size: 12px;
+            font-size: 11px;
             height: 16px;
             margin-top: 5px;
             .valueName,
@@ -723,69 +726,69 @@
         .property71{
             .valueBox .value,
             .valueBox .valueName{
-                width: 48px;
+                width: 44px;
             }
         }
         .property39{
             .valueBox .value,
             .valueBox .valueName{
-                width: 100px;
+                width: 90px;
             }
         }
         .property36{
             .valueBox .value,
             .valueBox .valueName{
-                width: 60px;
+                width: 51px;
             }
         }
         .property41{
             .valueBox .value,
             .valueBox .valueName{
-                width: 70px;
+                width: 62px;
             }
         }
         .property86{
             .valueBox .value,
             .valueBox .valueName{
-                width: 75px;
+                width: 70px;
             }
         }
         &:hover{  
             .property86{
                 .valueBox{
-                    width: 75px;
+                    width: 70px;
                 }
             }
             .property71{
                 .valueBox{
-                    width: 48px;
+                    width: 44px;
                 }
             }
             .property39{
                 .valueBox{
-                    width: 100px;
+                    width: 90px;
                 }
             }
             .property36{
                 .valueBox{
-                    width: 60px;
+                    width: 51px;
                 }
             }
             .property41{
                 .valueBox{
-                    width: 70px;
+                    width: 62px;
                 }
             }
         }
     }
 }
 @media (min-width:1600px) {
-    .catProduct{
+    .catProduct{        
         .crossPrice{
-            font-size: 22px;
+            font-size: 20px;
         }
         .catPrice{
-            font-size: 22px;
+            font-size: 20px;
         }
     }
 }
@@ -804,13 +807,13 @@
         .property39{
             .valueBox .value,
             .valueBox .valueName{
-                width: 118px;
+                width: 114px;
             }
         }
         .property36{
             .valueBox .value,
             .valueBox .valueName{
-                width: 75px;
+                width: 70px;
             }
         }
         .property41{
@@ -838,12 +841,12 @@
             }
             .property39{
                 .valueBox{
-                    width: 118px;
+                    width: 114px;
                 }
             }
             .property36{
                 .valueBox{
-                    width: 75px;
+                    width: 70px;
                 }
             }
             .property41{

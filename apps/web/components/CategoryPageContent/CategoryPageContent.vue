@@ -28,7 +28,7 @@
               </div>
             </template>
             <div v-html="category.details[0].description" class="catBannerDesc text-center md:text-left"></div>
-            <div class="catDescLink text-center">
+            <div class="catDescLink text-center" v-if="category.details[0].description2.length > 0 ">
               <span class="cursor-pointer" @click="scrollToDescription">
                 {{ $t('cat.moreToThisCat') }}
                 <SfIconArrowBack class="rotate-[270deg]"/>
@@ -130,23 +130,24 @@
             <span>{{ $t('excludedShipping') }}</span>
           </div>
           -->
-            <!--
+           
           <div id="pagination">
+            <!--
             <UiPagination
               v-if="totalProducts > 0"
               :current-page="getFacetsFromURL().page ?? 1"
               :total-items="totalProducts"
               :page-size="itemsPerPage"
               :max-visible-pages="maxVisiblePages"
-            />
+            />-->
           </div>
-          -->
+         
         </NuxtLazyHydrate>
       </div>
     </div>
   </NarrowContainer>
   <template v-if="category && category.details[0].description2.length > 0">
-    <div class="max-w-screen-3xl mx-auto md:px-6 lg:px-10 mb-20 px-4 md:px-0">
+    <div id="descriptionTwo" class="max-w-screen-3xl mx-auto md:px-6 lg:px-10 mb-20 px-4 md:px-0">
       <div id="description2" class="category-description mb-3 text-left" v-html="category.details[0].description2">
       </div>
     </div>

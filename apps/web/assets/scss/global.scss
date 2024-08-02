@@ -42,6 +42,15 @@ body{
             margin: 0 0 30px;
             padding: 0 5px 0.5rem;
         }
+        @media (min-width:992px) {
+            justify-content: space-between;
+        }
+        @media (min-width:1200px) {
+            padding: 0 8px 0.5rem;
+        }
+        @media (min-width:1600px) {
+            padding: 0 12px 0.5rem;
+        }
         .valueBox{
             display: none !important;
             @media (min-width:1200px) {
