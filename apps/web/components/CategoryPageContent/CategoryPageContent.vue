@@ -1,7 +1,7 @@
 <template>
   <template v-if="category && category.details[0].imagePath && category.details[0].imagePath.length > 0">
     <div class="w-full h-category-top-banner py-10 xl:py-[50px]">
-      <div class="max-w-screen-3xl mx-auto lg:px-10 px-4 md:px-6">
+      <div class="max-w-screen-3xl mx-auto lg:px-10 px-4 md:px-6">        
         <div class="md:flex">
           <div class="hidden md:block max-w-[33.33%] w-[33.33%] 2xl:max-w-[25%] 2xl:w-[25%]" v-if="category.details[0].imagePath.length > 0">
             <div class="aspect-square catHeaderBg">
@@ -120,8 +120,7 @@
             />
           </NuxtLazyHydrate>
         </section>
-        <LazyCategoryEmptyState v-else />
-        <NuxtLazyHydrate when-visible>
+        <LazyCategoryEmptyState v-else />        
           <!--
           <div class="mt-4 mb-4 typography-text-xs flex gap-1" v-if="totalProducts > 0">
             <span>{{ $t('asterisk') }}</span>
@@ -129,8 +128,7 @@
             <span v-else>{{ $t('itemInclVAT') }}</span>
             <span>{{ $t('excludedShipping') }}</span>
           </div>
-          -->
-           
+          -->           
           <div id="pagination">
             <!--
             <UiPagination
@@ -140,9 +138,7 @@
               :page-size="itemsPerPage"
               :max-visible-pages="maxVisiblePages"
             />-->
-          </div>
-         
-        </NuxtLazyHydrate>
+          </div>  
       </div>
     </div>
   </NarrowContainer>
