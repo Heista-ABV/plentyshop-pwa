@@ -110,7 +110,7 @@
           </SfLink>
         </div>
         <!-- action buttons -->
-        <div class="w-full flex flex-col xl:flex-row mt-5 gap-2 mb-2">
+        <div class="w-full flex flex-col xl:flex-row mt-5 gap-2 mb-10 lg:mb-2">
           <div class="flex-1">
             <SfButton
               class="w-full"
