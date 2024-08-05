@@ -7,7 +7,7 @@
     {{ $t('filters') }}
   </div>
   -->
-  <div class="flex flex-col md:flex-row flex-wrap md:w-full justify-center gap-2 px-4 md:px-0 md:py-4 ">
+  <div class="filterScroller flex flex-col md:flex-row flex-wrap md:w-full justify-center gap-2 px-4 md:px-0 md:py-4 ">
     <CategoryFiltersFilter v-for="facet in facets" :key="facet.id" :facet="facet" />
   </div>
 </template>

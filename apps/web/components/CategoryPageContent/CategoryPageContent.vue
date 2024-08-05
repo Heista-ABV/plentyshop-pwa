@@ -203,7 +203,7 @@ function scrollToDescription() {
 }
 
 function scrollToFilter() {
-  const descElement = document.querySelector('.catDescLink') as HTMLElement;
+  const descElement = document.querySelector('.filterScroller') as HTMLElement;
   if(descElement !== null){
     descElement.scrollIntoView({
       behavior: 'smooth'
