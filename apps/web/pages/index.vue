@@ -331,7 +331,7 @@
       </div>
     </div>
   </div>
-</template>
+</template> 
 
 <script lang="ts" setup>
 import { SfButton } from '@storefront-ui/vue';
@@ -339,7 +339,7 @@ const viewport = useViewport();
 const { t } = useI18n();
 const { data: categoryTree } = useCategoryTree();
 const recommendedProductsCategoryId = ref('');
-definePageMeta({ pageType: 'static' });
+definePageMeta({ pageType: 'static', shadow: false });
 const localePath = useLocalePath();
 const NuxtLink = resolveComponent('NuxtLink'); 
 

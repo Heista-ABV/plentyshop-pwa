@@ -1,7 +1,8 @@
 <template>
-  <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white sticky top-0 left-0 right-0" :class="{ 'homeHeader': $route.fullPath == '/' }">
+  <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white sticky top-0 left-0 right-0" :class="{ 'homeHeader': $route.fullPath == '/', 'noShadowHeader': !showShadow }">
     <div class="max-w-screen-3xl mx-auto px-3 md:px-6 lg:px-10">
       <header ref="referenceRef" class="relative headerWrapper">
+       
         <div
           class="flex justify-center md:justify-between  items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10 "
           data-testid="navbar-top"
@@ -312,11 +313,14 @@ import {
 import { unrefElement } from '@vueuse/core';
 import type { MegaMenuProps } from '~/components/MegaMenu/types';
 import $ from "jquery";
-
+ 
 const viewport = useViewport();
 const localePath = useLocalePath();
 const localeRoute = useLocaleRoute();
 
+const route = useRoute();
+
+const showShadow = route.meta.shadow ?? true;
 
 const { buildCategoryMenuLink } = useLocalization();
 const NuxtLink = resolveComponent('NuxtLink');

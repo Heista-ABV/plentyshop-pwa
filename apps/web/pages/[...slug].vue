@@ -36,6 +36,7 @@ import { SfLoaderCircular } from '@storefront-ui/vue';
 const { setCategoriesPageMeta } = useCanonical();
 definePageMeta({
   layout: false,
+  shadow: false
 });
 
 const { t, locale } = useI18n();
