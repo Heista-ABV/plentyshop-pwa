@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white sticky top-0 left-0 right-0" :class="{ 'homeHeader': $route.fullPath == '/', 'noShadowHeader': !showShadow }">
+  <div class="w-full h-full z-[200] md:sticky top-0 shadow-md bg-white sticky top-0 left-0 right-0" :class="{ 'homeHeader': route.fullPath == '/', 'noShadowHeader': !showShadow }">
     <div class="max-w-screen-3xl mx-auto px-3 md:px-6 lg:px-10">
       <header ref="referenceRef" class="relative headerWrapper">
        
@@ -28,7 +28,7 @@
             </NuxtLink>
           </div>
 
-          <div class="navigationWrapper h-full" v-if="$route.fullPath != '/checkout'">   
+          <div class="navigationWrapper h-full" v-if="route.fullPath != '/checkout'">   
             <!-- Desktop dropdown -->
             <nav v-if="viewport.isGreaterOrEquals('md')" ref="floatingRef" class="h-full">
               <ul
@@ -74,7 +74,7 @@
                     @mouseleave="close()"
                     @keydown.esc="focusTrigger(index)"
                   >
-                    <template v-for="node in activeMenu.children" :key="node.key">
+                    <template v-for="node in activeMenu.children" :key="node.id">
                       <template v-if="node.childCount === 0">
                         <ul>
                           <SfListItem

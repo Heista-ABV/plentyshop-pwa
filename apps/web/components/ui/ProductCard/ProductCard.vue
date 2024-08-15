@@ -52,7 +52,6 @@
                 class="object-contain rounded-md aspect-square w-full h-fit transition duration-500 md:group-hover:!scale-100 md:scale-90 "
                 :width="imageWidth"
                 :height="imageHeight"
-                @load="trackImageLoading"
                 data-testid="image-slot"
                 />
             
@@ -70,7 +69,6 @@
                                 class="object-contain rounded-md aspect-square w-full h-fit transition duration-500"
                                 :width="imageWidth"
                                 :height="imageHeight"
-                                @load="trackImageLoading"
                                 data-testid="image-slot"
                             />                        
                         </SfLink>
@@ -99,8 +97,7 @@
                                 :loading="'lazy'"
                                 :fetchpriority="priority ? 'high' : 'auto'"
                                 :preload="priority || false"
-                                class=" rounded-md aspect-square w-full h-full transition duration-500"                          
-                                @load="trackImageLoading"
+                                class=" rounded-md aspect-square w-full h-full transition duration-500"     
                                 data-testid="image-slot-preview"
                                 />
                         </div>
