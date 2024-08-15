@@ -203,7 +203,7 @@
 
 <script setup lang="ts">
 import { CategoryTreeItem, productGetters, productPropertyGetters } from '@plentymarkets/shop-api';
-import { SfLink, SfButton, SfIconShoppingCart, SfLoaderCircular, SfIconChevronRight, SfRating, SfCounter } from '@storefront-ui/vue';
+import { SfLink, SfIconShoppingCart, SfLoaderCircular, SfIconChevronRight, SfRating, SfCounter } from '@storefront-ui/vue';
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 import $ from "jquery";
 
@@ -238,7 +238,6 @@ const { openQuickCheckout } = useQuickCheckout();
 const { addToCart } = useCart();
 const { send } = useNotification();
 const loading = ref(false);
-const imageLoaded = ref(false);
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
 const productPath = ref('');
@@ -248,12 +247,7 @@ const setProductPath = (categoriesTree: CategoryTreeItem[]) => {
   productPath.value = localePath(`${path}/${productSlug}`);
 };
 
-onNuxtReady(() => setProductPath(categoryTree.value));
-
-const trackImageLoading = (event: Event) => {
-  const imgElement = event.target as HTMLImageElement;
-  if (imgElement?.complete) imageLoaded.value = true;
-};
+setProductPath(categoryTree.value);
 
 function addClassToParent(className: string, objectName: string) {
     const classToAdd = className;

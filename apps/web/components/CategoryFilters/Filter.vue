@@ -90,7 +90,6 @@ import {
   SfInput,
   SfIconCheck,
   SfIconClose,
-  SfButton,
   SfAccordionItem,
   SfIconChevronLeft,
   SfListItem,

@@ -7,7 +7,7 @@
             <div class="pl-4 md:pl-0">
                 <NuxtLink
                 :to="localePath(paths.home)"
-                aria-label="Sf Homepage"
+                aria-label="Kosmetikspiegel.shop Startseite"
                 class="flex shrink-0 w-full h-8 lg:w-48 lg:h-8 items-center mr-auto text-white md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
                 >
                 <UiVsfLogo />
@@ -19,5 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import { paths } from '~/utils/paths';
+
 const localePath = useLocalePath();
 </script>

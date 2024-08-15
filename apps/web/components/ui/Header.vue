@@ -7,7 +7,7 @@
                 <nav class=" ml-4 flex flex-row flex-nowrap topControlWrapper justify-end" v-if="$route.fullPath != '/checkout'">
                     <!--
                     LangSelect Slot
-                    <SfButton
+                    <UiButton
                         v-if="!isLanguageSelectOpen"
                         class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-1 -ml-0.5 rounded-md cursor-pointer"
                         :aria-label="t('languageSelector')"
@@ -19,8 +19,8 @@
                         <template #prefix>
                         <SfIconLanguage class="relative" />
                         </template>
-                    </SfButton>
-                    <SfButton
+                    </UiButton>
+                    <UiButton
                         v-else
                         class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-1 -ml-0.5 rounded-md cursor-pointer"
                         :aria-label="t('languageSelector')"
@@ -31,9 +31,9 @@
                         <template #prefix>
                         <SfIconLanguage class="relative" />
                         </template>
-                    </SfButton>
+                    </UiButton>
                     -->
-                    <SfButton
+                    <UiButton
                         class="group hidden 2xs:inline-flex relative text-secondary-700 hover:text-secondary-700 active:text-secondary-700 hover:bg-white active:bg-white mr-1 -ml-0.5 rounded-md heartbeat"
                         :tag="NuxtLink"
                         :to="localePath(paths.wishlist)"
@@ -50,8 +50,8 @@
                             data-testid="wishlist-badge"
                         /> 
                         </template>
-                    </SfButton>
-                    <SfButton
+                    </UiButton>
+                    <UiButton
                         class="group relative  text-secondary-700 hover:text-secondary-700 active:text-secondary-700 hover:bg-white active:bg-white rounded-md basketAnimation"
                         :tag="NuxtLink"
                         :to="localePath(paths.checkout)"
@@ -67,11 +67,11 @@
                             data-testid="cart-badge"
                         />
                         </template>
-                    </SfButton>
+                    </UiButton>
                     <!--
                     <SfDropdown v-if="isAuthorized" v-model="isAccountDropdownOpen" placement="bottom-end">
                         <template #trigger>
-                        <SfButton
+                        <UiButton
                             variant="tertiary"
                             class="relative text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 rounded-md"
                             :class="{ 'bg-primary-900': isAccountDropdownOpen }"
@@ -82,7 +82,7 @@
                             <SfIconPerson />
                             </template>
                             {{ user.user?.firstName }}
-                        </SfButton>
+                        </UiButton>
                         </template>
                         <ul class="rounded bg-white shadow-md border text-secondary-700 min-w-[152px] py-2">
                         <li v-for="({ label, link }, labelIndex) in accountDropdown" :key="`label-${labelIndex}`">
@@ -121,7 +121,7 @@
         </template>
         <!--
         <div v-else>
-        <SfButton
+        <UiButton
             variant="tertiary"
             class="relative text-secondary hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 rounded-md md:hidden"
             square
@@ -129,8 +129,8 @@
             :aria-label="t('languageSelector')"
         >
             <SfIconLanguage />
-        </SfButton>
-        <SfButton
+        </UiButton>
+        <UiButton
             variant="tertiary"
             class="relative text-secondary hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 rounded-md md:hidden"
             square
@@ -138,10 +138,10 @@
             :aria-label="t('openSearchModalButtonLabel')"
         >
             <SfIconSearch />
-        </SfButton>
+        </UiButton>
         </div>
         -->
-        <SfButton
+        <UiButton
             v-if="showConfigurationDrawer"
             @click="open = true"
             class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-1 -ml-0.5 rounded-md"
@@ -149,7 +149,7 @@
             aria-label="Open configuration drawer"
             square
             ><SfIconTune />
-        </SfButton>
+        </UiButton>
     </MegaMenu>
     <!--
     <LanguageSelector />
@@ -163,9 +163,9 @@
         aria-labelledby="login-modal"
     >
         <header>
-            <SfButton square variant="tertiary" class="absolute right-2 top-2" @click="closeAuthentication">
+            <UiButton square variant="tertiary" class="absolute right-2 top-2" @click="closeAuthentication">
                 <SfIconClose />
-            </SfButton>
+            </UiButton>
         </header>
         <LoginComponent v-if="isLogin" @change-view="isLogin = false" @logged-in="closeAuthentication" :is-modal="true" />
         <Register v-else @change-view="isLogin = true" @registered="closeAuthentication" :is-modal="true" />
@@ -180,9 +180,9 @@
         aria-labelledby="search-modal-title"
         >
             <header class="mb-4">
-                <SfButton square variant="tertiary" class="absolute right-4 top-2" @click="searchModalClose">
+                <UiButton square variant="tertiary" class="absolute right-4 top-2" @click="searchModalClose">
                 <SfIconClose class="text-neutral-500" />
-                </SfButton>
+                </UiButton>
                 <h3 id="search-modal-title" class="absolute left-6 top-4 font-bold typography-headline-4 mb-4">
                 {{ t('search') }}
                 </h3>
@@ -196,7 +196,6 @@
 <script setup lang="ts">
 import {
   SfBadge,
-  SfButton,
   SfDropdown,
   SfIconClose,
   SfIconLanguage,
@@ -210,6 +209,7 @@ import {
   useDisclosure,
 } from '@storefront-ui/vue';
 import LanguageSelector from '~/components/LanguageSelector/LanguageSelector.vue';
+import { paths } from '~/utils/paths';
 
 const isLogin = ref(true);
 const { data: cart } = useCart();
@@ -218,6 +218,7 @@ const cartItemsCount = ref(0);
 
 const NuxtLink = resolveComponent('NuxtLink');
 const { t } = useI18n();
+const route = useRoute();
 const localePath = useLocalePath();
 const { isOpen: isAccountDropdownOpen, toggle: accountDropdownToggle } = useDisclosure();
 const { isOpen: isAuthenticationOpen, open: openAuthentication, close: closeAuthentication } = useDisclosure();

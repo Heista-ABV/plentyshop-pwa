@@ -48,7 +48,7 @@
         :next-disabled="activeIndex === images.length - 1"
       >
         <template #previousButton>
-          <SfButton
+          <UiButton
             variant="secondary"
             size="sm"
             square
@@ -59,7 +59,7 @@
             <template #prefix>
               <SfIconChevronLeft />
             </template>
-          </SfButton>
+          </UiButton>
         </template>
 
         <button
@@ -70,7 +70,7 @@
           :aria-current="activeIndex === index"
           :aria-label="$t('gallery.thumb', index)"
           class="w-20 h-[88px] relative shrink-0 pb-1 border-b-4 snap-start cursor-pointer transition-colors flex-grow-0"
-          :class="[activeIndex === index ? 'border-primary-700' : 'border-transparent']"
+          :class="[activeIndex === index ? 'border-primary-500' : 'border-transparent']"
           @mouseover="onChangeIndex(index)"
           @focus="onChangeIndex(index)"
         >
@@ -86,7 +86,7 @@
         </button>
 
         <template #nextButton>
-          <SfButton
+          <UiButton
             variant="secondary"
             size="sm"
             square
@@ -97,7 +97,7 @@
             <template #prefix>
               <SfIconChevronRight />
             </template>
-          </SfButton>
+          </UiButton>
         </template>
       </SfScrollable>
       <div class="flex md:hidden gap-0.5" role="group">
@@ -108,7 +108,7 @@
           :aria-current="activeIndex === index"
           :aria-label="$t('gallery.thumb', index + 1)"
           class="relative shrink-0 pb-1 border-b-4 cursor-pointer transition-colors flex-grow"
-          :class="[activeIndex === index ? 'border-primary-700' : 'border-neutral-200']"
+          :class="[activeIndex === index ? 'border-primary-500' : 'border-neutral-200']"
           @click="onChangeIndex(index)"
         />
       </div>
@@ -118,7 +118,7 @@
 
 <script setup lang="ts">
 import { clamp, type SfScrollableOnScrollData } from '@storefront-ui/shared';
-import { SfScrollable, SfButton, SfIconChevronLeft, SfIconChevronRight, SfLoaderCircular } from '@storefront-ui/vue';
+import { SfScrollable, SfIconChevronLeft, SfIconChevronRight, SfLoaderCircular } from '@storefront-ui/vue';
 import { unrefElement, useIntersectionObserver, useTimeoutFn } from '@vueuse/core';
 import type { ImagesData } from '@plentymarkets/shop-api';
 

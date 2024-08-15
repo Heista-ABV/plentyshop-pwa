@@ -112,7 +112,7 @@
         <!-- action buttons -->
         <div class="w-full flex flex-col xl:flex-row mt-5 gap-2 mb-10 lg:mb-2">
           <div class="flex-1">
-            <SfButton
+            <UiButton
               class="w-full"
               :aria-disabled="false"
               type="button"
@@ -121,10 +121,10 @@
               data-testid="cookie-bar-accept-all"
             >
               {{ $t('CookieBar.Accept All') }}
-            </SfButton>
+            </UiButton>
           </div>
           <div class="flex-1">
-            <SfButton
+            <UiButton
               class="w-full"
               :aria-disabled="false"
               type="button"
@@ -132,10 +132,10 @@
               @click="setAllCookiesState(false)"
             >
               {{ $t('CookieBar.Reject All') }}
-            </SfButton>
+            </UiButton>
           </div>
           <div class="flex-1">
-            <SfButton
+            <UiButton
               variant="secondary"
               class="w-full"
               :aria-disabled="false"
@@ -144,28 +144,30 @@
               @click="setConsent()"
             >
               {{ $t('CookieBar.Accept Selection') }}
-            </SfButton>
+            </UiButton>
           </div>
         </div>
       </div>
     </div>
     <!-- button to open cookie tab -->
-    <SfButton
+    <UiButton
       v-else
       variant="secondary"
       class="z-10 fixed bottom-[4.3rem] md:bottom-2 left-2 xl:left-auto xl:right-2 bg-white !px-3 hover:!bg-primary-700 hover:!text-white active:!bg-primary-700 active:!text-white"
-      :aria-label="$t('CookieBar.Cookie Settings')"
+      :label="$t('CookieBar.Cookie Settings')"
       @click="changeVisibilityState"
       data-testid="cookie-bar-open-btn"
     >
       <SfIconLock />
-    </SfButton>
+    </UiButton>
   </client-only>
 </template>
 
 <script setup lang="ts">
 import { SfLink, SfButton, SfCheckbox, SfIconLock, SfIconBase, SfTooltip } from '@storefront-ui/vue';
+import { defaults } from '~/composables';
 import { Cookie, CookieGroup } from '~/configuration/cookie.config';
+import { paths } from '~/utils/paths';
 
 const NuxtLink = resolveComponent('NuxtLink');
 const localePath = useLocalePath();

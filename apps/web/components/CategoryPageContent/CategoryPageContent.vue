@@ -83,11 +83,11 @@
               {{ $t('numberOfProducts', { count: products?.length ?? 0, total: totalProducts }) }}
             </span>
             
-            <SfButton @click="open" variant="tertiary" class="md:hidden whitespace-nowrap">
+            <UiButton @click="open" variant="tertiary" class="md:hidden whitespace-nowrap">
               <template #prefix>
                 <SfIconTune />
               </template>
-            </SfButton>
+            </UiButton>
             
           </div>          
           <NuxtLazyHydrate when-visible>
@@ -113,7 +113,7 @@
               :image-width="productGetters.getImageWidth(product) ?? 600"
               :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
               :priority="index < 5"
-              :base-price="productGetters.getDefaultBaseSinglePrice(product)"
+              :base-price="productGetters.getDefaultBasePrice(product)"
               :unit-content="productGetters.getUnitContent(product)"
               :unit-name="productGetters.getUnitName(product)"
               :show-base-price="productGetters.showPricePerUnit(product)"
@@ -133,6 +133,7 @@
             <!--
             <UiPagination
               v-if="totalProducts > 0"
+              :key="`${totalProducts}-${itemsPerPage}`"
               :current-page="getFacetsFromURL().page ?? 1"
               :total-items="totalProducts"
               :page-size="itemsPerPage"

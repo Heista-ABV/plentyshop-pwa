@@ -9,7 +9,7 @@
     <main>
       <slot />
     </main>
-    <NuxtLazyHydrate  when-idle>
+    <NuxtLazyHydrate when-idle>
       <UiNavbarBottom v-if="viewport.isLessThan('lg')" />
       <Cookiebar />
       <PreviewMode />

@@ -8,7 +8,7 @@
           data-testid="navbar-top"
         >
           <div class="flex items-center py-[5px] md:py-[15px]">
-            <SfButton
+            <UiButton
               v-if="viewport.isLessThan('md')"
               variant="tertiary"
               square
@@ -17,7 +17,7 @@
               @click="openMenu([])"
             >
               <SfIconMenu class="text-secondary-700 hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white" />
-            </SfButton>
+            </UiButton>
 
             <NuxtLink
               :to="localePath(paths.home)"
@@ -312,6 +312,7 @@ import {
 } from '@storefront-ui/vue';
 import { unrefElement } from '@vueuse/core';
 import type { MegaMenuProps } from '~/components/MegaMenu/types';
+import { paths } from '~/utils/paths';
 import $ from "jquery";
  
 const viewport = useViewport();

@@ -334,7 +334,6 @@
 </template> 
 
 <script lang="ts" setup>
-import { SfButton } from '@storefront-ui/vue';
 const viewport = useViewport();
 const { t } = useI18n();
 const { data: categoryTree } = useCategoryTree();
@@ -425,7 +424,7 @@ const displayDetails = computed(() => {
       description: t('homepage.displayDetails.detail3.description'),
       buttonText: t('homepage.displayDetails.detail3.buttonText'),
       reverse: false,
-      backgroundColor: 'bg-secondary-200',
+      backgroundColor: 'bg-secondary-50',
       sizes: {
         lg: {
           width: '358',

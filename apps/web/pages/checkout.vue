@@ -65,7 +65,7 @@
               @on-click="validateTerms"
               type="Checkout"
             />
-            <SfButton
+            <UiButton
               v-else-if="selectedPaymentId === paypalCreditCardPaymentId"
               type="submit"
               data-testid="place-order-button"
@@ -77,8 +77,8 @@
               <span>
                 {{ t('buy') }}
               </span>
-            </SfButton>
-            <SfButton
+            </UiButton>
+            <UiButton
               v-else
               type="submit"
               @click="order"
@@ -91,7 +91,7 @@
               <span v-else>
                 {{ t('buy') }}
               </span>
-            </SfButton>
+            </UiButton>
           </OrderSummary>
           <div class="sslEncryption mt-3 text-success flex mt-4 ">
                 <SfIconLock class="mr-2" />
@@ -116,7 +116,7 @@
 
 <script setup lang="ts">
 import { AddressType, shippingProviderGetters, paymentProviderGetters } from '@plentymarkets/shop-api';
-import { SfButton, SfLoaderCircular, SfIconLock } from '@storefront-ui/vue';
+import { SfLoaderCircular, SfIconLock } from '@storefront-ui/vue';
 import _ from 'lodash';
 import PayPalExpressButton from '~/components/PayPal/PayPalExpressButton.vue';
 import { PayPalCreditCardPaymentKey, PayPalPaymentKey } from '~/composables/usePayPal/types';
@@ -252,7 +252,7 @@ const handleRegularOrder = async () => {
 
   if (data?.order?.id) {
     clearCartItems();
-    navigateTo(localePath(paths.thankYou + '/?orderId=' + data.order.id + '&accessKey=' + data.order.accessKey));
+    navigateTo(localePath(paths.confirmation + '/' + data.order.id + '/' + data.order.accessKey));
   }
 };
 

@@ -177,7 +177,7 @@
             :label="isNotValidVariation || isSalableText"
             class="flex-grow-[2] flex-shrink basis-auto whitespace-nowrap"
           >
-            <SfButton
+            <UiButton
               type="submit"
               data-testid="add-to-cart"
               size="lg"
@@ -192,7 +192,7 @@
                         <SfLoaderCircular size="sm" />
                     </div>
                 </template>
-            </SfButton>
+            </UiButton>
           </SfTooltip>
         </div>
         <!--
@@ -214,7 +214,7 @@
 
 <script setup lang="ts">
 import { productGetters, productPropertyGetters, reviewGetters, productBundleGetters } from '@plentymarkets/shop-api';
-import {  SfButton, SfCounter, SfLink, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip } from '@storefront-ui/vue';
+import {  SfCounter, SfLink, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip } from '@storefront-ui/vue';
 import type { PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 import type { PayPalAddToCartCallback } from '~/components/PayPal/types';
 
@@ -258,8 +258,8 @@ const normalPrice =
 
 const basePriceSingleValue = computed(
   () =>
-    productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.baseSinglePrice ??
-    productGetters.getDefaultBaseSinglePrice(product),
+    productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.basePrice ??
+    productGetters.getDefaultBasePrice(product),
 );
 
 const handleAddToCart = async (quickCheckout = true) => {

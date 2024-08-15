@@ -2,8 +2,10 @@
 import { validateApiUrl } from './utils/pathHelper';
 import cookieConfig from './configuration/cookie.config';
 import { nuxtI18nOptions } from './configuration/i18n.config';
-import fetchConfiguration from './build/fetchConfiguration';
 import { appConfiguration } from './configuration/app.config';
+import fetchConfiguration from './build/fetchConfiguration';
+import generateScssVariables from './build/generateScssVariables';
+import fetchFavicon from './build/fetchFavicon';
 
 export default defineNuxtConfig({
   telemetry: false,
@@ -41,7 +43,15 @@ export default defineNuxtConfig({
   },
   pages: true,
   hooks: {
-    'build:before': async () => await fetchConfiguration(),
+    'build:before': async () => {
+      if (process.env.FETCH_REMOTE_CONFIG === '1') {
+        const response = await fetchConfiguration();
+        generateScssVariables();
+        await fetchFavicon(response);
+      } else {
+        console.warn(`Fetching PWA settings is disabled! Set FETCH_REMOTE_CONFIG in .env file.`);
+      }
+    },
   },
   runtimeConfig: {
     public: {
@@ -56,6 +66,8 @@ export default defineNuxtConfig({
       validateReturnReasons: process.env.VALIDATE_RETURN_REASONS === '1' ?? false,
       enableQuickCheckoutTimer: process.env.ENABLE_QUICK_CHECKOUT_TIMER === '1' ?? false,
       showConfigurationDrawer: process.env.SHOW_CONFIGURATION_DRAWER === '1' ?? false,
+      primaryColor: process.env.PRIMARY || '#0c7992',
+      secondaryColor: process.env.SECONDARY || '#008ebd',
     },
   },
   modules: [
@@ -117,7 +129,7 @@ export default defineNuxtConfig({
           '/reset-password-success',
           '/cart',
           '/checkout',
-          '/thank-you',
+          '/confirmation',
           '/wishlist',
           '/login',
           '/signup',

@@ -5,7 +5,7 @@
         src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/Logo-Animation_2.gif" 
         :alt="i18n.t('header.logoAltText')" 
         class="w-100 h-auto logoImg img-fluid "
-        loading="lazy"
+        preload
        /> 
     </picture>
   </div>
