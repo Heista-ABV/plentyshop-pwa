@@ -241,7 +241,7 @@
       </div>
       <div class="md:flex items-center categorySnippet">
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">          
-            <section class="mx-[15px] lg:ml-0 mb-5 md:mb-0 overflow-hidden">        
+            <section class="mx-[15px] lg:mr-[24px] lg:ml-0 mb-5 md:mb-0 overflow-hidden">        
               <ProductRecommendedProducts category-id="29" :max-item-count="3" />
             </section>          
         </div>
@@ -273,7 +273,7 @@
       <div class="md:flex flex-row-reverse items-center categorySnippet">        
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
           <NuxtLazyHydrate when-idle>
-            <section class="mx-[15px] lg:mr-0 mb-5 md:mb-0 overflow-hidden">        
+            <section class="mx-[15px] lg:ml-[24px] lg:mr-0 mb-5 md:mb-0 overflow-hidden">        
               <ProductRecommendedProducts category-id="27" :max-item-count="3"/>
             </section>
           </NuxtLazyHydrate>
@@ -306,7 +306,7 @@
       <div class="md:flex items-center categorySnippet">
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
           <NuxtLazyHydrate when-visible>
-            <section class="mx-[15px] lg:ml-0  mb-5 md:mb-0 overflow-hidden">        
+            <section class="mx-[15px] lg:mr-[24px] lg:ml-0  mb-5 md:mb-0 overflow-hidden">        
               <ProductRecommendedProducts  category-id="24" :max-item-count="3"/>
             </section>
           </NuxtLazyHydrate>

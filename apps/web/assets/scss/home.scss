@@ -262,24 +262,15 @@
     }
 }
 .snippetContent{
-    .productSlide .catProduct{
-        @media (min-width:1200px) {
-            padding: 0 5px 0.5rem;
-            &:first-child{
-                padding: 0 10px 0.5rem 0;
+    .productSlide {
+        @media (min-width: 1200px) {            
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem !important;
+            .catProduct{
+                max-width: 100%;
+                padding: 0 !important;
             }
-            &:last-child{
-                padding: 0 0 0.5rem 10px;
-            }
-        }
-        @media (min-width:1600px) { 
-            padding: 0 7px 0.5rem;
-            &:first-child{
-                padding: 0 14px 0.5rem 0;
-            }
-            &:last-child{
-                padding: 0 0 0.5rem 14px;
-            }
-        }
+        }        
     }
 }
