@@ -6,7 +6,7 @@
           v-for="product in items.slice(0, maxItemCount)"
           :product="product"
           :key="productGetters.getId(product)"
-          class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[33%]"
+          class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[33.33%]"
           :name="productGetters.getName(product)"
           :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
           :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"

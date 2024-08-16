@@ -80,7 +80,7 @@
       <slot name="wishlistButton">
         <WishlistButton
           square
-          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full hover:!bg-primary-700 active:!bg-primary-700 hover:!text-white active:!text-white z-[20]"
+          class="absolute bottom-0 right-0 mr-[10px] mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full hover:!bg-primary-700 active:!bg-primary-700 hover:!text-white active:!text-white z-[20]"
           :product="product"
         />
       </slot>
