@@ -1,7 +1,7 @@
 <template>
   <div> 
     <div class="heroSection relative">
-        <div class="heroSectionGradient hidden md:block"></div>
+        <!--<div class="heroSectionGradient hidden md:block"></div>-->
         <div class=" max-w-screen-3xl mx-auto  3xl:px-10">
             <div class="relative">
                 <NuxtImg
