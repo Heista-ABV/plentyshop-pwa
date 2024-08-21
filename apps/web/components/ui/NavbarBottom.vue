@@ -12,6 +12,7 @@
       :tag="link ? NuxtLink : undefined"
       :to="link || undefined"
       @click="label === t('products') && open()"
+      :aria-label="label"
     >
       <template #prefix>
         <div class="relative">
