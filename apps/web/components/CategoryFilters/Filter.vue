@@ -39,19 +39,20 @@
             <SfInput v-model="maxPrice" :placeholder="$t('max')" id="max" />
           </div>
           <div class="flex">
-            <SfButton
+            <UiButton
               type="submit"
               class="w-full mr-3 h-10"
               :disabled="minPrice.length === 0 && maxPrice.length === 0"
               variant="secondary"
+              aria-label="Nach Preis filtern"
             >
               <template #prefix>
                 <SfIconCheck />
               </template>
-            </SfButton>
-            <SfButton type="reset" @click="resetPriceFilter" class="h-10" variant="secondary">
+            </UiButton>
+            <UiButton type="reset" @click="resetPriceFilter" class="h-10" variant="secondary" aria-label="Preis-Filter entfernen" >
               <SfIconClose />
-            </SfButton>
+            </UiButton>
           </div>
         </form>
       </div>

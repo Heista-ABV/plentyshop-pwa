@@ -14,7 +14,7 @@
     </label>
 
     <div class="mt-4 flex flex-col-reverse md:flex-row md:justify-end">
-      <UiButton @click="resetForm()" type="reset" class="md:mr-4" variant="secondary">
+      <UiButton @click="resetForm()" type="reset" class="md:mr-4" variant="secondary" :aria-label="$t('contactInfo.clear')">
         {{ t('contactInfo.clear') }}
       </UiButton>
 
@@ -23,6 +23,7 @@
         data-testid="contact-information-save-button"
         class="min-w-[120px] mb-4 md:mb-0"
         :disabled="loading || !meta.valid"
+        :aria-label="$t('contactInfo.save')"
       >
         <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="sm" />
         <template v-else>{{ t('contactInfo.save') }}</template>

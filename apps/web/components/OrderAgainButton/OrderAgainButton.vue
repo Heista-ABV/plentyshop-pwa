@@ -1,5 +1,5 @@
 <template>
-  <UiButton class="mt-4 w-full cursor-pointer" variant="secondary" @click="openOrderAgainModal(order)">
+  <UiButton class="mt-4 w-full cursor-pointer" variant="secondary" @click="openOrderAgainModal(order)" :aria-label="$t('account.ordersAndReturns.orderAgain.heading')" >
     {{ $t('account.ordersAndReturns.orderAgain.heading') }}
   </UiButton>
   <OrderAgain v-if="selectedOrder" :order="selectedOrder" />

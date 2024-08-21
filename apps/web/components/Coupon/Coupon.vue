@@ -20,6 +20,7 @@
           type="reset"
           variant="primary"
           :disabled="loading"
+          :aria-label="$t('coupon.apply')"
         >
           <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="sm" />
           <span v-else>
@@ -37,6 +38,7 @@
           variant="tertiary"
           class="text-stone-800"
           :disabled="loading"
+          :aria-label="$t('coupon.remove')"
         >
           <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="sm" />
           <span v-else class="underline">

@@ -4,35 +4,7 @@
             <NuxtLazyHydrate when-visible>
                 <!--  Search Slot
                 <UiSearch class="hidden md:block flex-1" />-->
-                <nav class=" ml-4 flex flex-row flex-nowrap topControlWrapper justify-end" v-if="route.fullPath != '/checkout'">
-                    <!--
-                    LangSelect Slot
-                    <UiButton
-                        v-if="!isLanguageSelectOpen"
-                        class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-1 -ml-0.5 rounded-md cursor-pointer"
-                        :aria-label="t('languageSelector')"
-                        variant="tertiary"
-                        square
-                        data-testid="open-languageselect-button"
-                        @click="toggleLanguageSelect()"
-                    >
-                        <template #prefix>
-                        <SfIconLanguage class="relative" />
-                        </template>
-                    </UiButton>
-                    <UiButton
-                        v-else
-                        class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-1 -ml-0.5 rounded-md cursor-pointer"
-                        :aria-label="t('languageSelector')"
-                        variant="tertiary"
-                        square
-                        data-testid="open-languageselect-button"
-                    >
-                        <template #prefix>
-                        <SfIconLanguage class="relative" />
-                        </template>
-                    </UiButton>
-                    -->
+                <nav class=" ml-4 flex flex-row flex-nowrap topControlWrapper justify-end" v-if="route.fullPath != '/checkout'">                   
                     <UiButton
                         class="group hidden 2xs:inline-flex relative text-secondary-700 hover:text-secondary-700 active:text-secondary-700 hover:bg-white active:bg-white mr-1 -ml-0.5 rounded-md heartbeat"
                         :tag="NuxtLink"
@@ -67,80 +39,10 @@
                             data-testid="cart-badge"
                         />
                         </template>
-                    </UiButton>
-                    <!--
-                    <SfDropdown v-if="isAuthorized" v-model="isAccountDropdownOpen" placement="bottom-end">
-                        <template #trigger>
-                        <UiButton
-                            variant="tertiary"
-                            class="relative text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 rounded-md"
-                            :class="{ 'bg-primary-900': isAccountDropdownOpen }"
-                            @click="accountDropdownToggle()"
-                            data-testid="account-dropdown-button"
-                        >
-                            <template #prefix>
-                            <SfIconPerson />
-                            </template>
-                            {{ user.user?.firstName }}
-                        </UiButton>
-                        </template>
-                        <ul class="rounded bg-white shadow-md border text-secondary-700 min-w-[152px] py-2">
-                        <li v-for="({ label, link }, labelIndex) in accountDropdown" :key="`label-${labelIndex}`">
-                            <template v-if="label === t('account.logout')">
-                            <UiDivider class="my-2" />
-                            <SfListItem tag="button" class="text-left" data-testid="account-dropdown-logout-item" @click="logOut()">
-                                {{ label }}
-                            </SfListItem>
-                            </template>
-                            <SfListItem
-                            v-else
-                            :tag="NuxtLink"
-                            :to="link"
-                            :class="{ 'bg-neutral-200': $route.path === link }"
-                            data-testid="account-dropdown-list-item"
-                            >
-                            {{ label }}
-                            </SfListItem>
-                        </li>
-                        </ul>
-                    </SfDropdown>
-                    
-                    <button
-                        v-else
-                        @click="openAuthentication"
-                        class="group hidden xs:inline-flex p-2 customClassLogin relative text-secondary-700 hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 mr-1 -ml-0.5 rounded-md"
-                        variant="tertiary"
-                        :tag="NuxtLink"
-                        square
-                    >
-                        <SfIconPerson />
-                    
-                    -->
+                    </UiButton>                    
                 </nav>
             </NuxtLazyHydrate>
-        </template>
-        <!--
-        <div v-else>
-        <UiButton
-            variant="tertiary"
-            class="relative text-secondary hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 rounded-md md:hidden"
-            square
-            data-testid="open-languageselect-button"
-            :aria-label="t('languageSelector')"
-        >
-            <SfIconLanguage />
-        </UiButton>
-        <UiButton
-            variant="tertiary"
-            class="relative text-secondary hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-800 rounded-md md:hidden"
-            square
-            @click="searchModalOpen"
-            :aria-label="t('openSearchModalButtonLabel')"
-        >
-            <SfIconSearch />
-        </UiButton>
-        </div>
-        -->
+        </template>       
         <UiButton
             v-if="showConfigurationDrawer"
             @click="open = true"
@@ -150,10 +52,7 @@
             square
             ><SfIconTune />
         </UiButton>
-    </MegaMenu>
-    <!--
-    <LanguageSelector />
-    -->
+    </MegaMenu>    
     <UiNotifications />
     <UiModal
         v-if="viewport.isGreaterOrEquals('md') && isAuthenticationOpen"

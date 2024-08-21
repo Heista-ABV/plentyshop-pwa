@@ -5,7 +5,7 @@
       <SfInput type="text" v-model="input" required />
     </label>
 
-    <UiButton type="submit" class="mt-2" :disabled="loading">
+    <UiButton type="submit" class="mt-2" :disabled="loading" :aria-label="$t('softLogin.check')" >
       <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="base" />
       <span v-if="!loading">
         {{ $t('softLogin.check') }}

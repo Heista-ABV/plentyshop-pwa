@@ -87,7 +87,7 @@
       </div>
 
       <div class="flex flex-col items-center">
-        <UiButton type="submit" size="lg" :disabled="loading">
+        <UiButton type="submit" size="lg" :disabled="loading" :aria-label="t('newsletter.subscribe')">
           <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="base" />
           <template v-else>{{ t('newsletter.subscribe') }}</template>
         </UiButton>

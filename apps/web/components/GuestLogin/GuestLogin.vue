@@ -8,6 +8,7 @@
           :tag="NuxtLink"
           :to="localePath(paths.checkout)"
           class="w-full mb-4"
+          :aria-label="$t('continueAsGuest')"
         >
           {{ $t('continueAsGuest') }}
         </UiButton>
@@ -29,7 +30,7 @@
               <UiFormPasswordInput name="password" autocomplete="current-password" v-model="password" required />
             </label>
 
-            <UiButton type="submit" class="mt-4 w-full">
+            <UiButton type="submit" class="mt-4 w-full" :aria-label="$t('auth.login.loginAndContinue')">
               <SfLoaderCircular v-if="loading" />
               <span>
                 {{ $t('auth.login.loginAndContinue') }}

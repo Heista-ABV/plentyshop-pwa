@@ -6,6 +6,7 @@
       @click="downloadPDF(document, orderGetters.getAccessKey(props.order))"
       class="mt-4 w-full cursor-pointer"
       variant="secondary"
+      :aria-label="getDocumentName(document)"
     >
       {{ getDocumentName(document) }}
     </UiButton>

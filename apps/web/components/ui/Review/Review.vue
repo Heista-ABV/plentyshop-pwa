@@ -48,6 +48,7 @@
       class="inline-block text-sm font-normal border-b-2 border-black cursor-pointer w-fit hover:text-primary-500 hover:border-primary-800"
       @click="isCollapsed = !isCollapsed"
       data-testid="show-replies"
+      aria-label="Bewertungen anzeigen"
     >
       {{ t(isCollapsed ? 'review.showAnswers' : 'review.hideAnswers') }}
     </button>

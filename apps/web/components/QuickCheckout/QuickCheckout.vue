@@ -79,6 +79,7 @@
           @click="goToPage(paths.checkout)"
           size="lg"
           class="w-full mb-4 md:mb-0"
+          :aria-label="$t('goToCheckout')"
         >
           {{ $t('goToCheckout') }}
         </UiButton>

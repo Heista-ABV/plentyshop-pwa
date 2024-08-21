@@ -12,7 +12,7 @@
         <UiFormPasswordInput name="password" autocomplete="current-password" v-model="password" required />
       </label>
 
-      <UiButton type="submit" class="mt-2" :disabled="loading" data-testid="login-submit">
+      <UiButton type="submit" class="mt-2" :disabled="loading" data-testid="login-submit" :aria-label="t('auth.login.submitLabel')" > 
         <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="base" />
         <span v-else>
           {{ t('auth.login.submitLabel') }}

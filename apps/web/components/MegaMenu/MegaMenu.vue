@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full z-[200] md:sticky top-0 bg-white sticky top-0 left-0 right-0" :class="{ 'homeHeader': route.fullPath == '/', 'noShadowHeader': !showShadow }">
+  <div class="w-full h-full z-[200] md:sticky top-0 bg-white sticky top-0 left-0 right-0 shadow" :class="{ 'homeHeader': route.fullPath == '/', 'noShadowHeader': !showShadow }">
     <div class="max-w-screen-3xl mx-auto px-3 md:px-6 lg:px-10">
       <header ref="referenceRef" class="relative headerWrapper">
        
@@ -12,7 +12,7 @@
               v-if="viewport.isLessThan('md')"
               variant="tertiary"
               square
-              aria-label="Close menu"
+              aria-label="Menü öffnen"
               class="hidden mr-2 text-secondary-700 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-800 active:text-white"
               @click="openMenu([])"
             >
@@ -48,6 +48,7 @@
                     class="group mr-2 xl:mr-1 xl:ml-1  2xl:mr-5 2xl:ml-5 3xl:mr-[1.5rem] 3xl:ml-[1.5rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700 hover:!text-primary-700 active:!text-primary-700 bg-white"
                     @mouseenter="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                     @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
+                    :aria-label="categoryTreeGetters.getName(menuNode)"
                   >
                     <NuxtLink :to="localePath(generateCategoryLink(menuNode))" class="h-full inline-flex items-center">
                       <span>{{ categoryTreeGetters.getName(menuNode) }}</span>
@@ -111,12 +112,13 @@
                   </div>
                 </li>
                 <li class="navLink topSearchWrapper h-full flex">
-                  <button
+                  <button 
                     ref="triggerReference"
                     data-testid="category-button"
                     class="group mr-2 xl:mr-1 xl:ml-1  2xl:mr-5 2xl:ml-5 3xl:mr-[1.5rem] 3xl:ml-[1.5rem] uppercase font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white"
                     @mouseenter="openMenu([4])"
                     @click="openMenu([4])"
+                    aria-label="Alle Kategorien-Menü öffnen"
                   >
                     <SfLink :tag="NuxtLink"  :to="localePath($t('header.allMirrorsMenuURL'))" class="uppercase no-underline h-full inline-flex items-center font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white">                   
                       <span>{{ $t('header.allMirrorsMenuText') }}</span>
@@ -195,9 +197,9 @@
           <nav>
             <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">
               <p class="typography-text-base font-medium">Unsere Kategorien</p>
-              <SfButton variant="tertiary" square aria-label="Close menu" class="ml-2 !p-0" @click="close()">
+              <UiButton variant="tertiary" square aria-label="Menü schließen" class="ml-2 !p-0" @click="close()">
                 <SfIconClose class="text-neutral-500" />
-              </SfButton>
+              </UiButton>
             </div>
             <ul class="mt-2 mb-6" v-if="activeMenu">
               <li v-if="activeMenu.id !== 0">

@@ -28,7 +28,7 @@
             </template>
             <div v-html="category.details[0].description" class="catBannerDesc text-center md:text-left"></div>
             <div class="catDescLink text-center" v-if="category.details[0].description2.length > 0 ">
-              <span class="cursor-pointer" @click="scrollToDescription">
+              <span class="cursor-pointer" @click="scrollToDescription" aria-label="Zu der Kategoriebeschreibung scrollen">
                 {{ $t('cat.moreToThisCat') }}
                 <SfIconArrowBack class="rotate-[270deg]"/>
               </span>
@@ -54,11 +54,11 @@
     <span class="hidden md:inline md:mr-5 filterOpenerText">
         {{ $t('cat.filterText1') }}
     </span>
-    <button class="btn openFilter !flex md:!hidden w-100"  @click="open">
+    <button class="btn openFilter !flex md:!hidden w-100"  @click="open" aria-label="Filter öffnen">
         <NuxtImg src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline" alt="Artikel filtern" />
         <span>{{ $t('cat.filterBtnText') }}</span>
         </button>
-    <button class="btn scrollFilter !hidden md:!flex w-100" @click="scrollToFilter">
+    <button class="btn scrollFilter !hidden md:!flex w-100" @click="scrollToFilter" aria-label="Zu den Filtern scrollen" >
         <NuxtImg src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline" alt="Zu den Filtern scrollen" />
         <span>{{ $t('cat.filterBtnText') }}</span>
     </button>
