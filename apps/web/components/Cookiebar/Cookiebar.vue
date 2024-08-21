@@ -12,7 +12,7 @@
         <div class="leading-relaxed pb-5">
           {{ $t(cookieGroups?.barDescription) }}
 
-          <SfLink :tag="NuxtLink" :to="localePath(paths.privacyPolicy)">
+          <SfLink :tag="NuxtLink" :to="localePath(paths.privacyPolicy)" :aria-label="$t('CookieBar.Privacy Settings')">
             {{ $t('CookieBar.Privacy Settings') }}
           </SfLink>
         </div>
@@ -74,7 +74,7 @@
                     <div class="w-3/4">
                       <template v-if="propKey === 'PrivacyPolicy'">
                         <!-- TODO -->
-                        <SfLink :tag="NuxtLink" :link="localePath(paths.privacyPolicy)" target="_blank">
+                        <SfLink :tag="NuxtLink" :link="localePath(paths.privacyPolicy)" target="_blank" :aria-label="$t('CookieBar.Privacy Settings')">
                           {{ $t('CookieBar.Privacy Settings') }}
                         </SfLink>
                       </template>
@@ -90,10 +90,10 @@
                 </div>
               </div>
             </div>
-            <SfLink v-if="!Boolean(cookieGroup.showMore)" href="#" size="sm" @click="cookieGroup.showMore = true">
+            <SfLink v-if="!Boolean(cookieGroup.showMore)" href="#" size="sm" @click="cookieGroup.showMore = true" :aria-label="$t('CookieBar.More information')">
               {{ $t('CookieBar.More information') }}
             </SfLink>
-            <SfLink v-else href="#" size="sm" @click="cookieGroup.showMore = false">
+            <SfLink v-else href="#" size="sm" @click="cookieGroup.showMore = false" :aria-label="$t('CookieBar.Show less')">
               {{ $t('CookieBar.Show less') }}
             </SfLink>
           </div>
@@ -102,10 +102,10 @@
       <!-- further settings / back button -->
       <div>
         <div class="text-center mt-2">
-          <SfLink v-if="!furtherSettingsOn" href="#" @click="furtherSettingsOn = true">
+          <SfLink v-if="!furtherSettingsOn" href="#" @click="furtherSettingsOn = true" :aria-label="$t('CookieBar.Further Settings')">
             {{ $t('CookieBar.Further Settings') }}
           </SfLink>
-          <SfLink v-else href="#" @click="furtherSettingsOn = false">
+          <SfLink v-else href="#" @click="furtherSettingsOn = false" :aria-label="$t('CookieBar.Back')">
             {{ $t('CookieBar.Back') }}
           </SfLink>
         </div>
@@ -157,6 +157,7 @@
       :label="$t('CookieBar.Cookie Settings')"
       @click="changeVisibilityState"
       data-testid="cookie-bar-open-btn"
+      :aria-label="$t('CookieBar.Cookie Settings')"
     >
       <SfIconLock />
     </UiButton>

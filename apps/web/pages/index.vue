@@ -23,7 +23,7 @@
                 <div class="md:flex"> 
                     <div class="min-w-[100%] md:min-w-[50%] galleryGroup group-1 md:flex flex-col justify-between md:pr-[20px] xl:pr-[25px]">
                          <div>
-                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory1'))" class="imageBox w-100">
+                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory1'))" class="imageBox w-100" :aria-label="$t('homeTwo.newGallerName1')">
                                 <div> 
                                     <div class="imgWrapper">
                                         <NuxtImg :src="$t('homeTwo.newGallerImage1')" :alt="$t('homeTwo.newGallerName1')" :title="$t('homeTwo.newGallerName1')" loading="lazy" />
@@ -39,7 +39,7 @@
                     </div>
                     <div class="min-w-[100%] md:min-w-[50%] relative galleryGroup mt-10 md:mt-0 group-2 md:flex flex-col justify-between md:pl-[20px] xl:pl-[25px]">
                         <div class="imageWrapper">
-                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory2'))" class="imageBox w-100">
+                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory2'))" class="imageBox w-100" :aria-label="$t('homeTwo.newGallerName2')">
                                 <div> 
                                     <div class="imgWrapper">
                                         <NuxtImg :src="$t('homeTwo.newGallerImage2')" :alt="$t('homeTwo.newGallerName2')" :title="$t('homeTwo.newGallerName2')" loading="lazy" />
@@ -53,7 +53,7 @@
                             </NuxtLink>
                         </div>
                         <div class="imageWrapper hidden md:block">
-                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory3'))" class="imageBox w-100">
+                            <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory3'))" class="imageBox w-100" :aria-label="$t('homeTwo.newGallerName3')">
                                 <div> 
                                     <div class="imgWrapper relative">
                                         <NuxtImg :src="$t('homeTwo.newGallerImage3')" :alt="$t('homeTwo.newGallerName3')" :title="$t('homeTwo.newGallerName3')" loading="lazy" />
@@ -245,7 +245,7 @@
             </section>          
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat1'))">
+          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat1'))" :aria-label="$t('homeTwo.categoryText1')">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage1')"
                   :alt="$t('homeTwo.categoryText1')"
@@ -278,7 +278,7 @@
           </NuxtLazyHydrate>
         </div>
         <div class="categorySnippetImaage  relative min-w-[100%] md:min-w-[25%]">
-          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat2'))">
+          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat2'))" :aria-label="$t('homeTwo.categoryText2')">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage2')"
                   :alt="$t('homeTwo.categoryText2')"
@@ -311,7 +311,7 @@
           </NuxtLazyHydrate>
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
-          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat3'))">
+          <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat3'))" :aria-label="$t('homeTwo.categoryText3')">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage3')"
                   :alt="$t('homeTwo.categoryText3')"

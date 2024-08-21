@@ -9,6 +9,7 @@
         :to="productPath" 
         as="image" 
         class="stretched-link"
+        :aria-label="name"
       >
     </SfLink>
     <div class="relative catImageWrapper">
@@ -42,6 +43,7 @@
                 :to="productPath" 
                 as="image"
                 class="catImg0"
+                :aria-label="name"
             >
                 <NuxtImg
                 :src="imageUrl"
@@ -59,7 +61,7 @@
             <template v-if="getImgGallery && getImgGallery.length > 1">       
                 <template v-for="(thumb, index) in getImgGallery">
                     <template v-if="index > 0 && index < 5">
-                        <SfLink :tag="NuxtLink" rel="preload" :to="productPath" as="image" :class="'catImgFS catImg'+index" >
+                        <SfLink :tag="NuxtLink" rel="preload" :to="productPath" as="image" :class="'catImgFS catImg'+index" :aria-label="name">
                             <NuxtImg
                                 :src="thumb.urlPreview"
                                 :alt="imageAlt"
@@ -108,13 +110,13 @@
     </div>
     <div class="categoryContentWrapper ">
         <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
-            <SfLink :tag="NuxtLink" :to="productPath" class="no-underline w-full text-center" variant="secondary" >
+            <SfLink :tag="NuxtLink" :to="productPath" class="no-underline w-full text-center" variant="secondary" :aria-label="name">
                 {{ manufName }} {{ getVarPropName }}   
             </SfLink> 
         </div>  
         <div class="catMainContent">
             <div class="catContentBotSide">
-                <SfLink :tag="NuxtLink" :to="productPath" class="no-underline hover:text-secondary-700" variant="secondary">
+                <SfLink :tag="NuxtLink" :to="productPath" class="no-underline hover:text-secondary-700" variant="secondary" :aria-label="name">
                     <div class="bottomWrapper md:flex !flex-row !justify-center !items-end gap-2 md:gap-0 md:!h-auto">
                         <div class="sizeCont ">
                             <div class="sizeWrapper md:hidden justify-center flex-col">
@@ -143,7 +145,7 @@
                                                         <NuxtImg
                                                             ref="img"
                                                             :src="productPropertyGetters.getPropertyNameDescription(prop)"
-                                                            :alt="productPropertyGetters.getPropertyValue(prop)"
+                                                            :alt="productPropertyGetters.getPropertyName(prop)"
                                                             :loading="lazy && !priority ? 'lazy' : 'eager'"
                                                             :fetchpriority="priority ? 'high' : undefined"
                                                             :preload="priority || false"
@@ -176,7 +178,7 @@
                 </SfLink>
             </div>
             <div class="thumb-content catContentTopSide"> 
-                <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary">
+                <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary" :aria-label="name">
                     <div class="prices flex !flex-row !gap-3 !items-center md:!items-end !justify-between">          
                         <span 
                         v-if="oldPrice && oldPrice > mainPrice"

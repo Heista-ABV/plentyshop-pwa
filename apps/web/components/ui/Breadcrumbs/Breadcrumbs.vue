@@ -28,6 +28,7 @@
                   :to="localePath(item.link)"
                   variant="secondary"
                   class="leading-5 no-underline text-inherit hover:underline active:underline whitespace-nowrap outline-secondary-600"
+                  :aria-label="item.name"
                 >
                   {{ item.name }}
                 </SfLink>
@@ -47,6 +48,7 @@
           :to="localePath(item.link)"
           variant="secondary"
           class="leading-5 no-underline hover:underline active:underline whitespace-nowrap outline-secondary-600 text-inherit"
+          :aria-label="item.name"
         >
           {{ item.name }}
         </SfLink>

@@ -17,6 +17,7 @@
             <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.${link}`))"        
               v-if="$t(`footer.${link}`).length > 0" 
               class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
+              :aria-label="$t(`footer.${subcategoryKey}`)"
             >              
               <span>
                 {{ $t(`footer.${subcategoryKey}`) }}
@@ -41,7 +42,8 @@
           > 
             <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.row3ListLink${i}`))"    
                v-if="$t(`footer.row3ListLink${i}`).length > 0" 
-              class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900">       
+              class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
+              :aria-label="$t(`footer.row3ListImageText${i}`)" >       
               <template v-if="$t(`footer.row3ListImage${i}`).length > 0 && $t(`footer.row3ListImage${i}`) != 'undefined'">
                 <NuxtImg :src="$t(`footer.row3ListImage${i}`)" class="footerImg" :title="$t(`footer.row3ListImageText${i}`)" :alt="$t(`footer.row3ListImageText${i}`)"  height="35" />
               </template>
@@ -76,7 +78,8 @@
             > 
               <NuxtLink :tag="NuxtLink" :to="localePath($t(`footer.row4${index}ListLink${i}`))"      
                 v-if="$t(`footer.row4${index}ListLink${i}`).length > 0" 
-                class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900">       
+                class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900"
+                :aria-label="$t(`footer.row4${index}ListImageText${i}`)">       
                 <template v-if="$t(`footer.row4${index}ListImage${i}`).length > 0 && $t(`footer.row4${index}ListImage${i}`) != 'undefined'">
                   <NuxtImg :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" :title="$t(`footer.row4${index}ListImageText${i}`)" :alt="$t(`footer.row4${index}ListImageText${i}`)" width="81" height="35" />
                 </template>

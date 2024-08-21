@@ -67,7 +67,7 @@
                     </SfListItem>
                   </li>
                   <li>
-                    <NuxtLink :to="localePath(generateNewReturnLink(order))">
+                    <NuxtLink :to="localePath(generateNewReturnLink(order))" :aria-label="t('returns.return')">
                       <SfListItem v-if="orderGetters.isReturnable(order)" tag="button" class="text-left">
                         {{ t('returns.return') }}
                       </SfListItem>
@@ -128,7 +128,7 @@
                       </SfListItem>
                     </li>
                     <li>
-                      <NuxtLink :to="localePath(generateNewReturnLink(order))">
+                      <NuxtLink :to="localePath(generateNewReturnLink(order))" :aria-label="t('returns.return')">
                         <SfListItem v-if="orderGetters.isReturnable(order)" tag="button" class="text-left">
                           {{ t('returns.return') }}
                         </SfListItem>

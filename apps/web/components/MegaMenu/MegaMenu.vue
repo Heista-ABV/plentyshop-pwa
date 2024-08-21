@@ -21,7 +21,7 @@
 
             <NuxtLink
               :to="localePath(paths.home)"
-              aria-label="Sf Homepage"
+              aria-label="Kosmetikspiegel Startseite"
               class="w-full items-center  text-white  focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
             >
               <UiVsfLogo />
@@ -50,7 +50,7 @@
                     @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])"
                     :aria-label="categoryTreeGetters.getName(menuNode)"
                   >
-                    <NuxtLink :to="localePath(generateCategoryLink(menuNode))" class="h-full inline-flex items-center">
+                    <NuxtLink :to="localePath(generateCategoryLink(menuNode))" class="h-full inline-flex items-center" :aria-label="categoryTreeGetters.getName(menuNode)">
                       <span>{{ categoryTreeGetters.getName(menuNode) }}</span>
                       <SfIconChevronRight
                         v-if="menuNode.childCount > 0"
@@ -120,7 +120,7 @@
                     @click="openMenu([4])"
                     aria-label="Alle Kategorien-Menü öffnen"
                   >
-                    <SfLink :tag="NuxtLink"  :to="localePath($t('header.allMirrorsMenuURL'))" class="uppercase no-underline h-full inline-flex items-center font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white">                   
+                    <SfLink :tag="NuxtLink"  :to="localePath($t('header.allMirrorsMenuURL'))" :aria-label="$t('header.allMirrorsMenuText')" class="uppercase no-underline h-full inline-flex items-center font-bold typography-text-sm xl:typography-text-base text-secondary-700  hover:!text-primary-700 active:!text-primary-700 bg-white">                   
                       <span>{{ $t('header.allMirrorsMenuText') }}</span>
                       <SfIconChevronRight                     
                         class="rotate-90 text-secondary-700 group-hover:text-primary-700 group-active:text-primary-700 bg-white"
@@ -151,7 +151,7 @@
                                         <template v-for="index in 5">
                                             <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
                                             <li class="py-[5px] text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                                                <NuxtLink :tag="NuxtLink" :to="localePath($t('header.aMCat'+i+'Category'+index))" class="typography-text-md mb-2">
+                                                <NuxtLink :tag="NuxtLink" :to="localePath($t('header.aMCat'+i+'Category'+index))" class="typography-text-md mb-2" :aria-label="$t('header.aMCat'+i+'Text'+index)" >
                                                     <div class="imgRow flex flex-row gap-3 items-center">
                                                         <div class="imgWrapper text-center">
                                                         <NuxtImg
@@ -228,7 +228,7 @@
                 <li v-else>
                   <SfListItem size="lg" tag="button" type="button" class="!p-0">
                     <div class="flex items-center w-100">
-                      <NuxtLink class="flex-1 m-0 p-2 px-4 pr-0" :to="localePath(generateCategoryLink(node))" @click="close()">
+                      <NuxtLink class="flex-1 m-0 p-2 px-4 pr-0" :to="localePath(generateCategoryLink(node))" @click="close()" :aria-label="categoryTreeGetters.getName(node)">
                         <div class="flex items-center">
                           <p class="text-left">{{ categoryTreeGetters.getName(node) }}</p> 
                           <SfCounter class="ml-2">{{ categoryTreeGetters.getCount(node) }}</SfCounter>
@@ -244,7 +244,7 @@
               <li  class="mobileAllMirrorsDropper">
                 <div class="inline-flex items-center gap-2 w-full cursor-pointer hover:!text-primary-700 active:!text-primary-700 focus-visible:outline focus-visible:outline-offset focus-visible:relative focus-visible:z-10 px-4 py-2 mobileAllMirrorOpener">
                   <span @click="addClassToObject('openMenu', 'mobileAllMirrorsDropper')">
-                    <NuxtLink :tag="NuxtLink" :to="localePath($t('header.allMirrorsMenuURL'))">                    
+                    <NuxtLink :tag="NuxtLink" :to="localePath($t('header.allMirrorsMenuURL'))" :aria-label="$t('header.allMirrorsMenuText')">                    
                       <span>{{ $t('header.allMirrorsMenuText') }}</span>
                     </NuxtLink>
                   </span>
@@ -270,7 +270,7 @@
                           <template v-for="index in 5">
                             <template v-if="$t('header.aMCat'+i+'Text'+index).length > 0">
                               <li class="py-1 pr-4 pl-6 text-secondary-700 hover:!text-primary-700 active:!text-primary-700">
-                                <NuxtLink :tag="NuxtLink" :to="localePath($t('header.aMCat'+i+'Category'+index))" class="typography-text-sm mb-2">
+                                <NuxtLink :tag="NuxtLink" :to="localePath($t('header.aMCat'+i+'Category'+index))" class="typography-text-sm mb-2" :aria-label="$t('header.aMCat'+i+'Text'+index)">
                                   <div class="imgRow flex flex-row gap-3 items-center">
                                     <span>
                                       {{ $t('header.aMCat'+i+'Text'+index) }}
