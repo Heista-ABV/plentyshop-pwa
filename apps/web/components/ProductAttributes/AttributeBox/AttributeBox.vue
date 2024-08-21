@@ -20,10 +20,10 @@
 
         
         <div class="attrImgWrapper">
-          <img :src="'https://www.kosmetikspiegel.shop'+productAttributeGetters.getAttributeValueImageUrl(item)" class="attrImg">
+          <NuxtImg :src="'https://www.kosmetikspiegel.shop'+productAttributeGetters.getAttributeValueImageUrl(item)" class="attrImg" :alt="productAttributeGetters.getAttributeValueName(item)" :title="productAttributeGetters.getAttributeValueName(item)" />
           <template v-if="productAttributeGetters.getAttributeId(attribute) == 1">
             <div class="activeArrow">
-                <img ref="itemLazyImage" src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/Kosmetikspiegel_Golden_Tick.svg" :alt="productAttributeGetters.getAttributeValueName(item)" :title="productAttributeGetters.getAttributeValueName(item)" role="option" >                
+                <NuxtImg ref="itemLazyImage" src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/Kosmetikspiegel_Golden_Tick.svg" alt="Attribut aktiv" title="Attribut aktiv" role="option" />                
             </div>
             <div class="magnificationWrapper">
                 <div>

@@ -43,7 +43,7 @@
                v-if="$t(`footer.row3ListLink${i}`).length > 0" 
               class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900">       
               <template v-if="$t(`footer.row3ListImage${i}`).length > 0 && $t(`footer.row3ListImage${i}`) != 'undefined'">
-                <img :src="$t(`footer.row3ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row3ListImageText${i}`) }}" alt="{{ $t(`footer.row3ListImageText${i}`) }}">
+                <NuxtImg :src="$t(`footer.row3ListImage${i}`)" class="footerImg" :title="$t(`footer.row3ListImageText${i}`)" :alt="$t(`footer.row3ListImageText${i}`)"  height="35" />
               </template>
               <template v-else>
                 <span>
@@ -53,7 +53,7 @@
             </NuxtLink>
             <template v-else>
               <template v-if="$t(`footer.row3ListImage${i}`).length > 0 && $t(`footer.row3ListImage${i}`) != 'undefined'">
-                <img :src="$t(`footer.row3ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row3ListImageText${i}`) }}" alt="{{ $t(`footer.row3ListImageText${i}`) }}">
+                <NuxtImg :src="$t(`footer.row3ListImage${i}`)" class="footerImg" :title="$t(`footer.row3ListImageText${i}`)" :alt="$t(`footer.row3ListImageText${i}`)" height="35" />
               </template>
               <template v-else>
                 <span>
@@ -78,7 +78,7 @@
                 v-if="$t(`footer.row4${index}ListLink${i}`).length > 0" 
                 class="no-underline text-neutral-600 hover:underline hover:!text-neutral-900 active:underline active:!text-neutral-900">       
                 <template v-if="$t(`footer.row4${index}ListImage${i}`).length > 0 && $t(`footer.row4${index}ListImage${i}`) != 'undefined'">
-                  <img :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row4${index}ListImageText${i}`) }}" alt="{{ $t(`footer.row4${index}ListImageText${i}`) }}">
+                  <NuxtImg :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" :title="$t(`footer.row4${index}ListImageText${i}`)" :alt="$t(`footer.row4${index}ListImageText${i}`)" width="81" height="35" />
                 </template>
                 <template v-else>
                   <span>
@@ -88,7 +88,7 @@
               </NuxtLink>
               <template v-else>
                 <template v-if="$t(`footer.row4${index}ListImage${i}`).length > 0 && $t(`footer.row4${index}ListImage${i}`) != 'undefined'">
-                  <img :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" title="{{ $t(`footer.row4${index}ListImageText${i}`) }}" alt="{{ $t(`footer.row4${index}ListImageText${i}`) }}">
+                  <NuxtImg :src="$t(`footer.row4${index}ListImage${i}`)" class="footerImg" :title="$t(`footer.row4${index}ListImageText${i}`)" :alt="$t(`footer.row4${index}ListImageText${i}`)" width="81" height="35" />
                 </template>
                 <template v-else>
                   <span>

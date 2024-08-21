@@ -11,7 +11,6 @@
                     :src="'https://www.kosmetikspiegel.shop/documents/'+category.details[0].imagePath"
                     :alt="category.details[0].name"
                     class="headerIcon"
-                    loading="lazy" 
                   /> 
                 </div>
               </div>
@@ -53,18 +52,18 @@
     
   <div class="list-wrapper filterWrapper" id="filterCont" ref="filter" >
     <span class="hidden md:inline md:mr-5 filterOpenerText">
-      {{ $t('cat.filterText1') }}
+        {{ $t('cat.filterText1') }}
     </span>
     <button class="btn openFilter !flex md:!hidden w-100"  @click="open">
-      <img src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline">
-      <span>{{ $t('cat.filterBtnText') }}</span>
-    </button>
+        <NuxtImg src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline" alt="Artikel filtern" />
+        <span>{{ $t('cat.filterBtnText') }}</span>
+        </button>
     <button class="btn scrollFilter !hidden md:!flex w-100" @click="scrollToFilter">
-        <img src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline">
+        <NuxtImg src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/filter.svg" class="hidden md:inline" alt="Zu den Filtern scrollen" />
         <span>{{ $t('cat.filterBtnText') }}</span>
     </button>
     <span class="hidden lg:inline lg:ml-5 filterOpenerText">
-      {{ $t('cat.filterText2') }}
+        {{ $t('cat.filterText2') }}
     </span>
   </div>
 

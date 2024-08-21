@@ -7,8 +7,7 @@
                 <NuxtImg
                     :src="$t('homeTwo.heroSectionImage')"
                     :alt="$t('homeTwo.categoryText1')"
-                    class="img-fluid w-full"
-                    loading="lazy" 
+                    class="img-fluid w-full"                   
                 />
                 <div class="heroSectionContent">
                     <h1 class="text-left text-white font-bold leading-loose">
@@ -27,7 +26,7 @@
                             <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory1'))" class="imageBox w-100">
                                 <div> 
                                     <div class="imgWrapper">
-                                        <img :src="$t('homeTwo.newGallerImage1')" :alt="$t('homeTwo.newGallerName1')" :title="$t('homeTwo.newGallerName1')">
+                                        <NuxtImg :src="$t('homeTwo.newGallerImage1')" :alt="$t('homeTwo.newGallerName1')" :title="$t('homeTwo.newGallerName1')" loading="lazy" />
                                         <div class="h2 text-left contentWrapper">
                                             <p>
                                                 {{ $t('homeTwo.newGallerName1') }}
@@ -43,7 +42,7 @@
                             <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory2'))" class="imageBox w-100">
                                 <div> 
                                     <div class="imgWrapper">
-                                        <img :src="$t('homeTwo.newGallerImage2')" :alt="$t('homeTwo.newGallerName2')" :title="$t('homeTwo.newGallerName2')">
+                                        <NuxtImg :src="$t('homeTwo.newGallerImage2')" :alt="$t('homeTwo.newGallerName2')" :title="$t('homeTwo.newGallerName2')" loading="lazy" />
                                         <div class="h2 text-left contentWrapper">
                                             <p>
                                                 {{ $t('homeTwo.newGallerName2') }}
@@ -57,7 +56,7 @@
                             <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory3'))" class="imageBox w-100">
                                 <div> 
                                     <div class="imgWrapper relative">
-                                        <img :src="$t('homeTwo.newGallerImage3')" :alt="$t('homeTwo.newGallerName3')" :title="$t('homeTwo.newGallerName3')">
+                                        <NuxtImg :src="$t('homeTwo.newGallerImage3')" :alt="$t('homeTwo.newGallerName3')" :title="$t('homeTwo.newGallerName3')" loading="lazy" />
                                         <div class="h2 text-left contentWrapper">
                                             <p>
                                                 {{ $t('homeTwo.newGallerName3') }}
@@ -82,7 +81,7 @@
                 <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory1'))" class="imageBox w-100">
                   <div> 
                     <div class="imgWrapper">
-                      <img :src="$t('homeTwo.galleryImage1')" :alt="$t('homeTwo.galleryName1')" :title="$t('homeTwo.galleryName1')">
+                      <NuxtImg :src="$t('homeTwo.galleryImage1')" :alt="$t('homeTwo.galleryName1')" :title="$t('homeTwo.galleryName1')" />
                     </div>
                     <div class="h2 text-center">
                       <p>
@@ -101,7 +100,7 @@
                 <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory2'))" class="imageBox w-100">
                   <div>
                     <div class="imgWrapper">
-                      <img :src="$t('homeTwo.galleryImage2')" :alt="$t('homeTwo.galleryName2')" :title="$t('homeTwo.galleryName2')">
+                      <NuxtImg :src="$t('homeTwo.galleryImage2')" :alt="$t('homeTwo.galleryName2')" :title="$t('homeTwo.galleryName2')" />
                     </div>
                     <div class="h2 text-center">
                       <p>
@@ -124,7 +123,7 @@
                     <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory3'))" class="imageBox w-100">
                       <div>
                         <div class="imgWrapper">
-                          <img :src="$t('homeTwo.galleryImage3')" :alt="$t('homeTwo.galleryName3')" :title="$t('homeTwo.galleryName3')">
+                          <NuxtImg :src="$t('homeTwo.galleryImage3')" :alt="$t('homeTwo.galleryName3')" :title="$t('homeTwo.galleryName3')" />
                         </div>
                         <div class="h2 text-center">
                           <p>
@@ -143,7 +142,7 @@
                     <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory4'))" class="imageBox w-100">
                       <div>
                         <div class="imgWrapper">
-                          <img :src="$t('homeTwo.galleryImage4')" :alt="$t('homeTwo.galleryName4')" :title="$t('homeTwo.galleryName4')">
+                          <NuxtImg :src="$t('homeTwo.galleryImage4')" :alt="$t('homeTwo.galleryName4')" :title="$t('homeTwo.galleryName4')" />
                         </div>
                         <div class="h2 text-center">
                           <p>
@@ -164,7 +163,7 @@
                       <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory5'))" class="imageBox w-100">
                         <div >
                           <div class="imgWrapper">
-                            <img :src="$t('homeTwo.galleryImage5')" :alt="$t('homeTwo.galleryName5')" :title="$t('homeTwo.galleryName5')">
+                            <NuxtImg :src="$t('homeTwo.galleryImage5')" :alt="$t('homeTwo.galleryName5')" :title="$t('homeTwo.galleryName5')" />
                           </div>
                           <div class="h2 text-center">
                             <p>
@@ -183,7 +182,7 @@
                       <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.galleryCategory6'))" class="imageBox w-100">
                         <div>
                           <div class="imgWrapper">
-                            <img :src="$t('homeTwo.galleryImage6')" :alt="$t('homeTwo.galleryName6')" :title="$t('homeTwo.galleryName6')">
+                            <NuxtImg :src="$t('homeTwo.galleryImage6')" :alt="$t('homeTwo.galleryName6')" :title="$t('homeTwo.galleryName6')" />
                           </div>
                           <div class="h2 text-center">
                             <p>

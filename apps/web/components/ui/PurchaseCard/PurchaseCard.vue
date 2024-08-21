@@ -44,7 +44,7 @@
                           <div class="textProperty propWrapper textProp">
                               <template v-if="prop.names.description.length > 0">
                                   <div class="iconWrapper">
-                                      <img  class="propIcon img-fluid"  :src="prop.names.description" :alt="prop.names.name" :title="prop.names.name"  >
+                                      <NuxtImg  class="propIcon img-fluid"  :src="prop.names.description" :alt="prop.names.name" :title="prop.names.name" loading="lazy" />
                                   </div>
                               </template>
                               <div class="textWrapper">
@@ -62,7 +62,7 @@
                           <div class="numberProperty propWrapper intProp">
                               <template v-if="prop.names.description.length > 0">
                                   <div class="iconWrapper">
-                                      <img  class="propIcon img-fluid"  :src="prop.names.description" :alt="prop.names.name" :title="prop.names.name"  >
+                                      <NuxtImg  class="propIcon img-fluid"  :src="prop.names.description" :alt="prop.names.name" :title="prop.names.name" loading="lazy"  />
                                   </div>
                               </template>
                               <div class="textWrapper">
@@ -82,7 +82,7 @@
                           <div class="iconProperty propWrapper selectionProp">
                               <template v-if="prop.values.description.length > 0">
                                   <div class="iconWrapper">
-                                      <img class="propIcon img-fluid"  :src="prop.values.description" :alt="prop.values.value" :title="prop.values.value"  >
+                                      <NuxtImg class="propIcon img-fluid"  :src="prop.values.description" :alt="prop.values.value" :title="prop.values.value" loading="lazy"  />
                                   </div>
                               </template>
                               <div class="textWrapper">
@@ -96,10 +96,10 @@
                           <div class="iconProperty propWrapper  " :class="{'openInfoModal': prop.id == 87 }" :data-modaltitle="'modalTitleVP' + prop.id " :data-modaltext="'modalTextVP' + prop.id">
                               <template v-if="prop.names.description.length > 0">
                                   <div class="iconWrapper">
-                                      <img class="propIcon img-fluid"  :src="prop.names.description" :alt="prop.names.name" :title="prop.names.name"  >
+                                      <NuxtImg class="propIcon img-fluid"  :src="prop.names.description" :alt="prop.names.name" :title="prop.names.name" loading="lazy"  />
                                       <!--
                                       <span class="propInfo" v-if="prop.id == 87">                                                    
-                                          <img  class=""  src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/Kosmetikspiegel_Attributeinfo.svg" :alt="prop.values.value" :title="prop.values.value"  >
+                                          <NuxtImg  class=""  src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Icons/Kosmetikspiegel_Attributeinfo.svg" :alt="prop.values.value" :title="prop.values.value"  />
                                       </span>
                                       -->
                                   </div> 
