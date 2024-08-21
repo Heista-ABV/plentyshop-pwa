@@ -6,7 +6,7 @@
             <div class="relative">
                 <NuxtImg
                     :src="$t('homeTwo.heroSectionImage')"
-                    :alt="$t('homeTwo.categoryText1')"
+                    alt="Kaufen Sie hochwertige Kosmetikspiegel bei Kosmetikspiegel.shop"
                     class="img-fluid w-full"                   
                 />
                 <div class="heroSectionContent">
@@ -26,7 +26,7 @@
                             <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory1'))" class="imageBox w-100" :aria-label="$t('homeTwo.newGallerName1')">
                                 <div> 
                                     <div class="imgWrapper">
-                                        <NuxtImg :src="$t('homeTwo.newGallerImage1')" :alt="$t('homeTwo.newGallerName1')" :title="$t('homeTwo.newGallerName1')" loading="lazy" />
+                                        <NuxtImg :src="$t('homeTwo.newGallerImage1')" :alt="'Durchsuchen Sie unser Angebot von '+$t('homeTwo.newGallerName1')" :title="'Durchsuchen Sie unser Angebot von '+$t('homeTwo.newGallerName1')" loading="lazy" />
                                         <div class="h2 text-left contentWrapper">
                                             <p>
                                                 {{ $t('homeTwo.newGallerName1') }}
@@ -42,7 +42,7 @@
                             <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory2'))" class="imageBox w-100" :aria-label="$t('homeTwo.newGallerName2')">
                                 <div> 
                                     <div class="imgWrapper">
-                                        <NuxtImg :src="$t('homeTwo.newGallerImage2')" :alt="$t('homeTwo.newGallerName2')" :title="$t('homeTwo.newGallerName2')" loading="lazy" />
+                                        <NuxtImg :src="$t('homeTwo.newGallerImage2')" :alt="'Durchsuchen Sie unser Angebot von '+$t('homeTwo.newGallerName2')" :title="'Durchsuchen Sie unser Angebot von '+$t('homeTwo.newGallerName2')" loading="lazy" />
                                         <div class="h2 text-left contentWrapper">
                                             <p>
                                                 {{ $t('homeTwo.newGallerName2') }}
@@ -56,7 +56,7 @@
                             <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.newGallerCategory3'))" class="imageBox w-100" :aria-label="$t('homeTwo.newGallerName3')">
                                 <div> 
                                     <div class="imgWrapper relative">
-                                        <NuxtImg :src="$t('homeTwo.newGallerImage3')" :alt="$t('homeTwo.newGallerName3')" :title="$t('homeTwo.newGallerName3')" loading="lazy" />
+                                        <NuxtImg :src="$t('homeTwo.newGallerImage3')" :alt="'Durchsuchen Sie unser Angebot von '+$t('homeTwo.newGallerName3')" :title="'Durchsuchen Sie unser Angebot von '+$t('homeTwo.newGallerName3')" loading="lazy" />
                                         <div class="h2 text-left contentWrapper">
                                             <p>
                                                 {{ $t('homeTwo.newGallerName3') }}
@@ -248,7 +248,7 @@
           <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat1'))" :aria-label="$t('homeTwo.categoryText1')">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage1')"
-                  :alt="$t('homeTwo.categoryText1')"
+                  alt="Durchsuchen Sie unser Angebot von Wand-Kosmetikspiegeln"
                   class="img-fluid"
                   loading="lazy" 
                 />
@@ -281,7 +281,7 @@
           <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat2'))" :aria-label="$t('homeTwo.categoryText2')">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage2')"
-                  :alt="$t('homeTwo.categoryText2')"
+                   alt="Durchsuchen Sie unser Angebot von Stand-Kosmetikspiegeln"
                   class="img-fluid"
                   loading="lazy"
                 />
@@ -314,7 +314,7 @@
           <NuxtLink :tag="NuxtLink" :to="localePath($t('homeTwo.categoryCat3'))" :aria-label="$t('homeTwo.categoryText3')">
             <NuxtImg
                   :src="$t('homeTwo.categoryImage3')"
-                  :alt="$t('homeTwo.categoryText3')"
+                   alt="Durchsuchen Sie unser Angebot von Klebespiegeln"
                   class="img-fluid"
                   loading="lazy"
                 />
