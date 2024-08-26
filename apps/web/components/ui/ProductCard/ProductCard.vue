@@ -46,7 +46,7 @@
                 :aria-label="name"
             >
                 <NuxtImg
-                :src="imageUrl"
+                :src="getImgGallery[0].urlSecondPreview"
                 :alt="imageAlt"
                 :loading="lazy && !priority ? 'lazy' : 'eager'"
                 :fetchpriority="priority ? 'high' : 'auto'"
@@ -63,7 +63,7 @@
                     <template v-if="index > 0 && index < 5">
                         <SfLink :tag="NuxtLink" rel="preload" :to="productPath" as="image" :class="'catImgFS catImg'+index" :aria-label="name">
                             <NuxtImg
-                                :src="thumb.urlPreview"
+                                :src="thumb.urlSecondPreview"
                                 :alt="imageAlt"
                                 :loading="lazy && !priority ? 'lazy' : 'eager'"
                                 :fetchpriority="priority ? 'high' : 'auto'"

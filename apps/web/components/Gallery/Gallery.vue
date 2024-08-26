@@ -14,7 +14,7 @@
         @on-scroll="onScroll"
       >
         <div
-          v-for="({ url, cleanImageName, width, height }, index) in images"
+          v-for="({ urlMiddle, cleanImageName, width, height }, index) in images"
           :key="`image-${index}-thumbnail`"
           class="w-full h-full relative flex items-center justify-center snap-center snap-always basis-full shrink-0 grow"
         >
@@ -25,7 +25,7 @@
             fit="fill"
             class="object-contain h-full w-full"
             :quality="80"
-            :src="url"
+            :src="urlMiddle"
             sizes="2xs:100vw, md:700px"
             draggable="false"
             :loading="index === 0 ? 'eager' : 'lazy'"
