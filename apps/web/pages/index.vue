@@ -249,7 +249,7 @@
             <NuxtImg
                   :src="$t('homeTwo.categoryImage1')"
                   alt="Durchsuchen Sie unser Angebot von Wand-Kosmetikspiegeln"
-                  class="img-fluid"
+                  class="img-fluid w-full"
                   loading="lazy" 
                 />
             <div class="captionWrapper">
@@ -282,7 +282,7 @@
             <NuxtImg
                   :src="$t('homeTwo.categoryImage2')"
                    alt="Durchsuchen Sie unser Angebot von Stand-Kosmetikspiegeln"
-                  class="img-fluid"
+                  class="img-fluid w-full"
                   loading="lazy"
                 />
             <div class="captionWrapper">
@@ -315,7 +315,7 @@
             <NuxtImg
                   :src="$t('homeTwo.categoryImage3')"
                    alt="Durchsuchen Sie unser Angebot von Klebespiegeln"
-                  class="img-fluid"
+                  class="img-fluid w-full"
                   loading="lazy"
                 />
             <div class="captionWrapper">
