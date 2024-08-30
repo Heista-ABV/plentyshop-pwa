@@ -10,7 +10,7 @@
     :class="{ 'p-[0.9rem]': !isCloseButton }"    
     :disabled="wishlistLoading"
     @click="onWishlistClick"
-    class="hover:!bg-primary-700 hover:!text-white active:!bg-primary-700 active:!text-white"
+    class="hover:!bg-primary-700 hover:!text-white active:!bg-primary-700 active:!text-white z-[20]"
     data-testid="wishlist-trigger"
   >
     <SfLoaderCircular v-if="actionLoading" class="flex justify-center items-center" size="sm" />

@@ -44,7 +44,7 @@
                 as="image"
                 class="catImg0"
                 :aria-label="name"
-            >
+            >   
                 <NuxtImg
                 :src="getImgGallery[0].urlSecondPreview"
                 :alt="imageAlt"
@@ -111,7 +111,12 @@
     <div class="categoryContentWrapper ">
         <div class="catContentMid hidden md:flex justify-center align-items-center" v-if="manufName">        
             <SfLink :tag="NuxtLink" :to="productPath" class="no-underline w-full text-center" variant="secondary" :aria-label="name">
-                {{ manufName }} {{ getVarPropName }}   
+                <template v-if="getVarPropName && getVarPropName.length > 0">
+                    {{ manufName }} {{ getVarPropName }}   
+                </template>
+                <template v-else> 
+                    {{ manufName }} Kosmetikspiegel
+                </template>
             </SfLink> 
         </div>  
         <div class="catMainContent">
@@ -297,7 +302,7 @@ const getImgGallery: any = computed(() => {
     return getImages;
 });
 
-
+const { addModernImageExtension } = useModernImage();
 
 const getVarPropName = computed(() => {
   var getProp = productGetters.getPropertyById(93, product);

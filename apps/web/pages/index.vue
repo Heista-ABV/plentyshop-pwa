@@ -4,11 +4,31 @@
         <!--<div class="heroSectionGradient hidden md:block"></div>-->
         <div class=" max-w-screen-3xl mx-auto  3xl:px-10">
             <div class="relative">
+                <!--
+                <NuxtPicture format="avif,webp" src="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/img/Kosmetikspiegel_Handspiegel_kleiner.avif"  :imgAttrs="{alt:'Kaufen Sie hochwertige Kosmetikspiegel bei Kosmetikspiegel.shop', class:'img-fluid w-full'}"     />
+                -->                
+                <picture>
+                    <source
+                        type="image/avif"
+                        srcset="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/img/Kosmetikspiegel_Handspiegel_kleiner.avif"
+                    />
+                    <source
+                        type="image/webp"
+                        srcset="https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/img/Kosmetikspiegel_Handspiegel_kleiner.webp"
+                    />
+                    <img
+                        :srcset="$t('homeTwo.heroSectionImage')"
+                        alt="Kaufen Sie hochwertige Kosmetikspiegel bei Kosmetikspiegel.shop"
+                        class="img-fluid w-full"    
+                    />
+                </picture>
+                <!--
                 <NuxtImg
                     :src="$t('homeTwo.heroSectionImage')"
                     alt="Kaufen Sie hochwertige Kosmetikspiegel bei Kosmetikspiegel.shop"
                     class="img-fluid w-full"                   
-                />
+                />         
+                -->       
                 <div class="heroSectionContent">
                     <h1 class="text-left text-white font-bold leading-loose">
                         {{ $t('homeTwo.heroSectionHeading') }}
