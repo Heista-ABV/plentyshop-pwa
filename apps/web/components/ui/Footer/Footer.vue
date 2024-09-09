@@ -108,9 +108,7 @@
     <div  data-testid="section-bottom">
       <div class="justify-center px-4 py-[5px] md:flex max-w-screen-3xl mx-auto text-center">
         <p class="typography-text-xs">       
-          <span>{{ $t('asterisk') }}</span>
-          <span >{{ $t('itemInclVAT') }}</span>
-          <span>{{ $t('excludedShipping') }}</span>
+            {{ $t('asterisk') }} {{ $t('itemInclVAT') }} {{ $t('excludedShipping') }}
         </p>
         <p class="flex items-center justify-center leading-5 text-center typography-text-xs md:ml-6">
           {{ companyName }}
