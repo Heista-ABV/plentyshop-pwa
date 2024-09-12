@@ -4,7 +4,7 @@
       <header ref="referenceRef" class="relative headerWrapper">
        
         <div
-          class="flex justify-center md:justify-between  items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10 "
+          class="flex justify-center lg:justify-between  items-center flex-wrap md:flex-nowrap w-full h-full border-0 border-neutral-200 md:h-20 md:z-10 "
           data-testid="navbar-top"
         >
           <div class="flex items-center py-[5px] md:py-[15px]">
@@ -301,7 +301,6 @@
 import { type CategoryTreeItem, categoryTreeGetters } from '@plentymarkets/shop-api';
 import {
     SfIconClose,
-    SfButton,
     SfDrawer,
     SfListItem,
     SfIconChevronRight,

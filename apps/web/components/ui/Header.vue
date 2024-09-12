@@ -4,7 +4,7 @@
             <NuxtLazyHydrate when-visible>
                 <!--  Search Slot
                 <UiSearch class="hidden md:block flex-1" />-->
-                <nav class=" ml-4 flex flex-row flex-nowrap topControlWrapper justify-end" v-if="route.fullPath != '/checkout'">                   
+                <nav class=" ml-4 hidden lg:flex flex-row flex-nowrap topControlWrapper justify-end" v-if="route.fullPath != '/checkout'">                   
                     <UiButton
                         class="group hidden 2xs:inline-flex relative text-secondary-700 hover:text-secondary-700 active:text-secondary-700 hover:bg-white active:bg-white mr-1 -ml-0.5 rounded-md heartbeat"
                         :tag="NuxtLink"

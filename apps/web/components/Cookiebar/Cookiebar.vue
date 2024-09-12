@@ -165,7 +165,7 @@
 </template>
 
 <script setup lang="ts">
-import { SfLink, SfButton, SfCheckbox, SfIconLock, SfIconBase, SfTooltip } from '@storefront-ui/vue';
+import { SfLink, SfCheckbox, SfIconLock, SfIconBase, SfTooltip } from '@storefront-ui/vue';
 import { defaults } from '~/composables';
 import { Cookie, CookieGroup } from '~/configuration/cookie.config';
 import { paths } from '~/utils/paths';
