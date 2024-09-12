@@ -385,11 +385,13 @@ watch(
   },
   { immediate: true },
 );
+const { showNewsletter } = useNewsletter();
 const displayDetails = computed(() => {
   return [
     {
       image: `/images/${viewport.breakpoint.value}/homepage-display-1.avif`,
       title: t('homepage.displayDetails.detail1.title'),
+      alt: t('homepage.displayDetails.detail1.alt'),
       subtitle: t('homepage.displayDetails.detail1.subtitle'),
       description: t('homepage.displayDetails.detail1.description'),
       buttonText: t('homepage.displayDetails.detail1.buttonText'),
@@ -416,6 +418,7 @@ const displayDetails = computed(() => {
     {
       image: `/images/${viewport.breakpoint.value}/homepage-display-2.avif`,
       title: t('homepage.displayDetails.detail2.title'),
+      alt: t('homepage.displayDetails.detail2.alt'),
       subtitle: t('homepage.displayDetails.detail2.subtitle'),
       description: t('homepage.displayDetails.detail2.description'),
       buttonText: t('homepage.displayDetails.detail2.buttonText'),
@@ -439,6 +442,7 @@ const displayDetails = computed(() => {
     {
       image: `/images/${viewport.breakpoint.value}/homepage-display-3.avif`,
       title: t('homepage.displayDetails.detail3.title'),
+      alt: t('homepage.displayDetails.detail3.alt'),
       subtitle: t('homepage.displayDetails.detail3.subtitle'),
       description: t('homepage.displayDetails.detail3.description'),
       buttonText: t('homepage.displayDetails.detail3.buttonText'),
@@ -463,6 +467,7 @@ const displayDetails = computed(() => {
 });
 const headPhones = {
   image: `/images/${viewport.breakpoint.value}/homepage-hero-headphones.avif`,
+  alt: t('homepage.headPhones'),
   sizes: {
     lg: {
       width: '800',
@@ -480,6 +485,7 @@ const headPhones = {
 };
 const background = {
   image: `/images/${viewport.breakpoint.value}/homepage-hero-bg.avif`,
+  alt: t('homepage.background'),
   sizes: {
     lg: {
       width: '4000',
@@ -498,14 +504,17 @@ const background = {
 const categories = [
   {
     title: t('homepage.women'),
+    ariaLabel: t('homepage.womenHomepageCategory'),
     image: '/images/homepage-women-category.avif',
   },
   {
     title: t('homepage.men'),
+    ariaLabel: t('homepage.menHomepageCategory'),
     image: '/images/homepage-men-category.avif',
   },
   {
     title: t('homepage.kid'),
+    ariaLabel: t('homepage.kidHomepageCategory'),
     image: '/images/homepage-kid-category.avif',
   },
 ];

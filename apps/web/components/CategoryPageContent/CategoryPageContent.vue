@@ -99,23 +99,32 @@
           class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6 lg:grid-cols-3 2xl:grid-cols-4 mb-10 md:mb-5"
           data-testid="category-grid"
         >
-          <NuxtLazyHydrate when-visible v-for="(product, index) in products" :key="productGetters.getId(product)">
+          <NuxtLazyHydrate when-visible v-for="(product, index) in products" :key="index">
             <UiProductCard
-              :product="product"
-              :name="productGetters.getName(product) ?? ''"
-              :rating-count="productGetters.getTotalReviews(product)"
-              :rating="productGetters.getAverageRating(product, 'half')"
-              :price="actualPrice(product)"
-              :image-url="addModernImageExtension(productGetters.getCoverImagePreview(product))"
-              :image-alt="productGetters.getName(product) ?? ''"
-              :image-height="productGetters.getImageHeight(product) ?? 600"
-              :image-width="productGetters.getImageWidth(product) ?? 600"
-              :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
-              :priority="index < 5"
-              :base-price="productGetters.getDefaultBasePrice(product)"
-              :unit-content="productGetters.getUnitContent(product)"
-              :unit-name="productGetters.getUnitName(product)"
-              :show-base-price="productGetters.showPricePerUnit(product)"
+                :product="product"
+                :name="productGetters.getName(product) ?? ''"
+                :rating-count="productGetters.getTotalReviews(product)"
+                :rating="productGetters.getAverageRating(product, 'half')"
+                :price="actualPrice(product)"
+                :image-url="addModernImageExtension(productGetters.getCoverImagePreview(product))"
+                :image-alt="
+                    productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+                    productGetters.getName(product) ||
+                    ''
+                "
+                :image-title="
+                    productImageGetters.getImageName(productImageGetters.getFirstImage(product)) ||
+                    productGetters.getName(product) ||
+                    ''
+                "
+                :image-height="productGetters.getImageHeight(product) || 600"
+                :image-width="productGetters.getImageWidth(product) || 600"
+                :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
+                :priority="index < 5"
+                :base-price="productGetters.getDefaultBasePrice(product)"
+                :unit-content="productGetters.getUnitContent(product)"
+                :unit-name="productGetters.getUnitName(product)"
+                :show-base-price="productGetters.showPricePerUnit(product)"
             />
           </NuxtLazyHydrate>
         </section>
@@ -152,8 +161,8 @@
 
 <script setup lang="ts">
 import type { Product, Category } from '@plentymarkets/shop-api';
-import { productGetters, categoryGetters } from '@plentymarkets/shop-api';
-import { SfButton, SfIconTune, useDisclosure, SfIconArrowBack } from '@storefront-ui/vue';
+import { productGetters, productImageGetters, categoryGetters } from '@plentymarkets/shop-api';
+import {  SfIconTune, useDisclosure, SfIconArrowBack } from '@storefront-ui/vue';
 import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 import $ from "jquery";
 // import { onMounted, ref } from 'vue';
@@ -213,7 +222,7 @@ function scrollToFilter() {
 
 const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 1));
 
-if (viewport.isLessThan('md')) close;
+if (viewport.isLessThan('md')) close();
 
 const actualPrice = (product: Product): number => {
   const price = productGetters.getPrice(product);

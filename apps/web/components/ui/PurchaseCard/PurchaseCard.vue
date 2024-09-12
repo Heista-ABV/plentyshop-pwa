@@ -204,7 +204,19 @@
         </div>
         
        
-        <PayPalExpressButton v-if="getCombination()" type="SingleItem" @on-click="paypalHandleAddToCart" />
+        <Suspense>
+            <template #default>
+                <PayPalExpressButton
+                    v-if="getCombination()"
+                    class="mt-4"
+                    type="SingleItem"
+                    @on-click="paypalHandleAddToCart"
+                />
+            </template>
+            <template #fallback>
+                <SfLoaderCircular class="flex justify-center items-center" size="sm" />
+            </template>
+        </Suspense>
         
         -->
       </div>

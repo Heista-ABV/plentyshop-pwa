@@ -13,8 +13,6 @@ export const appConfiguration = {
         { property: 'og:image', content: process.env.OGIMAGE || 'https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/favicon.png' },
         { property: 'og:type', content: process.env.OGTYPE || 'website' },
         { property: 'og:url', content: process.env.OGURL || '' },
-        { property: 'og:site_name', content: process.env.OGSITENAME || 'kosmetikspiegel.shop' },
-        { property: 'og:description', content: process.env.OGDESCRIPTION || 'kosmetikspiegel.shop' },
     ],
     link: [
       { rel: 'icon', href: 'https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/favicon.png' },

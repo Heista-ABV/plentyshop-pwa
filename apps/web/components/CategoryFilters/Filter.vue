@@ -33,9 +33,11 @@
       <div class="filterContent  py-3" v-if="facetGetters.getType(facet) === 'price'">
         <form @submit.prevent="updatePriceFilter" class="px-2">
           <div class="mb-3">
+            <UiFormLabel class="text-start">{{ $t('min') }}</UiFormLabel>
             <SfInput v-model="minPrice" :placeholder="$t('min')" id="min" />
           </div>
           <div class="mb-3">
+            <UiFormLabel class="text-start">{{ $t('max') }}</UiFormLabel>
             <SfInput v-model="maxPrice" :placeholder="$t('max')" id="max" />
           </div>
           <div class="flex">

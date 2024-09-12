@@ -1,7 +1,7 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "types": ["vitest/globals", "@vite-pwa/nuxt","jquery"],
+    "types": ["vitest/globals", "@vite-pwa/nuxt", "jquery", "@types/applepayjs"],
     "verbatimModuleSyntax": false,
   },
   "exclude": ["node_modules", "mocks", "__tests__", "cypress.config.ts"],

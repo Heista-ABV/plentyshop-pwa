@@ -113,7 +113,7 @@
         <div class="w-full flex flex-col xl:flex-row mt-5 gap-2 mb-10 lg:mb-2">
           <div class="flex-1">
             <UiButton
-              class="w-full"
+              class="w-full h-12"
               :aria-disabled="false"
               type="button"
               :aria-label="$t('CookieBar.Accept All')"
@@ -125,7 +125,7 @@
           </div>
           <div class="flex-1">
             <UiButton
-              class="w-full"
+              class="w-full h-12"
               :aria-disabled="false"
               type="button"
               :aria-label="$t('CookieBar.Reject All')"
@@ -137,7 +137,7 @@
           <div class="flex-1">
             <UiButton
               variant="secondary"
-              class="w-full"
+              class="w-full h-12"
               :aria-disabled="false"
               type="button"
               :aria-label="$t('CookieBar.Accept Selection')"

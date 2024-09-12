@@ -3,38 +3,56 @@
     <template v-if="maxItemCount && items">
       <template  v-if="maxItemCount == 3">
         <UiProductCard
-          v-for="product in items.slice(0, maxItemCount)"
-          :product="product"
-          :key="productGetters.getId(product)"
-          class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[33.33%]"
-          :name="productGetters.getName(product)"
-          :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
-          :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
-          :image-alt="productGetters.getName(product)"
-          :image-height="productGetters.getImageHeight(product) ?? 600"
-          :image-width="productGetters.getImageWidth(product) ?? 600"
-          :price="productGetters.getSpecialPrice(product)"
-          :rating-count="productGetters.getTotalReviews(product)"
-          :rating="productGetters.getAverageRating(product, 'half')"
-          is-from-slider
+            v-for="product in items.slice(0, maxItemCount)"
+            :product="product"
+            :key="productGetters.getId(product)"
+            class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[33.33%]"
+            :name="productGetters.getName(product)"
+            :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
+            :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
+            :image-alt="
+                productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+                productGetters.getName(product) ||
+                ''
+            "
+            :image-title="
+                productImageGetters.getImageName(productImageGetters.getFirstImage(product)) ||
+                productGetters.getName(product) ||
+                ''
+            "
+            :image-height="productGetters.getImageHeight(product) || 600"
+            :image-width="productGetters.getImageWidth(product) || 600"
+            :price="productGetters.getSpecialPrice(product)"
+            :rating-count="productGetters.getTotalReviews(product)"
+            :rating="productGetters.getAverageRating(product, 'half')"
+            is-from-slider
         />
       </template>
       <template v-else>
         <UiProductCard
-          v-for="product in items.slice(0, maxItemCount)"
-          :product="product"
-          :key="productGetters.getId(product)"
-          class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[25%]"
-          :name="productGetters.getName(product)"
-          :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
-          :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
-          :image-alt="productGetters.getName(product)"
-          :image-height="productGetters.getImageHeight(product) ?? 600"
-          :image-width="productGetters.getImageWidth(product) ?? 600"
-          :price="productGetters.getSpecialPrice(product)"
-          :rating-count="productGetters.getTotalReviews(product)"
-          :rating="productGetters.getAverageRating(product, 'half')"
-          is-from-slider
+            v-for="product in items.slice(0, maxItemCount)"
+            :product="product"
+            :key="productGetters.getId(product)"
+            class="max-w-[100%] w-[100%] sm:max-w-[50%] lg:max-w-[25%]"
+            :name="productGetters.getName(product)"
+            :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
+            :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
+            :image-alt="
+                productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+                productGetters.getName(product) ||
+                ''
+                "
+                :image-title="
+                    productImageGetters.getImageName(productImageGetters.getFirstImage(product)) ||
+                    productGetters.getName(product) ||
+                    ''
+                "
+            :image-height="productGetters.getImageHeight(product) || 600"
+            :image-width="productGetters.getImageWidth(product) || 600"
+            :price="productGetters.getSpecialPrice(product)"
+            :rating-count="productGetters.getTotalReviews(product)"
+            :rating="productGetters.getAverageRating(product, 'half')"
+            is-from-slider
         />
       </template>
     </template>
@@ -47,9 +65,18 @@
         :name="productGetters.getName(product)"
         :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
         :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
-        :image-alt="productGetters.getName(product)"
-        :image-height="productGetters.getImageHeight(product) ?? 600"
-        :image-width="productGetters.getImageWidth(product) ?? 600"
+        :image-alt="
+            productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+            productGetters.getName(product) ||
+            ''
+        "
+        :image-title="
+            productImageGetters.getImageName(productImageGetters.getFirstImage(product)) ||
+            productGetters.getName(product) ||
+            ''
+        "
+        :image-height="productGetters.getImageHeight(product) || 600"
+        :image-width="productGetters.getImageWidth(product) || 600"
         :price="productGetters.getSpecialPrice(product)"
         :rating-count="productGetters.getTotalReviews(product)"
         :rating="productGetters.getAverageRating(product, 'half')"
@@ -67,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters } from '@plentymarkets/shop-api';
+import { productGetters, productImageGetters } from '@plentymarkets/shop-api';
 import { SfScrollable } from '@storefront-ui/vue';
 import type { ProductSliderProps } from '~/components/ProductSlider/types';
 

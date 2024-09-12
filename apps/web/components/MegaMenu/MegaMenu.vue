@@ -316,7 +316,8 @@ import { unrefElement } from '@vueuse/core';
 import type { MegaMenuProps } from '~/components/MegaMenu/types';
 import { paths } from '~/utils/paths';
 import $ from "jquery";
- 
+
+const { t } = useI18n(); 
 const viewport = useViewport();
 const localePath = useLocalePath();
 const localeRoute = useLocaleRoute();
