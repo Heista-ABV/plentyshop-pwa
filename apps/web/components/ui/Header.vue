@@ -53,7 +53,9 @@
             ><SfIconTune />
         </UiButton>
     </MegaMenu>    
+    <!--
     <UiNotifications />
+    -->
     <UiModal
         v-if="viewport.isGreaterOrEquals('md') && isAuthenticationOpen"
         v-model="isAuthenticationOpen"
