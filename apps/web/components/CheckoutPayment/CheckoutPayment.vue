@@ -8,12 +8,11 @@
           name="payment_method"
           class="peer sr-only paymentPeer"
           :value="id"
-          :data-testid="'payment-method-' + id"
-          :checked="id === selectedId"
+          :data-testid="`payment-method-${id}`"
+          :checked="id === cart.methodOfPaymentId"
           :disabled="!isSelectable || disabled"
-          @change="$emit('update:activePayment', id)"
-        /> 
-        
+          @change="emit('update:activePayment', id)"
+        />
         <span
           class="h-20 paymentSelect flex flex -row items-center group justify-start py-4 px-4 cursor-pointer rounded-md border border-neutral-200 -outline-offset-2 hover:border-primary-700 hover:bg-white hover:text-primary-200 peer-focus:border-primary-700 peer-focus:bg-primary-700 peer-focus:text-primary-200 active:border-primary-700 active:bg-white peer-checked:outline peer-checked:outline-2 peer-checked:outline-primary-700 peer-disabled:opacity-50 peer-disabled:bg-neutral-100 peer-disabled:border-neutral-200 peer-disabled:cursor-not-allowed peer-disabled:[&_img]:grayscale"
         > 
@@ -38,12 +37,9 @@
 
 <script setup lang="ts">
 import { SfIconCreditCard, SfIconCheckCircle, SfIconRadioButtonUnchecked } from '@storefront-ui/vue';
-import type { CheckoutPaymentEmits, CheckoutPaymentProps } from '~/components/CheckoutPayment/types';
+import { type CheckoutPaymentEmits, type CheckoutPaymentProps } from '~/components/CheckoutPayment/types';
 
-withDefaults(defineProps<CheckoutPaymentProps>(), {
-  disabled: false,
-});
+withDefaults(defineProps<CheckoutPaymentProps>(), { disabled: false });
 const { data: cart } = useCart();
-const selectedId = cart.value.methodOfPaymentId;
-defineEmits<CheckoutPaymentEmits>();
+const emit = defineEmits<CheckoutPaymentEmits>();
 </script>
