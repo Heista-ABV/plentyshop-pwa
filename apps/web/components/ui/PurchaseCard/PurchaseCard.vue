@@ -250,23 +250,17 @@ const { t } = useI18n();
 const quantitySelectorValue = ref(1);
 const { isWishlistItem } = useWishlist();
 const { openQuickCheckout } = useQuickCheckout();
+const { crossedPrice } = useProductPrice(product);
 
 resetInvalidFields();
 resetAttributeFields();
 
-const currentActualPrice = computed(
+const priceWithProperties = computed(
   () =>
-    (productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.price.value ??
-      productGetters.getPrice(product)?.special ??
-      productGetters.getPrice(product)?.regular ??
+    (productGetters.getSpecialOffer(product) ||
+      productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.unitPrice.value ||
       0) + getPropertiesPrice(product),
 );
-
-const normalPrice =
-  productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.price.value ??
-  productGetters.getPrice(product)?.special ??
-  productGetters.getPrice(product)?.regular ??
-  0;
 
 const basePriceSingleValue = computed(
   () =>

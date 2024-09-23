@@ -93,6 +93,7 @@
               </span>
             </UiButton>
             <PayPalApplePayButton
+              v-if="applePayAvailable"
               :style="createOrderLoading || disableShippingPayment || cartLoading ? 'pointer-events: none;' : ''"
               @button-clicked="validateTerms"
             />
@@ -119,7 +120,7 @@
 </template>
 
 <script setup lang="ts">
-import { AddressType, shippingProviderGetters, paymentProviderGetters } from '@plentymarkets/shop-api';
+import { AddressType, shippingProviderGetters, paymentProviderGetters, cartGetters } from '@plentymarkets/shop-api';
 import { SfLoaderCircular, SfIconLock } from '@storefront-ui/vue';
 import _ from 'lodash';
 import PayPalExpressButton from '~/components/PayPal/PayPalExpressButton.vue';
@@ -170,6 +171,7 @@ await loadAddresses();
 const shippingMethods = computed(() => shippingProviderGetters.getShippingProviders(shippingMethodData.value));
 const paymentMethods = computed(() => paymentMethodData.value);
 const selectedPaymentId = computed(() => cart.value.methodOfPaymentId);
+const applePayAvailable = computed(() => import.meta.client && (window as any).ApplePaySession);
 
 const handleShippingMethodUpdate = async (shippingMethodId: string) => {
   await saveShippingMethod(Number(shippingMethodId));
