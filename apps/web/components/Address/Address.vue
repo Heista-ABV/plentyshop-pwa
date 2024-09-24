@@ -16,37 +16,26 @@
         variant="tertiary"
         size="sm"
         class="self-start"
-        @click.stop="emit('on-edit', userAddressGetters.getId(address))"
+        @click.stop="$emit('on-edit', userAddressGetters.getId(address))"
       >
         {{ $t('account.accountSettings.edit') }}
       </UiButton>
-      <UiButton variant="tertiary" size="sm" class="self-start" @click.stop="emit('on-delete')">
+      <UiButton variant="tertiary" size="sm" class="self-start" @click.stop="$emit('on-delete')">
         {{ $t('account.accountSettings.delete') }}
       </UiButton>
-      <UiButton
-        v-if="!isDefault && !isGuest"
-        variant="tertiary"
-        size="sm"
-        class="self-start"
-        @click.stop="emit('make-default')"
-      >
+      <UiButton v-if="!isDefault" variant="tertiary" size="sm" class="self-start" @click.stop="$emit('make-default')">
         {{ $t('account.accountSettings.makeDefault') }}
       </UiButton>
     </div>
 
-    <slot v-if="showDivider">
-      <UiDivider class="col-span-3 mx-4 !w-auto md:mx-0 mt-1 mb-4" />
-    </slot>
+    <UiDivider v-if="!isDefault" class="col-span-3 mx-4 !w-auto md:mx-0 mt-1 mb-4" />
   </div>
 </template>
-
 <script lang="ts" setup>
 import { SfIconCheckCircle } from '@storefront-ui/vue';
-import { type AddressProps } from './types';
+import type { AddressProps } from './types';
 import { userAddressGetters } from '@plentymarkets/shop-api';
 
-const { address, isDefault, isSelected, showDivider } = defineProps<AddressProps>();
-
-const { isGuest } = useCustomer();
-const emit = defineEmits(['on-edit', 'on-delete', 'make-default']);
+defineProps<AddressProps>();
+defineEmits(['on-edit', 'on-delete', 'make-default']);
 </script>

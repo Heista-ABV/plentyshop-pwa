@@ -4,10 +4,10 @@
     <div class="mt-4">
       <ul v-if="shippingMethods" class="grid gap-y-4 md:grid-cols-2 md:gap-x-4" role="radiogroup">
         <SfListItem
-          v-for="(method, index) in shippingMethods"
-          :key="`shipping-method-${index}`"
+          v-for="method in shippingMethods"
+          :key="shippingProviderGetters.getParcelServicePresetId(method)"
           :disabled="disabled"
-          @click.prevent="updateShippingMethod(shippingProviderGetters.getParcelServicePresetId(method))"
+          @click="updateShippingMethod(shippingProviderGetters.getParcelServicePresetId(method))"
           tag="label"
           children-tag="div"
           class="border rounded-md items-start select-none"
@@ -37,30 +37,21 @@
       </div>
     </div>
 
-    <ShippingPrivacy v-if="showShippingPrivacy" />
+    <ShippingPrivacy v-if="shippingMethods" />
   </div>
 </template>
-
 <script setup lang="ts">
 import { shippingProviderGetters } from '@plentymarkets/shop-api';
 import { SfIconBlock, SfListItem, SfRadio } from '@storefront-ui/vue';
-import { type CheckoutShippingEmits, type ShippingMethodProps } from './types';
+import type { CheckoutShippingEmits, ShippingMethodProps } from './types';
 
-const { shippingMethods, disabled } = withDefaults(defineProps<ShippingMethodProps>(), { disabled: false });
-
+withDefaults(defineProps<ShippingMethodProps>(), {
+  disabled: false,
+});
 const emit = defineEmits<CheckoutShippingEmits>();
-
 const { data: cart } = useCart();
-const { t, n } = useI18n();
-const { selectedMethod } = useCartShippingMethods();
 const radioModel = ref(shippingProviderGetters.getShippingProfileId(cart.value));
-
-const showShippingPrivacy = computed(
-  () =>
-    shippingMethods.length > 0 &&
-    selectedMethod.value &&
-    shippingProviderGetters.getDataPrivacyAgreementHint(selectedMethod.value),
-);
+const { t, n } = useI18n();
 
 const updateShippingMethod = (shippingId: string) => {
   radioModel.value = shippingId;

@@ -2,7 +2,7 @@
   <div
     class="addresses-list relative"
     :class="{ 'pointer-events-none opacity-50': loading }"
-    :data-testid="`account-billing-addresses-${type}`"
+    :data-testid="`account-billing-addresses-${props.type}`"
   >
     <SfLoaderCircular v-if="loading" class="absolute top-0 bottom-0 right-0 left-0 m-auto" size="2xl" />
     <Address
@@ -11,7 +11,6 @@
       :address="address"
       :is-default="defaultAddressId === Number(userAddressGetters.getId(address))"
       :is-selected="defaultAddressId === Number(userAddressGetters.getId(address))"
-      :show-divider="!(defaultAddressId === Number(userAddressGetters.getId(address)))"
       @on-edit="editAddress(address)"
       @on-delete="onDelete(address)"
       @make-default="makeDefault(address)"
@@ -27,7 +26,6 @@
     </div>
 
     <UiModal
-      v-if="isOpen"
       v-model="isOpen"
       tag="section"
       role="dialog"
@@ -56,17 +54,16 @@
     </UiModal>
   </div>
 </template>
-
 <script lang="ts" setup>
 import { type Address, AddressType, userAddressGetters } from '@plentymarkets/shop-api';
 import { SfIconClose, SfLoaderCircular, useDisclosure } from '@storefront-ui/vue';
-import { type AddressesListProps } from './types';
+import type { AddressesListProps } from '~/components/AddressesList/types';
 
-const { type, editAddressText, addAddressText } = defineProps<AddressesListProps>();
+const props = defineProps<AddressesListProps>();
 
 const { isOpen, open, close } = useDisclosure();
+
 const { data: activeShippingCountries, getActiveShippingCountries } = useActiveShippingCountries();
-const { saveAddress: saveShippingAddress } = useAddress(AddressType.Shipping);
 const {
   data: addresses,
   getAddresses,
@@ -75,8 +72,8 @@ const {
   deleteAddress,
   defaultAddressId,
   loading,
-} = useAddress(type);
-
+} = useAddress(props.type);
+const { saveAddress: saveShippingAddress } = useAddress(AddressType.Shipping);
 await getActiveShippingCountries();
 await getAddresses();
 
@@ -86,7 +83,6 @@ const editAddress = (address: Address) => {
   selectedAddress.value = address;
   open();
 };
-
 const onDelete = (address: Address) => {
   deleteAddress(Number(userAddressGetters.getId(address)));
 };
@@ -94,9 +90,14 @@ const onDelete = (address: Address) => {
 const onSave = async (address: Address, useAsShippingAddress: boolean) => {
   await saveAddress(address);
   close();
-  if (useAsShippingAddress) await saveShippingAddress(address);
-  await getAddresses();
+
+  if (useAsShippingAddress) {
+    await saveShippingAddress(address);
+  }
+  getAddresses();
 };
 
-const makeDefault = (address: Address) => setDefault(address);
+const makeDefault = (address: Address) => {
+  setDefault(address);
+};
 </script>

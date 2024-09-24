@@ -1,8 +1,8 @@
-import { AdditionalInformationParams } from '@plentymarkets/shop-api';
-import {
-  type DoAdditionalInformation,
-  type DoAdditionalInformationReturn,
-  type SetShippingPrivacyAgreement,
+import type { AdditionalInformationParams } from '@plentymarkets/shop-api';
+import type {
+  DoAdditionalInformation,
+  DoAdditionalInformationReturn,
+  SetShippingPrivacyAgreement,
   UseAdditionalInformationState,
 } from './types';
 
@@ -21,7 +21,6 @@ export const useAdditionalInformation: DoAdditionalInformationReturn = () => {
     data: null,
     loading: false,
     shippingPrivacyAgreement: false,
-    showErrors: false,
   }));
 
   /**
@@ -51,10 +50,6 @@ export const useAdditionalInformation: DoAdditionalInformationReturn = () => {
     }
   };
 
-  const setShippingPrivacyAgreementErrors = (showErrors: boolean) => {
-    state.value.showErrors = showErrors;
-  };
-
   /**
    * @description Function for setting the shipping privacy agreement value.
    * @example
@@ -67,12 +62,10 @@ export const useAdditionalInformation: DoAdditionalInformationReturn = () => {
   const setShippingPrivacyAgreement: SetShippingPrivacyAgreement = (shippingPrivacyAgreement: boolean) => {
     state.value.loading = true;
     state.value.shippingPrivacyAgreement = shippingPrivacyAgreement;
-    // setShippingPrivacyAgreementErrors(!shippingPrivacyAgreement);
     state.value.loading = false;
   };
 
   return {
-    setShippingPrivacyAgreementErrors,
     setShippingPrivacyAgreement,
     doAdditionalInformation,
     ...toRefs(state.value),
