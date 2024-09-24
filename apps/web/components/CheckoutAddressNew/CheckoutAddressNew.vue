@@ -31,7 +31,9 @@ import { CheckoutAddressNewProps } from './types';
 
 const { t } = useI18n();
 const { data: activeShippingCountries, getActiveShippingCountries } = useActiveShippingCountries();
-const { type, asShippingAddress, disabled = false } = defineProps<CheckoutAddressNewProps>();
+const { type, asShippingAddress, disabled } = withDefaults(defineProps<CheckoutAddressNewProps>(), {
+  disabled: false,
+});
 const { data: addresses, displayAddress } = useAddress(type);
 const noPreviousAddressWasSet = computed(() => addresses.value.length === 0);
 

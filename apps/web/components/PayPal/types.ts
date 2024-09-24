@@ -5,12 +5,6 @@ export type PaypalButtonPropsType = {
 
 export type PayPalAddToCartCallback = (successfully: boolean) => void;
 
-export type PayPalPayLaterBannerType = {
-  placement: 'home' | 'product' | 'cart' | 'category' | 'payment';
-  amount: number;
-  commit?: boolean;
-};
-
 export type OrderPayload = {
   intent: string;
   purchase_units: {

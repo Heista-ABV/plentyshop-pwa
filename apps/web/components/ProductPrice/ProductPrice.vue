@@ -1,6 +1,10 @@
 <template>
   <div class="mb-3">
-    <Price :price="priceWithProperties" :crossed-price="crossedPrice" />
+    <Price
+      :price="currentActualPrice"
+      :normal-price="normalPrice"
+      :old-price="productGetters.getPrice(product).regular ?? 0"
+    />
     <div v-if="(productBundleGetters?.getBundleDiscount(product) ?? 0) > 0" class="m-auto">
       <UiTag :size="'sm'" :variant="'secondary'">{{
         $t('procentageSavings', { percent: productBundleGetters.getBundleDiscount(product) })
@@ -23,14 +27,20 @@ import type { ProductPriceProps } from '~/components/ProductPrice/types';
 const props = defineProps<ProductPriceProps>();
 
 const { getPropertiesPrice } = useProductOrderProperties();
-const { crossedPrice } = useProductPrice(props.product);
 
-const priceWithProperties = computed(
+const currentActualPrice = computed(
   () =>
-    (productGetters.getSpecialOffer(props.product) ||
-      productGetters.getGraduatedPriceByQuantity(props.product, 1)?.unitPrice.value ||
+    (productGetters.getGraduatedPriceByQuantity(props.product, 1)?.price.value ??
+      productGetters.getPrice(props.product)?.special ??
+      productGetters.getPrice(props.product)?.regular ??
       0) + getPropertiesPrice(props.product),
 );
+
+const normalPrice =
+  productGetters.getGraduatedPriceByQuantity(props.product, 1)?.price.value ??
+  productGetters.getPrice(props.product)?.special ??
+  productGetters.getPrice(props.product)?.regular ??
+  0;
 
 const basePriceSingleValue = computed(
   () =>

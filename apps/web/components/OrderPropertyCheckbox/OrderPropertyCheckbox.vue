@@ -28,7 +28,12 @@
       </div>
     </div>
 
-    <ErrorMessage v-if="isOrderPropertyRequired" as="span" name="value" class="flex text-negative-700 text-sm mt-2" />
+    <VeeErrorMessage
+      v-if="isOrderPropertyRequired"
+      as="span"
+      name="value"
+      class="flex text-negative-700 text-sm mt-2"
+    />
   </div>
 </template>
 
@@ -36,8 +41,7 @@
 import { productPropertyGetters } from '@plentymarkets/shop-api';
 import type { OrderPropertyCheckboxProps } from './types';
 import { SfCheckbox } from '@storefront-ui/vue';
-import { useForm, ErrorMessage } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/yup';
+import { useForm } from 'vee-validate';
 import { object, boolean } from 'yup';
 
 const props = defineProps<OrderPropertyCheckboxProps>();

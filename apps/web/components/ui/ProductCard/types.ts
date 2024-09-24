@@ -11,6 +11,7 @@ export type ProductCardProps = {
   description?: string;
   rating?: number;
   ratingCount?: number;
+  price: number;
   slug?: string;
   priority?: boolean;
   lazy?: boolean;

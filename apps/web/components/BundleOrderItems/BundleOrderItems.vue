@@ -58,7 +58,7 @@ import type { BundleOrderItemsProps } from '~/components/BundleOrderItems/types'
 import { SfLink } from '@storefront-ui/vue';
 const { t } = useI18n();
 
-const { product } = defineProps<BundleOrderItemsProps>();
+const { product } = withDefaults(defineProps<BundleOrderItemsProps>(), {});
 const NuxtLink = resolveComponent('NuxtLink');
 const localePath = useLocalePath();
 

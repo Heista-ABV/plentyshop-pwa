@@ -34,7 +34,7 @@
           type="email"
           autocomplete="email"
         />
-        <ErrorMessage as="span" name="register.email" class="flex text-negative-700 text-sm mt-2" />
+        <VeeErrorMessage as="span" name="register.email" class="flex text-negative-700 text-sm mt-2" />
       </label>
 
       <label>
@@ -47,7 +47,7 @@
           v-bind="passwordAttributes"
           :invalid="Boolean(errors['register.password'])"
         />
-        <!-- <ErrorMessage as="span" name="register.password" class="flex text-negative-700 text-sm mt-2" /> -->
+        <!-- <VeeErrorMessage as="span" name="register.password" class="flex text-negative-700 text-sm mt-2" /> -->
       </label>
       <label>
         <UiFormLabel>{{ t('form.repeatPasswordLabel') }}</UiFormLabel>
@@ -59,7 +59,7 @@
           v-bind="repeatPasswordAttributes"
           :invalid="Boolean(errors['register.repeatPassword'])"
         />
-        <ErrorMessage as="span" name="register.repeatPassword" class="flex text-negative-700 text-sm mt-2" />
+        <VeeErrorMessage as="span" name="register.repeatPassword" class="flex text-negative-700 text-sm mt-2" />
       </label>
 
       <div class="text-xs">
@@ -106,7 +106,7 @@
           {{ t('form.required') }}
         </label>
       </div>
-      <ErrorMessage as="div" name="register.privacyPolicy" class="text-negative-700 text-left text-sm" />
+      <VeeErrorMessage as="div" name="register.privacyPolicy" class="text-negative-700 text-left text-sm" />
 
       <NuxtTurnstile
         v-if="turnstileSiteKey"
@@ -117,7 +117,7 @@
         class="mt-4 flex justify-center"
       />
 
-      <ErrorMessage as="div" name="register.turnstile" class="text-negative-700 text-center text-sm" />
+      <VeeErrorMessage as="div" name="register.turnstile" class="text-negative-700 text-center text-sm" />
 
       <UiButton type="submit" class="mt-2" :disabled="loading || migrateLoading" :aria-label="t('auth.signup.submitLabel')" >
         <SfLoaderCircular v-if="loading || migrateLoading" class="flex justify-center items-center" size="base" />
@@ -149,8 +149,7 @@ import {
   SfIconCheck,
   SfIconClose,
 } from '@storefront-ui/vue';
-import { useForm, ErrorMessage } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/yup';
+import { useForm } from 'vee-validate';
 import { object, string, boolean, ref as yupReference } from 'yup';
 import type { RegisterFormParams } from '~/components/Register/types';
 import { useMigrateGuestOrder } from '~/composables/useMigrateGuestOrder';

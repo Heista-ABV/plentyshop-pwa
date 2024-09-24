@@ -1,14 +1,21 @@
 import { loadScript as loadPayPalScript } from '@paypal/paypal-js';
-import type {
-  PayPalCaptureOrderParams,
-  PayPalConfigResponse,
-  PayPalCreateOrder,
-  PayPalExecuteParams,
-} from '@plentymarkets/shop-api';
-import { paypalGetters } from '@plentymarkets/shop-api';
-import { PayPalLoadScript, PayPalScript } from '~/composables';
+import type { PayPalCaptureOrderParams, PayPalExecuteParams } from '@plentymarkets/shop-api';
 
-const getLocaleForPayPal = (locale: string) => {
+import type {
+  UsePayPalMethodsReturn,
+  CreateTransaction,
+  ExecuteOrder,
+  LoadScript,
+  UsePayPalState,
+  ApproveOrder,
+  CreateCreditCardTransaction,
+  CaptureOrder,
+  LoadConfig,
+  GetLocale,
+} from './types';
+import { paypalGetters } from '@plentymarkets/shop-api';
+
+const getLocaleForPayPal: GetLocale = (locale: string) => {
   // eslint-disable-next-line sonarjs/no-small-switch
   switch (locale) {
     case 'de': {
@@ -22,6 +29,7 @@ const getLocaleForPayPal = (locale: string) => {
 
 /**
  * @description Composable for managing PayPal interaction.
+ * @returns UsePayPalMethodsReturn
  * @example
  * ``` ts
  * const {
@@ -29,64 +37,63 @@ const getLocaleForPayPal = (locale: string) => {
  * createCreditCardTransaction, captureOrder } = usePayPal();
  * ```
  */
-export const usePayPal = () => {
-  const state = useState('usePayPal', () => ({
+export const usePayPal: UsePayPalMethodsReturn = () => {
+  const state = useState<UsePayPalState>('usePayPal', () => ({
     loading: false,
-    paypalScript: null as PayPalScript | null,
-    loadingScripts: {} as PayPalLoadScript,
-    order: null as PayPalCreateOrder | null,
-    config: null as PayPalConfigResponse | null,
+    paypalScript: null,
+    order: null,
+    config: null,
     loadedConfig: false,
     isAvailable: false,
-    isReady: false,
   }));
 
   /**
    * @description Function to get the PayPal config.
-   * @return Promise<boolean>
+   * @return LoadConfig
    * @example
    * ``` ts
    * loadConfig();
    * ```
    */
-  const loadConfig = async () => {
-    if (state.value.loadedConfig) return false;
-    const { data } = await useSdk().plentysystems.getPayPalMerchantAndClientIds();
-
-    if (data) {
-      state.value.config = data ?? null;
+  const loadConfig: LoadConfig = async () => {
+    if (!state.value.loadedConfig) {
+      const { data } = await useAsyncData('paypalLoadConfig', () =>
+        useSdk().plentysystems.getPayPalMerchantAndClientIds(),
+      );
+      state.value.config = data.value?.data ?? null;
       state.value.isAvailable = !!state.value.config;
       state.value.loadedConfig = true;
-      return true;
     }
-    return false;
   };
 
   /**
    * @description Function for get the PayPal sdk script.
    * @param currency string
-   * @param locale string
    * @param commit boolean
-   * @return Promise<PayPalNamespace | null>
+   * @return LoadScript
    * @example
    * ``` ts
    * loadScript('EUR');
    * ```
    */
-  const loadScript = async (currency: string, locale: string, commit = false) => {
+  const loadScript: LoadScript = async (currency: string, commit = false) => {
+    const { $i18n } = useNuxtApp();
+    const localePayPal = getLocaleForPayPal($i18n.locale.value);
+
     await loadConfig();
     if (state.value.config && paypalGetters.getClientId(state.value.config)) {
       try {
-        return await loadPayPalScript({
+        state.value.paypalScript = await loadPayPalScript({
           clientId: paypalGetters.getClientId(state.value.config),
           merchantId: paypalGetters.getMerchantId(state.value.config),
           currency: currency,
           dataPartnerAttributionId: 'Plenty_Cart_PWA_PPCP',
           components:
             'applepay,messages,buttons,funding-eligibility,card-fields,payment-fields,marks&enable-funding=paylater',
-          locale: locale,
+          locale: localePayPal,
           commit: commit,
         });
+        return state.value.paypalScript;
       } catch {
         // eslint-disable-next-line unicorn/expiring-todo-comments
         // TODO: Handle error (not loading sdk)
@@ -94,39 +101,6 @@ export const usePayPal = () => {
     }
 
     return null;
-  };
-
-  const getScript = async (currency: string, commit = false) => {
-    const { $i18n } = useNuxtApp();
-    const localePayPal = getLocaleForPayPal($i18n.locale.value);
-    const scriptKey = `${currency}_${localePayPal}_${commit}`;
-
-    if (state.value.loadingScripts[scriptKey] !== undefined) {
-      return state.value.loadingScripts[scriptKey];
-    }
-
-    if (
-      state.value.paypalScript &&
-      state.value.paypalScript.currency === currency &&
-      state.value.paypalScript.locale === localePayPal &&
-      state.value.paypalScript.commit === commit
-    ) {
-      return state.value.paypalScript.script;
-    }
-
-    state.value.isReady = false;
-    state.value.paypalScript = null;
-    state.value.loadingScripts[scriptKey] = loadScript(currency, localePayPal, commit)
-      .then((paypalScript) => {
-        state.value.paypalScript = { script: paypalScript, currency, locale: localePayPal, commit };
-        state.value.isReady = true;
-        return paypalScript;
-      })
-      .finally(() => {
-        delete state.value.loadingScripts[scriptKey];
-      });
-
-    return state.value.loadingScripts[scriptKey];
   };
 
   /**
@@ -138,7 +112,7 @@ export const usePayPal = () => {
    * createTransaction(fundingSource: string);
    * ```
    */
-  const createTransaction = async (fundingSource: string) => {
+  const createTransaction: CreateTransaction = async (fundingSource: string) => {
     const { data, error } = await useAsyncData(() =>
       useSdk().plentysystems.doCreatePayPalTransaction({
         fundingSource: fundingSource,
@@ -160,7 +134,7 @@ export const usePayPal = () => {
    * approveOrder('1', '1');
    * ```
    */
-  const approveOrder = async (orderID: string, payerID: string) => {
+  const approveOrder: ApproveOrder = async (orderID: string, payerID: string) => {
     state.value.loading = true;
     const { data, error } = await useAsyncData(() =>
       useSdk().plentysystems.doApprovePayPalTransaction({
@@ -187,7 +161,7 @@ export const usePayPal = () => {
    * });
    * ```
    */
-  const executeOrder = async (params: PayPalExecuteParams) => {
+  const executeOrder: ExecuteOrder = async (params: PayPalExecuteParams) => {
     state.value.loading = true;
 
     const { data, error } = await useAsyncData(() => useSdk().plentysystems.getExecutePayPalOrder(params));
@@ -205,7 +179,7 @@ export const usePayPal = () => {
    * createCreditCardTransaction();
    * ```
    */
-  const createCreditCardTransaction = async () => {
+  const createCreditCardTransaction: CreateCreditCardTransaction = async () => {
     state.value.loading = true;
     await useAsyncData(() =>
       useSdk().plentysystems.doAdditionalInformation({
@@ -239,7 +213,7 @@ export const usePayPal = () => {
    * });
    * ```
    */
-  const captureOrder = async (params: PayPalCaptureOrderParams) => {
+  const captureOrder: CaptureOrder = async (params: PayPalCaptureOrderParams) => {
     state.value.loading = true;
     const { data, error } = await useAsyncData(() => useSdk().plentysystems.doCapturePayPalOrder(params));
     useHandleError(error.value);
@@ -254,9 +228,9 @@ export const usePayPal = () => {
     createTransaction,
     executeOrder,
     loadConfig,
+    loadScript,
     createCreditCardTransaction,
     captureOrder,
-    getScript,
     ...toRefs(state.value),
   };
 };

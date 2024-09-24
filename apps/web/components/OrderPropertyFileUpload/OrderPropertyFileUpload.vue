@@ -72,7 +72,7 @@
       <slot v-if="hasTooltip" name="tooltip" class="w-[28px]" />
     </div>
 
-    <ErrorMessage as="span" name="value" class="flex text-negative-700 text-sm mt-2" />
+    <VeeErrorMessage as="span" name="value" class="flex text-negative-700 text-sm mt-2" />
   </div>
 </template>
 
@@ -80,8 +80,7 @@
 import { SfInput, SfIconClose, SfLoaderCircular } from '@storefront-ui/vue';
 import { productPropertyGetters } from '@plentymarkets/shop-api';
 import type { OrderPropertyInputProps } from './types';
-import { useForm, ErrorMessage } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/yup';
+import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
 
 const { t, n } = useI18n();

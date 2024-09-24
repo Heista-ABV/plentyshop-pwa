@@ -10,17 +10,20 @@
 <script setup lang="ts">
 const { $pwa } = useNuxtApp();
 const bodyClass = ref('');
+const DAYS = 100;
+const localeExpireDate = new Date();
+localeExpireDate.setDate(new Date().getDate() + DAYS);
 const { getCategoryTree } = useCategoryTree();
 const { setInitialDataSSR } = useInitialSetup();
-const { setVsfLocale } = useLocalization();
 const route = useRoute();
 const { locale } = useI18n();
+const vsfLocale = useCookie('vsf-locale', { expires: localeExpireDate });
 const { setStaticPageMeta } = useCanonical();
 const { isAuthorized } = useCustomer();
 const localePath = useLocalePath();
 
 await setInitialDataSSR();
-setVsfLocale(locale.value);
+vsfLocale.value = locale.value;
 
 if (route?.meta.pageType === 'static') setStaticPageMeta();
 usePageTitle();
@@ -52,7 +55,8 @@ watch(
 watch(
   () => locale.value,
   async (locale: string) => {
-    setVsfLocale(locale);
+    vsfLocale.value = locale;
+
     await getCategoryTree();
   },
 );

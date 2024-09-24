@@ -27,10 +27,7 @@
           >
             {{ $t('goToCheckout') }}
           </UiButton>
-          <client-only>
-            <PayPalExpressButton :disabled="loading" class="mt-4" type="CartPreview" />
-            <PayPalPayLaterBanner placement="cart" :amount="cartGetters.getTotal(cartGetters.getTotals(cart))" />
-          </client-only>
+          <PayPalExpressButton :disabled="loading" class="mt-4" type="CartPreview" />
         </OrderSummary>
       </div>
     </div>
@@ -42,7 +39,6 @@
 
 <script setup lang="ts">
 import { SfLoaderCircular } from '@storefront-ui/vue';
-import { cartGetters } from '@plentymarkets/shop-api';
 
 definePageMeta({ pageType: 'static' });
 

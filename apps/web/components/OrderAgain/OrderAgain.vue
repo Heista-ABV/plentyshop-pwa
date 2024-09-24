@@ -52,7 +52,8 @@
                   orderGetters.isItemSalableAndActive(order, item) && orderGetters.hasAllOrderPropertiesAvailable(item)
                 "
                 :price="orderGetters.getOrderAgainInformationPrice(item)"
-                :crossed-price="orderGetters.getItemPrice(item)"
+                :normal-price="orderGetters.getOrderAgainInformationPrice(item)"
+                :old-price="orderGetters.getItemPrice(item)"
               />
               <div
                 v-if="orderGetters.getItemShortDescription(order, item)"

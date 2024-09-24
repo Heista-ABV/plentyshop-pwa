@@ -188,16 +188,16 @@
                 <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary" :aria-label="name">
                     <div class="prices flex !flex-row !gap-3 !items-center md:!items-end !justify-between">          
                         <span 
-                        v-if="crossedPrice && crossedPrice > price"
+                        v-if="oldPrice && oldPrice > mainPrice"
                         class="text-primary-400 line-through price-view-port typography-text-md crossPrice"
                         >
-                        {{ n(crossedPrice, 'currency') }}
+                        {{ n(oldPrice, 'currency') }}
                         </span>
                         <span class="font-bold typography-text-md price text-primary-700 catPrice" data-testid="product-card-vertical-price">
                         <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1">
                             {{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
                         </span>
-                        <span>{{ n(cheapestPrice ?? price, 'currency') }}</span>
+                        <span>{{ n(cheapestPrice ?? mainPrice, 'currency') }}</span>
                         </span>
                     </div>
                 </SfLink>
@@ -219,28 +219,31 @@ const {
   product,
   name,
   imageUrl,
-  imageAlt = '',
+  imageAlt,
   imageTitle,
   imageWidth,
   imageHeight,
   rating,
   ratingCount,
   priority,
-  lazy = true,
+  lazy,
   unitContent,
   unitName,
   basePrice,
   showBasePrice,
-  isFromWishlist = false,
-  isFromSlider = false,
-} = defineProps<ProductCardProps>();
+  isFromWishlist,
+  isFromSlider,
+} = withDefaults(defineProps<ProductCardProps>(), {
+  lazy: true,
+  imageAlt: '',
+  isFromWishlist: false,
+  isFromSlider: false,
+});
 
 const { data: categoryTree } = useCategoryTree();
 const { openQuickCheckout } = useQuickCheckout();
 const { addToCart } = useCart();
 const { send } = useNotification();
-const { price, crossedPrice } = useProductPrice(product);
-
 const loading = ref(false);
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
@@ -287,11 +290,22 @@ const addWithLoader = async (productId: number) => {
   }
 };
 
+const mainPrice = computed(() => {
+  const price = productGetters.getPrice(product);
+  if (!price) return 0;
+
+  if (price.special) return price.special;
+  if (price.regular) return price.regular;
+
+  return 0;
+});
 
 const getImgGallery: any = computed(() => {
     var getImages  = productGetters.getGallery(product);
     return getImages;
 });
+
+const { addModernImageExtension } = useModernImage();
 
 const getVarPropName = computed(() => {
   var getProp = productGetters.getPropertyById(93, product);

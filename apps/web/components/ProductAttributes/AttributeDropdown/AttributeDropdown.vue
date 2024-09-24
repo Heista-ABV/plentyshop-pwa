@@ -24,7 +24,7 @@
         {{ productAttributeGetters.getAttributeValueName(item) }}
       </option>
     </SfSelect>
-    <ErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2" />
+    <VeeErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2" />
   </div>
 </template>
 
@@ -33,8 +33,7 @@ import { SfSelect } from '@storefront-ui/vue';
 import type { AttributeSelectProps } from '../types';
 import { productAttributeGetters } from '@plentymarkets/shop-api';
 import { number, object } from 'yup';
-import { useForm, ErrorMessage } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/yup';
+import { useForm } from 'vee-validate';
 
 const { t } = useI18n();
 const { attribute } = defineProps<AttributeSelectProps>();

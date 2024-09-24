@@ -33,24 +33,20 @@
           </template>
         </div>
       </div>
-      <div class="leading-relaxed pb-5">
-        {{ $t(cookieGroups?.barDescription) }}
-
-        <SfLink :tag="NuxtLink" :to="localePath(paths.privacyPolicy)">
-          {{ $t('CookieBar.Privacy Settings') }}
-        </SfLink>
-      </div>
-      <!-- checkboxes -->
-      <div v-if="cookieJson" class="grid sm:grid-cols-4 xs:grid-cols-3">
-        <template v-for="(cookieGroup, index) in cookieJson.groups" :key="index">
-          <div v-if="cookieGroup?.cookies?.length" class="sm:mb-5 mb-2 pr-2 flex items-center">
+      <div v-else class="max-sm:h-full overflow-y-auto h-80 pb-2">
+        <template v-for="(cookieGroup, groupIndex) in cookieJson.groups" :key="groupIndex">
+          <div v-if="cookieGroup?.cookies?.length" class="mb-2 bg-gray-100 p-2">
             <SfCheckbox
+              class="align-text-top"
               :id="cookieGroup.name"
               v-model="cookieGroup.accepted"
               @update:model-value="triggerGroupConsent(cookieGroup)"
-              :disabled="index === defaults.ESSENTIAL_COOKIES_INDEX"
+              :disabled="groupIndex === defaults.ESSENTIAL_COOKIES_INDEX"
             />
-            <label class="ml-2 cursor-pointer peer-disabled:text-disabled-900" :for="cookieGroup.name">
+            <label
+              class="ml-2 cursor-pointer peer-disabled:text-disabled-900 align-text-bottom font-medium"
+              :for="cookieGroup.name"
+            >
               {{ $t(cookieGroup.name) }}
             </label>
             <div class="leading-6 my-2">

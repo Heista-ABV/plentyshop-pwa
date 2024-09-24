@@ -41,7 +41,7 @@
 import { SfIconClose, useDisclosure } from '@storefront-ui/vue';
 import type { ContactInformationProps } from '~/components/ContactInformation/types';
 
-const { disabled = false } = defineProps<ContactInformationProps>();
+const { disabled } = withDefaults(defineProps<ContactInformationProps>(), { disabled: false });
 
 const { data, loginAsGuest, getSession, isAuthorized } = useCustomer();
 const { isOpen, open, close } = useDisclosure();

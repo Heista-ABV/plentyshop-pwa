@@ -24,6 +24,7 @@
             :name="productGetters.getName(product) ?? ''"
             :rating-count="productGetters.getTotalReviews(product)"
             :rating="productGetters.getAverageRating(product, 'half')"
+            :price="actualPrice(product)"
             :image-url="addModernImageExtension(getImageForViewport(product, 'Wishlist'))"
             :image-alt="
               productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
@@ -67,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters, productImageGetters } from '@plentymarkets/shop-api';
+import { type Product, productGetters, productImageGetters } from '@plentymarkets/shop-api';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import type { WishlistPageContentProps } from '~/components/WishlistPageContent/types';
 
@@ -75,6 +76,14 @@ withDefaults(defineProps<WishlistPageContentProps>(), { withHeader: true });
 
 const { addModernImageExtension, getImageForViewport } = useModernImage();
 const { fetchWishlist, data: products, loading } = useWishlist();
+
+const actualPrice = (product: Product): number => {
+  const price = productGetters.getPrice(product);
+  if (!price) return 0;
+  if (price.special) return price.special;
+  if (price.regular) return price.regular;
+  return 0;
+};
 
 fetchWishlist();
 </script>

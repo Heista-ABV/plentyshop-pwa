@@ -223,4 +223,14 @@ function scrollToFilter() {
 const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 1));
 
 if (viewport.isLessThan('md')) close();
+
+const actualPrice = (product: Product): number => {
+  const price = productGetters.getPrice(product);
+  if (!price) return 0;
+
+  if (price.special) return price.special;
+  if (price.regular) return price.regular;
+
+  return 0;
+};
 </script>

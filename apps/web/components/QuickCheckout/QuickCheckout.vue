@@ -5,7 +5,7 @@
     v-model="isOpen"
     tag="section"
     class="h-full md:h-fit m-0 p-0 lg:w-[1000px] overflow-y-auto"
-    aria-label="quick-checkout-modal"
+    aria-labelledby="quick-checkout-modal"
   >
     <header>
       <h2 class="font-bold font-headings text-lg leading-6 md:text-2xl flex items-end">
@@ -13,13 +13,7 @@
       </h2>
       <div class="absolute right-2 top-2 flex items-center">
         <span v-if="hasTimer" class="mr-2 text-gray-400">{{ timer }}s</span>
-        <UiButton
-          :aria-label="$t('closeDialog')"
-          data-testid="quick-checkout-close"
-          square
-          variant="tertiary"
-          @click="close"
-        >
+        <UiButton data-testid="quick-checkout-close" square variant="tertiary" @click="close">
           <SfIconClose />
         </UiButton>
       </div>
@@ -91,9 +85,10 @@
         >
           {{ $t('goToCheckout') }}
         </UiButton>
-        <OrDivider class="my-4" v-if="isPayPalReady" />
-        <PayPalExpressButton class="w-full text-center" type="CartPreview" />
-        <PayPalPayLaterBanner placement="payment" :amount="totals.total" />
+        <div v-if="isAvailable">
+          <OrDivider class="my-4" />
+          <PayPalExpressButton class="w-full text-center" type="CartPreview" />
+        </div>
       </div>
     </div>
   </UiModal>
@@ -113,7 +108,7 @@ const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
 const localePath = useLocalePath();
 const { data: cart, lastUpdatedProduct } = useCart();
-const { isReady: isPayPalReady, loadConfig } = usePayPal();
+const { isAvailable, loadConfig } = usePayPal();
 const { addModernImageExtension } = useModernImage();
 const { isOpen, timer, startTimer, endTimer, closeQuickCheckout, hasTimer, quantity } = useQuickCheckout();
 const cartItemsCount = computed(() => cart.value?.items?.reduce((price, { quantity }) => price + quantity, 0) ?? 0);
