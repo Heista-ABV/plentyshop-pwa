@@ -3,14 +3,14 @@
     <div class="flex items-center">
       <SfCheckbox
         :model-value="checkboxValue"
-        @update:model-value="(event) => setCheckboxValue(event)"
+        @update:model-value="(event) => setCheckboxValue(Boolean(event))"
         :invalid="showErrors"
         id="terms-checkbox"
         class="inline-block mr-2"
         data-testid="checkout-terms-checkbox"
       />
-      <div>
-        <i18n-t keypath="termsInfo">
+      <label for="terms-checkbox" class="select-none">
+        <i18n-t keypath="termsInfo" scope="global">
           <template #terms>
             <SfLink
               :href="localePath(paths.termsAndConditions)"
@@ -41,14 +41,16 @@
             </SfLink>
           </template>
         </i18n-t>
-      </div>
+      </label>
     </div>
-    <div v-if="showErrors" class="text-negative-700 text-sm mt-2">{{ $t('termsRequired') }}</div>
+    <div class="text-sm text-neutral-500 mt-1 ml-7">* {{ $t('contact.form.asterixHint') }}</div>
+    <div v-if="showErrors" class="text-negative-700 text-sm">{{ $t('termsRequired') }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { SfCheckbox, SfLink } from '@storefront-ui/vue';
+import { paths } from '~/utils/paths';
 
 const localePath = useLocalePath();
 

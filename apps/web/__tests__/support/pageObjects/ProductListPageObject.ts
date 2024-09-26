@@ -1,6 +1,6 @@
-const productsAmount = 24;
+import { PageObject } from "./PageObject";
 
-export class ProductListPageObject {
+export class ProductListPageObject extends PageObject {
   get categoryGrid() {
     return cy.getByTestId('category-grid');
   }
@@ -71,12 +71,17 @@ export class ProductListPageObject {
 
   addToCart() {
     this.products.find(`[data-testid="add-to-basket-short"]`).first().click();
+    cy.wait(1000)
+    cy.getByTestId('quick-checkout-close').click()
     return this;
   }
 
   goToProduct() {
-    this.products.first().click()
-
-    return this
+    cy.intercept('/plentysystems/getProduct').as('getProduct');
+    cy.intercept('/plentysystems/getReview').as('getReview');
+    this.products.first().click();
+    cy.wait('@getProduct');
+    cy.wait('@getReview');
+    return this;
   }
 }

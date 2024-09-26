@@ -1,4 +1,6 @@
-export class WishlistObject {
+import { PageObject } from "./PageObject";
+
+export class WishlistObject extends PageObject {
   get wishlistIcon() {
     return cy.getByTestId('navbar-top').find('[data-testid="wishlist-page-navigation"]');
   }
@@ -28,14 +30,12 @@ export class WishlistObject {
   addWishlistItem() {
     this.wishlistTrigger.first().click();
     cy.wait('@doAddWishlistItem')
-    cy.wait('@getWishlist')
     return this;
   }
 
   removeWishlistItem() {
     this.wishlistTrigger.first().click();
     cy.wait('@deleteWishlistItem')
-    cy.wait('@getWishlist')
     return this;
   }
 
@@ -46,11 +46,12 @@ export class WishlistObject {
 
   addToCart() {
     this.addToCartTrigger.first().click();
+    cy.wait(1000)
+    cy.getByTestId('quick-checkout-close').click()
     return this;
   }
 
   checkEmptyPage() {
-    this.wishlistPage.getByTestId('empty-wishlist-image').should('be.visible');
     this.wishlistPage.getByTestId('empty-wishlist-text').should('be.visible');
     return this;
   }

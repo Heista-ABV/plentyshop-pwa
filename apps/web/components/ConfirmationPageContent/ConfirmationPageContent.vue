@@ -1,14 +1,13 @@
 <template>
   <div class="px-4 md:px-0 flex items-center flex-col" data-testid="order-success-page">
-    <div class="p-4 md:p-6 flex flex-col items-center max-w-2xl mx-auto">
-      <NuxtImg src="/images/order-success.svg" :alt="t('orderSuccessfulImageAlt')" width="192" height="192" />
-      <h1 class="mt-6 mb-1 text-2xl" data-testid="success-header">
+    <div class="p-4 md:p-6 flex flex-col max-w-2xl mx-auto">
+      <h1 class="mt-6 mb-1 text-2xl text-center" data-testid="success-header">
         {{ !orderGetters.isReturn(order) ? t('successInfoOrderHeader') : t('successInfoReturnHeader') }}
       </h1>
-      <span v-if="!orderGetters.isReturn(order)" class="font-medium">{{ t('successInfoMessage') }}</span>
-      <span v-if="order?.order?.deliveryAddress?.options?.length" class="font-medium text-center">
+      <div v-if="!orderGetters.isReturn(order)" class="font-medium text-center">{{ t('successInfoMessage') }}</div>
+      <div v-if="order?.order?.deliveryAddress?.options?.length" class="font-medium text-center">
         {{ t('orderConfirmation.confirmationSendTo', { email: orderGetters.getOrderEmail(order) }) }}
-      </span>
+      </div>
     </div>
 
     <div class="flex flex-col md:flex-row w-full md:w-auto lg:w-3/4 flex-wrap gap-x-6">
@@ -18,13 +17,15 @@
         </div>
 
         <div v-if="order?.order" id="order-items" class="flex flex-col my-4">
-          <OrderSummaryProductCard
-            v-for="(item, index) in orderGetters.getItems(order)"
-            :order="order"
-            :order-item="item"
-            :index="index"
-            :key="item.id"
-          />
+          <div v-for="(item, index) in orderGetters.getItems(order)" :key="item.id">
+            <OrderSummaryProductCard
+              v-if="!orderGetters.isBundleItem(item) && !orderGetters.isCouponItem(item)"
+              :order="order"
+              :order-item="item"
+              :index="index"
+              :class="{ 'border-t': index === 0 }"
+            />
+          </div>
         </div>
 
         <div class="border border-1 border-neutral-200 rounded bg-neutral-100 p-4 w-full my-4 text-sm">
@@ -37,30 +38,69 @@
           <OrderPaymentSummary :order="order" />
         </div>
 
+        <div
+          v-if="!isAuthorized"
+          class="border border-1 border-neutral-200 rounded bg-neutral-100 p-4 w-full mt-4 text-sm items-center flex flex-col"
+        >
+          <div class="font-bold text-primary-700 font-headings md:text-lg text-center mt-5">
+            {{ t('orderConfirmation.saveOrderToAccount') }}
+          </div>
+          <div class="font-bold text-center mt-3">{{ t('orderConfirmation.createAccountForBenefits') }}</div>
+          <UiButton variant="primary" class="mt-5 mb-5" @click="isAuthenticationOpen = true">
+            {{ t('orderConfirmation.signUp') }}
+          </UiButton>
+        </div>
+
         <OrderDocumentsList :order="order" />
 
         <OrderReturnItems
           v-if="orderGetters.isReturnable(order) && orderGetters.hasReturnableItems(order)"
           :order="order"
         />
+        <OrderAgainButton v-if="isAuthorized" :order="order" />
       </div>
     </div>
 
-    <SfButton :tag="NuxtLink" href="/" class="max-md:w-full mt-6 mb-8" variant="secondary">
+    <UiButton :tag="NuxtLink" :href="localePath(paths.home)" class="max-md:w-full mt-6 mb-8" variant="secondary">
       {{ t('continueShopping') }}
-    </SfButton>
+    </UiButton>
   </div>
+
+  <UiModal
+    v-if="isAuthenticationOpen"
+    v-model="isAuthenticationOpen"
+    tag="section"
+    class="h-full md:w-[500px] md:h-fit m-0 p-0 overflow-y-auto"
+    aria-labelledby="login-modal"
+  >
+    <header>
+      <UiButton square variant="tertiary" class="absolute right-2 top-2" @click="closeAuthentication()">
+        <SfIconClose />
+      </UiButton>
+    </header>
+    <Register
+      @registered="closeAuthentication"
+      :order="order"
+      :email-address="orderGetters.getOrderEmail(order)"
+      :is-modal="true"
+      :changeable-view="false"
+    />
+  </UiModal>
 </template>
 
 <script setup lang="ts">
-import { orderGetters } from '@plentymarkets/shop-sdk';
-import { SfButton } from '@storefront-ui/vue';
-import { ConfirmationPageContentProps } from './types';
+import { orderGetters } from '@plentymarkets/shop-api';
+import { SfIconClose, useDisclosure } from '@storefront-ui/vue';
+import type { ConfirmationPageContentProps } from './types';
+import { paths } from '~/utils/paths';
 
 const NuxtLink = resolveComponent('NuxtLink');
 defineProps<ConfirmationPageContentProps>();
 const { t } = useI18n();
+const { isOpen: isAuthenticationOpen, toggle: closeAuthentication } = useDisclosure();
+const { isAuthorized } = useCustomer();
 const { getActiveShippingCountries } = useActiveShippingCountries();
+const localePath = useLocalePath();
 
 await getActiveShippingCountries();
 </script>

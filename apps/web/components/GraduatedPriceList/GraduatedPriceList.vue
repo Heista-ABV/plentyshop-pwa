@@ -21,9 +21,10 @@
         <td class="lg:p-4 p-2 lg:whitespace-nowrap h-[38px]">{{ list.quantity }}</td>
         <td class="lg:p-4 p-2 flex h-[38px]">
           <div>{{ list.discount }} %</div>
-          <div class="ml-auto text-primary-600" v-if="selectedList && list.price === selectedList.price.value">
-            <SfIconCheck />
-          </div>
+          <SfIconCheck
+            v-if="selectedList && list.price === selectedList.price.value"
+            class="ml-auto text-primary-400"
+          />
         </td>
       </tr>
     </tbody>
@@ -31,13 +32,11 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters } from '@plentymarkets/shop-sdk';
-import { GraduatedPriceListProps } from '~/components/GraduatedPriceList/types';
+import { productGetters } from '@plentymarkets/shop-api';
+import type { GraduatedPriceListProps } from '~/components/GraduatedPriceList/types';
 import { SfIconCheck } from '@storefront-ui/vue';
 
-const props = withDefaults(defineProps<GraduatedPriceListProps>(), {
-  count: 0,
-});
-const graduatedList = computed(() => productGetters.getGraduatedList(props.product));
-const selectedList = computed(() => productGetters.getGraduatedPriceByQuantity(props.product, props.count));
+const { product, count = 0 } = defineProps<GraduatedPriceListProps>();
+const graduatedList = computed(() => productGetters.getGraduatedList(product));
+const selectedList = computed(() => productGetters.getGraduatedPriceByQuantity(product, count));
 </script>

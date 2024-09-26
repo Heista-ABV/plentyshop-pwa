@@ -1,6 +1,7 @@
 import { paths } from '../../../utils/paths';
+import { PageObject } from "./PageObject";
 
-export class MyAccountPageObject {
+export class MyAccountPageObject extends PageObject {
   get accountLayout() {
     return cy.getByTestId('account-layout');
   }
@@ -10,7 +11,8 @@ export class MyAccountPageObject {
       cy.get(`[type="email"]`).type(fixture.email, { delay: 0 });
       cy.get(`[type="password"]`).type(fixture.password, { delay: 0 });
     });
-    cy.get(`[type="submit"]`).click();
+
+    cy.getByTestId('login-submit').click();
 
     return this;
   }
@@ -89,18 +91,20 @@ export class MyAccountPageObject {
   }
 
   checkBillingAddressesSection() {
+    cy.intercept('/plentysystems/getAddresses').as('getAddresses');
     cy.get('a').contains('Billing addresses').click();
-    cy.visitAndHydrate(paths.accountBillingDetails);
     cy.url().should('contain', paths.accountBillingDetails);
+    cy.wait("@getAddresses");
     this.accountLayout.getByTestId('account-billing-addresses-1').should('be.visible');
 
     return this;
   }
 
   checkShippingAddressesSection() {
+    cy.intercept('/plentysystems/getAddresses').as('getAddresses');
     cy.get('a').contains('Shipping addresses').click();
-    cy.visitAndHydrate(paths.accountShippingDetails);
     cy.url().should('contain', paths.accountShippingDetails);
+    cy.wait("@getAddresses");
     this.accountLayout.getByTestId('account-billing-addresses-2').should('be.visible');
 
     return this;

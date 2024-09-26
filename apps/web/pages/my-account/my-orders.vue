@@ -7,28 +7,24 @@
     >
       {{ t('account.ordersAndReturns.myOrders') }}
     </h2>
+
+    <div v-if="loading">
+      <SfLoaderCircular v-if="loading" class="absolute top-0 bottom-0 right-0 left-0 m-auto z-[999]" size="2xl" />
+    </div>
+
     <div
       v-if="!data || data.data.entries.length === 0"
-      class="col-span-3 text-center mt-8"
+      class="col-span-3 text-center"
       data-testid="account-orders-content"
     >
-      <NuxtImg
-        src="/images/empty-cart.svg"
-        :alt="t('account.ordersAndReturns.noOrdersAltText')"
-        width="192"
-        height="192"
-        class="mx-auto"
-      />
-      <h3 class="typography-headline-3 font-bold mb-4 mt-6">{{ t('account.ordersAndReturns.noOrders') }}</h3>
-      <SfButton :tag="NuxtLink" :to="localePath(paths.category)" variant="secondary" class="!ring-neutral-200">
+      <h3 class="typography-headline-3 font-bold mt-6 mb-4">{{ t('account.ordersAndReturns.noOrders') }}</h3>
+      <UiButton :tag="NuxtLink" :to="localePath(paths.category)" variant="secondary" class="!ring-neutral-200">
         {{ t('account.ordersAndReturns.continue') }}
-      </SfButton>
+      </UiButton>
     </div>
     <div v-else class="col-span-3" data-testid="account-orders-content">
       <div class="relative col-span-3" :class="{ 'pointer-events-none opacity-50': loading }">
-        <SfLoaderCircular v-if="loading" class="absolute top-0 bottom-0 right-0 left-0 m-auto z-[999]" size="2xl" />
-
-        <template v-if="!isTablet">
+        <template v-if="viewport.isLessThan('md')">
           <ul class="my-4 last-of-type:mb-0" v-for="(order, index) in data.data.entries" :key="index">
             <li>
               <p class="block typography-text-sm font-medium">{{ t('account.ordersAndReturns.orderId') }}</p>
@@ -38,7 +34,7 @@
               <p class="block typography-text-sm font-medium">
                 {{ t('account.ordersAndReturns.orderDate') }}
               </p>
-              <span class="block typography-text-sm mb-2">{{ orderGetters.getDate(order) }}</span>
+              <span class="block typography-text-sm mb-2">{{ orderGetters.getDate(order, locale) }}</span>
             </li>
             <li>
               <p class="block typography-text-sm font-medium">{{ t('account.ordersAndReturns.amount') }}</p>
@@ -53,21 +49,37 @@
                 {{ t('account.ordersAndReturns.status') }}
               </p>
               <span class="block typography-text-sm flex-1">{{ orderGetters.getStatus(order) }}</span>
-              <SfButton v-if="orderGetters.isReturnable(order)" @click="openReturn(order)" size="sm" variant="tertiary">
-                {{ t('returns.return') }}
-              </SfButton>
-              <SfButton :tag="NuxtLink" size="sm" variant="tertiary" :to="localePath(generateOrderDetailsLink(order))">
+              <UiButton :tag="NuxtLink" size="sm" variant="tertiary" :to="localePath(generateOrderDetailsLink(order))">
                 {{ t('account.ordersAndReturns.details') }}
-              </SfButton>
+              </UiButton>
+              <UiDropdown class="relative">
+                <template #trigger>
+                  <UiButton variant="tertiary">
+                    <SfIconMoreHoriz size="sm" />
+                  </UiButton>
+                </template>
+                <ul
+                  class="rounded bg-white relative shadow-md border border-neutral-100 text-neutral-900 min-w-[152px] py-2"
+                >
+                  <li>
+                    <SfListItem @click="openOrderAgainModal(order)" tag="button" class="text-left">
+                      {{ t('account.ordersAndReturns.orderAgain.heading') }}
+                    </SfListItem>
+                  </li>
+                  <li>
+                    <NuxtLink :to="localePath(generateNewReturnLink(order))">
+                      <SfListItem v-if="orderGetters.isReturnable(order)" tag="button" class="text-left">
+                        {{ t('returns.return') }}
+                      </SfListItem>
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </UiDropdown>
             </li>
             <UiDivider class="col-span-3 -mx-4 !w-auto md:mx-0" />
           </ul>
         </template>
-
-        <table
-          v-else
-          class="md:block md:overflow-x-auto text-left typography-text-sm mx-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
-        >
+        <table v-else class="md:block md:overflow-x-auto text-left typography-text-sm w-auto mx-4 scrollbar-hidden">
           <caption class="hidden">
             {{
               t('account.ordersAndReturns.listOfOrders')
@@ -82,41 +94,52 @@
               <th class="lg:p-4 p-2 font-medium">{{ t('account.ordersAndReturns.amount') }}</th>
               <th class="lg:p-4 p-2 font-medium">{{ t('account.ordersAndReturns.shippingDate') }}</th>
               <th class="lg:p-4 p-2 font-medium">{{ t('account.ordersAndReturns.status') }}</th>
-              <th class="lg:p-4 p-2 font-medium"></th>
-              <th class="lg:py-4 py-2 lg:pl-4 pl-2"></th>
+              <th class="lg:py-4 py-2 lg:pl-4 pl-2 font-medium">{{ t('account.ordersAndReturns.actions') }}</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(order, index) in data.data.entries" :key="index" class="border-b border-neutral-200">
               <td class="lg:py-4 py-2 lg:pr-4 pr-2 lg:whitespace-nowrap">{{ orderGetters.getId(order) }}</td>
-              <td class="lg:p-4 p-2 lg:whitespace-nowrap">{{ orderGetters.getDate(order) }}</td>
+              <td class="lg:p-4 p-2 lg:whitespace-nowrap">{{ orderGetters.getDate(order, locale) }}</td>
               <td class="lg:p-4 p-2">{{ n(orderGetters.getPrice(order), 'currency') }}</td>
               <td class="lg:p-4 p-2">{{ orderGetters.getShippingDate(order) ?? '' }}</td>
               <td class="lg:p-4 p-2 lg:whitespace-nowrap w-full">{{ orderGetters.getStatus(order) }}</td>
-              <td class="lg:p-4 p-2 lg:whitespace-nowrap w-full">
-                <SfButton
-                  v-if="orderGetters.isReturnable(order)"
-                  @click="openReturn(order)"
-                  size="sm"
-                  variant="tertiary"
-                >
-                  {{ t('returns.return') }}
-                </SfButton>
-              </td>
-              <td class="py-1.5 lg:pl-4 pl-2 text-right w-full">
-                <SfButton
+              <td class="py-1.5 lg:pl-4 pl-2 text-right w-full flex">
+                <UiButton
                   :tag="NuxtLink"
                   size="sm"
                   variant="tertiary"
                   :to="localePath(generateOrderDetailsLink(order))"
                 >
                   {{ t('account.ordersAndReturns.details') }}
-                </SfButton>
+                </UiButton>
+                <UiDropdown class="relative">
+                  <template #trigger>
+                    <UiButton variant="tertiary">
+                      <SfIconMoreHoriz size="sm" />
+                    </UiButton>
+                  </template>
+                  <ul
+                    class="rounded bg-white relative shadow-md border border-neutral-100 text-neutral-900 min-w-[152px] py-2"
+                  >
+                    <li>
+                      <SfListItem @click="openOrderAgainModal(order)" tag="button" class="text-left">
+                        {{ t('account.ordersAndReturns.orderAgain.heading') }}
+                      </SfListItem>
+                    </li>
+                    <li>
+                      <NuxtLink :to="localePath(generateNewReturnLink(order))">
+                        <SfListItem v-if="orderGetters.isReturnable(order)" tag="button" class="text-left">
+                          {{ t('returns.return') }}
+                        </SfListItem>
+                      </NuxtLink>
+                    </li>
+                  </ul>
+                </UiDropdown>
               </td>
             </tr>
           </tbody>
         </table>
-
         <UiPagination
           v-if="data.data.lastPageNumber > 1"
           :disabled="loading"
@@ -125,62 +148,54 @@
           :page-size="data.data.itemsPerPage"
           :max-visible-pages="maxVisiblePages"
         />
-
-        <OrderReturnForm :is-open="isReturnOpen" @close="closeReturn" />
       </div>
     </div>
   </ClientOnly>
+  <OrderAgain v-if="selectedOrder" :order="selectedOrder" />
 </template>
 
 <script setup lang="ts">
-import { Order } from '@plentymarkets/shop-api';
-import { orderGetters } from '@plentymarkets/shop-sdk';
-import { SfLoaderCircular, SfButton, useDisclosure } from '@storefront-ui/vue';
-import { ref } from 'vue';
-import { useReturnOrder } from '~/composables/useReturnOrder';
+import { type Order, orderGetters } from '@plentymarkets/shop-api';
+import { SfIconMoreHoriz, SfListItem, SfLoaderCircular } from '@storefront-ui/vue';
+import { paths } from '~/utils/paths';
+
+const NuxtLink = resolveComponent('NuxtLink');
+const { openOrderAgainModal, order: selectedOrder } = useOrderAgain();
+const route = useRoute();
+const localePath = useLocalePath();
+const { t, n, locale } = useI18n();
+const viewport = useViewport();
+const maxVisiblePages = ref(1);
+const setMaxVisiblePages = (isWide: boolean) => (maxVisiblePages.value = isWide ? 5 : 1);
+const isDesktop = computed(() => viewport.isGreaterOrEquals('lg'));
+
 definePageMeta({
   layout: 'account',
   pageType: 'static',
 });
 
-const localePath = useLocalePath();
-const { t, n } = useI18n();
-const { isDesktop, isTablet } = useBreakpoints();
-const maxVisiblePages = ref(1);
-const { isOpen: isReturnOpen, open: openReturnForm, close: closeReturn } = useDisclosure();
-
-const { setCurrentReturnOrder } = useReturnOrder();
-
-const setMaxVisiblePages = (isWide: boolean) => (maxVisiblePages.value = isWide ? 5 : 1);
-const route = useRoute();
-
-const NuxtLink = resolveComponent('NuxtLink');
-watch(isDesktop, (value) => setMaxVisiblePages(value));
 onMounted(() => setMaxVisiblePages(isDesktop.value));
 
 const { fetchCustomerOrders, data, loading } = useCustomerOrders();
-
 const generateOrderDetailsLink = (order: Order) => {
-  return `${paths.thankYou}/?orderId=${orderGetters.getId(order)}&accessKey=${orderGetters.getAccessKey(order)}`;
+  return `${paths.confirmation}/${orderGetters.getId(order)}/${orderGetters.getAccessKey(order)}`;
 };
 
-const openReturn = (order: Order) => {
-  setCurrentReturnOrder(order);
-  openReturnForm();
+const generateNewReturnLink = (order: Order) => {
+  return `${paths.accountNewReturn}/${orderGetters.getId(order)}/${orderGetters.getAccessKey(order)}`;
 };
-
 const handleQueryUpdate = async () => {
   await fetchCustomerOrders({
     page: Number(route.query.page as string) || defaults.DEFAULT_PAGE,
   });
 };
+handleQueryUpdate();
 
-await handleQueryUpdate();
-
+watch(isDesktop, (value) => setMaxVisiblePages(value));
 watch(
   () => route.query,
-  async () => {
-    await handleQueryUpdate();
+  () => {
+    handleQueryUpdate();
   },
 );
 </script>

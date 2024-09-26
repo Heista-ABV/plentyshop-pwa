@@ -1,7 +1,5 @@
-import { ReviewAverage } from '@plentymarkets/shop-api';
-import { toRefs } from '@vueuse/shared';
-import { useSdk } from '~/sdk';
-import { FetchProductReviewAverage, UseProductReviewAverage, UseProductReviewAverageState } from './types';
+import type { ReviewAverage } from '@plentymarkets/shop-api';
+import type { FetchProductReviewAverage, UseProductReviewAverage, UseProductReviewAverageState } from './types';
 
 /**
  * @description Composable managing review average data
@@ -12,8 +10,8 @@ import { FetchProductReviewAverage, UseProductReviewAverage, UseProductReviewAve
  * const { data, loading, fetchProductReviewAverage } = useProductReviewAverage(itemId);
  * ```
  */
-export const useProductReviewAverage: UseProductReviewAverage = (itemId: string) => {
-  const state = useState<UseProductReviewAverageState>(`useProductReviewAverage-${itemId}`, () => ({
+export const useProductReviewAverage: UseProductReviewAverage = (itemId: number) => {
+  const state = useState<UseProductReviewAverageState>('useProductReviewAverage', () => ({
     data: {} as ReviewAverage,
     loading: false,
   }));

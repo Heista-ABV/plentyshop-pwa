@@ -1,5 +1,4 @@
-import { toRefs } from '@vueuse/shared';
-import {
+import type {
   SelectAll,
   SetCurrentReturnOrder,
   UseReturnOrderReturn,
@@ -9,8 +8,7 @@ import {
   CleanReturnData,
 } from './types';
 import type { Order, MakeOrderReturnParams } from '@plentymarkets/shop-api';
-import { orderGetters, returnGetters } from '@plentymarkets/shop-sdk';
-import { useSdk } from '~/sdk';
+import { orderGetters, returnGetters } from '@plentymarkets/shop-api';
 
 /**
  * @description Composable for managing order return.

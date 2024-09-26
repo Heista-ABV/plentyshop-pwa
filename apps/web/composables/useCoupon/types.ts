@@ -1,5 +1,4 @@
-import { Ref } from 'vue';
-import { DoAddCouponParams, Cart } from '@plentymarkets/shop-api';
+import type { DoAddCouponParams, Cart } from '@plentymarkets/shop-api';
 
 export interface UseCouponState {
   loading: boolean;

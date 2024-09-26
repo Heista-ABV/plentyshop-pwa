@@ -1,7 +1,6 @@
 <template>
   <NuxtLayout
     name="checkout"
-    :back-href="localePath(paths.cart)"
     :back-label-desktop="t('backToCart')"
     :back-label-mobile="t('back')"
     :heading="t('checkout')"
@@ -11,75 +10,18 @@
         <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0" />
         <ContactInformation disabled />
         <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0" />
-        <CheckoutAddress
-          id="billing-address"
-          :heading="t('billing.heading')"
-          :description="t('billing.description')"
-          :button-text="t('billing.addButton')"
-          :addresses="billingAddresses"
-          :type="AddressType.Billing"
-          disabled
-        />
+        <AddressContainer disabled :type="AddressType.Shipping" :key="0" id="shipping-address" />
         <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0" />
-        <CheckoutAddress
-          id="shipping-address"
-          :heading="t('shipping.heading')"
-          :description="t('shipping.description')"
-          :button-text="t('shipping.addButton')"
-          :addresses="shippingAddresses"
-          :type="AddressType.Shipping"
-          disabled
-        />
+        <AddressContainer disabled :type="AddressType.Billing" :key="1" id="billing-address" />
         <UiDivider class-name="w-screen md:w-auto -mx-4 md:mx-0" />
         <div class="relative">
           <ShippingMethod :shipping-methods="shippingMethods" disabled />
-
           <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0" />
           <CheckoutPayment :payment-methods="paymentMethods" disabled />
         </div>
         <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0 mb-10" />
         <div class="text-sm mx-4 md:pb-0">
-          <div class="flex items-center">
-            <SfCheckbox
-              v-model="termsAccepted"
-              :invalid="showTermsError"
-              @change="showTermsError = false"
-              id="terms-checkbox"
-              class="inline-block mr-2"
-            />
-            <div>
-              <i18n-t keypath="termsInfo">
-                <template #terms>
-                  <SfLink
-                    :href="localePath(paths.termsAndConditions)"
-                    target="_blank"
-                    class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-                  >
-                    {{ t('termsAndConditions') }}
-                  </SfLink>
-                </template>
-                <template #cancellationRights>
-                  <SfLink
-                    :href="localePath(paths.cancellationRights)"
-                    target="_blank"
-                    class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-                  >
-                    {{ t('cancellationRights') }}
-                  </SfLink>
-                </template>
-                <template #privacyPolicy>
-                  <SfLink
-                    :href="localePath(paths.privacyPolicy)"
-                    target="_blank"
-                    class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-                  >
-                    {{ t('privacyPolicy') }}
-                  </SfLink>
-                </template>
-              </i18n-t>
-            </div>
-          </div>
-          <div v-if="showTermsError" class="text-negative-700 text-sm mt-2">{{ t('termsRequired') }}</div>
+          <CheckoutGeneralTerms />
         </div>
       </div>
       <div class="col-span-5">
@@ -89,7 +31,7 @@
         <div class="relative md:sticky mt-4 md:top-20 h-fit" :class="{ 'pointer-events-none opacity-50': cartLoading }">
           <SfLoaderCircular v-if="cartLoading" class="absolute top-[130px] right-0 left-0 m-auto z-[999]" size="2xl" />
           <OrderSummary v-if="cart" :cart="cart">
-            <SfButton
+            <UiButton
               type="submit"
               @click="order"
               :disabled="createOrderLoading || cartLoading || executeOrderLoading"
@@ -104,7 +46,7 @@
               <span v-else>
                 {{ t('buy') }}
               </span>
-            </SfButton>
+            </UiButton>
           </OrderSummary>
         </div>
       </div>
@@ -113,12 +55,10 @@
 </template>
 
 <script lang="ts" setup>
-import { AddressType, PaymentMethod } from '@plentymarkets/shop-api';
-import { orderGetters, shippingProviderGetters } from '@plentymarkets/shop-sdk';
-import { SfButton, SfLink, SfCheckbox, SfLoaderCircular } from '@storefront-ui/vue';
+import { AddressType, type PaymentMethod, orderGetters, shippingProviderGetters } from '@plentymarkets/shop-api';
+import { SfLoaderCircular } from '@storefront-ui/vue';
 
 definePageMeta({
-  layoutName: 'checkout',
   pageType: 'static',
 });
 
@@ -141,9 +81,8 @@ const route = useRoute();
 const { send } = useNotification();
 const { t } = useI18n();
 const localePath = useLocalePath();
-
-const termsAccepted = ref(false);
-const showTermsError = ref(false);
+const { checkboxValue: termsAccepted, setShowErrors } = useAgreementCheckbox('checkoutGeneralTerms');
+const { getActiveShippingCountries } = useActiveShippingCountries();
 
 const loadAddresses = async () => {
   await getBillingAddresses();
@@ -174,6 +113,7 @@ const redirectBack = () => {
 await getSession();
 redirectBack();
 await loadAddresses();
+await getActiveShippingCountries();
 await getShippingMethods();
 await fetchPaymentMethods();
 
@@ -184,26 +124,12 @@ await savePaymentMethod(
 const shippingMethods = computed(() => shippingProviderGetters.getShippingProviders(shippingMethodData.value));
 const paymentMethods = computed(() => paymentMethodData.value);
 
-const scrollToHTMLObject = (object: string) => {
-  const element = document.querySelector(object) as HTMLElement;
-  const elementOffset = element?.offsetTop ?? 0;
-
-  const headerElement = document.querySelector('header') as HTMLElement;
-  const headerElementOffset = headerElement.offsetHeight ?? 0;
-
-  window.scrollTo({
-    top: elementOffset - headerElementOffset,
-    behavior: 'smooth',
-  });
-};
-
 const validateTerms = (): boolean => {
-  showTermsError.value = !termsAccepted.value;
-  if (showTermsError.value) {
+  if (!termsAccepted.value) {
     scrollToHTMLObject(ID_CHECKBOX);
+    setShowErrors(true);
     return false;
   }
-
   return true;
 };
 
@@ -226,7 +152,7 @@ const order = async () => {
   clearCartItems();
 
   if (data?.order?.id) {
-    navigateTo(localePath('/thank-you/?orderId=' + data.order.id + '&accessKey=' + data.order.accessKey));
+    navigateTo(localePath('/confirmation/' + data.order.id + '/' + data.order.accessKey));
   }
 };
 </script>

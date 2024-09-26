@@ -1,16 +1,16 @@
 <template>
   <nav class="w-full fixed bottom-0 left-0 flex flex-row items-stretch md:hidden" data-testid="navbar-bottom">
-    <SfButton
+    <UiButton
       v-for="{ label, icon, link } in items"
       :key="label"
       variant="tertiary"
       :class="[
-        '!p-1 !pt-3 flex flex-col h-full w-full rounded-none bg-primary-700 text-white hover:text-white hover:bg-primary-800 active:text-white active:bg-primary-900 !text-xs !font-base',
-        { 'text-white bg-primary-900': $route.path === link },
+        '!p-1 !pt-3 flex flex-col h-full w-full rounded-none bg-primary-500 text-white hover:text-white hover:bg-primary-800 active:text-white active:bg-primary-700 !text-xs !font-base',
+        { 'text-white bg-primary-700': route.path === link },
       ]"
       size="sm"
-      :tag="NuxtLink"
-      :to="link"
+      :tag="link ? NuxtLink : undefined"
+      :to="link || undefined"
       @click="label === t('products') && open()"
     >
       <template #prefix>
@@ -21,19 +21,27 @@
             :content="cartItemsCount"
             class="outline-white bg-white !text-neutral-900 translate-x-[5px] translate-y-[-3px]"
           />
+          <SfBadge
+            v-if="label === t('wishlist')"
+            :content="wishlistItemIds.length"
+            class="outline-white bg-white !text-neutral-900 translate-x-[5px] translate-y-[-3px]"
+            data-testid="wishlist-badge"
+          />
         </div>
       </template>
       {{ label }}
-    </SfButton>
+    </UiButton>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { SfButton, SfBadge, SfIconShoppingCart, SfIconHome, SfIconMenu, SfIconPerson } from '@storefront-ui/vue';
+import { SfBadge, SfIconShoppingCart, SfIconHome, SfIconMenu, SfIconPerson, SfIconFavorite } from '@storefront-ui/vue';
 import { useCustomer } from '~/composables/useCustomer';
 
 const localePath = useLocalePath();
+const route = useRoute();
 const { t } = useI18n();
+const { wishlistItemIds } = useWishlist();
 const { data: cart } = useCart();
 const { isAuthorized } = useCustomer();
 const { open } = useMegaMenu();
@@ -48,6 +56,11 @@ const items = computed(() => [
     label: t('products'),
     icon: SfIconMenu,
     link: '',
+  },
+  {
+    label: t('wishlist'),
+    icon: SfIconFavorite,
+    link: localePath(paths.wishlist),
   },
   {
     label: t('cart'),
