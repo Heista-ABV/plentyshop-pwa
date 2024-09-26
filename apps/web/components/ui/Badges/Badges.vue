@@ -40,12 +40,11 @@ import type { BadgesProps } from '~/components/ui/Badges/types';
 
 const localePath = useLocalePath();
 
-const props = withDefaults(defineProps<BadgesProps>(), { useTags: true, useAvailability: false });
+const { product, useTags = true, useAvailability = false } = defineProps<BadgesProps>();
 const productTags = ref([] as ProductTag[]);
 const availabilityStyles = ref({});
-const product = props.product;
 
-const availabilityEnabled = props.useAvailability;
+const availabilityEnabled = useAvailability;
 if (availabilityEnabled) {
   availabilityStyles.value = {
     backgroundColor: productGetters.getAvailabilityBackgroundColor(product),
@@ -53,7 +52,7 @@ if (availabilityEnabled) {
   };
 }
 
-const tagsEnabled = props.useTags;
+const tagsEnabled = useTags;
 if (tagsEnabled) {
   productTags.value = tagGetters.getTags(product);
 }

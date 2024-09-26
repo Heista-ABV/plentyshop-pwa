@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { SdkHttpError } from '@vue-storefront/sdk';
 import { updateVsfLocale } from './utils/sdkClientHelper';
 
@@ -28,7 +28,7 @@ const createHttpClient = () => {
   return client;
 };
 
-const handleHttpError = (error: any) => {
+const handleHttpError = (error: unknown) => {
   const axiosError = error as AxiosError;
   console.error(error);
 
@@ -39,12 +39,12 @@ const handleHttpError = (error: any) => {
   });
 };
 
-export const httpClient = async (url: any, params: any, config: any) => {
+export const httpClient = async (url: string, params: unknown, config: AxiosRequestConfig<unknown> | undefined) => {
   try {
     const client = createHttpClient();
     const { data } = await client(url, { ...config, data: params });
     return data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     handleHttpError(error);
   }
 };

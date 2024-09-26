@@ -40,9 +40,7 @@
 import { SfIconCreditCard, SfIconCheckCircle, SfIconRadioButtonUnchecked } from '@storefront-ui/vue';
 import type { CheckoutPaymentEmits, CheckoutPaymentProps } from '~/components/CheckoutPayment/types';
 
-withDefaults(defineProps<CheckoutPaymentProps>(), {
-  disabled: false,
-});
+const { disabled = false } = defineProps<CheckoutPaymentProps>();
 const { data: cart } = useCart();
 const selectedId = cart.value.methodOfPaymentId;
 defineEmits<CheckoutPaymentEmits>();

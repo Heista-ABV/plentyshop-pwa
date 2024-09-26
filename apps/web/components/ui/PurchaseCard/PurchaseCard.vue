@@ -227,8 +227,8 @@
 <script setup lang="ts">
 import { productGetters, productPropertyGetters, reviewGetters, productBundleGetters } from '@plentymarkets/shop-api';
 import {  SfCounter, SfLink, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip } from '@storefront-ui/vue';
-import type { PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
-import type { PayPalAddToCartCallback } from '~/components/PayPal/types';
+import { type PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
+import { type PayPalAddToCartCallback } from '~/components/PayPal/types';
 
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
@@ -250,6 +250,8 @@ const { t } = useI18n();
 const quantitySelectorValue = ref(1);
 const { isWishlistItem } = useWishlist();
 const { openQuickCheckout } = useQuickCheckout();
+const { crossedPrice } = useProductPrice(product);
+const { reviewArea } = useProductReviews(Number(productGetters.getId(product)));
 
 resetInvalidFields();
 resetAttributeFields();
@@ -335,20 +337,6 @@ const openReviewsAccordion = () => {
   customerReviewsClickElement?.click();
 };
 
-const scrollToReviewsAccordion = () => {
-  const customerReviewsAccordionElement = document.querySelector('#customerReviewsAccordion') as HTMLElement;
-  const customerReviewsAccordionElementOffset =
-    customerReviewsAccordionElement?.getBoundingClientRect()?.top + document.documentElement.scrollTop || 0;
-
-  const headerElement = document.querySelector('header') as HTMLElement;
-  const headerElementOffset = headerElement.offsetHeight ?? 0;
-
-  window.scrollTo({
-    top: customerReviewsAccordionElementOffset - headerElementOffset,
-    behavior: 'smooth',
-  });
-};
-
 const prod = JSON.parse(JSON.stringify(product));
 
 const manufacturer = prod.item.manufacturer as { name: string };
@@ -357,6 +345,7 @@ const manufName = manufacturer.name;
 const manufLogo = manufacturerLogo.logo;
 
 const showPropIcons = [36,37,38,39,40,41,42,43,44,61,62,71,86,72,87];
+
 const isSalableText = computed(() => (productGetters.isSalable(product) ? '' : t('itemNotAvailable')));
 const isNotValidVariation = computed(() => (getCombination() ? '' : t('productAttributes.notValidVariation')));
 
@@ -365,7 +354,9 @@ const scrollToReviews = () => {
     openReviewsAccordion();
   }
 
-  scrollToReviewsAccordion();
+  if (reviewArea.value) {
+    reviewArea.value.scrollIntoView({ behavior: 'smooth' });
+  }
 };
 
 const iconPropMMIDs = [71,86]

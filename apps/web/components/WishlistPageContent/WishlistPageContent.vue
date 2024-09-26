@@ -72,7 +72,7 @@ import { type Product, productGetters, productImageGetters } from '@plentymarket
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import type { WishlistPageContentProps } from '~/components/WishlistPageContent/types';
 
-withDefaults(defineProps<WishlistPageContentProps>(), { withHeader: true });
+const { withHeader = true } = defineProps<WishlistPageContentProps>();
 
 const { addModernImageExtension, getImageForViewport } = useModernImage();
 const { fetchWishlist, data: products, loading } = useWishlist();

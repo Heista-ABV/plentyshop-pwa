@@ -95,7 +95,7 @@
         </div>
         -->
         <section
-          v-if="products"
+          v-if="products?.length"
           class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6 lg:grid-cols-3 2xl:grid-cols-4 mb-10 md:mb-5"
           data-testid="category-grid"
         >
@@ -163,13 +163,11 @@
 import type { Product, Category } from '@plentymarkets/shop-api';
 import { productGetters, productImageGetters, categoryGetters } from '@plentymarkets/shop-api';
 import {  SfIconTune, useDisclosure, SfIconArrowBack } from '@storefront-ui/vue';
-import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
+import { type CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 import $ from "jquery";
 // import { onMounted, ref } from 'vue';
 
-withDefaults(defineProps<CategoryPageContentProps>(), {
-  itemsPerPage: 100,
-});
+const { title, totalProducts, itemsPerPage = 100, products = [] } = defineProps<CategoryPageContentProps>();
 
 const { getFacetsFromURL } = useCategoryFilter();
 const { addModernImageExtension } = useModernImage();

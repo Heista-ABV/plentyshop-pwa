@@ -43,7 +43,9 @@
 <script setup lang="ts">
 import { shippingProviderGetters } from '@plentymarkets/shop-api';
 import { SfIconBlock, SfListItem, SfRadio } from '@storefront-ui/vue';
-import type { CheckoutShippingEmits, ShippingMethodProps } from './types';
+import { type CheckoutShippingEmits, type ShippingMethodProps } from './types';
+
+const { shippingMethods, disabled = false } = defineProps<ShippingMethodProps>();
 
 withDefaults(defineProps<ShippingMethodProps>(), {
   disabled: false,
