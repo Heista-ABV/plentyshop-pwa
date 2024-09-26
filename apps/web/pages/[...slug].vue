@@ -41,7 +41,6 @@ definePageMeta({
 
 definePageMeta({ layout: false });
 
-const { setCategoriesPageMeta } = useCanonical();
 const { t, locale } = useI18n();
 const route = useRoute();
 const router = useRouter();
