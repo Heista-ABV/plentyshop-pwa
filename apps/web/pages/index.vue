@@ -353,6 +353,7 @@
 </template> 
 
 <script lang="ts" setup>
+import { HeroItem } from '~/components/ui/HeroCarousel/types';
 const viewport = useViewport();
 const { t } = useI18n();
 const { data: categoryTree } = useCategoryTree();
@@ -361,22 +362,43 @@ definePageMeta({ pageType: 'static', shadow: false });
 const localePath = useLocalePath();
 const NuxtLink = resolveComponent('NuxtLink'); 
 
-type Size = {
-  width: string;
-  height: string;
-};
-type Sizes = {
-  lg: Size;
-  md: Size;
-  sm: Size;
-};
-type SizeKey = keyof Sizes;
+const runtimeConfig = useRuntimeConfig();
+const homepageTemplate = ref<typeof getDefaultHomepageTemplate>(getDefaultHomepageTemplate);
+const homepageCategoryId = runtimeConfig.public.homepageCategoryId;
+const { fetchCategoryTemplate } = useCategoryTemplate();
+if (typeof homepageCategoryId === 'number') {
+  const { data } = await fetchCategoryTemplate(homepageCategoryId);
+  const parsedData = JSON.parse(data);
+  if (parsedData) {
+    homepageTemplate.value = {
+      id: parsedData.id,
+      hero: parsedData.hero || [],
+      valueProposition: parsedData.valueProposition,
+      featured: parsedData.featured,
+    };
+  }
+}
 
-const getSizeForViewport = (sizes: Sizes) => {
-  const breakpoint = viewport.breakpoint.value as SizeKey;
-  return sizes[breakpoint];
-};
+const mediaData = ref({
+  image: homepageTemplate.value.valueProposition.image,
+  text: homepageTemplate.value.valueProposition.text,
+});
 
+const formattedHeroItems = ref<HeroItem[]>(
+  homepageTemplate.value.hero.map((item) => ({
+    image: item.image,
+    tagline: item.tagline,
+    heading: item.heading,
+    description: item.description,
+    callToAction: item.callToAction,
+    link: item.link,
+    backgroundSizes: {
+      lg: { width: '4000', height: '600' },
+      md: { width: '1024', height: '600' },
+      sm: { width: '640', height: '752' },
+    },
+  })),
+);
 watch(
   () => categoryTree.value,
   async () => {
@@ -386,102 +408,24 @@ watch(
   { immediate: true },
 );
 const { showNewsletter } = useNewsletter();
-const displayDetails = computed(() => {
-  return [
-    {
-      image: `/images/${viewport.breakpoint.value}/homepage-display-1.avif`,
-      title: t('homepage.displayDetails.detail1.title'),
-      alt: t('homepage.displayDetails.detail1.alt'),
-      subtitle: t('homepage.displayDetails.detail1.subtitle'),
-      description: t('homepage.displayDetails.detail1.description'),
-      buttonText: t('homepage.displayDetails.detail1.buttonText'),
-      reverse: false,
-      backgroundColor: 'bg-negative-200',
-      titleClass: 'md:typography-display-2',
-      subtitleClass: 'md:typography-headline-6',
-      descriptionClass: 'md:typography-text-lg',
-      sizes: {
-        lg: {
-          width: '728',
-          height: '728',
-        },
-        md: {
-          width: '488',
-          height: '488',
-        },
-        sm: {
-          width: '320',
-          height: '320',
-        },
-      },
-    },
-    {
-      image: `/images/${viewport.breakpoint.value}/homepage-display-2.avif`,
-      title: t('homepage.displayDetails.detail2.title'),
-      alt: t('homepage.displayDetails.detail2.alt'),
-      subtitle: t('homepage.displayDetails.detail2.subtitle'),
-      description: t('homepage.displayDetails.detail2.description'),
-      buttonText: t('homepage.displayDetails.detail2.buttonText'),
-      reverse: true,
-      backgroundColor: 'bg-warning-200', 
-      sizes: {
-        lg: {
-          width: '358',
-          height: '358',
-        },
-        md: {
-          width: '472',
-          height: '472',
-        },
-        sm: {
-          width: '320',
-          height: '320',
-        },
-      },
-    },
-    {
-      image: `/images/${viewport.breakpoint.value}/homepage-display-3.avif`,
-      title: t('homepage.displayDetails.detail3.title'),
-      alt: t('homepage.displayDetails.detail3.alt'),
-      subtitle: t('homepage.displayDetails.detail3.subtitle'),
-      description: t('homepage.displayDetails.detail3.description'),
-      buttonText: t('homepage.displayDetails.detail3.buttonText'),
-      reverse: false,
-      backgroundColor: 'bg-secondary-50',
-      sizes: {
-        lg: {
-          width: '358',
-          height: '358',
-        },
-        md: {
-          width: '238',
-          height: '238',
-        },
-        sm: {
-          width: '320',
-          height: '320',
-        },
-      },
-    },
-  ];
-});
-const headPhones = {
-  image: `/images/${viewport.breakpoint.value}/homepage-hero-headphones.avif`,
-  alt: t('homepage.headPhones'),
-  sizes: {
-    lg: {
-      width: '800',
-      height: '600',
-    },
-    md: {
-      width: '800',
-      height: '600',
-    },
-    sm: {
-      width: '640',
-      height: '480',
-    },
-  },
+export type Size = {
+  width: string;
+  height: string;
+};
+
+export type Sizes = {
+  lg: Size;
+  md: Size;
+  sm: Size;
+};
+
+type SizeKey = keyof Sizes;
+
+const getSizeForViewport = (sizes: Sizes | undefined): Size => {
+  if (!sizes) return { width: '0', height: '0' };
+  const breakpoint = viewport.breakpoint.value as SizeKey;
+
+  return sizes[breakpoint] || { width: '0', height: '0' };
 };
 const background = {
   image: `/images/${viewport.breakpoint.value}/homepage-hero-bg.avif`,
@@ -501,34 +445,12 @@ const background = {
     },
   },
 };
-const categories = [
-  {
-    title: t('homepage.women'),
-    ariaLabel: t('homepage.womenHomepageCategory'),
-    image: '/images/homepage-women-category.avif',
-  },
-  {
-    title: t('homepage.men'),
-    ariaLabel: t('homepage.menHomepageCategory'),
-    image: '/images/homepage-men-category.avif',
-  },
-  {
-    title: t('homepage.kid'),
-    ariaLabel: t('homepage.kidHomepageCategory'),
-    image: '/images/homepage-kid-category.avif',
-  },
-];
 
 useHead({
   link: [
     {
       rel: 'preload',
       href: background.image,
-      as: 'image',
-    },
-    {
-      rel: 'preload',
-      href: headPhones.image,
       as: 'image',
     },
   ],

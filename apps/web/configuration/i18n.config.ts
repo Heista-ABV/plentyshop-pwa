@@ -1,4 +1,7 @@
 import type { NuxtI18nOptions } from '@nuxtjs/i18n';
+import { getLocaleObject } from './locale.config';
+
+const localeObject = getLocaleObject();
 
 export const nuxtI18nOptions: NuxtI18nOptions = {
   locales: [    
