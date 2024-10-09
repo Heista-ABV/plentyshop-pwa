@@ -363,6 +363,8 @@ const localePath = useLocalePath();
 const NuxtLink = resolveComponent('NuxtLink'); 
 
 const runtimeConfig = useRuntimeConfig();
+
+/*
 const homepageTemplate = ref<typeof getDefaultHomepageTemplate>(getDefaultHomepageTemplate);
 const homepageCategoryId = runtimeConfig.public.homepageCategoryId;
 const { fetchCategoryTemplate } = useCategoryTemplate();
@@ -407,6 +409,7 @@ watch(
   },
   { immediate: true },
 );
+*/
 const { showNewsletter } = useNewsletter();
 export type Size = {
   width: string;

@@ -20,76 +20,78 @@
     </header>
 
     <div class="lg:grid lg:grid-cols-2 lg:gap-4">
-      <div class="lg:border-r-2 flex flex-col items-center p-8">
-        <NuxtImg
-          :src="addModernImageExtension(productGetters.getPreviewImage(product))"
-          :alt="t('imageOfSth', { name: productGetters.getName(product) })"
-          width="240"
-          height="240"
-          loading="lazy"
-          class="mb-3"
-        />
+        <div class="lg:border-r-2 flex flex-col items-center p-8">
+            <NuxtImg
+            :src="addModernImageExtension(productGetters.getPreviewImage(product))"
+            :alt="t('imageOfSth', { name: productGetters.getName(product) })"
+            width="240"
+            height="240"
+            loading="lazy"
+            class="mb-3"
+            />
 
-        <div class="flex mb-3">
-            <div class="mr-1 flex">
-                <span class="self-center"> {{ quantity }}x </span>
+            <div class="flex mb-3">
+                <div class="mr-1 flex">
+                    <span class="self-center"> {{ quantity }}x </span>
+                </div>
+                <h3 class="font-bold mb-0" data-testid="product-name">
+                    {{ productGetters.getName(product) }}
+                </h3>
             </div>
-            <h3 class="font-bold mb-0" data-testid="product-name">
-                {{ productGetters.getName(product) }}
-            </h3>
-        </div>
 
-        <ProductPrice :product="product" />
-        <!--
-        <div
-          class="mb-4 font-normal typography-text-sm"
-          data-testid="product-description"
-          v-html="productGetters.getShortDescription(product)"
-        ></div>
-        
-        <div class="mt-4 typography-text-xs flex gap-1">
-          <span>{{ t('asterisk') }}</span>
-          <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
-          <span v-else>{{ t('itemInclVAT') }}</span>
-          <span>{{ t('excludedShipping') }}</span>
+            <ProductPrice :product="product" />
+            <!--
+            <div
+            class="mb-4 font-normal typography-text-sm"
+            data-testid="product-description"
+            v-html="productGetters.getShortDescription(product)"
+            ></div>
+            
+            <div class="mt-4 typography-text-xs flex gap-1">
+            <span>{{ t('asterisk') }}</span>
+            <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
+            <span v-else>{{ t('itemInclVAT') }}</span>
+            <span>{{ t('excludedShipping') }}</span>
+            </div>
+            -->
+            <VariationProperties :product="lastUpdatedProduct" />
+            <!--
+            </div>
+            <div class="py-8 px-10">
+                <div class="mb-8">
+            <p class="font-medium text-base">{{ t('quickCheckout.cartContains', cartItemsCount) }}</p>
+            <div class="grid grid-cols-2">
+                <p class="text-base">{{ t('quickCheckout.subTotal') }}:</p>
+                <p data-testid="subtotal" class="font-medium text-right">{{ n(totals.subTotal, 'currency') }}</p>
+            </div>
+            </div>
+            <!--
+            <UiButton
+            data-testid="quick-checkout-cart-button"
+            @click="goToPage(paths.cart)"
+            size="lg"
+            class="w-full mb-3"
+            variant="secondary"
+            >
+            {{ $t('quickCheckout.checkYourCart') }}
+            </UiButton>
+            -->        
         </div>
-        -->
-        <VariationProperties :product="lastUpdatedProduct" />
-         <!--
-      </div>
-      <div class="py-8 px-10">
-        <div class="mb-8">
-          <p class="font-medium text-base">{{ t('quickCheckout.cartContains', cartItemsCount) }}</p>
-          <div class="grid grid-cols-2">
-            <p class="text-base">{{ t('quickCheckout.subTotal') }}:</p>
-            <p data-testid="subtotal" class="font-medium text-right">{{ n(totals.subTotal, 'currency') }}</p>
-          </div>
+        <div class="flex flex-col items-center justify-center p-8">
+            <UiButton
+                data-testid="quick-checkout-checkout-button"
+                @click="goToPage(paths.checkout)"
+                size="lg"
+                class="w-full mb-4 md:mb-0"
+                :aria-label="$t('goToCheckout')"
+                >
+                {{ $t('goToCheckout') }}
+            </UiButton>
+            <div v-if="isAvailable">
+                <OrDivider class="my-4" />
+                <PayPalExpressButton class="w-full text-center" type="CartPreview" />
+            </div>
         </div>
-        <!--
-        <UiButton
-          data-testid="quick-checkout-cart-button"
-          @click="goToPage(paths.cart)"
-          size="lg"
-          class="w-full mb-3"
-          variant="secondary"
-        >
-          {{ $t('quickCheckout.checkYourCart') }}
-        </UiButton>
-        -->
-        <UiButton
-          data-testid="quick-checkout-checkout-button"
-          @click="goToPage(paths.checkout)"
-          size="lg"
-          class="w-full mb-4 md:mb-0"
-          :aria-label="$t('goToCheckout')"
-        >
-          {{ $t('goToCheckout') }}
-        </UiButton>
-        <div v-if="isAvailable">
-          <OrDivider class="my-4" />
-          <PayPalExpressButton class="w-full text-center" type="CartPreview" />
-        </div>
-      </div>
     </div>
   </UiModal>
 </template>

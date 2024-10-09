@@ -52,8 +52,7 @@
                   orderGetters.isItemSalableAndActive(order, item) && orderGetters.hasAllOrderPropertiesAvailable(item)
                 "
                 :price="orderGetters.getOrderAgainInformationPrice(item)"
-                :normal-price="orderGetters.getOrderAgainInformationPrice(item)"
-                :old-price="orderGetters.getItemPrice(item)"
+                :crossed-price="orderGetters.getItemPrice(item)"
               />
               <div
                 v-if="orderGetters.getItemShortDescription(order, item)"
@@ -197,7 +196,7 @@
           <span>{{ t('excludedShipping') }}</span>
         </div>
         <div class="ml-auto float-right">
-          <UiButton class="mr-2" variant="secondary" @click="close()" size="lg" :aria-label="t('account.ordersAndReturns.orderAgain.cancel')" >
+          <UiButton class="mr-2" variant="secondary" @click="close()" size="lg">
             {{ t('account.ordersAndReturns.orderAgain.cancel') }}
           </UiButton>
           <UiButton
@@ -206,7 +205,6 @@
             :disabled="loading || loadingAddToCart || !canAddToCart"
             size="lg"
             variant="primary"
-            :aria-label="t('account.ordersAndReturns.orderAgain.addToCart')"
           >
             <SfLoaderCircular v-if="loadingAddToCart" class="flex justify-center items-center" size="sm" />
             <span v-else>{{ t('account.ordersAndReturns.orderAgain.addToCart') }}</span>

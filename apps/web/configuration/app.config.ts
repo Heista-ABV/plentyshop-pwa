@@ -18,6 +18,6 @@ export const appConfiguration = {
       { rel: 'icon', href: 'https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/favicon.png' },
       { rel: 'apple-touch-icon', href: 'https://cdn02.plentymarkets.com/4tnz2nlw17zy/frontend/Logos/favicon.png' },
     ],
-    title: process.env.STORENAME || 'plentyShop PWA',
+    title: process.env.STORENAME,
   },
 };

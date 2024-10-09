@@ -24,7 +24,7 @@
             />
           </label>
           <div class="h-[2rem]">
-            <VeeErrorMessage as="div" name="firstName" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
+            <ErrorMessage as="div" name="firstName" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
           </div>
         </div>
 
@@ -43,7 +43,7 @@
             />
           </label>
           <div class="h-[2rem]">
-            <VeeErrorMessage as="div" name="lastName" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
+            <ErrorMessage as="div" name="lastName" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
           />
         </label>
         <div class="h-[2rem]">
-          <VeeErrorMessage as="div" name="email" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
+          <ErrorMessage as="div" name="email" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
         </div>
       </div>
 
@@ -95,7 +95,7 @@
           </label>
         </div>
         <div class="h-[2rem]">
-          <VeeErrorMessage as="div" name="privacyPolicy" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
+          <ErrorMessage as="div" name="privacyPolicy" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
         </div>
       </div>
 
@@ -114,7 +114,7 @@
           class="mt-4"
         />
 
-        <VeeErrorMessage as="div" name="turnstile" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
+        <ErrorMessage as="div" name="turnstile" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
       </div>
     </form>
 
@@ -124,7 +124,7 @@
 
 <script lang="ts" setup>
 import { SfCheckbox, SfInput, SfLink, SfLoaderCircular } from '@storefront-ui/vue';
-import { useForm } from 'vee-validate';
+import { useForm, ErrorMessage } from 'vee-validate';
 import { object, string, boolean } from 'yup';
 import { paths } from '~/utils/paths';
 

@@ -12,7 +12,7 @@
       :total-products="productsCatalog.pagination.totals"
       :products="productsCatalog.products"
       :items-per-page="Number(productsPerPage)"
-      :category="category"
+       :category="productsCatalog.category"
     > 
       <template #sidebar>
         <CategoryTree :category="productsCatalog.category" />
@@ -39,7 +39,6 @@ definePageMeta({
   shadow: false
 });
 
-definePageMeta({ layout: false });
 
 const { t, locale } = useI18n();
 const route = useRoute();

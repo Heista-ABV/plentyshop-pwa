@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 import type { PayPalAddToCartCallback, PaypalButtonPropsType } from '~/components/PayPal/types';
 
 const paypalButton = ref<HTMLElement | null>(null);
-const { loadScript, createTransaction, approveOrder, executeOrder } = usePayPal();
+const { getScript, createTransaction, approveOrder, executeOrder } = usePayPal();
 const { createOrder } = useMakeOrder();
 const { shippingPrivacyAgreement } = useAdditionalInformation();
 const { data: cart, clearCartItems } = useCart();
@@ -126,12 +126,10 @@ const createButton = () => {
   }
 };
 
-const bindUuid = async () => (paypalUuid.value = uuid());
-
-onMounted(async () => await bindUuid().then(() => createButton()));
+onMounted(() => createButton());
 
 watch(currency, async () => {
-  paypalScript.value = await loadScript(currency.value, isCommit);
+  paypalScript.value = await getScript(currency.value, isCommit);
   createButton();
 });
 </script>

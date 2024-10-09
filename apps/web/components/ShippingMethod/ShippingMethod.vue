@@ -46,10 +46,7 @@ import { SfIconBlock, SfListItem, SfRadio } from '@storefront-ui/vue';
 import { type CheckoutShippingEmits, type ShippingMethodProps } from './types';
 
 const { shippingMethods, disabled = false } = defineProps<ShippingMethodProps>();
-
-withDefaults(defineProps<ShippingMethodProps>(), {
-  disabled: false,
-});
+ 
 const emit = defineEmits<CheckoutShippingEmits>();
 const { data: cart } = useCart();
 const radioModel = ref(shippingProviderGetters.getShippingProfileId(cart.value));

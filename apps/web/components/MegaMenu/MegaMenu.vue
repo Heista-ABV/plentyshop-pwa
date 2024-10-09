@@ -131,7 +131,7 @@
                       :key="4"
                       ref="megaMenuReference"
                       :style="style"
-                      class="hidden bg-white max-w-[700px] xl:max-w-[800px] min-w-[700px] xl:min-w-[800px] 2xl:min-w-[860px] 2xl:max-w-[860px] !right-1/2 translate-x-1/2 shadow-lg p-5 outline-none z-[1000] topSearchDropper shadow-md"
+                      class="hidden bg-white max-w-[700px] xl:max-w-[800px] min-w-[700px] xl:min-w-[800px] 2xl:min-w-[860px] 2xl:max-w-[860px] !top-[80px] !right-1/2 translate-x-1/2 shadow-lg p-5 outline-none z-[1000] topSearchDropper shadow-md"
                       tabindex="0"
                       @mouseleave="close()"
                       @keydown.esc="focusTrigger(4)"

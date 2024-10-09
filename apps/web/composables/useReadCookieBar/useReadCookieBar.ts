@@ -11,13 +11,6 @@ const fetchScripts = (scripts: string[]) => {
   scripts.forEach((script: string) => {
     try {
       if (checkIfScriptIsExternal(script)) {
-        /*
-        fetch(script, { method: 'GET', mode: 'no-cors', credentials: 'same-origin' })
-          .then((response) => response.text())
-          .then((text) => new Function(text)())
-          .catch(() => {
-            return;
-          });*/
         const scriptElement = document.createElement('script');
         scriptElement.setAttribute('src', script);
         scriptElement.setAttribute('type', 'text/javascript');
@@ -61,6 +54,7 @@ export const useReadCookieBar: UseReadCookieBarReturn = () => {
         cookieGroup.cookies.forEach((cookie: Cookie, cookieIndex: number) => {
           if (cookie.accepted) {
             const scripts = initialCookies.groups[groupIndex].cookies?.[cookieIndex]?.script;
+
             if (scripts && scripts.length > 0) {
               fetchScripts(scripts);
             }

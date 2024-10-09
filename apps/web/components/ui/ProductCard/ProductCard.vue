@@ -188,16 +188,16 @@
                 <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary" :aria-label="name">
                     <div class="prices flex !flex-row !gap-3 !items-center md:!items-end !justify-between">          
                         <span 
-                        v-if="oldPrice && oldPrice > mainPrice"
+                       v-if="crossedPrice"
                         class="text-primary-400 line-through price-view-port typography-text-md crossPrice"
                         >
-                        {{ n(oldPrice, 'currency') }}
+                        {{ n(crossedPrice, 'currency') }}
                         </span>
                         <span class="font-bold typography-text-md price text-primary-700 catPrice" data-testid="product-card-vertical-price">
                         <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1">
                             {{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
                         </span>
-                        <span>{{ n(cheapestPrice ?? mainPrice, 'currency') }}</span>
+                        <span>{{ n(price, 'currency') }}</span>
                         </span>
                     </div>
                 </SfLink>
@@ -219,31 +219,28 @@ const {
   product,
   name,
   imageUrl,
-  imageAlt,
+  imageAlt = '',
   imageTitle,
   imageWidth,
   imageHeight,
   rating,
   ratingCount,
   priority,
-  lazy,
+  lazy = true,
   unitContent,
   unitName,
   basePrice,
   showBasePrice,
-  isFromWishlist,
-  isFromSlider,
-} = withDefaults(defineProps<ProductCardProps>(), {
-  lazy: true,
-  imageAlt: '',
-  isFromWishlist: false,
-  isFromSlider: false,
-});
+  isFromWishlist = false,
+  isFromSlider = false,
+} = defineProps<ProductCardProps>();
 
 const { data: categoryTree } = useCategoryTree();
 const { openQuickCheckout } = useQuickCheckout();
 const { addToCart } = useCart();
 const { send } = useNotification();
+const { price, crossedPrice } = useProductPrice(product);
+
 const loading = ref(false);
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
@@ -262,8 +259,6 @@ function addClassToParent(className: string, objectName: string) {
     var target = $( event!.target! ) ;
     var catArticle = target.parents('.'+objectToAddTo);
     catArticle.addClass(classToAdd)
-    
-    
 }  
 
 function removeClassFromParent(className: string, objectName: string) {
@@ -290,16 +285,6 @@ const addWithLoader = async (productId: number) => {
   }
 };
 
-const mainPrice = computed(() => {
-  const price = productGetters.getPrice(product);
-  if (!price) return 0;
-
-  if (price.special) return price.special;
-  if (price.regular) return price.regular;
-
-  return 0;
-});
-
 const getImgGallery: any = computed(() => {
     var getImages  = productGetters.getGallery(product);
     return getImages;
@@ -316,10 +301,10 @@ const getVarPropName = computed(() => {
 
 const getPercentSavings: any = computed(() => {
     // UVP
-    var regularPrice  = productGetters.getRegularPrice(product);
+    var regularPrice  = productGetters.getCrossedPrice(product);
     // Verkaufspreis
-    var specialPrice  = productGetters.getSpecialPrice(product);
-    if(specialPrice){
+    var specialPrice  = productGetters.getPrice(product);
+    if(specialPrice && regularPrice){
         var priceDiff = regularPrice - specialPrice;
         var percentCalc = (priceDiff / regularPrice) * 100;
         var roundedPercent = Math.round(percentCalc);
@@ -339,11 +324,12 @@ const getMagnifyValues: any = computed(() => {
 const manufacturer = product.item.manufacturer as { externalName: string };
 const manufName = manufacturer.externalName;
 const cheapestPrice = productGetters.getCheapestGraduatedPrice(product);
-const oldPrice = productGetters.getRegularPrice(product);
-const NuxtLink = resolveComponent('NuxtLink');
 
 const iconPropIds = [71,86,41,39,36]
 const iconPropOPValueIds = [71,86]
+
+const NuxtLink = resolveComponent('NuxtLink');
+
 watch(
   () => categoryTree.value,
   (categoriesTree) => setProductPath(categoriesTree),

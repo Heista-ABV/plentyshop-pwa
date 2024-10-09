@@ -119,11 +119,7 @@
         </div>
       </div>
       <div class="flex space-x-2 mb-2 pt-2">
-        <Price
-          :price="currentActualPrice"
-          :normal-price="normalPrice"
-          :old-price="productGetters.getPrice(product).regular ?? 0"
-        />
+        <Price :price="priceWithProperties" :crossed-price="crossedPrice" />
         <div v-if="(productBundleGetters?.getBundleDiscount(product) ?? 0) > 0" class="m-auto">
           <UiTag :size="'sm'" :variant="'secondary'">{{
             $t('procentageSavings', { percent: productBundleGetters.getBundleDiscount(product) })
@@ -256,19 +252,12 @@ const { reviewArea } = useProductReviews(Number(productGetters.getId(product)));
 resetInvalidFields();
 resetAttributeFields();
 
-const currentActualPrice = computed(
+const priceWithProperties = computed(
   () =>
-    (productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.price.value ??
-      productGetters.getPrice(product)?.special ??
-      productGetters.getPrice(product)?.regular ??
+    (productGetters.getSpecialOffer(product) ||
+      productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.unitPrice.value ||
       0) + getPropertiesPrice(product),
 );
-
-const normalPrice =
-  productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.price.value ??
-  productGetters.getPrice(product)?.special ??
-  productGetters.getPrice(product)?.regular ??
-  0;
 
 const basePriceSingleValue = computed(
   () =>

@@ -1,4 +1,5 @@
 <template>
+    
   <template v-if="category && category.details[0].imagePath && category.details[0].imagePath.length > 0">
     <div class="w-full h-category-top-banner py-10 xl:py-[50px]">
       <div class="max-w-screen-3xl mx-auto lg:px-10 px-4 md:px-6">        
@@ -105,7 +106,6 @@
                 :name="productGetters.getName(product) ?? ''"
                 :rating-count="productGetters.getTotalReviews(product)"
                 :rating="productGetters.getAverageRating(product, 'half')"
-                :price="actualPrice(product)"
                 :image-url="addModernImageExtension(productGetters.getCoverImagePreview(product))"
                 :image-alt="
                     productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
@@ -151,16 +151,17 @@
       </div>
     </div>
   </NarrowContainer>
+  
   <template v-if="category && category.details[0].description2.length > 0">
     <div id="descriptionTwo" class="max-w-screen-3xl mx-auto md:px-6 lg:px-10 mb-20 px-4 md:px-0">
       <div id="description2" class="category-description mb-3 text-left" v-html="category.details[0].description2">
       </div>
     </div>
   </template>
+  
 </template>
 
 <script setup lang="ts">
-import type { Product, Category } from '@plentymarkets/shop-api';
 import { productGetters, productImageGetters, categoryGetters } from '@plentymarkets/shop-api';
 import {  SfIconTune, useDisclosure, SfIconArrowBack } from '@storefront-ui/vue';
 import { type CategoryPageContentProps } from '~/components/CategoryPageContent/types';
@@ -177,22 +178,6 @@ const showNetPrices = runtimeConfig.public.showNetPrices;
 
 const { isOpen, open, close } = useDisclosure();
 const viewport = useViewport();
-/*
-const target = ref<Element>();
-const sticking = ref<boolean>(false);
-
-const observer = new IntersectionObserver(
-    ([entry]) => {
-        sticking.value = entry.isIntersecting;
-    },
-    { threshold: 0.0 }
-);
-
-onMounted(() => {
-    observer.observe(target.value as Element);
-});
-*/
-
 
 function openMobileFilter(className: string, objectName: string) {
   const classToAdd = className;
@@ -222,13 +207,4 @@ const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 1
 
 if (viewport.isLessThan('md')) close();
 
-const actualPrice = (product: Product): number => {
-  const price = productGetters.getPrice(product);
-  if (!price) return 0;
-
-  if (price.special) return price.special;
-  if (price.regular) return price.regular;
-
-  return 0;
-};
 </script>
