@@ -11,43 +11,22 @@
       <div class="leading-relaxed overflow-y-scroll sm:h-auto h-[295px] pb-5">
         {{ $t(cookieGroups?.barDescription) }}
 
-          <SfLink :tag="NuxtLink" :to="localePath(paths.privacyPolicy)" :aria-label="$t('CookieBar.Privacy Settings')">
-            {{ $t('CookieBar.Privacy Settings') }}
-          </SfLink>
-        </div>
-        <!-- checkboxes -->
-        <div v-if="cookieJson" class="grid sm:grid-cols-4 xs:grid-cols-3">
-          <template v-for="(cookieGroup, index) in cookieJson.groups" :key="index">
-            <div v-if="cookieGroup?.cookies?.length" class="sm:mb-5 mb-2 pr-2 flex items-center">
-              <SfCheckbox
-                :id="cookieGroup.name"
-                v-model="cookieGroup.accepted"
-                @update:model-value="triggerGroupConsent(cookieGroup)"
-                :disabled="index === defaults.ESSENTIAL_COOKIES_INDEX"
-              />
-              <label class="ml-2 cursor-pointer peer-disabled:text-disabled-900" :for="cookieGroup.name">
-                {{ $t(cookieGroup.name) }}
-              </label>
-            </div>
-          </template>
-        </div>
+        <SfLink :tag="NuxtLink" :to="localePath(paths.privacyPolicy)">
+          {{ $t('CookieBar.Privacy Settings') }}
+        </SfLink>
       </div>
       <!-- checkboxes -->
       <div v-if="cookieJson" class="flex sm:grid sm:grid-cols-4">
         <template v-for="(cookieGroup, index) in cookieJson.groups" :key="index">
           <div v-if="cookieGroup?.cookies?.length" class="mb-2 flex items-center ml-2 p-1">
             <SfCheckbox
-              class="align-text-top"
               :id="cookieGroup.name"
               v-model="cookieGroup.accepted"
               @update:model-value="triggerGroupConsent(cookieGroup)"
               :disabled="index === defaults.ESSENTIAL_COOKIES_INDEX"
               class="md:h-6 md:w-6"
             />
-            <label
-              class="ml-2 cursor-pointer peer-disabled:text-disabled-900 align-text-bottom font-medium"
-              :for="cookieGroup.name"
-            >
+            <label class="ml-2 cursor-pointer peer-disabled:text-disabled-900" :for="cookieGroup.name">
               {{ $t(cookieGroup.name) }}
             </label>
           </div>
@@ -110,14 +89,24 @@
                 </div>
               </div>
             </div>
-            <SfLink v-if="!Boolean(cookieGroup.showMore)" href="#" size="sm" @click="cookieGroup.showMore = true" :aria-label="$t('CookieBar.More information')">
-              {{ $t('CookieBar.More information') }}
-            </SfLink>
-            <SfLink v-else href="#" size="sm" @click="cookieGroup.showMore = false" :aria-label="$t('CookieBar.Show less')">
-              {{ $t('CookieBar.Show less') }}
-            </SfLink>
           </div>
-        </template>
+          <SfLink v-if="!Boolean(cookieGroup.showMore)" href="#" size="sm" @click="cookieGroup.showMore = true">
+            {{ $t('CookieBar.More information') }}
+          </SfLink>
+          <SfLink v-else href="#" size="sm" @click="cookieGroup.showMore = false">
+            {{ $t('CookieBar.Show less') }}
+          </SfLink>
+        </div>
+      </template>
+    </div>
+    <div>
+      <div class="text-center mt-2">
+        <SfLink class="text-base" v-if="!furtherSettingsOn" href="#" @click="furtherSettingsOn = true">
+          {{ $t('CookieBar.Further Settings') }}
+        </SfLink>
+        <SfLink v-else href="#" @click="furtherSettingsOn = false">
+          {{ $t('CookieBar.Back') }}
+        </SfLink>
       </div>
       <!-- action buttons -->
       <div class="w-full flex flex-col xl:flex-row mt-5 gap-2 mb-2">
@@ -158,19 +147,24 @@
         </div>
       </div>
     </div>
-    <!-- button to open cookie tab -->
-    <UiButton
-      v-else
-      variant="secondary"
-      class="z-10 fixed bottom-[4.3rem] md:bottom-2 left-2 xl:left-auto xl:right-2 bg-white !px-3 hover:!bg-primary-700 hover:!text-white active:!bg-primary-700 active:!text-white"
-      :label="$t('CookieBar.Cookie Settings')"
-      @click="changeVisibilityState"
-      data-testid="cookie-bar-open-btn"
-      :aria-label="$t('CookieBar.Cookie Settings')"
-    >
-      <SfIconLock />
-    </UiButton>
-  </client-only>
+  </div>
+  <!-- button to open cookie tab -->
+  <div v-else class="z-10 h-auto w-12 fixed bottom-[4.3rem] md:bottom-2 left-2 xl:left-auto xl:right-2">
+    <SfTooltip :label="$t('CookieBar.Cookie Settings')" placement="left">
+      <UiButton
+        variant="secondary"
+        class="!px-3 bg-white"
+        :aria-label="$t('CookieBar.Cookie Settings')"
+        @click="changeVisibilityState"
+        data-testid="cookie-bar-open-btn"
+      >
+        <SfIconLock>
+          
+        </SfIconLock>
+      </UiButton>
+    </SfTooltip>
+  </div>
+  <!-- button to open cookie tab -->
 </template>
 
 <script setup lang="ts">
