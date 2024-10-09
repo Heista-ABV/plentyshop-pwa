@@ -384,6 +384,7 @@ if (typeof homepageCategoryId === 'number') {
 const mediaData = ref({
   image: homepageTemplate.value.valueProposition.image,
   text: homepageTemplate.value.valueProposition.text,
+  alignment: homepageTemplate.value.valueProposition.alignment,
 });
 
 const formattedHeroItems = ref<HeroItem[]>(

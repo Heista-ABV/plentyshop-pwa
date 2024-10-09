@@ -59,12 +59,18 @@
           
           <OrderSummary v-if="cart" :cart="cart" class="mt-4">
             <CheckoutGeneralTerms />
-            <PayPalExpressButton
-              v-if="selectedPaymentId === paypalPaymentId"
-              :disabled="!termsAccepted || disableShippingPayment || cartLoading"
-              @on-click="validateTerms"
-              type="Checkout"
-            />
+            <client-only v-if="selectedPaymentId === paypalPaymentId">
+              <PayPalExpressButton
+                :disabled="!termsAccepted || disableShippingPayment || cartLoading"
+                @validation-callback="handlePayPalExpress"
+                type="Checkout"
+              />
+              <PayPalPayLaterBanner
+                placement="payment"
+                :amount="cartGetters.getTotal(cartGetters.getTotals(cart))"
+                :commit="true"
+              />
+            </client-only>
             <UiButton
               v-else-if="selectedPaymentId === paypalCreditCardPaymentId"
               type="submit"
@@ -124,7 +130,8 @@ import { SfLoaderCircular, SfIconLock } from '@storefront-ui/vue';
 import _ from 'lodash';
 import PayPalExpressButton from '~/components/PayPal/PayPalExpressButton.vue';
 import { PayPalCreditCardPaymentKey, PayPalPaymentKey } from '~/composables/usePayPal/types';
-import type { PayPalAddToCartCallback } from '~/components/PayPal/types';
+import { AddressType, paymentProviderGetters, cartGetters } from '@plentymarkets/shop-api';
+import { PayPalAddToCartCallback } from '~/components/PayPal/types';
 
 definePageMeta({
   layout: 'simplified-header-and-footer',
@@ -252,6 +259,12 @@ const handleRegularOrder = async () => {
   if (data?.order?.id) {
     clearCartItems();
     navigateTo(localePath(paths.confirmation + '/' + data.order.id + '/' + data.order.accessKey));
+  }
+};
+
+const handlePayPalExpress = (callback?: PayPalAddToCartCallback) => {
+  if (callback) {
+    callback(readyToBuy());
   }
 };
 

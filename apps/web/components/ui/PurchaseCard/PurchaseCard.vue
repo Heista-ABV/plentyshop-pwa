@@ -193,26 +193,14 @@
         </div>
         <!--
         <div class="mt-4 typography-text-xs flex gap-1">
-          <span>{{ t('asterisk') }}</span>
-          <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
-          <span v-else>{{ t('itemInclVAT') }}</span>
-          <span>{{ t('excludedShipping') }}</span>
-        </div>
-        
-       
-        <Suspense>
-            <template #default>
-                <PayPalExpressButton
-                    v-if="getCombination()"
-                    class="mt-4"
-                    type="SingleItem"
-                    @on-click="paypalHandleAddToCart"
-                />
-            </template>
-            <template #fallback>
-                <SfLoaderCircular class="flex justify-center items-center" size="sm" />
-            </template>
-        </Suspense>
+        <span>{{ t('asterisk') }}</span>
+        <span>{{ showNetPrices ? t('itemExclVAT') : t('itemInclVAT') }}</span>
+        <span>{{ t('excludedShipping') }}</span>
+      </div>
+      <template v-if="showPayPalButtons">
+        <PayPalExpressButton type="SingleItem" @validation-callback="paypalHandleAddToCart" class="mt-4" />
+        <PayPalPayLaterBanner placement="product" :amount="priceWithProperties * quantitySelectorValue" />
+      </template>
         
         -->
       </div>
@@ -226,11 +214,10 @@ import {  SfCounter, SfLink, SfRating, SfIconShoppingCart, SfLoaderCircular, SfT
 import { type PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 import { type PayPalAddToCartCallback } from '~/components/PayPal/types';
 
-const runtimeConfig = useRuntimeConfig();
-const showNetPrices = runtimeConfig.public.showNetPrices;
-
 const { product, reviewAverage } = defineProps<PurchaseCardProps>();
 
+const runtimeConfig = useRuntimeConfig();
+const showNetPrices = runtimeConfig.public.showNetPrices;
 const viewport = useViewport();
 const { getCombination } = useProductAttributes();
 const { getPropertiesForCart, getPropertiesPrice } = useProductOrderProperties();
@@ -337,6 +324,7 @@ const showPropIcons = [36,37,38,39,40,41,42,43,44,61,62,71,86,72,87];
 
 const isSalableText = computed(() => (productGetters.isSalable(product) ? '' : t('itemNotAvailable')));
 const isNotValidVariation = computed(() => (getCombination() ? '' : t('productAttributes.notValidVariation')));
+const showPayPalButtons = computed(() => Boolean(getCombination()) && productGetters.isSalable(product));
 
 const scrollToReviews = () => {
   if (!isReviewsAccordionOpen()) {

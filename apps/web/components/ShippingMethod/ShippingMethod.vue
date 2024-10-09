@@ -53,6 +53,7 @@ const radioModel = ref(shippingProviderGetters.getShippingProfileId(cart.value))
 const { t, n } = useI18n();
 
 const updateShippingMethod = (shippingId: string) => {
+  if (disabled) return;
   radioModel.value = shippingId;
   emit('update:shippingMethod', radioModel.value);
 };

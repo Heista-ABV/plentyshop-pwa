@@ -139,20 +139,20 @@ const route = useRoute();
 const { send } = useNotification();
 const { t } = useI18n();
 const localePath = useLocalePath();
-
-const termsAccepted = ref(false);
-const showTermsError = ref(false);
+const { checkboxValue: termsAccepted, setShowErrors } = useAgreementCheckbox('checkoutGeneralTerms');
 
 const loadAddresses = async () => {
   await getBillingAddresses();
   await getShippingAddresses();
 
-  if (shippingAddresses.value.length === 0 && billingAddresses.value.length > 0) {
-    await saveShippingAddress(billingAddresses.value[0]);
-  } else if (shippingAddresses.value.length === 0 && billingAddresses.value.length === 0) {
-    navigateTo(localePath(paths.cart));
+  if (shippingAddresses.value.length === 0) {
+    billingAddresses.value.length > 0
+      ? await saveShippingAddress(billingAddresses.value[0])
+      : navigateTo(localePath(paths.cart));
   }
 
+  await useCheckoutAddress(AddressType.Shipping).set(shippingAddresses.value[0], true);
+  await useCheckoutAddress(AddressType.Billing).set(billingAddresses.value[0], true);
   await getShippingMethods();
 };
 
@@ -174,7 +174,6 @@ redirectBack();
 await loadAddresses();
 await getShippingMethods();
 await fetchPaymentMethods();
-
 await savePaymentMethod(
   paymentMethodData?.value?.list?.find((method: PaymentMethod) => method.name === 'PayPal')?.id ?? 0,
 );
@@ -206,9 +205,7 @@ const validateTerms = (): boolean => {
 };
 
 const order = async () => {
-  if (redirectBack() || !validateTerms()) {
-    return;
-  }
+  if (redirectBack() || !validateTerms()) return;
 
   const data = await createOrder({
     paymentId: cart.value.methodOfPaymentId,
@@ -223,8 +220,6 @@ const order = async () => {
 
   clearCartItems();
 
-  if (data?.order?.id) {
-    navigateTo(localePath('/confirmation/' + data.order.id + '/' + data.order.accessKey));
-  }
+  if (data?.order?.id) navigateTo(localePath('/confirmation/' + data.order.id + '/' + data.order.accessKey));
 };
 </script>
