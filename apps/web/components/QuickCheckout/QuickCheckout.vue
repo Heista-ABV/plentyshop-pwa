@@ -76,7 +76,7 @@
             {{ $t('quickCheckout.checkYourCart') }}
             </UiButton>
             -->        
-        </div>
+        </div> 
         <div class="flex flex-col items-center justify-center p-8">
             <UiButton
                 data-testid="quick-checkout-checkout-button"
