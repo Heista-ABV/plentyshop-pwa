@@ -188,7 +188,7 @@
                 <SfLink :tag="NuxtLink" :to="productPath" class="no-underline" variant="secondary" :aria-label="name">
                     <div class="prices flex !flex-row !gap-3 !items-center md:!items-end !justify-between">          
                         <span 
-                       v-if="crossedPrice"
+                       v-if="crossedPrice && crossedPrice > price"
                         class="text-primary-400 line-through price-view-port typography-text-md crossPrice"
                         >
                         {{ n(crossedPrice, 'currency') }}
