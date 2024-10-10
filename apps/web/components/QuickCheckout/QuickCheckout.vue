@@ -40,42 +40,9 @@
             </div>
 
             <ProductPrice :product="product" />
-            <!--
-            <div
-            class="mb-4 font-normal typography-text-sm"
-            data-testid="product-description"
-            v-html="productGetters.getShortDescription(product)"
-            ></div>
             
-            <div class="mt-4 typography-text-xs flex gap-1">
-            <span>{{ t('asterisk') }}</span>
-            <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
-            <span v-else>{{ t('itemInclVAT') }}</span>
-            <span>{{ t('excludedShipping') }}</span>
-            </div>
-            -->
             <VariationProperties :product="lastUpdatedProduct" />
-            <!--
-            </div>
-            <div class="py-8 px-10">
-                <div class="mb-8">
-            <p class="font-medium text-base">{{ t('quickCheckout.cartContains', cartItemsCount) }}</p>
-            <div class="grid grid-cols-2">
-                <p class="text-base">{{ t('quickCheckout.subTotal') }}:</p>
-                <p data-testid="subtotal" class="font-medium text-right">{{ n(totals.subTotal, 'currency') }}</p>
-            </div>
-            </div>
-            <!--
-            <UiButton
-            data-testid="quick-checkout-cart-button"
-            @click="goToPage(paths.cart)"
-            size="lg"
-            class="w-full mb-3"
-            variant="secondary"
-            >
-            {{ $t('quickCheckout.checkYourCart') }}
-            </UiButton>
-            -->        
+           
         </div> 
         <div class="flex flex-col items-center justify-center p-8">
             <UiButton
@@ -87,7 +54,7 @@
                 >
                 {{ $t('goToCheckout') }}
             </UiButton>
-            <div v-if="isAvailable">
+            <div v-if="isPayPalReady">
                 <OrDivider class="my-4" />
                 <PayPalExpressButton class="w-full text-center" type="CartPreview" />
             </div>
@@ -99,7 +66,7 @@
 <script setup lang="ts">
 import { SfIconClose, SfIconCheck } from '@storefront-ui/vue';
 import type { QuickCheckoutProps } from './types';
-import { cartGetters, productGetters } from '@plentymarkets/shop-api';
+import { cartGetters, Product, productGetters } from '@plentymarkets/shop-api';
 import ProductPrice from '~/components/ProductPrice/ProductPrice.vue';
 import { paths } from '~/utils/paths';
 
@@ -109,8 +76,8 @@ const { t, n } = useI18n();
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
 const localePath = useLocalePath();
-const { data: cart, lastUpdatedProduct } = useCart();
-const { isAvailable, loadConfig } = usePayPal();
+const { data: cart, lastUpdatedCartItem } = useCart();
+const { isReady: isPayPalReady, loadConfig } = usePayPal();
 const { addModernImageExtension } = useModernImage();
 const { isOpen, timer, startTimer, endTimer, closeQuickCheckout, hasTimer, quantity } = useQuickCheckout();
 const cartItemsCount = computed(() => cart.value?.items?.reduce((price, { quantity }) => price + quantity, 0) ?? 0);
@@ -120,6 +87,8 @@ onMounted(() => {
   loadConfig();
 });
 onUnmounted(() => endTimer());
+
+const lastUpdatedProduct = computed(() => cartGetters.getVariation(lastUpdatedCartItem.value) || ({} as Product));
 
 const totals = computed(() => {
   const totalsData = cartGetters.getTotals(cart.value);

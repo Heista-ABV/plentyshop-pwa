@@ -120,8 +120,12 @@
 
 <script setup lang="ts">
 import { SfLink, SfListItem } from '@storefront-ui/vue';
-import { categories, companyName } from '~/mocks';
+import { categories } from '~/mocks';
 import type { FooterProps } from './types';
+
+const storename: string = useRuntimeConfig().public.storename;
+
+const companyName: string = `© ${storename} ${new Date().getFullYear()}`;
 
 const { simplifiedFooter = false } = defineProps<FooterProps>();
 

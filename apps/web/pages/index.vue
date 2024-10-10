@@ -354,6 +354,7 @@
 
 <script lang="ts" setup>
 import { HeroItem } from '~/components/ui/HeroCarousel/types';
+import { MediaItem } from '~/components/ui/MediaCard/types';
 const viewport = useViewport();
 const { t } = useI18n();
 const { data: categoryTree } = useCategoryTree();
@@ -364,54 +365,8 @@ const NuxtLink = resolveComponent('NuxtLink');
 
 const runtimeConfig = useRuntimeConfig();
 
-/*
-const homepageTemplate = ref<typeof getDefaultHomepageTemplate>(getDefaultHomepageTemplate);
-const homepageCategoryId = runtimeConfig.public.homepageCategoryId;
-const { fetchCategoryTemplate } = useCategoryTemplate();
-if (typeof homepageCategoryId === 'number') {
-  const { data } = await fetchCategoryTemplate(homepageCategoryId);
-  const parsedData = JSON.parse(data);
-  if (parsedData) {
-    homepageTemplate.value = {
-      id: parsedData.id,
-      hero: parsedData.hero || [],
-      valueProposition: parsedData.valueProposition,
-      featured: parsedData.featured,
-    };
-  }
-}
-
-const mediaData = ref({
-  image: homepageTemplate.value.valueProposition.image,
-  text: homepageTemplate.value.valueProposition.text,
-  alignment: homepageTemplate.value.valueProposition.alignment,
-});
-
-const formattedHeroItems = ref<HeroItem[]>(
-  homepageTemplate.value.hero.map((item) => ({
-    image: item.image,
-    tagline: item.tagline,
-    heading: item.heading,
-    description: item.description,
-    callToAction: item.callToAction,
-    link: item.link,
-    backgroundSizes: {
-      lg: { width: '4000', height: '600' },
-      md: { width: '1024', height: '600' },
-      sm: { width: '640', height: '752' },
-    },
-  })),
-);
-watch(
-  () => categoryTree.value,
-  async () => {
-    const firstCategoryId = categoryTree.value?.[0]?.id;
-    if (firstCategoryId) recommendedProductsCategoryId.value = firstCategoryId.toString();
-  },
-  { immediate: true },
-);
-*/
 const { showNewsletter } = useNewsletter();
+
 export type Size = {
   width: string;
   height: string;
@@ -425,30 +380,6 @@ export type Sizes = {
 
 type SizeKey = keyof Sizes;
 
-const getSizeForViewport = (sizes: Sizes | undefined): Size => {
-  if (!sizes) return { width: '0', height: '0' };
-  const breakpoint = viewport.breakpoint.value as SizeKey;
-
-  return sizes[breakpoint] || { width: '0', height: '0' };
-};
-const background = {
-  image: `/images/${viewport.breakpoint.value}/homepage-hero-bg.avif`,
-  alt: t('homepage.background'),
-  sizes: {
-    lg: {
-      width: '4000',
-      height: '600',
-    },
-    md: {
-      width: '1024',
-      height: '600',
-    },
-    sm: {
-      width: '640',
-      height: '752',
-    },
-  },
-};
 
 useHead({
   link: [
