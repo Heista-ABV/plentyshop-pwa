@@ -261,7 +261,7 @@
       <div class="md:flex items-center categorySnippet">
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">          
             <section class="mx-[15px] lg:mr-[24px] lg:ml-0 mb-5 md:mb-0 overflow-hidden">        
-              <ProductRecommendedProducts category-id="29" :max-item-count="3" />
+              <ProductRecommendedProducts category-id="29" :max-item-count="3"/>
             </section>          
         </div>
         <div class="categorySnippetImaage relative min-w-[100%] md:min-w-[25%]">
@@ -326,7 +326,7 @@
         <div class="snippetContent min-w-[100%] md:min-w-[75%]">
           <NuxtLazyHydrate when-visible>
             <section class="mx-[15px] lg:mr-[24px] lg:ml-0  mb-5 md:mb-0 overflow-hidden">        
-              <ProductRecommendedProducts  category-id="24" :max-item-count="3"/>
+              <ProductRecommendedProducts category-id="24" :max-item-count="3"/>
             </section>
           </NuxtLazyHydrate>
         </div>
@@ -367,28 +367,6 @@ const runtimeConfig = useRuntimeConfig();
 
 const { showNewsletter } = useNewsletter();
 
-export type Size = {
-  width: string;
-  height: string;
-};
 
-export type Sizes = {
-  lg: Size;
-  md: Size;
-  sm: Size;
-};
-
-type SizeKey = keyof Sizes;
-
-
-useHead({
-  link: [
-    {
-      rel: 'preload',
-      href: background.image,
-      as: 'image',
-    },
-  ],
-});
 
 </script>
