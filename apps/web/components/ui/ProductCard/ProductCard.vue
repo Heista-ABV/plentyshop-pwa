@@ -208,7 +208,7 @@
 </template>
 
 <script setup lang="ts">
-import { CategoryTreeItem, productGetters, productPropertyGetters } from '@plentymarkets/shop-api';
+import { productGetters, productPropertyGetters } from '@plentymarkets/shop-api';
 import { SfLink, SfIconShoppingCart, SfLoaderCircular, SfIconChevronRight, SfRating, SfCounter } from '@storefront-ui/vue';
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 import $ from "jquery";
@@ -244,14 +244,10 @@ const { price, crossedPrice } = useProductPrice(product);
 const loading = ref(false);
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
-const productPath = ref('');
-const setProductPath = (categoriesTree: CategoryTreeItem[]) => {
-  const path = productGetters.getCategoryUrlPath(product, categoriesTree);
-  const productSlug = productGetters.getSlug(product) + `_${productGetters.getItemId(product)}`;
-  productPath.value = localePath(`${path}/${productSlug}`);
-};
 
-setProductPath(categoryTree.value);
+const path = computed(() => productGetters.getCategoryUrlPath(product, categoryTree.value));
+const productSlug = computed(() => productGetters.getSlug(product) + `_${productGetters.getItemId(product)}`);
+const productPath = computed(() => localePath(`${path.value}/${productSlug.value}`));
 
 function addClassToParent(className: string, objectName: string) {
     const classToAdd = className;
@@ -329,9 +325,4 @@ const iconPropIds = [71,86,41,39,36]
 const iconPropOPValueIds = [71,86]
 
 const NuxtLink = resolveComponent('NuxtLink');
-
-watch(
-  () => categoryTree.value,
-  (categoriesTree) => setProductPath(categoriesTree),
-);
 </script>
