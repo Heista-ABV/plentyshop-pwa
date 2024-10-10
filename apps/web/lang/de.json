@@ -13,17 +13,6 @@
       "description": "Wir verwenden Cookies und ähnliche Technologien auf unserer Website und verarbeiten personenbezogene Daten von Besucher:innen unserer Webseite (z.B. IP-Adresse), um z.B. Inhalte und Anzeigen zu personalisieren, Medien von Drittanbietern einzubinden oder Zugriffe auf unsere Website zu analysieren. Die Datenverarbeitung erfolgt erst durch gesetzte Cookies. Wir teilen diese Daten mit Dritten, die wir in den Einstellungen benennen. Die Datenverarbeitung kann mit Einwilligung oder aufgrund eines berechtigten Interesses erfolgen. Die Zustimmung kann erteilt oder abgelehnt werden. Es besteht das Recht, nicht einzuwilligen und die Einwilligung zu einem späteren Zeitpunkt zu ändern oder zu widerrufen. Weitere Informationen zur Verwendung personenbezogener Daten und den Diensten erklären wir in unserer",
       "label": "Ihre Privatsphäre ist uns wichtig"
     },
-    "marketing": {
-      "label": "Marketing",
-      "description": "Marketing-Cookies werden von Drittanbietern und Publishern verwendet, um personalisierte Werbung anzuzeigen. Sie tun dies, indem sie Besucher über Websites hinweg verfolgen.",
-      "cookies":{
-        "ga4":{
-            "name": "Google Analytics",
-            "provider": "Google LLC",
-            "status": "Der Cookie von Google für Website-Analysen erzeugt statistische Daten darüber, wie der Besucher die Website nutzt."
-        }
-      }
-    },
     "essentials": {
       "cookies": {
         "cloudflareTurnstile": {
@@ -74,7 +63,14 @@
     },
     "marketing": {
       "description": "Marketing-Cookies werden von Drittanbietern und Publishern verwendet, um personalisierte Werbung anzuzeigen. Sie tun dies, indem Sie Besucher über Websites hinweg verfolgen.",
-      "label": "Marketing"
+      "label": "Marketing",
+      "cookies":{
+        "ga4":{
+            "name": "Google Analytics",
+            "provider": "Google LLC",
+            "status": "Der Cookie von Google für Website-Analysen erzeugt statistische Daten darüber, wie der Besucher die Website nutzt."
+        }
+      }
     }
   },
   "PreviewModeBar": {
