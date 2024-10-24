@@ -12,7 +12,8 @@ class BuildLogger implements Logger {
 
   constructor() {
     const timestamp = new Date().toISOString();
-    const logFilePath = path.resolve(__dirname, `./build-${timestamp}.log`);
+    const logFilePath = path.resolve(__dirname, `./build.log`);
+    console.log(logFilePath);
     this.logStream = createWriteStream(logFilePath);
   }
 
